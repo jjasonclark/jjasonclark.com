@@ -61,7 +61,7 @@ content: content
 #
 # Don't forget to uncomment the "production:" line too...
 
-# production:
-#   cache: false    
-#   content: content
+production:
+  cache: false    
+  content: content
 
