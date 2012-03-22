@@ -61,7 +61,8 @@ content: content
 #
 # Don't forget to uncomment the "production:" line too...
 
-production:
+roduction:
   cache: false    
   content: content
+  google_analytics_code: "UA-12083278-1"
 
