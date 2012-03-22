@@ -11,8 +11,9 @@ The following assumes you have already setup Ubuntu and can access the network. 
 ## Install the NFS server package
 Run the following commands to install NFS server and rpcbind
 
-	apt-get install nfs-kernel-server
-	apt-get install rpcbind
+    :::text
+    apt-get install nfs-kernel-server
+    apt-get install rpcbind
 
 ## Setup IPTables to restore rules at startup and save rules at shutdown
 Create the following two files
@@ -34,6 +35,7 @@ Create the following two files
 
 Give both scripts execute permissions and run them
     
+    :::text
     chmod +x /etc/network/if-pre-up.d/iptablesload
     chmod +x /etc/network/if-post-down.d/iptablessave
     /etc/network/if-post-down.d/iptablessave
@@ -42,6 +44,7 @@ Give both scripts execute permissions and run them
 ## Add IPTable rules to allow NFS and RPCBind traffic
 Run the following commands
 
+    :::text
     iptables -A INPUT -m state --state NEW -p udp --dport 111 -j ACCEPT
     iptables -A INPUT -m state --state NEW -p tcp --dport 111 -j ACCEPT
     iptables -A INPUT -m state --state NEW -p tcp --dport 2049 -j ACCEPT
@@ -58,6 +61,7 @@ Run the following commands
 ## Setup ports for NFS
 Edit the file `/etc/default/nfs-kernel-server` and add or uncomment the following lines
 
+    :::text
     LOCKD_TCPPORT=32803
     LOCKD_UDPPORT=32769
     MOUNTD_PORT=892
@@ -71,10 +75,12 @@ Edit the file `/etc/idmapd.conf` and change the value for `Domain` to be your do
 ## Create first export
 Create your first exported directory
 
+    :::text
     mkdir -p /export/first
 
 Setup NFS to export the directory by editing the file `/etc/exports`. Add the following line
 
+    :::text
     /export/first *(rw,async,no_subtree_check,no_root_squash)
 
 Update NFS exported files by running `exportfs -a`
@@ -82,12 +88,14 @@ Update NFS exported files by running `exportfs -a`
 ## Restart NFS and networking
 Restart via the following commands
 
+    :::text
     /etc/init.d/nfs-kernel-server restart
     /etc/init.d/networking restart
 
 ## Verify it all works
 Run `rpcinfo -p` and verify that the following services are listed
 
+    :::text
     mountd
     nlockmgr
     nfs
