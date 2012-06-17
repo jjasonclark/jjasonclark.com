@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'nesta', "~>0.9.11"
-gem 'coderay', "~>1.0.5"
+gem 'nesta', "~>0.9.13"
+gem 'coderay', "~>1.0.6"
 gem 'rack-codehighlighter', "~>0.5.0", :require => 'rack/codehighlighter'
 
 
