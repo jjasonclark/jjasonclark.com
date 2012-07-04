@@ -14,6 +14,10 @@ module Nesta
       # Add new helpers here.
     end
 
+    def enable_comments?
+      @page.flagged_as?('commented')
+    end
+
     # Add new routes here.
   end
 end
