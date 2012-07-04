@@ -1,4 +1,5 @@
 Date: 20 March 2012 PST
+Flags: commented
 Description: How to get a base install Ubuntu 10.04 server to run NFS. Includes setting up IPTables rules.
 Categories: ubuntu, unix, howto, nfs, iptables
 Keywords: ubuntu, unix, howto, nfs, iptables

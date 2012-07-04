@@ -1,4 +1,5 @@
 Date: 9 May 2012 PST
+Flags: commented
 Description: Installing Node.js on Ubuntu 10.04 server
 Categories: ubuntu, unix, howto, node, javascript
 Keywords: ubuntu, unix, howto, node, javascript

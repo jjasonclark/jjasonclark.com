@@ -1,4 +1,5 @@
 Date: 21 March 2012 PST
+Flags: commented
 Description: How to setup Cloudstack 3.0.0 on Ubuntu 10.04 server
 Categories: ubuntu, unix, howto, cloudstack, cloud, vm
 Keywords: ubuntu, unix, howto, cloudstack, cloud, vm, acton, xen, xenserver, citrix

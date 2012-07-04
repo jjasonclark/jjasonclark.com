@@ -1,4 +1,5 @@
 Date: 30 April 2012 PST
+Flags: commented
 Description: How to setup npm to work behind a web proxy
 Categories: node, npm, howto
 Keywords: node.js, npm, proxy, setup
