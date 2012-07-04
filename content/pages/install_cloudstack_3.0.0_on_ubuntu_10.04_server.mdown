@@ -15,7 +15,7 @@ To get started download the [cloud management software](http://sourceforge.net/p
 This assumes that you have an Ubuntu 10.04 Server running with NFS setup. Additionally you need at least 1 host with XenServer 6 installed. Also, all commands must be run as the root user. For this install I'm going to use the following values. Change the values to what you would use.
 
     :::text
-    Desktop: myhost    
+    Desktop: myhost
     Management Server: manhost
     XenServer Host: xenhost
     Management IPs: 192.168.0.20 - 192.168.0.29
