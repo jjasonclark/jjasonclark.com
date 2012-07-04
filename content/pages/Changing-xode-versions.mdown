@@ -1,4 +1,5 @@
 Date: 18 June 2012 PST
+Flags: commented
 Description: Changing Xcode versions
 Categories: ruby, macosx
 Keywords: xcode, macosx, setup, ruby
