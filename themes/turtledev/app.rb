@@ -8,7 +8,7 @@ module Nesta
     #
     # Put your assets in themes/turtledev/public/turtledev.
     #
-    # use Rack::Static, :urls => ["/turtledev"], :root => "themes/turtledev/public"
+    use Rack::Static, :urls => ["/turtledev"], :root => "themes/turtledev/public"
 
     helpers do
       # Add new helpers here.
