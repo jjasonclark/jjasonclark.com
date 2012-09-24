@@ -1,5 +1,5 @@
 Date: 17 Aug 2012 PST
-Flags: commented, draft
+Flags: commented
 Description: Setting up a Mac for remote pairing via Tmux
 Categories: ruby, macosx, unix, pairing
 Keywords: macosx, setup, ruby, unix, tmux, pairing
