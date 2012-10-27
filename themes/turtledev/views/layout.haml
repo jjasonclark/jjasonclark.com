@@ -16,8 +16,8 @@
       %script(src="//html5shim.googlecode.com/svn/trunk/html5.js")
     - local_stylesheet_link_tag('local')
     %link(href="#{url('/articles.xml')}" rel="alternate" type="application/atom+xml")
-    = haml :analytics, :layout => false
   %body
+    = haml :analytics, :layout => false
     #container
       = haml :header, :layout => false
       = yield
