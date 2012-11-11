@@ -109,8 +109,17 @@ div#container
       width: $content-width
       margin: 0
       padding: 1em 0
+    small
+      float: right
 
 // The visuals
+
+.title
+  float: left
+
+.social
+  float: right
+  padding-top: 10px
 
 a
   border-bottom: 1px dotted $link-color
@@ -126,6 +135,10 @@ a
   &:active
     color: $active-link-color
     border-bottom-color: $active-link-color
+
+a.social_button
+  border: none
+  color: $link-color
 
 nav.breadcrumb    
   ul
