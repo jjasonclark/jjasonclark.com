@@ -21,7 +21,7 @@ It turns out the locals are accessed via instance accessor methods. This whole t
 
 ## Summary
 
-Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn't find the answer. Hopefully yours will find this article before you pull all of your hair our.
+Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn't find the answer. Hopefully yours will find this article before you pull all of your hair out.
 
 Special thanks to my co-worker [Daniel Zajic][1] for pairing with me to solve the problem. He found the solution as soon as I told it to him. Clearly he had read the documentation I should have read earlier.
 
