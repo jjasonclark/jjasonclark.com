@@ -14,7 +14,7 @@ It is easy to setup your computer to support remote pairing.
 ## Install Tmux
 Install Tmux using Homebrew.
 
-    :::text
+    :::shell
     brew install tmux
 
 You might want to change the configuration. Take a look at my [.tmux.conf][1]. It's a good starter configuration using `ctrl+/` as the Tmux key.
@@ -25,7 +25,7 @@ Next thing you need to do is setup a user account for others to SSH into your co
 ## Allow user to connect via SSH
 Once the user is setup you need to allow the user to log in via SSH. In the "Sharing" system preference enable "Remote Login". And then add the following to your `/etc/sshd_config` file.
 
-        :::text
+        :::ssh-config
         Match User remotepair
             X11Forwarding no
             AllowTcpForwarding no
@@ -36,7 +36,7 @@ Change the first line to match the user account name you created. The last line 
 ## Setting up the shared Tmux session
 The secret to getting a shared session working with Tmux is to know where the socket is. You can use the `-S` argument to specify this location. I have created a script to setup my environment and include this option. The following is the script I use for my work project. It sets up 3 windows in a named session using the socket path of `/tmp/pair`. This is the same path from `/etc/sshd_config`'s force command.
 
-        :::text
+        :::shell
         #!/bin/sh
 
         tmux -S /tmp/pair has-session -t workenv
@@ -54,7 +54,7 @@ The secret to getting a shared session working with Tmux is to know where the so
 ## Enable pair partner to join the shared session
 Finally I have created a script to set the needed permissions on the shared socket. Additionally I enable and disable the login ability of the pair partner account.
 
-        :::text
+        :::shell
         #! /bin/sh
 
         if [ "enable" = "$1" ]; then
@@ -68,7 +68,7 @@ Finally I have created a script to set the needed permissions on the shared sock
 ## Pair for the win
 Tell your pair partner to connect to your computer using your pairing account name.
 
-    :::text
+    :::shell
     ssh remotepair@jjasonclark.com
 
 Thats it! Your all setup to pair via SSH and Tmux. Head over to [Ruby Pair][3] and try it out.

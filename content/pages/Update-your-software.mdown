@@ -13,14 +13,17 @@ Today while trying to get Github to update my code (constant network errors) I t
 
 Do this to make sure [Homebrew][1] package definitions is current.
 
+    :::shell
     brew update
 
 Once you have gotten the latest definitions do the following to get your software upgraded.
 
+    :::shell
     brew upgrade <package name>
 
 Major ones for me are
 
+    :::shell
     brew upgrade git
     brew upgrade bash
     brew upgrade tmux

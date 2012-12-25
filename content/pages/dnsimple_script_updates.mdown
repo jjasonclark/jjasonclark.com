@@ -27,7 +27,7 @@ Then I use [DNSimple's record API][4] to update the subdomain's A record to poin
 ## Final script
 This all comes together in the following bash shell script. I call it `dnsimple.sh`.
  
-    :::text
+    :::shell
     #!/bin/bash
 
     LOGIN="<enter yours here>"
@@ -51,7 +51,7 @@ This all comes together in the following bash shell script. I call it `dnsimple.
 ## Update hourly
 I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it's good to be ready for it when it does. I do this update by running the `dnsimple.sh` script every hour via a cron task. These are set in my `/etc/crontab` file.
 
-    :::text
+    :::shell
     # m h  dom mon dow   command
     @hourly /root/bin/setDNSimple.sh > /dev/null 2>&1
 

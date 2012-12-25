@@ -12,4 +12,3 @@ How to setup Windows 7 in a VM on the Macbook Air.
 3. Install VMware Fusion
 4. Setup VM to install Win7
 5. Install Win7
-
