@@ -1,0 +1,19 @@
+Date: 2010-06-24 12:05:13
+Flags: draft
+Description:
+Categories: programming, Ruby
+Keywords:
+Summary:
+
+## Learning Ruby
+
+I thought I would give learning Ruby a try. The internet seems abuzz with talk about how amazing Ruby is, so it is at least worth a look. I also checked and my ISP does support Ruby on Rails apps.  It is a nice bonus to not have to pay any extra for hosting if I do actually make something.
+
+I started by installing Ruby for windows via the installer from <a href="http://rubyinstaller.org/">http://rubyinstaller.org/</a>. I wanted to be able to use the Ruby Koans from <a href="http://github.com/edgecase/ruby_koans">http://github.com/edgecase/ruby_koans</a> to learn from so I needed to do a little more setup. I also needed to install the gem for test-unit.
+
+<span style="font-family:Consolas, Monaco, 'Courier New', Courier, monospace;line-height:18px;font-size:12px;white-space:pre;">gem install test-unit --include-dependencies</span>
+<pre>
+<pre>While I was inside an elevated command prompt I also installed Rails.
+
+gem install rails --include-dependencies</pre>
+</pre>

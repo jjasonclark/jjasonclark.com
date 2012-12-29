@@ -1,0 +1,44 @@
+Date: 2010-10-03 22:15:30
+Flags: draft
+Description:
+Categories: Ruby
+Keywords:
+Summary:
+
+## Finished the Ruby Koans
+
+<p></p>  <p>Finally finished the <a href="http://github.com/edgecase/ruby_koans">Ruby Koans</a> today.</p>  <pre>                                  ,,   ,  ,,
+                                :      ::::,    :::,
+                   ,        ,,: :::::::::::::,,  ::::   :  ,
+                 ,       ,,,   ,:::::::::::::::::::,  ,:  ,: ,,
+            :,        ::,  , , :, ,::::::::::::::::::, :::  ,::::
+           :   :    ::,                          ,:::::::: ::, ,::::
+          ,     ,:::::                                  :,:::::::,::::,
+      ,:     , ,:,,:                                       :::::::::::::
+     ::,:   ,,:::,                                           ,::::::::::::,
+    ,:::, :,,:::                                               ::::::::::::,
+   ,::: :::::::,       Mountains are again merely mountains     ,::::::::::::
+   :::,,,::::::                                                   ::::::::::::
+ ,:::::::::::,                                                    ::::::::::::,
+ :::::::::::,                                                     ,::::::::::::
+:::::::::::::                                                     ,::::::::::::
+::::::::::::                      Ruby Koans                       ::::::::::::,
+::::::::::::                   (in Ruby 1.9.2)                    ,::::::::::::,
+:::::::::::,                                                      , ::::::::::::
+,:::::::::::::,                brought to you by                 ,,::::::::::::,
+::::::::::::::                                                    ,::::::::::::
+ ::::::::::::::,                                                 ,:::::::::::::
+ ::::::::::::,             EdgeCase Software Artisans           , ::::::::::::
+  :,::::::::: ::::                                               :::::::::::::
+   ,:::::::::::  ,:                                          ,,:::::::::::::,
+     ::::::::::::                                           ,::::::::::::::,
+      :::::::::::::::::,                                  ::::::::::::::::
+       :::::::::::::::::::,                             ::::::::::::::::
+        ::::::::::::::::::::::,                     ,::::,:, , ::::,:::
+          :::::::::::::::::::::::,               ::,: ::,::, ,,: ::::
+              ,::::::::::::::::::::              ::,,  , ,,  ,::::
+                 ,::::::::::::::::              ::,, ,   ,:::,
+                      ,::::                         , ,,
+                                                  ,,,</pre>
+
+<p>I enjoyed it as a learning exercise. I can see why <a href="http://rubyforge.org/projects/zentest/">Autotest (Zentest)</a> makes it a much better experience. I only wish I could have set it up on my Windows machine. It took a lot longer time running the tests manually. And I’m sure I missed some of the benefit of seeing the answer to every test instead of skipping some since I would just fill in sever answers at once.</p>

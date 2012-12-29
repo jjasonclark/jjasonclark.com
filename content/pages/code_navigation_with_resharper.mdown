@@ -1,0 +1,10 @@
+Date: 2010-10-04 19:36:22
+Flags: draft
+Description:
+Categories: programming, Resharper, Tools
+Keywords:
+Summary:
+
+## Code navigation with Resharper
+
+Found a great screencast for using Resharper to help code navigation.  <a href="http://tv.jetbrains.net/videocontent/efficient-navigation-when-doing-tddbdd-with-resharper">http://tv.jetbrains.net/videocontent/efficient-navigation-when-doing-tddbdd-with-resharper</a>
