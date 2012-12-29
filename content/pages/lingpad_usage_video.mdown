@@ -5,7 +5,7 @@ Categories: LinQ, linqpad, programming, video
 Keywords:
 Summary:
 
-## Linqpad usage video
+# Linqpad usage video
 
 Watched a great video tonight on using Linqpad. It was given by the creator, <a href="http://www.albahari.com/">Joseph Albahari</a>, to show off the new Entity Framework connection work he has done. Linqpad supports the current version of EF and the author has said he plans on supporting version 4.0 as well.
 

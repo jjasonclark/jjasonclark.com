@@ -5,7 +5,7 @@ Categories: programming
 Keywords:
 Summary:
 
-## Fizz-buzz rehash
+# Fizz-buzz rehash
 
 While moving my blog content from site to site my post on Fizz-buzz caught my eye again. I thought I would post another implementation that was even more complex (read don't use in your interview)
 

@@ -5,7 +5,7 @@ Categories: Ruby
 Keywords:
 Summary:
 
-## Finished the Ruby Koans
+# Finished the Ruby Koans
 
 <p></p>  <p>Finally finished the <a href="http://github.com/edgecase/ruby_koans">Ruby Koans</a> today.</p>  <pre>                                  ,,   ,  ,,
                                 :      ::::,    :::,

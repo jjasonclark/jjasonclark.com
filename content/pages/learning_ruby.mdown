@@ -5,7 +5,7 @@ Categories: programming, Ruby
 Keywords:
 Summary:
 
-## Learning Ruby
+# Learning Ruby
 
 I thought I would give learning Ruby a try. The internet seems abuzz with talk about how amazing Ruby is, so it is at least worth a look. I also checked and my ISP does support Ruby on Rails apps.  It is a nice bonus to not have to pay any extra for hosting if I do actually make something.
 

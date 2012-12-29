@@ -1,11 +1,11 @@
 Date: 2010-03-01 15:17:15
-Flags: draft
+Flags: draft, commented
 Description:
 Categories: programming
 Keywords:
 Summary:
 
-## Alt.Net Seattle mini con report
+# Alt.Net Seattle mini con report
 
 I went to my first <a href="http://www.altnetseattle.org/">Alt.Net Seattle</a> meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the <a href="http://www.mvpsummit2010.com/">MVP global summit</a>. I have to say I really liked it.
 

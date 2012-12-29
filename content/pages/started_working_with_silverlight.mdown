@@ -5,7 +5,7 @@ Categories: programming, SilverLight
 Keywords:
 Summary:
 
-## Started working with Silverlight
+# Started working with Silverlight
 
 Thanks to the last few days being snow days I’ve gotten some work done on the programming front.  I’ve been playing with Silverlight 2.0.  I installed the <a title="Microsoft® Silverlight™ Tools for Visual Studio 2008 SP1" href="http://go.microsoft.com/fwlink/?LinkId=129043">SDK</a> and have started working on a Solitaire program.  I figured that a program with no external input would be nice to start with.  Although for my next project I would like to try connecting to a REST service.
 

@@ -5,7 +5,7 @@ Categories: C#, programming
 Keywords:
 Summary:
 
-## FizzBuzz test in C#
+# FizzBuzz test in C#
 
 I've been looking at developer job related web sites to see what kinds of "things" are being used in interviews. There are a few programmer challenges that people are using to weed out the less capable developers. In particular the one called <a href="http://imranontech.com/2007/01/24/using-fizzbuzz-to-find-developers-who-grok-coding/">FizzBuzz test</a> is quite amazing to me. It isn't the simplicity of the challenge that gets me it is the fact that so many cannot write it during the interview. I would assume that any level of developer can easily complete this code. Although I keep seeing examples all over the web about how current <em>(2010)</em> job candidates cannot write it.
 
