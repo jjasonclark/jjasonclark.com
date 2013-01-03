@@ -12,7 +12,7 @@ use Rack::Codehighlighter,
     :ultraviolet,
     :lines => false,
     :element => "pre>code",
-    :theme => "sunburst",
+    :theme => "iplastic",
     :pattern => /\A\s*:::([^\n\r]+)\s*[\n\r]/i,
     :markdown => true,
     :logging => false
