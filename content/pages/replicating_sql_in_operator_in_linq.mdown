@@ -1,10 +1,33 @@
 Date: 2009-12-06 22:45:31
-Flags: draft
-Description:
+Flags: draft, commented
+Description: Replicating SQL's in operator in Linq
 Categories: C#, LinQ, programming
-Keywords:
-Summary:
+Keywords: c#
+Summary: SQL has a range variable search keyword called 'in'.
 
-# Replicating SQL’s ‘in’ operator in Linq
+# Replicating SQL's `in` operator in Linq
 
-<p>One of the common programming problems is sorting a complex object on a list of criteria. For example, given the following class.</p>  <div style="display:inline;float:none;margin:0;padding:0;" id="scid:9ce6104f-a9aa-4a17-a79f-3a39532ebf7c:a8f0c515-9e66-40e0-98a5-74411c2dc760" class="wlWriterEditableSmartContent"> <div style="border:#000080 1px solid;color:#000;font-family:'Courier New', Courier, Monospace;font-size:10pt;"> <div style="background-color:#ffffff;overflow:auto;white-space:nowrap;padding:2px 5px;"><span style="color:#0000ff;">public</span> <span style="color:#0000ff;">class</span> <span style="color:#2b91af;">Car</span><br /> {<br /> &#160;&#160;&#160;&#160;<span style="color:#0000ff;">public</span> <span style="color:#0000ff;">int</span> ModelNumber { <span style="color:#0000ff;">get</span>; <span style="color:#0000ff;">set</span>; }<br /> }</div> </div> </div>  <p>Imagine you wanted to pick out all Cars in your data model that had Model Numbers between 2 and 4? In Linq you would normally do something like this.</p>  <div style="display:inline;float:none;margin:0;padding:0;" id="scid:9ce6104f-a9aa-4a17-a79f-3a39532ebf7c:c62c5aac-7086-4fdb-ae75-d7e886852951" class="wlWriterEditableSmartContent"> <div style="border:#000080 1px solid;color:#000;font-family:'Courier New', Courier, Monospace;font-size:10pt;"> <div style="background-color:#ffffff;overflow:auto;white-space:nowrap;padding:2px 5px;"><span style="color:#0000ff;">var</span> sortedCars = Cars.Where(car =&gt; wantedModeles.Contains(car.ModelNumber));</div> </div> </div>  <p>This of course works but it doesn’t look very elegant at all. In fact I much prefer the SQL syntax version of this kind of query; using the <font color="#0000ff">in</font> operator. So I’ve been thinking about away to make this work a little better. Well I’ve finally come up with a solution that I like.&#160; Take a look at this example.</p>  <p></p>  <p></p>  <div style="display:inline;float:none;margin:0;padding:0;" id="scid:9ce6104f-a9aa-4a17-a79f-3a39532ebf7c:16a2af3c-60f0-44eb-afde-11d2d138abf7" class="wlWriterEditableSmartContent"> <div style="border:#000080 1px solid;color:#000;font-family:'Courier New', Courier, Monospace;font-size:10pt;"> <div style="background-color:#ffffff;overflow:auto;white-space:nowrap;padding:2px 5px;"><span style="color:#0000ff;">var</span> wantedModeles = <span style="color:#0000ff;">new</span> <span style="color:#0000ff;">int</span>[] { 2, 3, 4};<br /> <br /> <span style="color:#0000ff;">var</span> sortedCars2 =<br /> &#160;&#160;&#160;&#160;<span style="color:#0000ff;">from</span> car <span style="color:#0000ff;">in</span> Cars<br /> &#160;&#160;&#160;&#160;<span style="color:#0000ff;">join</span> model <span style="color:#0000ff;">in</span> wantedModeles <span style="color:#0000ff;">on</span> car.ModelNumber <span style="color:#0000ff;">equals</span> model<br /> &#160;&#160;&#160;&#160;<span style="color:#0000ff;">select</span> car;</div> </div> </div>  <p>In this case I create use a join operation to sort the wanted sub-list of items. The join operation sorts out all of the items wanted based on the joined properties. I like this syntax a lot more because I can combine it with where clauses that would normally be if/then/else statements after the initial query.</p>
+One of the common programming problems is sorting a complex object on a list of criteria. For example, given the following class.
+
+    :::c-sharp
+    public class Car
+    {
+        public int ModelNumber { get; set; }
+    }
+
+Imagine you wanted to pick out all Cars in your data model that had Model Numbers between 2 and 4? In Linq you would normally do something like this.
+
+    :::c-sharp
+    var sortedCars = Cars.Where(car => wantedModeles.Contains(car.ModelNumber));
+
+This of course works but it doesn't look very elegant at all. In fact I much prefer the SQL syntax version of this kind of query; using the in operator. So I've been thinking about away to make this work a little better. Well I've finally come up with a solution that I like.  Take a look at this example.
+
+    :::c-sharp
+    var wantedModeles = new int[] { 2, 3, 4};
+
+    var sortedCars2 =
+        from car in Cars
+        join model in wantedModeles on car.ModelNumber equals model
+        select car;
+
+In this case I create use a join operation to sort the wanted sub-list of items. The join operation sorts out all of the items wanted based on the joined properties. I like this syntax a lot more because I can combine it with where clauses that would normally be if/then/else statements after the initial query.
