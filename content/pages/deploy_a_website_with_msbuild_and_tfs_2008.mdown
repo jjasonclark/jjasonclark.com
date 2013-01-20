@@ -1,16 +1,11 @@
 Date: 2009-10-22 18:16:47
-Flags: draft, commented
-Description:
+Flags: commented
+Description: Using TFS to build and deploy a web project
 Categories: asp.net, msbuild, programming
 Keywords: asp.net, msbuild, programming
-Summary: how I used msbuild to get the server running
+Summary: how I used msbuild to get a web server running
 
 # Deploying a website with MSBuild and TFS 2008
-
-post on how I used msbuild to get the server running
-
-* include stuff about changing out the database's publish target
-* include stuff about using the appcmd command to update the web.config
 
 This past week I have been working on getting the product that I work on into TFS and building on a regular schedule. This is a basic web application built on the Microsoft stack. We have a web site, a database, and some DLLs for business logic.
 
@@ -57,26 +52,26 @@ In order for this to work I had to translate all of our current batch files into
     </Target>
 
     <Target Name="RegisterWebSiteInIIS">
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd add app /site.name:%22$(SDLTrackBaseWebSite)%22 /path:/$(BuildNumber) /physicalPath:$(SDLTrackWebSitePath)\$(BuildNumber) /applicationPool:%22$(SDLTrackApplicationPool)%22" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd add app /site.name:"$(SDLTrackBaseWebSite)" /path:/$(BuildNumber) /physicalPath:$(SDLTrackWebSitePath)\$(BuildNumber) /applicationPool:"$(SDLTrackApplicationPool)"" />
     </Target>
 
     <Target Name="UpdateWebConfig">
         <Copy SourceFiles="$(SolutionRoot)\$(TeamProject)\Misc\UnitTest\Setup\Web\ModifyWebConfig\WebTemplate.config"
             DestinationFiles="$(SDLTrackWebSitePath)\$(BuildNumber)\web.config"
             OverwriteReadOnlyFiles="true" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:appSettings /[key='connectionString'].value:%22server=(local);database=$(BuildNumber);integrated security=true;%22" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:appSettings /[key='filePath'].value:%22$(SDLTrackUploadPath)\$(BuildNumber)%22" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:appSettings /[key='pluginPath'].value:%22$(SDLTrackWebSitePath)\$(BuildNumber)\Bin%22" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:appSettings /[key='currentSDLVersionID'].value:%22$(SDLTrackClassicSDLVersionID)%22" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:appSettings /[key='currentAgileSDLVersionID'].value:%22$(SDLTrackAgileSDLVersionID)%22" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:appSettings /[key='baseWebAddress'].value:%22$(ComputerName)/$(BuildNumber)%22" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:appSettings /[key='connectionString'].value:"server=(local);database=$(BuildNumber);integrated security=true;"" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:appSettings /[key='filePath'].value:"$(SDLTrackUploadPath)\$(BuildNumber)"" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:appSettings /[key='pluginPath'].value:"$(SDLTrackWebSitePath)\$(BuildNumber)\Bin"" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:appSettings /[key='currentSDLVersionID'].value:"$(SDLTrackClassicSDLVersionID)"" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:appSettings /[key='currentAgileSDLVersionID'].value:"$(SDLTrackAgileSDLVersionID)"" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:appSettings /[key='baseWebAddress'].value:"$(ComputerName)/$(BuildNumber)"" />
     </Target>
 
     <Target Name="TurnOnWindowsAuthenticationOnly">
         <!-- Set access level to be windows only-->
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:system.webServer/security/authentication/windowsAuthentication /enabled:true /commit:apphost"/>
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:system.web/authentication /mode:Windows" />
-        <Exec Command="%25SystemRoot%25\System32\inetsrv\appcmd set config %22$(SDLTrackBaseWebSite)/$(BuildNumber)%22 /section:system.webServer/security/authentication/anonymousAuthentication /enabled:false /commit:apphost"/>
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:system.webServer/security/authentication/windowsAuthentication /enabled:true /commit:apphost"/>
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:system.web/authentication /mode:Windows" />
+        <Exec Command="%SystemRoot%\System32\inetsrv\appcmd set config "$(SDLTrackBaseWebSite)/$(BuildNumber)" /section:system.webServer/security/authentication/anonymousAuthentication /enabled:false /commit:apphost"/>
     </Target>
 
     <Target Name="DeploySDLTrackConsole">
@@ -84,10 +79,10 @@ In order for this to work I had to translate all of our current batch files into
         <Copy SourceFiles="$(SolutionRoot)\$(TeamProject)\Misc\UnitTest\Setup\Console\ModifyAppConfig\SWITrackConsoleTemplate.config"
             DestinationFiles="$(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config"
             OverwriteReadOnlyFiles="true" />
-        <Exec Command="echo ^%3Cadd key=%22connectionString%22 value=%22Persist Security Info=False;Integrated Security=SSPI;database=$(BuildNumber);server=localhost%22 /^%3E >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
-        <Exec Command="echo ^%3Cadd key=%22filePath%22 value=%22$(SDLTrackUploadPath)\$(BuildNumber)%22 /^%3E >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
-        <Exec Command="echo ^%3Cadd key=%22baseWebAddress%22 value=%22$(ComputerName):1%25date:~4,2%25%25date:~7,2%25%22 /^%3E >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
-        <Exec Command="echo ^%3Cadd key=%22pluginPath%22 value=%22$(SDLTrackWebSitePath)\$(BuildNumber)\Bin%22 /^%3E >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
-        <Exec Command="echo ^%3C/appSettings^%3E >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
-        <Exec Command="echo ^%3C/configuration^%3E >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
+        <Exec Command="echo ^<add key="connectionString" value="Persist Security Info=False;Integrated Security=SSPI;database=$(BuildNumber);server=localhost" /^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
+        <Exec Command="echo ^<add key="filePath" value="$(SDLTrackUploadPath)\$(BuildNumber)" /^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
+        <Exec Command="echo ^<add key="baseWebAddress" value="$(ComputerName):1%date:~4,2%%date:~7,2%" /^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
+        <Exec Command="echo ^<add key="pluginPath" value="$(SDLTrackWebSitePath)\$(BuildNumber)\Bin" /^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
+        <Exec Command="echo ^</appSettings^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
+        <Exec Command="echo ^</configuration^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
     </Target>
