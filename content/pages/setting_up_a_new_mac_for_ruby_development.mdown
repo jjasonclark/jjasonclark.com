@@ -1,5 +1,5 @@
 Date: 20 Jan 2013
-Flags: draft, commented
+Flags: commented
 Description: Setting up a new Mac for Ruby development
 Categories: programming, setup
 Keywords: setup, tips, mac, ruby, development
