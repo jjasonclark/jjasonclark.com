@@ -1,0 +1,90 @@
+Date: 6 Feb 2013
+Flags: draft, commented
+Categories: ruby, programming
+Keywords: ruby, programming, gem, security, encryption
+Description: How to switch from attr\_encrypted to attr\_encryptor gem for better security
+Summary: How to switch from attr\_encrypted to attr\_encryptor gem for better security
+
+# Switching from attr_encrypted gem to attr_encryptor for better security
+
+At work we are using the [attr\_encrypted gem][4] to encrypt some [PII][6] on our `advertisers` table. We are storing for some clients `[:bank_account_number, :bank_routing_number, :federal_tax_id]` using a strong key. It turns out that this is not enough. A [Github issue][1] was created to address leaking of data caused by using the same [initialization vector (IV)][7] and [salt][8] for every value. The attr\_encrypted gem uses the key to create the IV and solt values and is vulnerable. The [attr\_encryptor][5] was created to fix these issues.
+
+Besides changing gem names, to switch gems you will need to add the new `_iv` and `_salt` database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.
+
+## Re-encrypting old values
+
+At first I was hoping the attr\_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem's decryption code. From the [Github source][9]
+
+    :::ruby
+    # Decrypts a value for the attribute specified
+    #
+    # Example
+    #
+    #   class User
+    #     attr_encrypted :email
+    #   end
+    #
+    #   email = User.decrypt(:email, 'SOME_ENCRYPTED_EMAIL_STRING')
+    def decrypt(attribute, encrypted_value, options = {})
+      options = encrypted_attributes[attribute.to_sym].merge(options)
+      if options[:if] && !options[:unless] && !encrypted_value.nil? && !(encrypted_value.is_a?(String) && encrypted_value.empty?)
+        encrypted_value = encrypted_value.unpack(options[:encode]).first if options[:encode]
+        value = options[:encryptor].send(options[:decrypt_method], options.merge!(:value => encrypted_value))
+        if options[:marshal]
+          value = options[:marshaler].send(options[:load_method], value)
+        elsif defined?(Encoding)
+          encoding = Encoding.default_internal || Encoding.default_external
+          value = value.force_encoding(encoding.name)
+        end
+        value
+      else
+        encrypted_value
+      end
+    end
+
+Which calls to the [encryptor gem][12] to do the actually decryption. The [decryption code][11]
+
+    :::ruby
+    def crypt(cipher_method, *args) #:nodoc:
+      options = default_options.merge(:value => args.first).merge(args.last.is_a?(Hash) ? args.last : {})
+      raise ArgumentError.new('must specify a :key') if options[:key].to_s.empty?
+      cipher = OpenSSL::Cipher::Cipher.new(options[:algorithm])
+      cipher.send(cipher_method)
+      if options[:iv]
+        cipher.key = options[:key]
+        cipher.iv = options[:iv]
+      else
+        cipher.pkcs5_keyivgen(options[:key])
+      end
+      yield cipher, options if block_given?
+      result = cipher.update(options[:value])
+      result << cipher.final
+    end
+
+Basically this boils down to the following.
+
+    :::ruby
+    def decrypt(value, key)
+      cipher = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
+      cipher.decrypt
+      cipher.pkcs5_keyivgen(key)
+      result = cipher.update(value.unpack('m').first)
+      result << cipher.final
+    end
+
+Throw this into a Rails migration for the advertisers table and all done. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.
+
+
+
+[1]: https://github.com/shuber/attr_encrypted/issues/32 "Security issue with attr_encrypted"
+[2]: https://github.com/shuber/attr_encrypted "attr_encrypted gem source"
+[3]: https://github.com/danpal/attr_encryptor "attr_encryptor gem source"
+[4]: http://rubygems.org/gems/attr_encrypted "attr_encyrpted on rubygems"
+[5]: http://rubygems.org/gems/attr_encryptor "attr_encryptor on rubygems"
+[6]: http://en.wikipedia.org/wiki/Personally_identifiable_information "Wikipedia on PII"
+[7]: http://en.wikipedia.org/wiki/Initialization_vector "Wikipedia on IV"
+[8]: http://en.wikipedia.org/wiki/Salt_(cryptography) "Wikipedia on salt"
+[9]: https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190 "decryption function in attr_encrypted"
+[10]: https://github.com/shuber/encryptor "encrytor gem source"
+[11]: https://github.com/shuber/encryptor/blob/master/lib/encryptor.rb#L49-63 "encryptor decrypt method"
+[12]: http://rubygems.org/gems/encryptor "encryptor gem on rubygems"
