@@ -1,0 +1,14 @@
+%h1
+  Contact Jason
+
+%form{ :method => 'post', :action => '/contact' }
+  %fieldset
+    %label{ :for => 'subject' }
+      Subject
+    %input{ :type => 'text', :name => 'subject', :size => 40 }
+  %fieldset
+    %label{ :for => 'body' }
+      Message
+    %textarea{ :name => 'body', :cols => 40, :rows => 25 }
+  %input{ :type => 'submit', :value => 'Send feedback' }
+
