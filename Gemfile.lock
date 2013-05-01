@@ -22,6 +22,8 @@ GEM
     polyglot (0.3.3)
     pony (1.4)
       mail (> 2.0)
+    puma (2.0.1)
+      rack (>= 1.1, < 2.0)
     rack (1.4.3)
     rack-codehighlighter (0.5.0)
       nokogiri (>= 1.4.1)
@@ -51,5 +53,6 @@ PLATFORMS
 DEPENDENCIES
   nesta (~> 0.9.13)
   pony
+  puma
   rack-codehighlighter (~> 0.5.0)
   ultraviolet
