@@ -1,5 +1,5 @@
 Date: 9 May 2013
-Flags: commented, draft
+Flags: commented
 Description: Converting from Vagrant 1.0 to 1.2 requires a change in Vagrantfile too
 Categories: programming, devops
 Keywords: Vagrant, VM, virtualmachine, upgrade, chef, provision, hypervisor
