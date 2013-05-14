@@ -1,14 +1,25 @@
 %h1
   Contact Jason
 
-%form{ :method => 'post', :action => '/contact' }
-  %fieldset
-    %label{ :for => 'subject' }
-      Subject
-    %input{ :type => 'text', :name => 'subject', :size => 40 }
+%p
+  Please leave me a message using the following form. If you like you can email me directly at
+  %a{ :href => 'mailto:Jason@JJasonClark.com' }
+    Jason@JJasonClark.com
+  Or you can contact me on Skype using username JJasonClark.
+  #SkypeButton_Chat_jjasonclark_1
+
+%form{ :method => 'post', :action => '/contact', :class => 'contact' }
   %fieldset
     %label{ :for => 'body' }
       Message
     %textarea{ :name => 'body', :cols => 40, :rows => 25 }
   %input{ :type => 'submit', :value => 'Send feedback' }
 
+%script{ :type => "text/javascript", :src => "http://cdn.dev.skype.com/uri/skype-uri.js"}
+:javascript
+  Skype.ui({
+    "name": "chat",
+    "element": "SkypeButton_Chat_jjasonclark_1",
+    "participants": ["jjasonclark"],
+    "imageSize": 32
+  });
