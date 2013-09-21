@@ -1,9 +1,9 @@
 %header(role="banner")
   %hgroup.title
-    %a{ :href => "/", :title => "JJasonClark.com" }
+    %a{ :href => url("/"), :title => "JJasonClark.com" }
       %h1= @heading
       %h2= @subtitle
   %hgroup.social
-    %a{ :href => '/contact', :title => 'Contact me' }
+    %a{ :href => url('/contact'), :title => 'Contact me' }
       Contact me
     = haml :social, :layout => false
