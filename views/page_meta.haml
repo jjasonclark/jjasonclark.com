@@ -1,7 +1,8 @@
 - if page.date
   %footer
     %p.meta
-      Published
+      Published by
+      = haml :author, :layout => false
       - if page.date
         on
         %time(datetime="#{page.date.to_s}" pubdate=true)= format_date(page.date)
