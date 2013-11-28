@@ -1,3 +1,5 @@
+require 'pony'
+
 module Nesta
   class App
     helpers do
@@ -28,7 +30,11 @@ module Nesta
     end
 
     # Add new routes here.
-    require 'pony'
+    get "/#{ENV["GOOGLESITE"]}.html" do
+      content_type "text/plain"
+      "google-site-verification: #{ENV["GOOGLESITE"]}.html"
+    end
+
     post '/contact' do
         subject = "Web feedback: #{Rack::Utils.escape_html(params[:subject])}"
         body = Rack::Utils.escape_html(params[:body]) || 'No body'
