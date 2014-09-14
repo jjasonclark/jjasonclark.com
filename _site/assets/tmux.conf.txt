@@ -1,0 +1,36 @@
+# Set Ctrl+o as prefix key
+unbind C-b
+set -g prefix C-_
+bind C-_ send-prefix
+
+# set key delay times
+set -sg escape-time 1
+
+# setup window & pane navigation
+set -g base-index 1
+setw -g pane-base-index 1
+
+# setup term
+setw -g xterm-keys
+set -g default-terminal "xterm-256color"
+set -g mode-mouse on
+setw -g monitor-activity on
+set -g visual-activity on
+set -g mouse-select-window on
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+
+# Set status bar colors
+set -g status-bg black
+set -g status-fg white
+set -g status-left-length 100
+setw -g window-status-current-bg red
+setw -g automatic-rename
+set -g status-left '#[fg=red]#H#[fg=green]:#[fg=white]#S #[fg=green]<->#[default]'
+
+# Vi or emacs style keys...
+setw -g mode-keys vi
+
+# Reload key
+bind r source-file ~/.tmux.conf
+bind space next-window

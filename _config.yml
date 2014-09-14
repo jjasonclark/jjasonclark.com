@@ -11,7 +11,7 @@ timezone: America/Vancouver
 encoding: utf-8
 google_analytics_code: UA-12083278-1
 disqus_shortname: jjasonclark
-exclude: [Gemfile, Gemfile.lock, Procfile, vendor]
+exclude: [README.md, Gemfile, Gemfile.lock, Procfile, vendor]
 
 # Build settings
 markdown: kramdown

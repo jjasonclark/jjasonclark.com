@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JJasonClark.com</title>
+    <description>Stuff I have time to write about
+</description>
+    <link>http://jjasonclark.com/</link>
+    <atom:link href="http://jjasonclark.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 13 Sep 2014 23:30:33 -0700</pubDate>
+    <lastBuildDate>Sat, 13 Sep 2014 23:30:33 -0700</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Avahi helps hosts connect to VMs</title>
+        <description>&lt;h1 id=&quot;avahi-helps-hosts-connect-to-vms&quot;&gt;Avahi helps hosts connect to VMs&lt;/h1&gt;
+
+&lt;p&gt;I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: &lt;a href=&quot;http://en.wikipedia.org/wiki/Bonjour_(software)&quot;&gt;Bonjour&lt;/a&gt;. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.&lt;/p&gt;
+
+&lt;h2 id=&quot;mac-setup&quot;&gt;Mac Setup&lt;/h2&gt;
+
+&lt;p&gt;In the Safari preference panel select the advanced tab. Check the setting you want.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/safari_preference.png&quot; alt=&quot;Safari preference panel&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;linux-setup&quot;&gt;Linux Setup&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://avahi.org/&quot;&gt;Avahi&lt;/a&gt; is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don’t have to reboot your server.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use your distros package manager to install it. For &lt;code&gt;yum&lt;/code&gt; it is &lt;code&gt;sudo yum install -y avahi&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Then create a file in the &lt;code&gt;/etc/avahi/services&lt;/code&gt; directory with a &lt;code&gt;.service&lt;/code&gt; extension.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; standalone=&amp;#39;no&amp;#39;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE service-group SYSTEM &amp;quot;avahi-service.dtd&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;service-group&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;replace-wildcards=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;yes&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;%h&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;service&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;_http._tcp&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;port&amp;gt;&lt;/span&gt;3000&lt;span class=&quot;nt&quot;&gt;&amp;lt;/port&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/service&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/service-group&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run &lt;code&gt;sudo /etc/init.d/avahi-daemon restart&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;getting-fancy&quot;&gt;Getting fancy&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://the.taoofmac.com/space/HOWTO/Vagrant&quot;&gt;Toa of Mac&lt;/a&gt; has some great tips on how to configure a setup with 2 NICs and only broadcast on the private network.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 27 Nov 2013 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/avahi_helps_hosts_connect_to_vms</link>
+        <guid isPermaLink="true">http://jjasonclark.com/avahi_helps_hosts_connect_to_vms</guid>
+        
+        
+        <category>vm,</category>
+        
+        <category>linux,</category>
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Trying out Emacs Again</title>
+        <description>&lt;h1 id=&quot;trying-out-emacs-again&quot;&gt;Trying out Emacs Again&lt;/h1&gt;
+
+&lt;p&gt;I’m a Vim user, but I’m not 100% sold on it. I keep wanting to find an even better editor. I’ve tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.&lt;/p&gt;
+
+&lt;h2 id=&quot;land-of-lisp&quot;&gt;Land of Lisp&lt;/h2&gt;
+
+&lt;p&gt;I’ve got 3 kids, so I don’t get a lot of reading time. I’m finally getting a chance to read a book I picked up a while back, “&lt;a href=&quot;http://landoflisp.com/&quot;&gt;Land of Lisp&lt;/a&gt;”. And this is prompting me to give Emacs another try. The last few times I’ve tried it I got tired of all the key combos I had to press to get &lt;em&gt;anything&lt;/em&gt; done. I’m hoping this time I can learn some of the Lisp for easier configuration.&lt;/p&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;Not knowing the best way to get the latest version of Emacs I did what most do an searched Google. I found out that there are at least 2 easy ways to install Emacs. Either you download from the &lt;a href=&quot;http://emacsformacosx.com/&quot;&gt;EmacsForMacOSX&lt;/a&gt; site or you install via &lt;a href=&quot;http://brew.sh&quot;&gt;Homebrew&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I did find an article that says I should &lt;a href=&quot;http://struct.tumblr.com/post/46754394733/emacs-24-use-homebrew-instead-of-emacsformacosx&quot;&gt;use homebrew instead of EmacsForMacOSX&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I love the Homebrew system so I went that route.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install emacs --cocoa --srgb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This installed version 24.3.1 of Emacs.&lt;/p&gt;
+
+&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;Next I needed a starter configuration. My childhood friend is also an Emacs user and posted &lt;a href=&quot;https://github.com/zev/emacs.d&quot;&gt;his config on Github&lt;/a&gt;. So naturally I forked it. This was a while ago when I tried Emacs once before, so all I had to do was update it. There was some specific settings for his computer, so I have removed them from my copy.  Check it out at &lt;a href=&quot;https://github.com/jjasonclark/emacs.d&quot;&gt;jjasonclark/emacs.d&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 05 Sep 2013 00:00:00 -0700</pubDate>
+        <link>http://jjasonclark.com/trying_out_emacs_again</link>
+        <guid isPermaLink="true">http://jjasonclark.com/trying_out_emacs_again</guid>
+        
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Sinatra Settings for Nested Apps</title>
+        <description>&lt;h1 id=&quot;sinatra-settings-for-nested-apps&quot;&gt;Sinatra Settings for Nested Apps&lt;/h1&gt;
+
+&lt;p&gt;I finally got a chance to do some work with &lt;a href=&quot;http://sinatrarb.com&quot;&gt;Sinatra&lt;/a&gt;. Something more than the typical &lt;code&gt;Hello, World!&lt;/code&gt; app. I needed a UI on top of a restful web API. The docs are written using &lt;code&gt;curl&lt;/code&gt; calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created &lt;a href=&quot;https://github.com/jjasonclark/cardspring_browse&quot;&gt;Cardspring_browse&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The app is little more than HTML over a JSON API. Which isn’t to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Inner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sinatra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/inner&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Outer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sinatra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Inner&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Easy enough until it came time to share some configuration settings.  Each split up file seemed to get it’s own copy of the &lt;code&gt;settings&lt;/code&gt;. This meant that the outer app’s settings didn’t apply. I tried all kinds of things, but nothing worked. I resorted to asking a &lt;a href=&quot;http://stackoverflow.com/questions/18320823/sharing-yaml-config-files-between-sinatra-and-rails&quot;&gt;question on Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The answer there was acceptable, but not the ideal. I thought if I read the source code I might be able to figure something better out. It turns out the source for &lt;a href=&quot;http:github.com/sinatra/sinatra&quot;&gt;Sinatra&lt;/a&gt; and &lt;a href=&quot;http://github.com/rack/rack&quot;&gt;Rack&lt;/a&gt; are very readable. Both are very tiny too. After reading the answer was clear. The pattern used throughout many Rack apps is to set values in the &lt;code&gt;env&lt;/code&gt; parameter hash that is passed to the &lt;code&gt;call&lt;/code&gt; method. Typically you use a string with the name of your app and the name of the value separated by a &lt;code&gt;.&lt;/code&gt; (period).&lt;/p&gt;
+
+&lt;p&gt;The Cardspring_browse app uses it &lt;a href=&quot;https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/lib/cardspring_browse/application.rb#L15-L18&quot;&gt;here&lt;/a&gt;. This code uses the Rack middleware &lt;a href=&quot;https://github.com/rack/rack/blob/master/lib/rack/config.rb&quot;&gt;Rack::Config&lt;/a&gt; to achieve the result.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Config&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;my_app.my_property&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;custom value&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The full code for the outer application is the following. From the looks of the code I don’t yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Help wanted! It is &lt;a href=&quot;https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/LICENSE.txt&quot;&gt;open source&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Sinatra&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:method_override&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:config_file&lt;/span&gt;
+
+  &lt;span class=&quot;no&quot;&gt;PROPERTY_NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;cardspring_browse.config_file&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Config&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PROPERTY_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;settings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config_file&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Publisher&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Users&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Events&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Businesses&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Apps&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Transactions&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;__FILE__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;settings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config_file&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;/v1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 29 Aug 2013 00:00:00 -0700</pubDate>
+        <link>http://jjasonclark.com/sinatra_settings_for_nested_apps</link>
+        <guid isPermaLink="true">http://jjasonclark.com/sinatra_settings_for_nested_apps</guid>
+        
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Vagrant Going from old and busted, to new hotness</title>
+        <description>&lt;h1 id=&quot;vagrant-going-from-old-and-busted-to-new-hotness&quot;&gt;Vagrant: Going from old and busted, to new hotness&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.vagrantup.com/&quot; title=&quot;Vagrant&quot;&gt;Vagrant&lt;/a&gt; is an amazing application for helping you manage virtual machines. I feel like you are missing out if you haven’t started using Vagrant yet. I highly recommend it. Vagrant helps out by keeping track of several things that you would normally do manually to maintain a VM. It does this via the &lt;code&gt;Vagrantfile&lt;/code&gt; you place in your project’s directory and check into source control. The file contains two basic parts; all of the meta data that the VM needs boot, and the steps used to provision the VM.&lt;/p&gt;
+
+&lt;p&gt;Vagrant has been out for a while now, so it has gone through several versions already. Lately there has been a renewed effort by the creators of Vagrant to add more features. In order to support these new features the semantics of the &lt;code&gt;Vagrantfile&lt;/code&gt; had to change. In addition to the must change parts the Vagrant team has also done some changes to the existing parts that make it easier to interact with.&lt;/p&gt;
+
+&lt;p&gt;Converting to this new format is a fairly easy process to do. For the most part it just requires some renamed attributes or nesting inside of a block. These changes will remove any warning messages Vagrant is producing from your old &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;upgrading-your-vagrant-binaries&quot;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
+
+&lt;p&gt;First things first, you will need to uninstall the old version of Vagrant. Most people installed Vagrant via the &lt;a href=&quot;http://rubygems.org/gems/vagrant&quot; title=&quot;Vagrant gem on RubyGems&quot;&gt;gem&lt;/a&gt;. As of this writing this will give you version 1.0.7. That version is before the new &lt;code&gt;Vagrantfile&lt;/code&gt; format was created. You will need to download the binary version of from their &lt;a href=&quot;http://downloads.vagrantup.com/&quot; title=&quot;Vagrant downloads&quot;&gt;website&lt;/a&gt;, currently at version 1.2.2. As a person who works with many different versions of Ruby I highly recommend you don’t go back to the gem version of Vagrant even if they update it to the latest version. The reason is that you will have to install the gem several times for each version of Ruby or remember to switch back to that version of Ruby in order to use the &lt;code&gt;vagrant&lt;/code&gt; command. The binary install makes this so much easier because you don’t have to do any of those workarounds.&lt;/p&gt;
+
+&lt;h2 id=&quot;upgrade-your-vagrantfiles&quot;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
+
+&lt;p&gt;Once you have the latest version install open up your &lt;code&gt;Vagrantfile&lt;/code&gt; and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Vagrant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From here you will need to change a few standard meta data settings.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;host_name&lt;/code&gt; is now &lt;code&gt;hostname&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;sync_folder&lt;/code&gt; is now &lt;code&gt;synced_folder&lt;/code&gt; and it’s first 2 parameters have swapped places&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;forward_port&lt;/code&gt; is now an option off of &lt;code&gt;network&lt;/code&gt; with named parameters. Go from &lt;code&gt;config.vm.forward_port 3000, 3000&lt;/code&gt; to &lt;code&gt;config.vm.network :forwarded_port, :guest =&amp;gt; 3000, :host =&amp;gt; 3000&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;customize&lt;/code&gt; is now nested under &lt;code&gt;provider&lt;/code&gt;. Go from &lt;code&gt;config.vm.customize [&#39;modifyvm&#39;, :id, &#39;--cpus&#39;, 2]&lt;/code&gt; to &lt;code&gt;config.vm.provider :virtualbox { |box| box.customize [&#39;modifyvm&#39;, :id, &#39;--cpus&#39;, 2] }&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;:hostonly&lt;/code&gt; networking is now &lt;code&gt;:private_network&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Don’t forget that there are a lot of new options. Check out the &lt;a href=&quot;http://docs.vagrantup.com/v2/&quot; title=&quot;Vagrant documentation&quot;&gt;Vagrant documentation&lt;/a&gt; for more details on the items listed here and all the new options.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 09 May 2013 00:00:00 -0700</pubDate>
+        <link>http://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</link>
+        <guid isPermaLink="true">http://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</guid>
+        
+        
+        <category>programming,</category>
+        
+        <category>devops</category>
+        
+      </item>
+    
+      <item>
+        <title>Switching from attr_encrypted gem to attr_encryptor for better security</title>
+        <description>&lt;h1 id=&quot;switching-from-attrencrypted-gem-to-attrencryptor-for-better-security&quot;&gt;Switching from attr_encrypted gem to attr_encryptor for better security&lt;/h1&gt;
+
+&lt;p&gt;At work we are using the &lt;a href=&quot;http://rubygems.org/gems/attr_encrypted&quot; title=&quot;attr_encyrpted on rubygems&quot;&gt;attr_encrypted gem&lt;/a&gt; to encrypt some &lt;a href=&quot;http://en.wikipedia.org/wiki/Personally_identifiable_information&quot; title=&quot;Wikipedia on PII&quot;&gt;PII&lt;/a&gt; on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A &lt;a href=&quot;https://github.com/shuber/attr_encrypted/issues/32&quot; title=&quot;Security issue with attr_encrypted&quot;&gt;Github issue&lt;/a&gt; was created to address leaking of data caused by using the same &lt;a href=&quot;http://en.wikipedia.org/wiki/Initialization_vector&quot; title=&quot;Wikipedia on IV&quot;&gt;initialization vector (IV)&lt;/a&gt; and &lt;a href=&quot;http://en.wikipedia.org/wiki/Salt_(cryptography)&quot; title=&quot;Wikipedia on salt&quot;&gt;salt&lt;/a&gt; for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the &lt;a href=&quot;http://en.wikipedia.org/wiki/CBC-MAC&quot; title=&quot;Wikipedia on CBC-MAC&quot;&gt;CBC-MAC&lt;/a&gt; method. The &lt;a href=&quot;http://rubygems.org/gems/attr_encryptor&quot; title=&quot;attr_encryptor on rubygems&quot;&gt;attr_encryptor&lt;/a&gt; was created to fix these issues.&lt;/p&gt;
+
+&lt;p&gt;Besides changing gem names, to switch gems you will need to add the new &lt;code&gt;_iv&lt;/code&gt; and &lt;code&gt;_salt&lt;/code&gt; database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.&lt;/p&gt;
+
+&lt;h2 id=&quot;re-encrypting-old-values&quot;&gt;Re-encrypting old values&lt;/h2&gt;
+
+&lt;p&gt;At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem’s decryption code. From the &lt;a href=&quot;https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190&quot; title=&quot;decryption function in attr_encrypted&quot;&gt;Github source&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Decrypts a value for the attribute specified&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Example&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#   class User&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#     attr_encrypted :email&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#   end&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#   email = User.decrypt(:email, &amp;#39;SOME_ENCRYPTED_EMAIL_STRING&amp;#39;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;decrypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encrypted_attributes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_sym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:unless&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_a?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:encode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:encode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:encryptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:decrypt_method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:marshal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:marshaler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:load_method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Encoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;default_internal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;default_external&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;force_encoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Which calls to the &lt;a href=&quot;http://rubygems.org/gems/encryptor&quot; title=&quot;encryptor gem on rubygems&quot;&gt;encryptor gem&lt;/a&gt; to do the actually decryption. The &lt;a href=&quot;https://github.com/shuber/encryptor/blob/master/lib/encryptor.rb#L49-63&quot; title=&quot;encryptor decrypt method&quot;&gt;decryption code&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;crypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cipher_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#:nodoc:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default_options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_a?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ArgumentError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;must specify a :key&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty?&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OpenSSL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:algorithm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cipher_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:iv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iv&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:iv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkcs5_keyivgen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block_given?&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Basically this boils down to the following.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;decrypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OpenSSL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;aes-256-cbc&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decrypt&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkcs5_keyivgen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;finial-migration&quot;&gt;Finial migration&lt;/h2&gt;
+&lt;p&gt;Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ReencryptAllValues&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IterationCount&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;display_every&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@iteration_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@display_every&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;display_every&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inc_and_display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extra_text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@iteration_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@iteration_count&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; rows processed. &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extra_text&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@iteration_count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@display_every&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FieldAccessor&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;=&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;encrypted_value&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;=&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clear_iv_and_salt&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_iv=&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;vi&quot;&gt;@target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@value_sym&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_salt=&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OldEncryptor&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;decrypt_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;crypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:decrypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;encrypt_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;crypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:encrypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;crypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OpenSSL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;aes-256-cbc&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pkcs5_keyivgen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attr_encrypted_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Reencrypter&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;convert_to_new_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_syms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;value_syms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_sym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FieldAccessor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;present?&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear_iv_and_salt&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OldEncryptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decrypt_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;convert_to_old_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_syms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;value_syms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_sym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FieldAccessor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_sym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;present?&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypted_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OldEncryptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypt_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear_iv_and_salt&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;have_encrypted_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;any?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;present?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;already_encrypted_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;any?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_iv&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;present?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;no&quot;&gt;EncryptedFields&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:bank_account_number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:bank_routing_number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:federal_tax_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;up&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;production?&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IterationCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;converted&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;Advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inc_and_display&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;converted&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; converted&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_encrypted_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;already_encrypted_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+            &lt;span class=&quot;no&quot;&gt;Reencrypter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;convert_to_new_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;converted&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;down&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;production?&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IterationCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;converted&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;Advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inc_and_display&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;converted&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; converted&amp;quot;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_encrypted_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;already_encrypted_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+            &lt;span class=&quot;no&quot;&gt;Reencrypter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;convert_to_old_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;advertiser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;converted&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 06 Feb 2013 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</link>
+        <guid isPermaLink="true">http://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</guid>
+        
+        
+        <category>ruby,</category>
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Setting up a new Mac for Ruby development</title>
+        <description>&lt;h1 id=&quot;setting-up-a-new-mac-for-ruby-development&quot;&gt;Setting up a new Mac for Ruby development&lt;/h1&gt;
+
+&lt;p&gt;I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I’ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-from-app-store&quot;&gt;Install from App store&lt;/h2&gt;
+
+&lt;p&gt;There are a few apps that are managed through the App store. Search for, and install the following apps. Only Xcode is required, the others help in the development process.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Xcode&lt;/li&gt;
+  &lt;li&gt;ClamXav&lt;/li&gt;
+  &lt;li&gt;Evernote&lt;/li&gt;
+  &lt;li&gt;Skitch&lt;/li&gt;
+  &lt;li&gt;JollysFastVNC&lt;/li&gt;
+  &lt;li&gt;Twitter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Once these have installed launch &lt;code&gt;ClamXav&lt;/code&gt; in order to turn on virus definitions file downloads. Select a time that works for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/clamxav_preferencest_2013_01_21.png&quot; alt=&quot;ClamXav preferences&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;install-from-web&quot;&gt;Install from web&lt;/h2&gt;
+
+&lt;p&gt;The following don’t have any handy install scripts. You will have to visit each one’s website and download the installer package. All are optional, so you can put these off until later if desired.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.google.com/intl/en/chrome/browser/&quot;&gt;Chrome&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/evernote-web/lbfehkoinhhcknnbdgnnmjhiladcgbol&quot;&gt;Evernote web clipper chrome plugin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://chrome.google.com/webstore/detail/one-last-pass-password-ma/hlcjfeemfanamjbekpmdhcefejlgpnke&quot;&gt;LastPass chrome plugin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.iterm2.com&quot;&gt;Iterm2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.sequelpro.com/&quot;&gt;SequalPro&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;VirtualBox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.truecrypt.org/&quot;&gt;Truecrypt&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.dropbox.com/&quot;&gt;Dropbox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.skype.com&quot;&gt;Skype&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.sublimetext.com/2&quot;&gt;Sublime Text 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.bittorrent.com/&quot;&gt;Bittorent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;setup-mysql&quot;&gt;Setup MySql&lt;/h2&gt;
+
+&lt;p&gt;MySql is the defacto database for development mode. And it is a tad hard to install.&lt;/p&gt;
+
+&lt;h4 id=&quot;download-the-install-files&quot;&gt;Download the install files&lt;/h4&gt;
+
+&lt;p&gt;Download the &lt;code&gt;DMG&lt;/code&gt; file for the 64-bit version. &lt;a href=&quot;http://dev.mysql.com/downloads/mysql&quot;&gt;MySql download page&lt;/a&gt;
+&lt;img src=&quot;/assets/mysql_dmg.png&quot; alt=&quot;MySql DMG file&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;install-main-package-file&quot;&gt;Install main package file&lt;/h4&gt;
+
+&lt;p&gt;This is a basic Mac package file. Just follow along the prompts.&lt;/p&gt;
+
+&lt;h4 id=&quot;install-perference-panel-settings-app&quot;&gt;Install perference panel settings app&lt;/h4&gt;
+
+&lt;p&gt;Drag and drop the preference panel icon onto your system preference window. You should get a dialog like the one below. Install for everyone.
+&lt;img src=&quot;/assets/mysql_prefpane_install.png&quot; alt=&quot;Prefence panel install dialog&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;install-statup-items-app&quot;&gt;Install statup items app&lt;/h4&gt;
+
+&lt;p&gt;Another basic Mac package file. Just follow along the prompts just like before.&lt;/p&gt;
+
+&lt;h4 id=&quot;start-the-server&quot;&gt;Start the server&lt;/h4&gt;
+
+&lt;p&gt;Launch the install MySql perference panel. Once open press the start button.
+&lt;img src=&quot;/assets/mysql_preferences.png&quot; alt=&quot;blah&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;complete-setup&quot;&gt;Complete setup&lt;/h4&gt;
+
+&lt;p&gt;Run the following commands in a terminal window. They will complete the setup of the MySql service, configure for medium sized profile, and fix a linking bug with mysql2 gem.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/local/mysql/bin/mysql_secure_installation
+sudo cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
+ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;add-usrlocalmysqlbin-to-path&quot;&gt;Add &lt;code&gt;/usr/local/mysql/bin&lt;/code&gt; to &lt;code&gt;$PATH&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;I like to include the following in my &lt;code&gt;.profile&lt;/code&gt; file to add the MySql bin path to my &lt;code&gt;$PATH&lt;/code&gt; setting.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function addPath
+{
+    echo $PATH | /usr/bin/grep -q -s $1
+    if [ $? -eq 1 ] ; then
+        export PATH=$1:$PATH
+    fi
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;addPath “/usr/local/mysql/bin”&lt;/p&gt;
+
+&lt;h2 id=&quot;command-line-compiler-and-build-system&quot;&gt;Command line compiler and build system&lt;/h2&gt;
+
+&lt;p&gt;Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use &lt;em&gt;XCode&lt;/em&gt; to install these tools. First, launch &lt;em&gt;XCode&lt;/em&gt; and open the preferences panel. Click on the “Downloads” tab and press the install button for the “Command Line Tools”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/xcode_commandline.png&quot; alt=&quot;Download preferences&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;homebrew-package-manager&quot;&gt;Homebrew package manager&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mxcl.github.com/homebrew/&quot; title=&quot;Homebrew&quot;&gt;Homebrew&lt;/a&gt; is the package manager needed to install all the rest of the software. I find it indispensable. Copy and paste this command into a terminal window.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ruby -e &quot;$(curl -fsSkL raw.github.com/mxcl/homebrew/go)&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finish setup of &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot; title=&quot;Homebrew&quot;&gt;Homebrew&lt;/a&gt; with the following commands.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo vim -c &#39;/^\/usr\/local\/bin$/m0&#39; -cwq /etc/paths
+mkdir ~/Applications
+brew doctor
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once you have completed the set install the following packages by entering each of the following commands.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install macvim --override-system-vim
+brew install git
+brew install ctags
+brew install par
+brew install tmux
+brew install reattach-to-user-namespace
+brew install gpg
+brew install ack
+brew install tree
+brew install ssh-copy-id
+brew install wget
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After all installs run the following command to add symlinks to those apps that need it&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew linkapps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;rvm-for-ruby-version-management&quot;&gt;RVM for Ruby version management&lt;/h2&gt;
+
+&lt;p&gt;This is the first place to go to install ruby virtual machines. The following shell command will download the latest version of &lt;a href=&quot;https://rvm.io/&quot; title=&quot;Ruby Version Manager&quot;&gt;RVM&lt;/a&gt;. Copy and paste this command into a terminal window.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -L https://get.rvm.io | bash -s stable --ruby
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will have to add the load call for the &lt;a href=&quot;https://rvm.io/&quot; title=&quot;Ruby Version Manager&quot;&gt;RVM&lt;/a&gt; functions to your shell. If you are going to copy the &lt;code&gt;.profile&lt;/code&gt; file from below then you will have it as the first line.&lt;/p&gt;
+
+&lt;h2 id=&quot;profile-setup&quot;&gt;Profile setup&lt;/h2&gt;
+
+&lt;p&gt;Create a &lt;code&gt;.profile&lt;/code&gt;. The following is a good starting point. I highly encourage customizing this file and saving it to move from computer to computer. The following will add the currently installed shell completion files. Along with a prompt to show the current ruby version and git branch.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Shell completion scripts
+function include
+{
+    [[ -s $1 ]] &amp;amp;&amp;amp; . $1
+}
+
+include &quot;$HOME/.rvm/scripts/rvm&quot;
+include `brew --prefix git`/etc/bash_completion.d/git-completion.bash
+include `brew --prefix git`/etc/bash_completion.d/git-prompt.sh
+include `brew --prefix tmux`/etc/bash_completion.d/tmux
+include &quot;$HOME/.rvm/contrib/ps1_functions&quot;
+include ~/.nesta-completion.sh
+
+export EDITOR=`which vim`
+
+function prompt
+{
+    local OFF=&quot;\[\033[m\]&quot;
+
+    # regular colors
+    local BLACK=&quot;\[\033[0;30m\]&quot;
+    local RED=&quot;\[\033[0;31m\]&quot;
+    local GREEN=&quot;\[\033[0;32m\]&quot;
+    local YELLOW=&quot;\[\033[0;33m\]&quot;
+    local BLUE=&quot;\[\033[0;34m\]&quot;
+    local MAGENTA=&quot;\[\033[0;35m\]&quot;
+    local CYAN=&quot;\[\033[0;36m\]&quot;
+    local WHITE=&quot;\[\033[0;37m\]&quot;
+
+    # empahsized (bolded) colors
+    local EBLACK=&quot;\[\033[1;30m\]&quot;
+    local ERED=&quot;\[\033[1;31m\]&quot;
+    local EGREEN=&quot;\[\033[1;32m\]&quot;
+    local EYELLOW=&quot;\[\033[1;33m\]&quot;
+    local EBLUE=&quot;\[\033[1;34m\]&quot;
+    local EMAGENTA=&quot;\[\033[1;35m\]&quot;
+    local ECYAN=&quot;\[\033[1;36m\]&quot;
+    local EWHITE=&quot;\[\033[1;37m\]&quot;
+
+    # background colors
+    local BGK=&quot;\[\033[40m\]&quot;
+    local BGR=&quot;\[\033[41m\]&quot;
+    local BGG=&quot;\[\033[42m\]&quot;
+    local BGY=&quot;\[\033[43m\]&quot;
+    local BGB=&quot;\[\033[44m\]&quot;
+    local BGM=&quot;\[\033[45m\]&quot;
+    local BGC=&quot;\[\033[46m\]&quot;
+    local BGW=&quot;\[\033[47m\]&quot;
+    export PS1=&quot;${EGREEN}\u${WHITE}@${BLUE}\h ${MAGENTA}\w ${GREEN}&quot;&#39;$(~/.rvm/bin/rvm-prompt &#39;&quot;i v&quot;&#39;)&#39;&quot; ${RED}&quot;&#39;$(__git_ps1 &quot;(%s)&quot;)&#39;&quot;${OFF}&amp;gt; &quot;
+}
+prompt
+
+# Shortcuts
+alias g=git
+function be()
+{
+    bundle exec $@
+}
+
+function sublime()
+{
+    open -a &#39;Sublime Text 2&#39; $@
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;post-install-steps&quot;&gt;Post install steps&lt;/h2&gt;
+
+&lt;p&gt;After it is all installed there are a few left over steps. Finish them if you like since they are optional.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Change default profile of &lt;em&gt;Iterm2&lt;/em&gt; to use “xterm-256color” terminal type&lt;/li&gt;
+  &lt;li&gt;Create new gpg secret key or copy old one (RSA type is fine)&lt;/li&gt;
+  &lt;li&gt;Create new ssh key&lt;/li&gt;
+  &lt;li&gt;Add ssh key to github.com&lt;/li&gt;
+  &lt;li&gt;Setup .gitconfig and .gitignore&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;Remote-Pairing-with-SSH-and-Tmux-on-a-Mac&quot;&gt;Setup for pair programing using SSH and Tmux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sun, 20 Jan 2013 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</link>
+        <guid isPermaLink="true">http://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</guid>
+        
+        
+        <category>programming,</category>
+        
+        <category>setup</category>
+        
+      </item>
+    
+      <item>
+        <title>Searching a Git repository using</title>
+        <description>&lt;h1 id=&quot;searching-a-git-repository-using-vim&quot;&gt;Searching a Git repository using Vim&lt;/h1&gt;
+
+&lt;p&gt;I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it’s &lt;code&gt;grep&lt;/code&gt; command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.&lt;/p&gt;
+
+&lt;p&gt;A common trick is to search for something with very low number of results and then load the files into Vim to get context. Something like the ID of an HTML element or the name of a method. You can even modify the output of the search to only print the filenames with the &lt;code&gt;-i&lt;/code&gt; argument to make loading into Vim easier. Although there is an even easier way. Use 2 must have plug-ins for Vim; &lt;a href=&quot;https://github.com/tpope/vim-fugitive&quot;&gt;Fugitive&lt;/a&gt; and &lt;a href=&quot;https://github.com/tpope/vim-unimpaired&quot;&gt;Unimpaired&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-use-the-plug-ins&quot;&gt;How to use the plug-ins&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tpope/vim-fugitive&quot;&gt;Fugitive&lt;/a&gt; provides the &lt;code&gt;:Ggrep&lt;/code&gt; command. It works just like the normal Git &lt;code&gt;grep&lt;/code&gt; command. The key difference is that it loads the results into the quickfix list. This is where the &lt;a href=&quot;https://github.com/tpope/vim-unimpaired&quot;&gt;Unimpaired&lt;/a&gt; plug-in comes into play. It provides keybindings for navigating the quickfix listings. &lt;code&gt;]q&lt;/code&gt; advances in the list and &lt;code&gt;[q&lt;/code&gt; goes back to the previous item. &lt;/p&gt;
+
+&lt;p&gt;If you need to jump around or see the whole output use the &lt;code&gt;:copen&lt;/code&gt; command. From this window you can use the &lt;code&gt;j&lt;/code&gt; and &lt;code&gt;k&lt;/code&gt; keys to move around the list and &lt;code&gt;Ctrl+w enter&lt;/code&gt; key sequence to open the file under the cursor.&lt;/p&gt;
+
+&lt;p&gt;You can use all the normal arguments that the git-grep command takes. The ones I use the most are fixed strings with &lt;code&gt;-F&lt;/code&gt; and extended regex with &lt;code&gt;-E&lt;/code&gt;.  These plug-ins have numerous other features. I highly encourage you to read the &lt;a href=&quot;https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt&quot;&gt;man page for Fugitive&lt;/a&gt; and the &lt;a href=&quot;https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt&quot;&gt;man page for Unimpaired&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 26 Nov 2012 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/searching_git_with_vim</link>
+        <guid isPermaLink="true">http://jjasonclark.com/searching_git_with_vim</guid>
+        
+        
+        <category>vim,</category>
+        
+        <category>git,</category>
+        
+        <category>tips</category>
+        
+      </item>
+    
+      <item>
+        <title>Rails partial views and locals variables</title>
+        <description>&lt;h1 id=&quot;rails-partial-views-and-locals-variables&quot;&gt;Rails partial views and locals variables&lt;/h1&gt;
+
+&lt;p&gt;Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I’ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.&lt;/p&gt;
+
+&lt;h2 id=&quot;personal-story&quot;&gt;Personal story&lt;/h2&gt;
+
+&lt;p&gt;This is where the bad part of coming to Rails from a different framework is. I just assumed that the local variables became instance variables in the partial view. In fact, I tried a partial with an instance variable and it worked as expected. Testing is believing in most cases, so I thought I had learned what I needed to know. Since then I’ve created dozens and dozens of partials, all using instance variables and everything has worked perfectly. That is, until I needed to create a partial view of the inside of a form with the form tag not inside the partial. I still needed the form’s ID inside the partial so I could submit the form via JavaScript. Based on what I had learned I just passed it in as a local variable. And of course, I could not access the new local variable.&lt;/p&gt;
+
+&lt;p&gt;I tried everything I could think of to access the form’s ID via the local variable. I even searched the instance variables (using #instance_variables) of all the classes I could think of. I even looked back at partials I had created in the past. As far as I could tell, I was trying to access the variable correctly.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;It turns out the locals are accessed via instance accessor methods. This whole time I have been naming my controller’s instance variables the same as my partial’s local variables. This is why they always worked before. Only when I finally made a local variable that wasn’t also an instance variable did I discover the difference.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn’t find the answer. Hopefully yours will find this article before you pull all of your hair out.&lt;/p&gt;
+
+&lt;p&gt;Special thanks to my co-worker &lt;a href=&quot;http://www.danielzajic.com/&quot;&gt;Daniel Zajic&lt;/a&gt; for pairing with me to solve the problem. He found the solution as soon as I told it to him. Clearly he had read the documentation I should have read earlier.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 14 Nov 2012 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/rails_partial_view_locals</link>
+        <guid isPermaLink="true">http://jjasonclark.com/rails_partial_view_locals</guid>
+        
+        
+        <category>rails,</category>
+        
+        <category>ruby</category>
+        
+      </item>
+    
+      <item>
+        <title>Update DNSimple to point to your home router</title>
+        <description>&lt;h1 id=&quot;update-dnsimple-to-point-to-your-home-router&quot;&gt;Update DNSimple to point to your home router&lt;/h1&gt;
+
+&lt;p&gt;I use the DNS provider &lt;a href=&quot;http://dnsimple.com&quot;&gt;DNSimple&lt;/a&gt; (&lt;a href=&quot;https://dnsimple.com/r/65fab1b1ffee66&quot; title=&quot;DNSimple referal link&quot;&gt;referral link&lt;/a&gt;). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I’m out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.&lt;/p&gt;
+
+&lt;p&gt;I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is &lt;a href=&quot;http://icanhazip.com/&quot;&gt;ICanHazIP.com&lt;/a&gt;. I like this one because of the super simple response format. One of these days I’ll create my own service, I just need the time to do it. &lt;small&gt;(Unless you want to submit one in the comments. I would love you if you did.)&lt;small&gt;&lt;/small&gt;&lt;/small&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;discovering-your-external-ip-address&quot;&gt;Discovering your external IP address&lt;/h2&gt;
+&lt;p&gt;Simple use curl to make a call to &lt;a href=&quot;http://icanhazip.com/&quot;&gt;http://ICanHazIP.com&lt;/a&gt; and the output is the external IP address of your network. &lt;code&gt;curl http://icanhazip.com&lt;/code&gt;. In the script I use the silent option to not show the progress bar.&lt;/p&gt;
+
+&lt;h2 id=&quot;updating-a-dns-a-record-for-your-home-router&quot;&gt;Updating a DNS A record for your home router&lt;/h2&gt;
+&lt;p&gt;Then I use &lt;a href=&quot;http://developer.dnsimple.com/domains/records/&quot; title=&quot;Record API reference&quot;&gt;DNSimple’s record API&lt;/a&gt; to update the subdomain’s A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;quot;record&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;ip address&amp;gt;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;final-script&quot;&gt;Final script&lt;/h2&gt;
+&lt;p&gt;This all comes together in the following bash shell script. I call it &lt;code&gt;dnsimple.sh&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;LOGIN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;DOMAIN_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;RECORD_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Getting current external IP&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;IP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;`curl -s http://icanhazip.com/`&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Current external IP is $IP&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Updating external record to $IP&amp;quot;&lt;/span&gt;
+curl -H &lt;span class=&quot;s2&quot;&gt;&amp;quot;Accept: application/json&amp;quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
+    --basic -u &lt;span class=&quot;s2&quot;&gt;&amp;quot;$LOGIN:$PASSWORD&amp;quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
+    -H &lt;span class=&quot;s2&quot;&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
+    -i -X PUT https://DNSimple.com/domains/&lt;span class=&quot;nv&quot;&gt;$DOMAIN_ID&lt;/span&gt;/records/&lt;span class=&quot;nv&quot;&gt;$RECORD_ID&lt;/span&gt;.json &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
+    -d &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;record\\&amp;quot;&lt;/span&gt;:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;content\\&amp;quot;&lt;/span&gt;:&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;$IP\\&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt; -s &amp;gt; /dev/null
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set record&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;update-hourly&quot;&gt;Update hourly&lt;/h2&gt;
+&lt;p&gt;I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it’s good to be ready for it when it does. I do this update by running the &lt;code&gt;dnsimple.sh&lt;/code&gt; script every hour via a cron task. These are set in my &lt;code&gt;/etc/crontab&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# m h  dom mon dow   command&lt;/span&gt;
+@hourly /root/bin/setDNSimple.sh &amp;gt; /dev/null 2&amp;gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;finished&quot;&gt;Finished&lt;/h2&gt;
+&lt;p&gt;Thats it! Its all setup. Every hour my external IP will have a functioning DNS record for others to point to. SSHing into my server is as simple as &lt;code&gt;ssh subdomain.mydoamin.com&lt;/code&gt;. For added security move your SSH port to a different number. Security by obscurity, but better than nothing.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 11 Nov 2012 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/dnsimple_script_updates</link>
+        <guid isPermaLink="true">http://jjasonclark.com/dnsimple_script_updates</guid>
+        
+        
+        <category>unix,</category>
+        
+        <category>dns,</category>
+        
+        <category>tmux,</category>
+        
+        <category>ssh,</category>
+        
+        <category>bash</category>
+        
+      </item>
+    
+      <item>
+        <title>Update your software</title>
+        <description>&lt;h1 id=&quot;update-your-software&quot;&gt;Update your software&lt;/h1&gt;
+
+&lt;p&gt;Don’t forget to update your software every once in a while. If your like me, then I’m sure your system if filled with out of date software.&lt;/p&gt;
+
+&lt;p&gt;Today while trying to get Github to update my code (constant network errors) I thought I would try updating &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot;&gt;Homebrew&lt;/a&gt;. Opps! Looks like I have been neglecting it for far to long.&lt;/p&gt;
+
+&lt;p&gt;Do this to make sure &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot;&gt;Homebrew&lt;/a&gt; package definitions is current.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once you have gotten the latest definitions do the following to get your software upgraded.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew upgrade &amp;lt;package name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Major ones for me are&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew upgrade git
+brew upgrade bash
+brew upgrade tmux
+brew upgrade ctags
+brew upgrade tree
+brew upgrade postgresql
+brew upgrade openssh
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+        <pubDate>Tue, 23 Oct 2012 00:00:00 -0700</pubDate>
+        <link>http://jjasonclark.com/Update-your-software</link>
+        <guid isPermaLink="true">http://jjasonclark.com/Update-your-software</guid>
+        
+        
+        <category>macosx,</category>
+        
+        <category>unix</category>
+        
+      </item>
+    
+  </channel>
+</rss>
