@@ -1,7 +1,2 @@
-._*
-.*.swp
-.bundle
-.DS_Store
+_site
 .sass-cache
-.rvmrc
-log/
