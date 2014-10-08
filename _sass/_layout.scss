@@ -179,6 +179,11 @@
  */
 .page-content {
     padding: $spacing-unit 0;
+
+
+    .left_bar {
+        float: left;
+    }
 }
 
 .page-heading {

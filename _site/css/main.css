@@ -275,6 +275,8 @@ pre {
  */
 .page-content {
   padding: 30px 0; }
+  .page-content .left_bar {
+    float: left; }
 
 .page-heading {
   font-size: 20px; }
