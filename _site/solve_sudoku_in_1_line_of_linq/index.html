@@ -67,6 +67,7 @@
 
     <div class="page-content">
       <div class="left_bar">
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Side banner -->
 <ins class="adsbygoogle"
@@ -76,7 +77,9 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 </div>
+
       <div class="wrapper">
         <div class="post">
 
@@ -86,9 +89,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="solve-sudoku-in-1-line-of-linq">Solve Sudoku in 1 line of Linq</h1>
-
-<p>One of my coworkers sent around a link today to someone who solved <a href="1">Sudoku puzzles in 1 line of SQL</a> using Oracle’s custom recursive syntax. I thought it would be fun to try to convert this into Linq. This is the “best” I was able to come up with. Just like all 1 line solution to complex problems the result looks horrific, although I’m happy to see that it solves the Sudoku puzzles quite quickly.</p>
+    <p>One of my coworkers sent around a link today to someone who solved <a href="1">Sudoku puzzles in 1 line of SQL</a> using Oracle’s custom recursive syntax. I thought it would be fun to try to convert this into Linq. This is the “best” I was able to come up with. Just like all 1 line solution to complex problems the result looks horrific, although I’m happy to see that it solves the Sudoku puzzles quite quickly.</p>
 
 <p>The solution I used is the <a href="2">standard brute force algorithm</a> that many people use to solve the puzzles manually. The solution checks all numbers 1 - 9 in turn on each empty spot looking for the number in the column, row, and group of 3. This is accomplished by creating a tree structure of all possible “moves”. The board starts as the root node and each branch is made up of filling in 1 empty spot with all possible numbers that fit the puzzle rules. Each level of the tree tries to solve another empty slot. This also means that the leaf node with the greatest depth is the solution to the puzzle.</p>
 

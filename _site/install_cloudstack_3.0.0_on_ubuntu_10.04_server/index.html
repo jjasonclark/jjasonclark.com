@@ -67,6 +67,7 @@
 
     <div class="page-content">
       <div class="left_bar">
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Side banner -->
 <ins class="adsbygoogle"
@@ -76,7 +77,9 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 </div>
+
       <div class="wrapper">
         <div class="post">
 
@@ -86,9 +89,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="install-cloudstack-300-on-ubuntu-1004-server">Install Cloudstack 3.0.0 on Ubuntu 10.04 Server</h1>
-
-<p><a href="https://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/">Cloudstack 3.0.0</a> was release on <a href="http://www.cloudstack.org/blog/117-cloudstack-acton-released.html">Febrary 28<sup>th</sup> 2012</a>. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</p>
+    <p><a href="https://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/">Cloudstack 3.0.0</a> was release on <a href="http://www.cloudstack.org/blog/117-cloudstack-acton-released.html">Febrary 28<sup>th</sup> 2012</a>. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</p>
 
 <h2 id="setup-procedures">Setup procedures</h2>
 <p>To get started download the <a href="http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/CloudStack-3.0.0-1-ubuntu10.04.tar.gz/download">cloud management software</a> and follow these steps. You will need the <a href="http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/CloudStack3.0QuickInstallGuide.pdf/download">quick install guide</a> to help you through the GUI part of the setup.</p>
@@ -150,7 +151,7 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <p>This will once again try to update all packages. They should be up to date, so you should not have to wait long for this to finish. You will then be given the same prompt from your last run. This time choose option <code>D</code> to install the database.</p>
 
-<p>During the install of the database server you will be asked for a password. This is the password for the user named <code>root</code> on the database. This is <strong>not</strong> the same as the root user of the Ubuntu box. Pick a password that <strong>does not</strong> include an <code>@</code> symbol. I at first used the password of <code>p@ssword1</code>. This caused so many headaches that its just not worth the workarounds. I went with a password of <code>password1</code>. </p>
+<p>During the install of the database server you will be asked for a password. This is the password for the user named <code>root</code> on the database. This is <strong>not</strong> the same as the root user of the Ubuntu box. Pick a password that <strong>does not</strong> include an <code>@</code> symbol. I at first used the password of <code>p@ssword1</code>. This caused so many headaches that its just not worth the workarounds. I went with a password of <code>password1</code>.</p>
 
 <p>Once the database server is setup you need to create the databases used my the cloud management software.</p>
 

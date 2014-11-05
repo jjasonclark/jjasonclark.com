@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>How to fix patching problems with TortoiseSVN and TortoiseMerge</title>
+    <title>Consider using the tap method for code organization</title>
     <meta name="description" content="Stuff I have time to write about
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge">
+    <link rel="canonical" href="http://jjasonclark.com/consider_using_the_tap_method_for_code_organization">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -54,7 +54,7 @@
 <a href="/feed.xml" title="Subscribe to JJasonClark.com" class='social_button'>
  <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24 />
 </a>
-<a href="https://twitter.com/share" class='twitter-share-button' data-url="/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge" via="jjasonclark" lang="en">Tweet</a>
+<a href="https://twitter.com/share" class='twitter-share-button' data-url="" via="jjasonclark" lang="en">Tweet</a>
 <div class='g-plusone'></div>
 </div>
       </div>
@@ -84,28 +84,20 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">How to fix patching problems with TortoiseSVN and TortoiseMerge</h1>
-    <p class="post-meta">Aug 25, 2010 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+    <h1 class="post-title">Consider using the tap method for code organization</h1>
+    <p class="post-meta">Oct 13, 2014 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
   </header>
 
   <article class="post-content">
-    <p>Unfortunately a common occurrence when applying patches while using TortoiseSVN is that nothing gets patched even though the UI shows that patching has completed without errors. This happens when you do a “patch all” or individually go through each file. In addition, any modifications you make in the patched files don’t get saved either.</p>
+    <p>I’m sure you have heard about the tap method. It has great uses for connecting to a chain of method calls; such as when using Enumerable. And the cool kids love to use it to avoid using a temp variable for return.</p>
 
-<p>I don’t know the cause of this, but I do know a solution. The merging program used by default for TortoiseSVN is TortoiseMerge. It is installed with the main SVN package. You see it every time you do any merging from an update or doing a diff from a previous version of a file. The patching problem has something to do with the settings stored in the registry for TortoiseMerge. Deleting the whole hierarchy for this program will fix the issue. Of course you will need to restart the merge tool once you have deleted the registry keys in order for the changes to take effect.</p>
+<p>Another use is for code organization. The tap method addes a level of indention via it’s block parameter. This block gives a visual section of code that can be useful when trying to understand what is being written.</p>
 
-<p><img src="/assets/tortoisemerger_20100906_1640_thumb5.png" alt="Tortoise Registry Keys" /></p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Something</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">something</span><span class="o">|</span>
+  <span class="c1"># your code here</span>
+<span class="k">end</span></code></pre></div>
 
-<p>To fix, follow these steps.</p>
-
-<ol>
-  <li>Delete registry hierarchy from HKCU\Software\TortoiseMerge</li>
-  <li>Restart patching program</li>
-</ol>
-
-<p>Or run the following PowerShell command.</p>
-
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">Remove-Item -path hkcu:software<span class="se">\T</span>ortoiseMerge –recurse</code></pre></div>
-
+<p>For me, when I’m scanning through code, these visual indention changes really help me understand the code.</p>
 
   </article>
 

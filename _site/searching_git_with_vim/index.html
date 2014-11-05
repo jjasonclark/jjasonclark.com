@@ -67,6 +67,7 @@
 
     <div class="page-content">
       <div class="left_bar">
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Side banner -->
 <ins class="adsbygoogle"
@@ -76,7 +77,9 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 </div>
+
       <div class="wrapper">
         <div class="post">
 
@@ -86,15 +89,13 @@
   </header>
 
   <article class="post-content">
-    <h1 id="searching-a-git-repository-using-vim">Searching a Git repository using Vim</h1>
-
-<p>I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it’s <code>grep</code> command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.</p>
+    <p>I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it’s <code>grep</code> command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.</p>
 
 <p>A common trick is to search for something with very low number of results and then load the files into Vim to get context. Something like the ID of an HTML element or the name of a method. You can even modify the output of the search to only print the filenames with the <code>-i</code> argument to make loading into Vim easier. Although there is an even easier way. Use 2 must have plug-ins for Vim; <a href="https://github.com/tpope/vim-fugitive">Fugitive</a> and <a href="https://github.com/tpope/vim-unimpaired">Unimpaired</a></p>
 
 <h2 id="how-to-use-the-plug-ins">How to use the plug-ins</h2>
 
-<p><a href="https://github.com/tpope/vim-fugitive">Fugitive</a> provides the <code>:Ggrep</code> command. It works just like the normal Git <code>grep</code> command. The key difference is that it loads the results into the quickfix list. This is where the <a href="https://github.com/tpope/vim-unimpaired">Unimpaired</a> plug-in comes into play. It provides keybindings for navigating the quickfix listings. <code>]q</code> advances in the list and <code>[q</code> goes back to the previous item. </p>
+<p><a href="https://github.com/tpope/vim-fugitive">Fugitive</a> provides the <code>:Ggrep</code> command. It works just like the normal Git <code>grep</code> command. The key difference is that it loads the results into the quickfix list. This is where the <a href="https://github.com/tpope/vim-unimpaired">Unimpaired</a> plug-in comes into play. It provides keybindings for navigating the quickfix listings. <code>]q</code> advances in the list and <code>[q</code> goes back to the previous item.</p>
 
 <p>If you need to jump around or see the whole output use the <code>:copen</code> command. From this window you can use the <code>j</code> and <code>k</code> keys to move around the list and <code>Ctrl+w enter</code> key sequence to open the file under the cursor.</p>
 

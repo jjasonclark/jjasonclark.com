@@ -67,6 +67,7 @@
 
     <div class="page-content">
       <div class="left_bar">
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Side banner -->
 <ins class="adsbygoogle"
@@ -76,7 +77,9 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 </div>
+
       <div class="wrapper">
         <div class="post">
 
@@ -86,9 +89,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="how-to-setup-nodejs-and-npm-behind-a-corporate-web-proxy">How to setup Node.js and Npm behind a corporate web proxy</h1>
-
-<p>For those who, like me, are behind a corporate web proxy, setting up Node.js and using <code>npm</code> can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables. Although I just cloned the Node repository from <a href="https://github.com/joyent/node">Github</a> so they are already setup. What gives?</p>
+    <p>For those who, like me, are behind a corporate web proxy, setting up Node.js and using <code>npm</code> can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables. Although I just cloned the Node repository from <a href="https://github.com/joyent/node">Github</a> so they are already setup. What gives?</p>
 
 <p>A little searching and I discover that <code>npm</code> uses a configuration file and it can be added to via the command line <code>npm config set ...</code>. The key to getting it right is the spelling of the settings. This has bit me so many times now! Getting <code>npm</code> to work behind a proxy requires setting the <code>proxy</code> and <code>https-proxy</code> settings. The key is noticing the <code>-</code> (dash) is not an <code>_</code> (underscore).</p>
 

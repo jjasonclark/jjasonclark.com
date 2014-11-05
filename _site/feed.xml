@@ -6,15 +6,55 @@
 </description>
     <link>http://jjasonclark.com/</link>
     <atom:link href="http://jjasonclark.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 13 Sep 2014 23:40:13 -0700</pubDate>
-    <lastBuildDate>Sat, 13 Sep 2014 23:40:13 -0700</lastBuildDate>
+    <pubDate>Tue, 04 Nov 2014 21:40:11 -0800</pubDate>
+    <lastBuildDate>Tue, 04 Nov 2014 21:40:11 -0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Avahi helps hosts connect to VMs</title>
-        <description>&lt;h1 id=&quot;avahi-helps-hosts-connect-to-vms&quot;&gt;Avahi helps hosts connect to VMs&lt;/h1&gt;
+        <title>Will work for Bitcoin</title>
+        <description>&lt;p&gt;I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Personally I would love to see voting revolutionized by the Blockchain. In the mean time I would happy to just support the new economy by working in it or getting paid in it.&lt;/p&gt;
 
-&lt;p&gt;I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: &lt;a href=&quot;http://en.wikipedia.org/wiki/Bonjour_(software)&quot;&gt;Bonjour&lt;/a&gt;. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.&lt;/p&gt;
+&lt;p&gt;The price of Bitcoin has been dropping a lot recently, but I think I will keep it in mind for my next consulting job anyway. I’m not a crypto expert. Although there are plenty of software to be written that doesn’t need a Phd to write. Heck, I might find someone working on a voting system.&lt;/p&gt;
+
+&lt;p&gt;Wish me luck finding a job in the Bitcoin world.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 07 Nov 2014 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/will_work_for_bitcoin</link>
+        <guid isPermaLink="true">http://jjasonclark.com/will_work_for_bitcoin</guid>
+        
+        
+        <category>bitcoin,</category>
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Consider using the tap method for code organization</title>
+        <description>&lt;p&gt;I’m sure you have heard about the tap method. It has great uses for connecting to a chain of method calls; such as when using Enumerable. And the cool kids love to use it to avoid using a temp variable for return.&lt;/p&gt;
+
+&lt;p&gt;Another use is for code organization. The tap method addes a level of indention via it’s block parameter. This block gives a visual section of code that can be useful when trying to understand what is being written.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Something&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tap&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;something&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# your code here&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For me, when I’m scanning through code, these visual indention changes really help me understand the code.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 Oct 2014 00:00:00 -0700</pubDate>
+        <link>http://jjasonclark.com/consider_using_the_tap_method_for_code_organization</link>
+        <guid isPermaLink="true">http://jjasonclark.com/consider_using_the_tap_method_for_code_organization</guid>
+        
+        
+        <category>ruby,</category>
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Avahi helps hosts connect to VMs</title>
+        <description>&lt;p&gt;I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: &lt;a href=&quot;http://en.wikipedia.org/wiki/Bonjour_(software)&quot;&gt;Bonjour&lt;/a&gt;. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.&lt;/p&gt;
 
 &lt;h2 id=&quot;mac-setup&quot;&gt;Mac Setup&lt;/h2&gt;
 
@@ -69,9 +109,7 @@
     
       <item>
         <title>Trying out Emacs Again</title>
-        <description>&lt;h1 id=&quot;trying-out-emacs-again&quot;&gt;Trying out Emacs Again&lt;/h1&gt;
-
-&lt;p&gt;I’m a Vim user, but I’m not 100% sold on it. I keep wanting to find an even better editor. I’ve tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.&lt;/p&gt;
+        <description>&lt;p&gt;I’m a Vim user, but I’m not 100% sold on it. I keep wanting to find an even better editor. I’ve tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.&lt;/p&gt;
 
 &lt;h2 id=&quot;land-of-lisp&quot;&gt;Land of Lisp&lt;/h2&gt;
 
@@ -105,9 +143,7 @@
     
       <item>
         <title>Sinatra Settings for Nested Apps</title>
-        <description>&lt;h1 id=&quot;sinatra-settings-for-nested-apps&quot;&gt;Sinatra Settings for Nested Apps&lt;/h1&gt;
-
-&lt;p&gt;I finally got a chance to do some work with &lt;a href=&quot;http://sinatrarb.com&quot;&gt;Sinatra&lt;/a&gt;. Something more than the typical &lt;code&gt;Hello, World!&lt;/code&gt; app. I needed a UI on top of a restful web API. The docs are written using &lt;code&gt;curl&lt;/code&gt; calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created &lt;a href=&quot;https://github.com/jjasonclark/cardspring_browse&quot;&gt;Cardspring_browse&lt;/a&gt;.&lt;/p&gt;
+        <description>&lt;p&gt;I finally got a chance to do some work with &lt;a href=&quot;http://sinatrarb.com&quot;&gt;Sinatra&lt;/a&gt;. Something more than the typical &lt;code&gt;Hello, World!&lt;/code&gt; app. I needed a UI on top of a restful web API. The docs are written using &lt;code&gt;curl&lt;/code&gt; calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created &lt;a href=&quot;https://github.com/jjasonclark/cardspring_browse&quot;&gt;Cardspring_browse&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The app is little more than HTML over a JSON API. Which isn’t to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.&lt;/p&gt;
 
@@ -179,9 +215,7 @@
     
       <item>
         <title>Vagrant Going from old and busted, to new hotness</title>
-        <description>&lt;h1 id=&quot;vagrant-going-from-old-and-busted-to-new-hotness&quot;&gt;Vagrant: Going from old and busted, to new hotness&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.vagrantup.com/&quot; title=&quot;Vagrant&quot;&gt;Vagrant&lt;/a&gt; is an amazing application for helping you manage virtual machines. I feel like you are missing out if you haven’t started using Vagrant yet. I highly recommend it. Vagrant helps out by keeping track of several things that you would normally do manually to maintain a VM. It does this via the &lt;code&gt;Vagrantfile&lt;/code&gt; you place in your project’s directory and check into source control. The file contains two basic parts; all of the meta data that the VM needs boot, and the steps used to provision the VM.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;http://www.vagrantup.com/&quot; title=&quot;Vagrant&quot;&gt;Vagrant&lt;/a&gt; is an amazing application for helping you manage virtual machines. I feel like you are missing out if you haven’t started using Vagrant yet. I highly recommend it. Vagrant helps out by keeping track of several things that you would normally do manually to maintain a VM. It does this via the &lt;code&gt;Vagrantfile&lt;/code&gt; you place in your project’s directory and check into source control. The file contains two basic parts; all of the meta data that the VM needs boot, and the steps used to provision the VM.&lt;/p&gt;
 
 &lt;p&gt;Vagrant has been out for a while now, so it has gone through several versions already. Lately there has been a renewed effort by the creators of Vagrant to add more features. In order to support these new features the semantics of the &lt;code&gt;Vagrantfile&lt;/code&gt; had to change. In addition to the must change parts the Vagrant team has also done some changes to the existing parts that make it easier to interact with.&lt;/p&gt;
 
@@ -224,9 +258,7 @@
     
       <item>
         <title>Switching from attr_encrypted gem to attr_encryptor for better security</title>
-        <description>&lt;h1 id=&quot;switching-from-attrencrypted-gem-to-attrencryptor-for-better-security&quot;&gt;Switching from attr_encrypted gem to attr_encryptor for better security&lt;/h1&gt;
-
-&lt;p&gt;At work we are using the &lt;a href=&quot;http://rubygems.org/gems/attr_encrypted&quot; title=&quot;attr_encyrpted on rubygems&quot;&gt;attr_encrypted gem&lt;/a&gt; to encrypt some &lt;a href=&quot;http://en.wikipedia.org/wiki/Personally_identifiable_information&quot; title=&quot;Wikipedia on PII&quot;&gt;PII&lt;/a&gt; on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A &lt;a href=&quot;https://github.com/shuber/attr_encrypted/issues/32&quot; title=&quot;Security issue with attr_encrypted&quot;&gt;Github issue&lt;/a&gt; was created to address leaking of data caused by using the same &lt;a href=&quot;http://en.wikipedia.org/wiki/Initialization_vector&quot; title=&quot;Wikipedia on IV&quot;&gt;initialization vector (IV)&lt;/a&gt; and &lt;a href=&quot;http://en.wikipedia.org/wiki/Salt_(cryptography)&quot; title=&quot;Wikipedia on salt&quot;&gt;salt&lt;/a&gt; for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the &lt;a href=&quot;http://en.wikipedia.org/wiki/CBC-MAC&quot; title=&quot;Wikipedia on CBC-MAC&quot;&gt;CBC-MAC&lt;/a&gt; method. The &lt;a href=&quot;http://rubygems.org/gems/attr_encryptor&quot; title=&quot;attr_encryptor on rubygems&quot;&gt;attr_encryptor&lt;/a&gt; was created to fix these issues.&lt;/p&gt;
+        <description>&lt;p&gt;At work we are using the &lt;a href=&quot;http://rubygems.org/gems/attr_encrypted&quot; title=&quot;attr_encyrpted on rubygems&quot;&gt;attr_encrypted gem&lt;/a&gt; to encrypt some &lt;a href=&quot;http://en.wikipedia.org/wiki/Personally_identifiable_information&quot; title=&quot;Wikipedia on PII&quot;&gt;PII&lt;/a&gt; on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A &lt;a href=&quot;https://github.com/shuber/attr_encrypted/issues/32&quot; title=&quot;Security issue with attr_encrypted&quot;&gt;Github issue&lt;/a&gt; was created to address leaking of data caused by using the same &lt;a href=&quot;http://en.wikipedia.org/wiki/Initialization_vector&quot; title=&quot;Wikipedia on IV&quot;&gt;initialization vector (IV)&lt;/a&gt; and &lt;a href=&quot;http://en.wikipedia.org/wiki/Salt_(cryptography)&quot; title=&quot;Wikipedia on salt&quot;&gt;salt&lt;/a&gt; for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the &lt;a href=&quot;http://en.wikipedia.org/wiki/CBC-MAC&quot; title=&quot;Wikipedia on CBC-MAC&quot;&gt;CBC-MAC&lt;/a&gt; method. The &lt;a href=&quot;http://rubygems.org/gems/attr_encryptor&quot; title=&quot;attr_encryptor on rubygems&quot;&gt;attr_encryptor&lt;/a&gt; was created to fix these issues.&lt;/p&gt;
 
 &lt;p&gt;Besides changing gem names, to switch gems you will need to add the new &lt;code&gt;_iv&lt;/code&gt; and &lt;code&gt;_salt&lt;/code&gt; database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.&lt;/p&gt;
 
@@ -430,9 +462,7 @@
     
       <item>
         <title>Setting up a new Mac for Ruby development</title>
-        <description>&lt;h1 id=&quot;setting-up-a-new-mac-for-ruby-development&quot;&gt;Setting up a new Mac for Ruby development&lt;/h1&gt;
-
-&lt;p&gt;I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I’ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.&lt;/p&gt;
+        <description>&lt;p&gt;I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I’ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.&lt;/p&gt;
 
 &lt;h2 id=&quot;install-from-app-store&quot;&gt;Install from App store&lt;/h2&gt;
 
@@ -666,15 +696,13 @@ function sublime()
     
       <item>
         <title>Searching a Git repository using</title>
-        <description>&lt;h1 id=&quot;searching-a-git-repository-using-vim&quot;&gt;Searching a Git repository using Vim&lt;/h1&gt;
-
-&lt;p&gt;I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it’s &lt;code&gt;grep&lt;/code&gt; command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.&lt;/p&gt;
+        <description>&lt;p&gt;I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it’s &lt;code&gt;grep&lt;/code&gt; command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.&lt;/p&gt;
 
 &lt;p&gt;A common trick is to search for something with very low number of results and then load the files into Vim to get context. Something like the ID of an HTML element or the name of a method. You can even modify the output of the search to only print the filenames with the &lt;code&gt;-i&lt;/code&gt; argument to make loading into Vim easier. Although there is an even easier way. Use 2 must have plug-ins for Vim; &lt;a href=&quot;https://github.com/tpope/vim-fugitive&quot;&gt;Fugitive&lt;/a&gt; and &lt;a href=&quot;https://github.com/tpope/vim-unimpaired&quot;&gt;Unimpaired&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;how-to-use-the-plug-ins&quot;&gt;How to use the plug-ins&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/tpope/vim-fugitive&quot;&gt;Fugitive&lt;/a&gt; provides the &lt;code&gt;:Ggrep&lt;/code&gt; command. It works just like the normal Git &lt;code&gt;grep&lt;/code&gt; command. The key difference is that it loads the results into the quickfix list. This is where the &lt;a href=&quot;https://github.com/tpope/vim-unimpaired&quot;&gt;Unimpaired&lt;/a&gt; plug-in comes into play. It provides keybindings for navigating the quickfix listings. &lt;code&gt;]q&lt;/code&gt; advances in the list and &lt;code&gt;[q&lt;/code&gt; goes back to the previous item. &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/tpope/vim-fugitive&quot;&gt;Fugitive&lt;/a&gt; provides the &lt;code&gt;:Ggrep&lt;/code&gt; command. It works just like the normal Git &lt;code&gt;grep&lt;/code&gt; command. The key difference is that it loads the results into the quickfix list. This is where the &lt;a href=&quot;https://github.com/tpope/vim-unimpaired&quot;&gt;Unimpaired&lt;/a&gt; plug-in comes into play. It provides keybindings for navigating the quickfix listings. &lt;code&gt;]q&lt;/code&gt; advances in the list and &lt;code&gt;[q&lt;/code&gt; goes back to the previous item.&lt;/p&gt;
 
 &lt;p&gt;If you need to jump around or see the whole output use the &lt;code&gt;:copen&lt;/code&gt; command. From this window you can use the &lt;code&gt;j&lt;/code&gt; and &lt;code&gt;k&lt;/code&gt; keys to move around the list and &lt;code&gt;Ctrl+w enter&lt;/code&gt; key sequence to open the file under the cursor.&lt;/p&gt;
 
@@ -696,9 +724,7 @@ function sublime()
     
       <item>
         <title>Rails partial views and locals variables</title>
-        <description>&lt;h1 id=&quot;rails-partial-views-and-locals-variables&quot;&gt;Rails partial views and locals variables&lt;/h1&gt;
-
-&lt;p&gt;Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I’ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.&lt;/p&gt;
+        <description>&lt;p&gt;Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I’ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.&lt;/p&gt;
 
 &lt;h2 id=&quot;personal-story&quot;&gt;Personal story&lt;/h2&gt;
 
@@ -725,117 +751,6 @@ function sublime()
         <category>rails,</category>
         
         <category>ruby</category>
-        
-      </item>
-    
-      <item>
-        <title>Update DNSimple to point to your home router</title>
-        <description>&lt;h1 id=&quot;update-dnsimple-to-point-to-your-home-router&quot;&gt;Update DNSimple to point to your home router&lt;/h1&gt;
-
-&lt;p&gt;I use the DNS provider &lt;a href=&quot;http://dnsimple.com&quot;&gt;DNSimple&lt;/a&gt; (&lt;a href=&quot;https://dnsimple.com/r/65fab1b1ffee66&quot; title=&quot;DNSimple referal link&quot;&gt;referral link&lt;/a&gt;). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I’m out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.&lt;/p&gt;
-
-&lt;p&gt;I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is &lt;a href=&quot;http://icanhazip.com/&quot;&gt;ICanHazIP.com&lt;/a&gt;. I like this one because of the super simple response format. One of these days I’ll create my own service, I just need the time to do it. &lt;small&gt;(Unless you want to submit one in the comments. I would love you if you did.)&lt;small&gt;&lt;/small&gt;&lt;/small&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;discovering-your-external-ip-address&quot;&gt;Discovering your external IP address&lt;/h2&gt;
-&lt;p&gt;Simple use curl to make a call to &lt;a href=&quot;http://icanhazip.com/&quot;&gt;http://ICanHazIP.com&lt;/a&gt; and the output is the external IP address of your network. &lt;code&gt;curl http://icanhazip.com&lt;/code&gt;. In the script I use the silent option to not show the progress bar.&lt;/p&gt;
-
-&lt;h2 id=&quot;updating-a-dns-a-record-for-your-home-router&quot;&gt;Updating a DNS A record for your home router&lt;/h2&gt;
-&lt;p&gt;Then I use &lt;a href=&quot;http://developer.dnsimple.com/domains/records/&quot; title=&quot;Record API reference&quot;&gt;DNSimple’s record API&lt;/a&gt; to update the subdomain’s A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;quot;record&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;ip address&amp;gt;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;final-script&quot;&gt;Final script&lt;/h2&gt;
-&lt;p&gt;This all comes together in the following bash shell script. I call it &lt;code&gt;dnsimple.sh&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;LOGIN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;DOMAIN_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;RECORD_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;enter yours here&amp;gt;&amp;quot;&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Getting current external IP&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;IP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;`curl -s http://icanhazip.com/`&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Current external IP is $IP&amp;quot;&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Updating external record to $IP&amp;quot;&lt;/span&gt;
-curl -H &lt;span class=&quot;s2&quot;&gt;&amp;quot;Accept: application/json&amp;quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
-    --basic -u &lt;span class=&quot;s2&quot;&gt;&amp;quot;$LOGIN:$PASSWORD&amp;quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
-    -H &lt;span class=&quot;s2&quot;&gt;&amp;quot;Content-Type: application/json&amp;quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
-    -i -X PUT https://DNSimple.com/domains/&lt;span class=&quot;nv&quot;&gt;$DOMAIN_ID&lt;/span&gt;/records/&lt;span class=&quot;nv&quot;&gt;$RECORD_ID&lt;/span&gt;.json &lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;
-    -d &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;record\\&amp;quot;&lt;/span&gt;:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;content\\&amp;quot;&lt;/span&gt;:&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;$IP\\&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt; -s &amp;gt; /dev/null
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Set record&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;update-hourly&quot;&gt;Update hourly&lt;/h2&gt;
-&lt;p&gt;I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it’s good to be ready for it when it does. I do this update by running the &lt;code&gt;dnsimple.sh&lt;/code&gt; script every hour via a cron task. These are set in my &lt;code&gt;/etc/crontab&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;# m h  dom mon dow   command&lt;/span&gt;
-@hourly /root/bin/setDNSimple.sh &amp;gt; /dev/null 2&amp;gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;finished&quot;&gt;Finished&lt;/h2&gt;
-&lt;p&gt;Thats it! Its all setup. Every hour my external IP will have a functioning DNS record for others to point to. SSHing into my server is as simple as &lt;code&gt;ssh subdomain.mydoamin.com&lt;/code&gt;. For added security move your SSH port to a different number. Security by obscurity, but better than nothing.&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 11 Nov 2012 00:00:00 -0800</pubDate>
-        <link>http://jjasonclark.com/dnsimple_script_updates</link>
-        <guid isPermaLink="true">http://jjasonclark.com/dnsimple_script_updates</guid>
-        
-        
-        <category>unix,</category>
-        
-        <category>dns,</category>
-        
-        <category>tmux,</category>
-        
-        <category>ssh,</category>
-        
-        <category>bash</category>
-        
-      </item>
-    
-      <item>
-        <title>Update your software</title>
-        <description>&lt;h1 id=&quot;update-your-software&quot;&gt;Update your software&lt;/h1&gt;
-
-&lt;p&gt;Don’t forget to update your software every once in a while. If your like me, then I’m sure your system if filled with out of date software.&lt;/p&gt;
-
-&lt;p&gt;Today while trying to get Github to update my code (constant network errors) I thought I would try updating &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot;&gt;Homebrew&lt;/a&gt;. Opps! Looks like I have been neglecting it for far to long.&lt;/p&gt;
-
-&lt;p&gt;Do this to make sure &lt;a href=&quot;http://mxcl.github.com/homebrew/&quot;&gt;Homebrew&lt;/a&gt; package definitions is current.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once you have gotten the latest definitions do the following to get your software upgraded.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew upgrade &amp;lt;package name&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Major ones for me are&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew upgrade git
-brew upgrade bash
-brew upgrade tmux
-brew upgrade ctags
-brew upgrade tree
-brew upgrade postgresql
-brew upgrade openssh
-&lt;/code&gt;&lt;/pre&gt;
-
-</description>
-        <pubDate>Tue, 23 Oct 2012 00:00:00 -0700</pubDate>
-        <link>http://jjasonclark.com/Update-your-software</link>
-        <guid isPermaLink="true">http://jjasonclark.com/Update-your-software</guid>
-        
-        
-        <category>macosx,</category>
-        
-        <category>unix</category>
         
       </item>
     

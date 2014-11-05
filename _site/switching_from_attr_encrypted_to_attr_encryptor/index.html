@@ -67,6 +67,7 @@
 
     <div class="page-content">
       <div class="left_bar">
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Side banner -->
 <ins class="adsbygoogle"
@@ -76,7 +77,9 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 </div>
+
       <div class="wrapper">
         <div class="post">
 
@@ -86,9 +89,7 @@
   </header>
 
   <article class="post-content">
-    <h1 id="switching-from-attrencrypted-gem-to-attrencryptor-for-better-security">Switching from attr_encrypted gem to attr_encryptor for better security</h1>
-
-<p>At work we are using the <a href="http://rubygems.org/gems/attr_encrypted" title="attr_encyrpted on rubygems">attr_encrypted gem</a> to encrypt some <a href="http://en.wikipedia.org/wiki/Personally_identifiable_information" title="Wikipedia on PII">PII</a> on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A <a href="https://github.com/shuber/attr_encrypted/issues/32" title="Security issue with attr_encrypted">Github issue</a> was created to address leaking of data caused by using the same <a href="http://en.wikipedia.org/wiki/Initialization_vector" title="Wikipedia on IV">initialization vector (IV)</a> and <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)" title="Wikipedia on salt">salt</a> for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the <a href="http://en.wikipedia.org/wiki/CBC-MAC" title="Wikipedia on CBC-MAC">CBC-MAC</a> method. The <a href="http://rubygems.org/gems/attr_encryptor" title="attr_encryptor on rubygems">attr_encryptor</a> was created to fix these issues.</p>
+    <p>At work we are using the <a href="http://rubygems.org/gems/attr_encrypted" title="attr_encyrpted on rubygems">attr_encrypted gem</a> to encrypt some <a href="http://en.wikipedia.org/wiki/Personally_identifiable_information" title="Wikipedia on PII">PII</a> on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A <a href="https://github.com/shuber/attr_encrypted/issues/32" title="Security issue with attr_encrypted">Github issue</a> was created to address leaking of data caused by using the same <a href="http://en.wikipedia.org/wiki/Initialization_vector" title="Wikipedia on IV">initialization vector (IV)</a> and <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)" title="Wikipedia on salt">salt</a> for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the <a href="http://en.wikipedia.org/wiki/CBC-MAC" title="Wikipedia on CBC-MAC">CBC-MAC</a> method. The <a href="http://rubygems.org/gems/attr_encryptor" title="attr_encryptor on rubygems">attr_encryptor</a> was created to fix these issues.</p>
 
 <p>Besides changing gem names, to switch gems you will need to add the new <code>_iv</code> and <code>_salt</code> database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.</p>
 
