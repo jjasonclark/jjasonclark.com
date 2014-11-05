@@ -10,8 +10,6 @@ title: Trying out Emacs Again
 permalink: /trying_out_emacs_again
 ---
 
-# Trying out Emacs Again
-
 I'm a Vim user, but I'm not 100% sold on it. I keep wanting to find an even better editor. I've tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.
 
 ## Land of Lisp

@@ -10,8 +10,6 @@ title: Deploying a website with MSBuild and TFS 2008
 permalink: /deploy_a_website_with_msbuild_and_tfs_2008
 ---
 
-# Deploying a website with MSBuild and TFS 2008
-
 This past week I have been working on getting the product that I work on into TFS and building on a regular schedule. This is a basic web application built on the Microsoft stack. We have a web site, a database, and some DLLs for business logic.
 
 Before this change the product was built using a home grown build system built by another team in the company.  It has been a long time since this build process has been updated. Basically it was setup to build and deploy to 1 server and nothing has changed since. This isn't really a problem for the group. All of the changes happen at the solution level or project level which doesn't require any changes to the automated build process.

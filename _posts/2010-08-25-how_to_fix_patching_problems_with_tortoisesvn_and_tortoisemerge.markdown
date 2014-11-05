@@ -10,8 +10,6 @@ title: How to fix patching problems with TortoiseSVN and TortoiseMerge
 permalink: /how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge
 ---
 
-# How to fix patching problems with TortoiseSVN and TortoiseMerge
-
 Unfortunately a common occurrence when applying patches while using TortoiseSVN is that nothing gets patched even though the UI shows that patching has completed without errors. This happens when you do a “patch all” or individually go through each file. In addition, any modifications you make in the patched files don't get saved either.
 
 I don't know the cause of this, but I do know a solution. The merging program used by default for TortoiseSVN is TortoiseMerge. It is installed with the main SVN package. You see it every time you do any merging from an update or doing a diff from a previous version of a file. The patching problem has something to do with the settings stored in the registry for TortoiseMerge. Deleting the whole hierarchy for this program will fix the issue. Of course you will need to restart the merge tool once you have deleted the registry keys in order for the changes to take effect.

@@ -10,8 +10,6 @@ title: Started working with Silverlight
 permalink: /started_working_with_silverlight
 ---
 
-# Started working with Silverlight
-
 Thanks to the last few days being snow days I've gotten some work done on the programming front.  I've been playing with Silverlight 2.0.  I installed the [SDK][1] and have started working on a Solitaire program.  I figured that a program with no external input would be nice to start with.  Although for my next project I would like to try connecting to a REST service.
 
 First thing I did was think about a data model that would work for the game.  As you can imagine it only took 1 table with a few other enum like tables.  I though that since Solitaire is so easy I would code the game logic first and then spend the rest of the time playing with the UI.  Really there are only a few moves that you can make.  And rules for checking if you have won or can't move any more are really easy.  I thought it would only take me about an hour to finish it all.

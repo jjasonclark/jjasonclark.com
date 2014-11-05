@@ -10,8 +10,6 @@ title: Installing Node.js on Ubuntu 10.04 server
 permalink: /installing-node-on-ubuntu-10.04
 ---
 
-# Installing Node.js on Ubuntu 10.04 server
-
 Most of the guides I find on how to install [Node.js][1] on Ubuntu are not about installing the currently released version, instead they focus on installing the latest development release. I think this is the case because they assume the reader is familiar with doing software installs on unix from source. I'm coming from a Windows word were installing from the source is almost never done. This guide is for someone relatively new to unix installation or to Ubuntu server setup.
 
 Installing [Node.js][1] from source is done in 3 basic steps. Step 1 is setting up your system to configure and build [Node.js][1]. Step 2 is getting a copy of the [Node.js][1] source. And the last step is building the correct version of [Node.js][1]. Some of the commands need root permissions to execute. For those commands I use the `sudo` filter command to elevate the current user to root permissions.

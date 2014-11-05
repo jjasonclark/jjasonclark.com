@@ -10,8 +10,6 @@ title: Any() is your friend
 permalink: /any_is_your_friend
 ---
 
-# Any() is your friend
-
 I often see developers writing code that is checking for the existence of something using the Count() method. This should be avoided in favor of the [Any()](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.any.aspx) method and it's overloads.
 
 Given this SQL layout

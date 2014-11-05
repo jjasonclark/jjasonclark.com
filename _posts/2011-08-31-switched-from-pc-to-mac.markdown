@@ -6,8 +6,6 @@ title: Switched from PC to Mac
 permalink: /switched-from-pc-to-mac
 ---
 
-# Switched from PC to Mac
-
 I'm a [switcher](http://youtu.be/Hk8hxjpnUiw)! I switched from PC to Mac. It started when I wanted to replace the computer I use to run my TV. I picked the
 [Mac Mini](http://www.amazon.com/gp/product/B004YLCLM6/ref=as_li_ss_tl?ie=UTF8&tag=jasclasblo-20&linkCode=as2&camp=217145&creative=399373&creativeASIN=B004YLCLM6) because of it's size. I had done the research and all of the Internet services I used on the PC also worked for the Mac. So I waited until the Mac OS X Lion update came out to buy the newest version of the mini.
 

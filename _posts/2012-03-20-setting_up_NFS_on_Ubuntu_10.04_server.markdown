@@ -10,7 +10,6 @@ title: Setting up NFS on Ubuntu 10.04 Server
 permalink: /setting_up_NFS_on_Ubuntu_10.04_server
 ---
 
-# Setting up NFS on Ubuntu 10.04 Server
 I'm currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.
 
 The following assumes you have already setup Ubuntu and can access the network. Do all the following as the root user.
@@ -40,7 +39,7 @@ Create the following two files
         exit 0
 
 Give both scripts execute permissions and run them
-    
+
     chmod +x /etc/network/if-pre-up.d/iptablesload
     chmod +x /etc/network/if-post-down.d/iptablessave
     /etc/network/if-post-down.d/iptablessave

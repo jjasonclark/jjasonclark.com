@@ -10,8 +10,6 @@ title: Replicating SQL's in operator in Linq
 permalink: /replicating_sql_in_operator_in_linq
 ---
 
-# Replicating SQL's `in` operator in Linq
-
 One of the common programming problems is sorting a complex object on a list of criteria. For example, given the following class.
 
 {% highlight c# %}

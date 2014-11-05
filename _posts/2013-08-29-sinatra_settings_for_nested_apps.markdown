@@ -10,8 +10,6 @@ title: Sinatra Settings for Nested Apps
 permalink: /sinatra_settings_for_nested_apps
 ---
 
-# Sinatra Settings for Nested Apps
-
 I finally got a chance to do some work with [Sinatra][]. Something more than the typical `Hello, World!` app. I needed a UI on top of a restful web API. The docs are written using `curl` calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created [Cardspring_browse][].
 
 The app is little more than HTML over a JSON API. Which isn't to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.

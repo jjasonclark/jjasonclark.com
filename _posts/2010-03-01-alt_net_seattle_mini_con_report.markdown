@@ -10,8 +10,6 @@ title: Alt.Net Seattle mini con report
 permalink: /alt_net_seattle_mini_con_report
 ---
 
-# Alt.Net Seattle mini con report
-
 I went to my first [Alt.Net Seattle](http://www.altnetseattle.org) meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the [MVP global summit](http://www.mvpsummit2010.com). I have to say I really liked it.
 
 It started at 10 AM, but I wasn't able to get there until a bit before noon. I was out doing the Saturday morning breakfast thing with the grandparents so they could spend some time with Zachary. Well worth the time, although I missed the best sessions of the day. At 10 AM they started with a session on MVC and another on CodeRush. Completely bummed I didn't get to go to either one of those. Although there was a good selection of topics left to go to after the noon lunch break.

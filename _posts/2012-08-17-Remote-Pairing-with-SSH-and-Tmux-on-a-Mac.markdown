@@ -10,8 +10,6 @@ title: Remote pairing with SSH and Tmux on a Mac
 permalink: /Remote-Pairing-with-SSH-and-Tmux-on-a-Mac
 ---
 
-# Remote pairing with SSH and Tmux on a Mac
-
 Pair programming is a wonderful thing. It can get you out of your programming jam faster than anything. If you haven't tried pair programming, then you need too. It is just that simple. The easiest way to pair program is to have everyone sit down at the computer together. Typically one person "drives" and the other helps out. If you cannot sit down with your pair partner in person then remote pairing though SSH and [Tmux][2] works great.
 
 It is easy to setup your computer to support remote pairing.

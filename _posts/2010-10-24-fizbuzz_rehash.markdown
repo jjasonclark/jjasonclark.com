@@ -10,8 +10,6 @@ title: Fizz-buzz rehash
 permalink: /fizbuzz_rehash
 ---
 
-# Fizz-buzz rehash
-
 While moving my blog content from site to site my post on Fizz-buzz caught my eye again. I thought I would post another implementation that was even more complex (read _don't use in your interview_)
 
 This one uses the iterator pattern and the null coalescing operator for added complexity.

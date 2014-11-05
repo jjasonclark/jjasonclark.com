@@ -4,13 +4,11 @@ date: 2012-11-14
 comments: true
 description: How I learned to correctly access locals inside a partial view template.
 categories: rails, ruby
-keywords: rails, ruby, partial, view 
+keywords: rails, ruby, partial, view
 summary: Partial views get used in most web frameworks. In Rails and most other frameworks you can pass local variables to your partials. This is how I learned that in Rails these locals are instance methods and not instance variables.
 title: Rails partial views and locals variables
 permalink: /rails_partial_view_locals
 ---
-
-# Rails partial views and locals variables
 
 Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I've been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.
 

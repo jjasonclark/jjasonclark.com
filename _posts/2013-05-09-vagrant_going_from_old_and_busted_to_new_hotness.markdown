@@ -10,8 +10,6 @@ title: Vagrant Going from old and busted, to new hotness
 permalink: /vagrant_going_from_old_and_busted_to_new_hotness
 ---
 
-# Vagrant: Going from old and busted, to new hotness
-
 [Vagrant][1] is an amazing application for helping you manage virtual machines. I feel like you are missing out if you haven't started using Vagrant yet. I highly recommend it. Vagrant helps out by keeping track of several things that you would normally do manually to maintain a VM. It does this via the `Vagrantfile` you place in your project's directory and check into source control. The file contains two basic parts; all of the meta data that the VM needs boot, and the steps used to provision the VM.
 
 Vagrant has been out for a while now, so it has gone through several versions already. Lately there has been a renewed effort by the creators of Vagrant to add more features. In order to support these new features the semantics of the `Vagrantfile` had to change. In addition to the must change parts the Vagrant team has also done some changes to the existing parts that make it easier to interact with.

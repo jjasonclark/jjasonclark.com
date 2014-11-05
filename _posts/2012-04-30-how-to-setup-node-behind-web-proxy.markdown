@@ -10,8 +10,6 @@ title: How to setup Node.js and Npm behind a corporate web proxy
 permalink: /how-to-setup-node-behind-web-proxy
 ---
 
-# How to setup Node.js and Npm behind a corporate web proxy
-
 For those who, like me, are behind a corporate web proxy, setting up Node.js and using `npm` can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables. Although I just cloned the Node repository from [Github](https://github.com/joyent/node) so they are already setup. What gives?
 
 A little searching and I discover that `npm` uses a configuration file and it can be added to via the command line `npm config set ...`. The key to getting it right is the spelling of the settings. This has bit me so many times now! Getting `npm` to work behind a proxy requires setting the `proxy` and `https-proxy` settings. The key is noticing the `-` (dash) is not an `_` (underscore).

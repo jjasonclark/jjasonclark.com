@@ -10,8 +10,6 @@ title: Learning Ruby
 permalink: /learning_ruby
 ---
 
-# Learning Ruby
-
 I thought I would give learning Ruby a try. The internet seems abuzz with talk about how amazing Ruby is, so it is at least worth a look. I also checked and my ISP does support Ruby on Rails apps.  It is a nice bonus to not have to pay any extra for hosting if I do actually make something.
 
 I started by installing Ruby for windows via the installer from <http://rubyinstaller.org/>. I wanted to be able to use the Ruby Koans from <http://github.com/edgecase/ruby_koans> to learn from so I needed to do a little more setup. I also needed to install the gem for test-unit.

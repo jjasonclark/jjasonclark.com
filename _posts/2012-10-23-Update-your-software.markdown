@@ -10,8 +10,6 @@ title: Update your software
 permalink: /Update-your-software
 ---
 
-# Update your software
-
 Don't forget to update your software every once in a while. If your like me, then I'm sure your system if filled with out of date software.
 
 Today while trying to get Github to update my code (constant network errors) I thought I would try updating [Homebrew][1]. Opps! Looks like I have been neglecting it for far to long.

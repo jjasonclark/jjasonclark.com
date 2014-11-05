@@ -10,8 +10,6 @@ title: Install Cloudstack 3.0.0 on Ubuntu 10.04 Server
 permalink: /install_cloudstack_3.0.0_on_ubuntu_10.04_server
 ---
 
-# Install Cloudstack 3.0.0 on Ubuntu 10.04 Server
-
 [Cloudstack 3.0.0](https://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/) was release on [Febrary 28<sup>th</sup> 2012](http://www.cloudstack.org/blog/117-cloudstack-acton-released.html). At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.
 
 ## Setup procedures
@@ -67,7 +65,7 @@ This step is just as easy as the last step. The database server (MySql) will be 
 
 This will once again try to update all packages. They should be up to date, so you should not have to wait long for this to finish. You will then be given the same prompt from your last run. This time choose option `D` to install the database.
 
-During the install of the database server you will be asked for a password. This is the password for the user named `root` on the database. This is __not__ the same as the root user of the Ubuntu box. Pick a password that __does not__ include an `@` symbol. I at first used the password of `p@ssword1`. This caused so many headaches that its just not worth the workarounds. I went with a password of `password1`. 
+During the install of the database server you will be asked for a password. This is the password for the user named `root` on the database. This is __not__ the same as the root user of the Ubuntu box. Pick a password that __does not__ include an `@` symbol. I at first used the password of `p@ssword1`. This caused so many headaches that its just not worth the workarounds. I went with a password of `password1`.
 
 Once the database server is setup you need to create the databases used my the cloud management software.
 

@@ -10,8 +10,6 @@ title: FizzBuzz test in C#
 permalink: /fizzbuzz_test_in_c_sharp
 ---
 
-# FizzBuzz test in C\# #
-
 I've been looking at developer job related web sites to see what kinds of "things" are being used in interviews. There are a few programmer challenges that people are using to weed out the less capable developers. In particular the one called [Fizz-buzz test][1] is quite amazing to me. It isn't the simplicity of the challenge that gets me it is the fact that so many cannot write it during the interview. I would assume that any level of developer can easily complete this code. Although I keep seeing examples all over the web about how current *(2010)* job candidates cannot write it.
 
 So, what the heck! Another example of how it can be done.

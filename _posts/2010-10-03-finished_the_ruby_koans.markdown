@@ -10,8 +10,6 @@ title: Finished the Ruby Koans
 permalink: /finished_the_ruby_koans
 ---
 
-# Finished the Ruby Koans
-
 Finally finished the [Ruby Koans](http://github.com/edgecase/ruby_koans) today. They are a set of test cases designed to help you learn Ruby by making all the tests pass.
 
                                     :      ::::,    :::,
