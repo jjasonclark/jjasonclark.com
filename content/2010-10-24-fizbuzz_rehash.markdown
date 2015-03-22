@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-10-24 20:01:30
+date: 2010-10-24
 comments: true
 description: An overly complex fizz-buzz implementation
 categories: programming, interview
 keywords:
 summary: An implementation of fizz-buzz that is overly complex. Something you want to avoid in an interview.
 title: Fizz-buzz rehash
-permalink: /fizbuzz_rehash
+url: /fizbuzz_rehash
 ---
 
 While moving my blog content from site to site my post on Fizz-buzz caught my eye again. I thought I would post another implementation that was even more complex (read _don't use in your interview_)

@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2008-12-19 15:23:47
+date: 2008-12-19
 comments: true
 description: Gave Silverlight 2.0 a try for the first time
 categories: programming Silverlight
 tags: Silverlight programming C#
 summary: I started playing with Silverlight 2.0. I learned a lot about the data modeling classes and what is supported. Going to have to spend much more time with Silverlight if I'm going to make anything useful
 title: Started working with Silverlight
-permalink: /started_working_with_silverlight
+url: /started_working_with_silverlight
 ---
 
 Thanks to the last few days being snow days I've gotten some work done on the programming front.  I've been playing with Silverlight 2.0.  I installed the [SDK][1] and have started working on a Solitaire program.  I figured that a program with no external input would be nice to start with.  Although for my next project I would like to try connecting to a REST service.

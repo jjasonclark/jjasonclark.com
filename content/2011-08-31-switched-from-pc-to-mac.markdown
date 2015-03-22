@@ -1,9 +1,9 @@
 ---
 layout: post
-date: 2011-08-31 22:04:00
+date: 2011-08-31
 categories: mac, laptop, pc, switcher
 title: Switched from PC to Mac
-permalink: /switched-from-pc-to-mac
+url: /switched-from-pc-to-mac
 ---
 
 I'm a [switcher](http://youtu.be/Hk8hxjpnUiw)! I switched from PC to Mac. It started when I wanted to replace the computer I use to run my TV. I picked the

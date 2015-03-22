@@ -7,7 +7,7 @@ categories: Unix, DNS, tmux, ssh, bash
 keywords: router, setup, Unix, ssh, API, bash, DNSimple
 summary: The API at DNSimple allows easy updates. You can use them to add a subdomain to point to your home router. I make extensive use of this for remote pair programming.
 title: Update DNSimple to point to your home router
-permalink: /dnsimple_script_updates
+url: /dnsimple_script_updates
 ---
 
 I use the DNS provider [DNSimple][1] ([referral link][3]). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I'm out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.

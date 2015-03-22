@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-08-25 23:06:13
+date: 2010-08-25
 comments: true
 description: How to fix patching issues with TortoiseMerge
 categories: programming
 keywords: merge, TortoiseSVN
 summary: TortoiseMerge occasionally fails to work. I don't know the cause, but I did figure out how correct the issue so you can do another merge.
 title: How to fix patching problems with TortoiseSVN and TortoiseMerge
-permalink: /how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge
+url: /how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge
 ---
 
 Unfortunately a common occurrence when applying patches while using TortoiseSVN is that nothing gets patched even though the UI shows that patching has completed without errors. This happens when you do a “patch all” or individually go through each file. In addition, any modifications you make in the patched files don't get saved either.

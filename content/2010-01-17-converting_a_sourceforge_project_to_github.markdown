@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-01-17 22:04:36
+date: 2010-01-17
 comments: true
 description: Converting a Sourceforge project to Github
 categories: git
 keywords: autorealm, git, github, programming, sourceforge
 summary: I was looking for a reason to play with Git more so I thought a good exercise would be to convert an open source project not already using Git. At the same time I put it on Github for easy access.
 title: Converting a Sourceforge project to Github
-permalink: /converting_a_sourceforge_project_to_github
+url: /converting_a_sourceforge_project_to_github
 ---
 
 I was looking for a reason to play with [Git][1] more, so what better a way than to find an open source project that isn't already on [Github](http://github.com) and convert it. I wanted to try out some of the basic commands but didn't have a good source to work with. Using real files feels better to me than using a bunch of dummy files so I've pulled over the files from the [Autorealm](http://sourceforge.net/projects/autorealm) project.

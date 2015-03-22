@@ -7,7 +7,7 @@ categories: programming, devops
 keywords: Vagrant, VM, virtualmachine, upgrade, chef, provision, hypervisor
 summary: Vagrant is an amazing application for helping you manage your virtual machines. Renewed development effort by it's creators has brought us many new features. Unfortunately this forced a change in the semantics of the Vagrantfile. Here is how to do the most basic upgrades to remove the warning messages Vagrant creates from using the older file type.
 title: Vagrant Going from old and busted, to new hotness
-permalink: /vagrant_going_from_old_and_busted_to_new_hotness
+url: /vagrant_going_from_old_and_busted_to_new_hotness
 ---
 
 [Vagrant][1] is an amazing application for helping you manage virtual machines. I feel like you are missing out if you haven't started using Vagrant yet. I highly recommend it. Vagrant helps out by keeping track of several things that you would normally do manually to maintain a VM. It does this via the `Vagrantfile` you place in your project's directory and check into source control. The file contains two basic parts; all of the meta data that the VM needs boot, and the steps used to provision the VM.

@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-07-17 20:55:39
+date: 2010-07-17
 comments: true
 description: Using the ASP.Net membership provider in an application using SQLExpress database
 categories: asp.net, programming, sql
 keywords: programming, sql, asp.net
 summary: Using the ASP.Net membership provider in an application using SQLExpress database
 title: SQLExpress and ASP.Net membership provider
-permalink: /sqlexpress_and_asp_net_membership_provider
+url: /sqlexpress_and_asp_net_membership_provider
 ---
 
 One of my favorite activities is to create a new project. Just saying "file, new project" gets me thinking about all the possibilities. Lately I've been trying to work on my web development skills so I've been creating a lot of new web applications in Visual Studio. In many cases I also need to have these projects use the normal ASP.Net membership provider. This is where the common problem comes in.

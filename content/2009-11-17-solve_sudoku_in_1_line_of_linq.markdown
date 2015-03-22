@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2009-11-17 00:21:00
+date: 2009-11-17
 comments: true
 description: Using linq to solve Sudoku
 categories: C#, LinQ, programming
 keywords: programming, linq, sudoku
 summary: Using linq to solve Sudoku
 title: Solve Sudoku in 1 line of Linq
-permalink: /solve_sudoku_in_1_line_of_linq
+url: /solve_sudoku_in_1_line_of_linq
 ---
 
 One of my coworkers sent around a link today to someone who solved [Sudoku puzzles in 1 line of SQL](1) using Oracle's custom recursive syntax. I thought it would be fun to try to convert this into Linq. This is the "best" I was able to come up with. Just like all 1 line solution to complex problems the result looks horrific, although I'm happy to see that it solves the Sudoku puzzles quite quickly.

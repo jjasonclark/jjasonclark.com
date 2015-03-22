@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-03-17 21:55:09
+date: 2010-03-17
 comments: true
 description: An overly complex fizz-buzz implementation
 categories: C#, programming
 keywords:
 summary: An overly complex fizz-buzz implementation
 title: FizzBuzz test in C#
-permalink: /fizzbuzz_test_in_c_sharp
+url: /fizzbuzz_test_in_c_sharp
 ---
 
 I've been looking at developer job related web sites to see what kinds of "things" are being used in interviews. There are a few programmer challenges that people are using to weed out the less capable developers. In particular the one called [Fizz-buzz test][1] is quite amazing to me. It isn't the simplicity of the challenge that gets me it is the fact that so many cannot write it during the interview. I would assume that any level of developer can easily complete this code. Although I keep seeing examples all over the web about how current *(2010)* job candidates cannot write it.

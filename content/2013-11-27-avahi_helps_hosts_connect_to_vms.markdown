@@ -7,7 +7,7 @@ categories: vm, linux, development
 keywords: vm, linux
 summary: How to setup Bonjour broadcast to connect your Linux servers to your Macs for easy access while developing. Safari automatically adds the web servers that are broadcasting on your local network. Linux servers will broadcast once the Avahi server is installed.
 title: Avahi helps hosts connect to VMs
-permalink: /avahi_helps_hosts_connect_to_vms
+url: /avahi_helps_hosts_connect_to_vms
 ---
 
 I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: [Bonjour][]. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.

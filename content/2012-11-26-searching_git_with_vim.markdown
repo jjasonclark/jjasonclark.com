@@ -7,7 +7,7 @@ categories: vim, git, tips
 keywords: vim, git, plug-ins
 summary: Searching Git repositories is very simple using the Fugitive and Unimpaired plug-ins. They allow you to jump to each file and line in the result set with default keybindings.
 title: Searching a Git repository using
-permalink: /searching_git_with_vim
+url: /searching_git_with_vim
 ---
 
 I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it's `grep` command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.

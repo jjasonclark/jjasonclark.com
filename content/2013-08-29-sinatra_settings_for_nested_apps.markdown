@@ -7,7 +7,7 @@ categories: programming
 keywords: ruby, rack, middleware, settings
 summary: Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware. I show how I created a Sinatra app with several nested Sinatra apps. And how I solved the issue with using a shared settings value from outer apps to the inner apps.
 title: Sinatra Settings for Nested Apps
-permalink: /sinatra_settings_for_nested_apps
+url: /sinatra_settings_for_nested_apps
 ---
 
 I finally got a chance to do some work with [Sinatra][]. Something more than the typical `Hello, World!` app. I needed a UI on top of a restful web API. The docs are written using `curl` calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created [Cardspring_browse][].

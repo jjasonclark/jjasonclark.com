@@ -7,7 +7,7 @@ categories: macosx, unix
 keywords: macosx, setup, unix
 summary: Don't forget to update your software every once in a while
 title: Update your software
-permalink: /Update-your-software
+url: /Update-your-software
 ---
 
 Don't forget to update your software every once in a while. If your like me, then I'm sure your system if filled with out of date software.

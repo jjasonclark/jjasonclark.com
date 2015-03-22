@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-06-24 12:05:13
+date: 2010-06-24
 comments: true
 description: Learning Ruby via testing
 categories: programming, Ruby
 keywords: ruby, learning
 summary: Learning Ruby via testing. Trying to also learn the Rails server enivronment as well.
 title: Learning Ruby
-permalink: /learning_ruby
+url: /learning_ruby
 ---
 
 I thought I would give learning Ruby a try. The internet seems abuzz with talk about how amazing Ruby is, so it is at least worth a look. I also checked and my ISP does support Ruby on Rails apps.  It is a nice bonus to not have to pay any extra for hosting if I do actually make something.

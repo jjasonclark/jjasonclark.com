@@ -7,7 +7,7 @@ categories: programming
 keywords: emacs, setup
 summary: I'm a Vim user, but i'm not 100% sold on it. I keep wanting to find an even better editor. I've tried just about everything but nothing sticks. I'm starting a new book on Lisp programming so it is time to try Emacs again. May this time it will stick.
 title: Trying out Emacs Again
-permalink: /trying_out_emacs_again
+url: /trying_out_emacs_again
 ---
 
 I'm a Vim user, but I'm not 100% sold on it. I keep wanting to find an even better editor. I've tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.

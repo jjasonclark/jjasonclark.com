@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-10-04 19:36:22
+date: 2010-10-04
 comments: true
 description: Video on using Resharper for code navigation
 categories: programming, Resharper, Tools
 keywords: tips, Resharper, editor
 summary: Great screencast on using Resharper to navigate code efficiently in Visual Studio
 title: Code navigation with Resharper
-permalink: /code_navigation_with_resharper
+url: /code_navigation_with_resharper
 ---
 
 Found a great screencast for using Resharper to help code navigation.  [http://tv.jetbrains.net/videocontent/efficient-navigation-when-doing-tddbdd-with-resharper](http://tv.jetbrains.net/videocontent/efficient-navigation-when-doing-tddbdd-with-resharper)

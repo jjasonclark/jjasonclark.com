@@ -7,7 +7,7 @@ keywords: ruby, programming, gem, security, encryption
 description: How to switch from attr_encrypted to attr_encryptor gem for better security
 summary: At work we are using the attr_encrypted gem to encrypt some PII on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A Github issue was created to address leaking of data caused by using the same initialization vector (IV) and salt for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the CBC-MAC method. The attr_encryptor was created to fix these issues.
 title: Switching from attr_encrypted gem to attr_encryptor for better security
-permalink: /switching_from_attr_encrypted_to_attr_encryptor
+url: /switching_from_attr_encrypted_to_attr_encryptor
 ---
 
 At work we are using the [attr\_encrypted gem][4] to encrypt some [PII][6] on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A [Github issue][1] was created to address leaking of data caused by using the same [initialization vector (IV)][7] and [salt][8] for every value. The method used by the attr\_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the [CBC-MAC][13] method. The [attr\_encryptor][5] was created to fix these issues.

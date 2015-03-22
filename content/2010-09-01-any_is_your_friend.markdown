@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-09-01 17:18:25
+date: 2010-09-01
 comments: true
 description: More efficient queries using the Any() method vs Count()
 categories: programming
 tags: .Net sql
 summary: The Any() extension method helps make much more efficient SQL queries. Use it and love it!
 title: Any() is your friend
-permalink: /any_is_your_friend
+url: /any_is_your_friend
 ---
 
 I often see developers writing code that is checking for the existence of something using the Count() method. This should be avoided in favor of the [Any()](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.any.aspx) method and it's overloads.

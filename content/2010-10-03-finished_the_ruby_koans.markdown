@@ -1,13 +1,13 @@
 ---
 layout: post
-date: 2010-10-03 22:15:30
+date: 2010-10-03
 comments: true
 description: Finished the Ruby Koans
 categories: Ruby
 keywords: ruby, testing, learning
 summary: I finished the Ruby Koans today. It is a set of test cases designed to help you learn Ruby by making all the tests pass.
 title: Finished the Ruby Koans
-permalink: /finished_the_ruby_koans
+url: /finished_the_ruby_koans
 ---
 
 Finally finished the [Ruby Koans](http://github.com/edgecase/ruby_koans) today. They are a set of test cases designed to help you learn Ruby by making all the tests pass.
