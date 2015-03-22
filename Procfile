@@ -1,1 +1,0 @@
-web: bundle exec puma --port $PORT --environment production -t 0:5
