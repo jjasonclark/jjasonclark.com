@@ -1,16 +1,19 @@
 baseurl = "http://jjasonclark.com/"
 languageCode = "en-us"
 title = "JJasonClark.com"
-
-email= "jason@jjasonclark.com"
-description= "Stuff I have time to write about"
-twitter_username = "jjasonclark"
-github_username =  "jjasonclark"
+publishdir = "public"
+layoutdir = "layouts"
 timezone = "America/Vancouver"
 encoding = "utf-8"
+exclude = ["README.md", "Rakefile", "Gemfile", "Gemfile.lock", "Procfile", "vendor"]
+
+[params]
+email= "jason@jjasonclark.com"
+description = "Stuff I have time to write about"
+twitter_username = "jjasonclark"
+github_username =  "jjasonclark"
 google_analytics_code = "UA-12083278-1"
 disqus_shortname = "jjasonclark"
-exclude = ["README.md", "Rakefile", "Gemfile", "Gemfile.lock", "Procfile", "vendor"]
 
 #autor settings
 author = "Jason Clark"
@@ -18,3 +21,7 @@ gplus = "https://plus.google.com/117263003751658777941"
 
 # Build settings
 permalink = "/:title"
+
+[taxonemies]
+category = "categories"
+tag = "tags"
