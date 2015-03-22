@@ -2,16 +2,16 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+    <a class="site-title" href="{{ .Site.Baseurl }}/">{{ .Site.Title }}</a>
 
     <nav class="site-nav">
       <div class="trigger">
-        {% for page in site.pages %}
-          {% if page.title %}
-          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-          {% endif %}
-        {% endfor %}
-        {% include social.html %}
+        {{ for page in .Site.posts }}
+        {{ if isset .Title }}
+          <a class="page-link" href="{{ .Url | urlsafe }}">{{ .Title }}</a>
+          {{ end }}
+        {{ end }}
+        {{ partial "social.html" }}
       </div>
     </nav>
 
