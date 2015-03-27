@@ -24,10 +24,10 @@ First things first, you will need to uninstall the old version of Vagrant. Most 
 
 Once you have the latest version install open up your `Vagrantfile` and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 Vagrant.configure('2') do |config|
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 From here you will need to change a few standard meta data settings.
 

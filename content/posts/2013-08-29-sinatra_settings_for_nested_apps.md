@@ -14,7 +14,7 @@ I finally got a chance to do some work with [Sinatra][]. Something more than the
 
 The app is little more than HTML over a JSON API. Which isn't to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 class Inner < Sinatra::Base
   get "/inner" do
     # ...
@@ -28,7 +28,7 @@ class Outer < Sinatra::Base
     # ...
   end
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 Easy enough until it came time to share some configuration settings.  Each split up file seemed to get it's own copy of the `settings`. This meant that the outer app's settings didn't apply. I tried all kinds of things, but nothing worked. I resorted to asking a [question on Stack Overflow][2].
 
@@ -36,17 +36,17 @@ The answer there was acceptable, but not the ideal. I thought if I read the sour
 
 The Cardspring_browse app uses it [here][1]. This code uses the Rack middleware [Rack::Config][4] to achieve the result.
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 use Rack::Config do |env|
   env["my_app.my_property"] = "custom value"
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 The full code for the outer application is the following. From the looks of the code I don't yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.
 
 *Help wanted! It is [open source][5].*
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 class Application < Sinatra::Base
 
   enable :method_override
@@ -74,7 +74,7 @@ class Application < Sinatra::Base
   end
 
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 [1]: https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/lib/cardspring_browse/application.rb#L15-L18
 [2]: http://stackoverflow.com/questions/18320823/sharing-yaml-config-files-between-sinatra-and-rails

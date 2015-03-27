@@ -17,9 +17,9 @@ A little searching and I discover that `npm` uses a configuration file and it ca
 So the full procedure is install [Node.js](http://nodejs.com) via the installer or source.
 Open an command prompt or terminal session and run the following commands to configure `npm` to work with your web proxy. The commands use `proxy.company.com` as the address and `8080` as the port.
 
-{% highlight sh %}
+{{< highlight sh >}}
 npm config set proxy http://proxy.company.com:8080
 npm config set https-proxy http://proxy.company.com:8080
-{% endhighlight %}
+{{< /highlight >}}
 
 Why the developers of `npm` choose to use a dash instead of an underscore like the rest of the unix work is beyond me. Maybe someone will add in an alias so setting `https_proxy` will have the same effect as `https-proxy`.

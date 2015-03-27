@@ -16,15 +16,15 @@ What I needed to do was get the source for Autorealm, clean up the directories, 
 
 I converted the source by first downloading the [Mercurial windows client](http://mercurial.selenic.com/downloads) and used the following command.
 
-{% highlight sh %}
+{{< highlight sh >}}
 hg clone http://autorealm.hg.sourceforge.net:8000/hgroot/autorealm/autorealm
-{% endhighlight %}
+{{< /highlight >}}
 
 Autorealm is going through a rewrite from Pascal to Python. The original Pascal repository uses the following command.
 
-{% highlight sh %}
+{{< highlight sh >}}
 hg clone http://autorealm.hg.sourceforge.net:8000/hgroot/autorealm/autorealm_delphi
-{% endhighlight %}
+{{< /highlight >}}
 
 ![Screenshot of SourceForge project download](/images/autorealm_2010_01_17.png)
 
@@ -32,23 +32,23 @@ This downloaded the two repositories to my local machine. In total it took about
 
 Once I had the clean directories I did the following Git commands to create the first commit.
 
-{% highlight sh %}
+{{< highlight sh >}}
 git init
 git add .
 git commit -m "Initial copy from Sourceforge"
-{% endhighlight %}
+{{< /highlight >}}
 
 On Github I created the repositories where I would push to. Then pushed them to Github.
 
 ![Screenshot of Github dashboard](/images/autorealm_repository_2010_01_175.png)
 
-{% highlight sh %}
+{{< highlight sh >}}
 git remote add github git@github.com:jjasonclark/Autorealm.git
 git push github master
 
 git remote add github git@github.com:jjasonclark/Autorealm_delphi.git
 git push github master
-{% endhighlight %}
+{{< /highlight >}}
 
 And now I have [Autorealm](http://github.com/jjasonclark/Autorealm) and [Autorealm\_delphi](http://github.com/jjasonclark/Autorealm_delphi).
 

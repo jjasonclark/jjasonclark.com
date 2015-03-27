@@ -20,18 +20,18 @@ Simple use curl to make a call to [http://ICanHazIP.com][2] and the output is th
 ## Updating a DNS A record for your home router
 Then I use [DNSimple's record API][4] to update the subdomain's A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.
 
-{% highlight json %}
+{{< highlight json >}}
 {
     "record": {
         "content": "<ip address>"
     }
 }
-{% endhighlight %}
+{{< /highlight >}}
 
 ## Final script
 This all comes together in the following bash shell script. I call it `dnsimple.sh`.
 
-{% highlight sh %}
+{{< highlight sh >}}
 #!/bin/bash
 
 LOGIN="<enter yours here>"
@@ -51,15 +51,15 @@ curl -H "Accept: application/json" \\
     -d {\\"record\\":{\\"content\\":\\"$IP\\"}} -s > /dev/null
 
 echo "Set record"
-{% endhighlight %}
+{{< /highlight >}}
 
 ## Update hourly
 I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it's good to be ready for it when it does. I do this update by running the `dnsimple.sh` script every hour via a cron task. These are set in my `/etc/crontab` file.
 
-{% highlight sh %}
+{{< highlight sh >}}
 # m h  dom mon dow   command
 @hourly /root/bin/setDNSimple.sh > /dev/null 2>&1
-{% endhighlight %}
+{{< /highlight >}}
 
 ## Finished
 Thats it! Its all setup. Every hour my external IP will have a functioning DNS record for others to point to. SSHing into my server is as simple as `ssh subdomain.mydoamin.com`. For added security move your SSH port to a different number. Security by obscurity, but better than nothing.

@@ -33,4 +33,4 @@ IEnumerable FizzBuzz()
         yield return fbLogic[i % 3 == 0 ? 0 : 1, i % 5 == 0 ? 0 : 1] ?? i.ToString();
     }
 }
-{% endhighlight %}
+{{< /highlight >}}

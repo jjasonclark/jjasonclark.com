@@ -18,7 +18,7 @@ Besides changing gem names, to switch gems you will need to add the new `_iv` an
 
 At first I was hoping the attr\_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem's decryption code. From the [Github source][9]
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 # Decrypts a value for the attribute specified
 #
 # Example
@@ -44,11 +44,11 @@ def decrypt(attribute, encrypted_value, options = {})
     encrypted_value
   end
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 Which calls to the [encryptor gem][12] to do the actually decryption. The [decryption code][11]
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 def crypt(cipher_method, *args) #:nodoc:
   options = default_options.merge(:value => args.first).merge(args.last.is_a?(Hash) ? args.last : {})
   raise ArgumentError.new('must specify a :key') if options[:key].to_s.empty?
@@ -64,11 +64,11 @@ def crypt(cipher_method, *args) #:nodoc:
   result = cipher.update(options[:value])
   result << cipher.final
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 Basically this boils down to the following.
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 def decrypt(value, key)
   cipher = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
   cipher.decrypt
@@ -76,12 +76,12 @@ def decrypt(value, key)
   result = cipher.update(value)
   result << cipher.final
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 ## Finial migration
 Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 class ReencryptAllValues < ActiveRecord::Migration
     class IterationCount
         def initialize(display_every=100)
@@ -206,7 +206,7 @@ class ReencryptAllValues < ActiveRecord::Migration
         end
     end
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 
 [1]: https://github.com/shuber/attr_encrypted/issues/32 "Security issue with attr_encrypted"

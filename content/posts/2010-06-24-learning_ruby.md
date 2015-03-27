@@ -14,12 +14,12 @@ I thought I would give learning Ruby a try. The internet seems abuzz with talk a
 
 I started by installing Ruby for windows via the installer from <http://rubyinstaller.org/>. I wanted to be able to use the Ruby Koans from <http://github.com/edgecase/ruby_koans> to learn from so I needed to do a little more setup. I also needed to install the gem for test-unit.
 
-{% highlight sh %}
+{{< highlight sh >}}
 gem install test-unit --include-dependencies
-{% endhighlight %}
+{{< /highlight >}}
 
 While I was inside an elevated command prompt I also installed Rails.
 
-{% highlight sh %}
+{{< highlight sh >}}
 gem install rails --include-dependencies
-{% endhighlight %}
+{{< /highlight >}}

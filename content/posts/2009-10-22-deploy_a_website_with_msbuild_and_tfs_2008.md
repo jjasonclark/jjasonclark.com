@@ -18,7 +18,7 @@ Now that we have shipped the latest version we have an opportunity to switch to 
 
 In order for this to work I had to translate all of our current batch files into MSBuild tasks. At the same time we are moving from IIS6 to IIS7, so some of the commands need to be updated.  I started by creating a basic TFS build definition. This is because all of the real work is done in the project file.
 
-{% highlight xml %}
+{{< highlight xml >}}
 <PropertyGroup>
     <SDLTrackWebSitePath>D:\SDLTrackWeb</SDLTrackWebSitePath>
     <SDLTrackDatabasePath>D:\SDLTrackDBs</SDLTrackDatabasePath>
@@ -89,4 +89,4 @@ In order for this to work I had to translate all of our current batch files into
     <Exec Command="echo ^</appSettings^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
     <Exec Command="echo ^</configuration^> >> $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config" />
 </Target>
-{% endhighlight %}
+{{< /highlight >}}

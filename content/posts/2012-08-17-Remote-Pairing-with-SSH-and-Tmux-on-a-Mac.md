@@ -17,9 +17,9 @@ It is easy to setup your computer to support remote pairing.
 ## Install Tmux
 Install Tmux using Homebrew.
 
-{% highlight sh %}
+{{< highlight sh >}}
 brew install tmux
-{% endhighlight %}
+{{< /highlight >}}
 
 You might want to change the configuration. Take a look at my [.tmux.conf][1]. It's a good starter configuration using `ctrl+/` as the Tmux key.
 
@@ -39,7 +39,7 @@ Change the first line to match the user account name you created. The last line 
 ## Setting up the shared Tmux session
 The secret to getting a shared session working with Tmux is to know where the socket is. You can use the `-S` argument to specify this location. I have created a script to setup my environment and include this option. The following is the script I use for my work project. It sets up 3 windows in a named session using the socket path of `/tmp/pair`. This is the same path from `/etc/sshd_config`'s force command.
 
-{% highlight sh %}
+{{< highlight sh >}}
 #!/bin/sh
 
 tmux -S /tmp/pair has-session -t workenv
@@ -53,12 +53,12 @@ if [[ $? == 1 ]] ; then
     popd
 fi
 tmux -S /tmp/pair -2 attach -t workenv
-{% endhighlight %}
+{{< /highlight >}}
 
 ## Enable pair partner to join the shared session
 Finally I have created a script to set the needed permissions on the shared socket. Additionally I enable and disable the login ability of the pair partner account.
 
-{% highlight sh %}
+{{< highlight sh >}}
 #! /bin/sh
 
 if [ "enable" = "$1" ]; then
@@ -68,14 +68,14 @@ else
     chmod 770 /tmp/pair
     sudo dscl . -create /Users/remotepair UserShell /usr/bin/false
 fi
-{% endhighlight %}
+{{< /highlight >}}
 
 ## Pair for the win
 Tell your pair partner to connect to your computer using your pairing account name.
 
-{% highlight sh %}
+{{< highlight sh >}}
 ssh remotepair@jjasonclark.com
-{% endhighlight %}
+{{< /highlight >}}
 
 Thats it! Your all setup to pair via SSH and Tmux. Head over to [Ruby Pair][3] and try it out.
 

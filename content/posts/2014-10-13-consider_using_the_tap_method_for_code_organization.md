@@ -14,10 +14,10 @@ I'm sure you have heard about the tap method. It has great uses for connecting t
 
 Another use is for code organization. The tap method addes a level of indention via it's block parameter. This block gives a visual section of code that can be useful when trying to understand what is being written.
 
-{% highlight ruby %}
+{{< highlight ruby >}}
 Something.new.tap do |something|
   # your code here
 end
-{% endhighlight %}
+{{< /highlight >}}
 
 For me, when I'm scanning through code, these visual indention changes really help me understand the code.

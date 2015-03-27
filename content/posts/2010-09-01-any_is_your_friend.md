@@ -14,7 +14,7 @@ I often see developers writing code that is checking for the existence of someth
 
 Given this SQL layout
 
-{% highlight sql %}
+{{< highlight sql >}}
 USE [Test]
 GO
 CREATE TABLE [dbo].[HostGroup](
@@ -34,17 +34,17 @@ CREATE TABLE [dbo].[Host](
     CONSTRAINT [fk_Host_HostGroup] FOREIGN KEY([FKHostGroupIndex]) REFERENCES [dbo].[HostGroup] ([HostGroupIndex])
 ) ON [PRIMARY]
 GO
-{% endhighlight %}
+{{< /highlight >}}
 
 A query for the names of HostGroups with hosts named 'JCLARK-DESK'.
 
-{% highlight c# %}
+{{< highlight c# >}}
 HostGroup.Where(hg=>hg.Host.Any(h=>h.Name == "JCLARK-DESK")).Select(hg=>hg.Name)
-{% endhighlight %}
+{{< /highlight >}}
 
 Translates to SQL as
 
-{% highlight sql %}
+{{< highlight sql >}}
 -- Region Parameters
 DECLARE @p0 NVarChar(11) = 'JCLARK-DESK'
 -- EndRegion
@@ -55,17 +55,17 @@ WHERE EXISTS(
     FROM [Host] AS [t1]
     WHERE ([t1].[Name] = @p0) AND ([t1].[FKHostGroupIndex] = [t0].[HostGroupIndex])
 )
-{% endhighlight %}
+{{< /highlight >}}
 
 The embedded query is much more efficient than the same code written using the Count() method instead.
 
-{% highlight c# %}
+{{< /highlight >}}
 HostGroup.Where(hg=>hg.Host.Count(h=>h.Name == "JCLARK-DESK") != 0).Select(hg=>hg.Name)
-{% endhighlight %}
+{{< /highlight >}}
 
 Translates to SQL as
 
-{% highlight sql %}
+{{< highlight sql >}}
 -- Region Parameters
 DECLARE @p0 NVarChar(11) = 'JCLARK-DESK'
 DECLARE @p1 Int = 0
@@ -77,4 +77,4 @@ WHERE (
     FROM [Host] AS [t1]
     WHERE ([t1].[Name] = @p0) AND ([t1].[FKHostGroupIndex] = [t0].[HostGroupIndex])
 ) > @p1
-{% endhighlight %}
+{{< /highlight >}}

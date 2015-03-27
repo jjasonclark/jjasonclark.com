@@ -18,7 +18,7 @@ The challenge is to print all numbers from 1 to 100. When a number is divisible 
 
 **_Warning: This is overly complex to avoid being used in an interview_**
 
-{% highlight c# %}
+{{< highlight c# >}}
 void Main()
 {
     Console.WriteLine(
@@ -37,6 +37,6 @@ string fizzBuzz(int i)
     if(isRule5) return "Buzz";
     return i.ToString();
 }
-{% endhighlight %}
+{{< /highlight >}}
 
 [1]: http://imranontech.com/2007/01/24/using-fizzbuzz-to-find-developers-who-grok-coding

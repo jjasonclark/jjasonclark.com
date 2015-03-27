@@ -26,7 +26,7 @@ In the Safari preference panel select the advanced tab. Check the setting you wa
 
 1. Then create a file in the `/etc/avahi/services` directory with a `.service` extension.
 
-{% highlight xml %}
+{{< highlight xml >}}
 <?xml version="1.0" standalone='no'?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
 <service-group>
@@ -36,7 +36,7 @@ In the Safari preference panel select the advanced tab. Check the setting you wa
     <port>3000</port>
   </service>
 </service-group>
-{% endhighlight %}
+{{< /highlight >}}
 
 1. You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run `sudo /etc/init.d/avahi-daemon restart`.
 

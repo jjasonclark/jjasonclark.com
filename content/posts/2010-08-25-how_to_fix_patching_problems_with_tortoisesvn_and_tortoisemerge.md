@@ -23,6 +23,6 @@ To fix, follow these steps.
 
 Or run the following PowerShell command.
 
-{% highlight sh %}
+{{< highlight sh >}}
 Remove-Item -path hkcu:software\TortoiseMerge –recurse
-{% endhighlight %}
+{{< /highlight >}}

@@ -15,7 +15,7 @@ One of my coworkers sent around a link today to someone who solved [Sudoku puzzl
 The solution I used is the [standard brute force algorithm](2) that many people use to solve the puzzles manually. The solution checks all numbers 1 - 9 in turn on each empty spot looking for the number in the column, row, and group of 3. This is accomplished by creating a tree structure of all possible "moves". The board starts as the root node and each branch is made up of filling in 1 empty spot with all possible numbers that fit the puzzle rules. Each level of the tree tries to solve another empty slot. This also means that the leaf node with the greatest depth is the solution to the puzzle.
 
 
-{% highlight c# %}
+{{< highlight c# >}}
 public static string SolveStrings(string Board)
 {
     string[] leafNodesOfMoves = new string[] { Board };
@@ -43,7 +43,7 @@ public static string SolveStrings(string Board)
         ? "No solution"
         : leafNodesOfMoves[0];
 }
-{% endhighlight %}
+{{< /highlight >}}
 
 [1]: http://technology.amis.nl/blog/6404/oracle-rdbms-11gr2-solving-a-sudoku-using-recursive-subquery-factoring "Sudoku solved in 1 line of SQL"
 [2]: http://en.wikipedia.org/wiki/Algorithmics_of_sudoku
