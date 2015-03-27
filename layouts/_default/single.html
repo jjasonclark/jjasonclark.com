@@ -16,7 +16,9 @@
             {{ .Content }}
           </article>
         </div>
+      {{ if isset .Params "comments" }}
       {{ partial "disqus.html" . }}
+      {{ end }}
       </div>
     </div>
     {{ partial "footer.html" . }}
