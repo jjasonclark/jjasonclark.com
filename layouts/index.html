@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+  {{ partial "head.html" . }}
+
+  <body>
+
+    {{ partial "header.html" . }}
+
+    <div class="page-content">
+      <!-- { partial "side_bar_ad.html" -->
+
+      <div class="wrapper">
+        <div class="home">
+
+          <h1 class="page-heading">Posts</h1>
+
+          <ul class="post-list">
+            {{ range first 10 .Data.Pages }}
+              <li>
+                <span class="post-meta">{{ .Date.Format "2006-01-02" }}</span>
+
+                <h2>
+                  <a class="post-link" href="{{ .Url }}">{{ .Title }}</a>
+                </h2>
+                <p>
+                  {{ .Summary }}
+                </p>
+              </li>
+            {{ end }}
+          </ul>
+
+          <p class="rss-subscribe">subscribe <a href="{{ .RSSLink }}">via RSS</a></p>
+
+        </div>
+      </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+
+    {{ partial "last_js.html" . }}
+  </body>
+
+</html>

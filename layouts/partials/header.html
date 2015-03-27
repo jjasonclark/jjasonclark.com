@@ -2,14 +2,14 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="{{ .Site.Baseurl }}/">{{ .Site.Title }}</a>
+    <a class="site-title" href="{{ .Site.BaseUrl }}/">{{ .Site.Title }}</a>
 
     <nav class="site-nav">
       <div class="trigger">
-        { range .Data.Pages }
+        {{ range .Data.Pages }}
           <a class="page-link" href="{{ .Url }}">{{ .Title }}</a>
-        {  end }
-        {{ partial "social.html" }}
+        {{ end }}
+        {{ partial "social.html" . }}
       </div>
     </nav>
 

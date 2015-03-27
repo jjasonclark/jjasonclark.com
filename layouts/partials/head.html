@@ -7,7 +7,7 @@
     <meta name="description" content="{{ .Site.Params.description }}">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="{{ .Url }}">
+    <link rel="canonical" href="{{ .Permalink }}">
 
-    {{ partial "google_analytics.html" }}
+    {{ partial "google_analytics.html" . }}
 </head>

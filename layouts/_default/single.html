@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-  {{ partial "head.html" }}
+  {{ partial "head.html" . }}
 
   <body>
 
-    {{ partial "header.html" }}
+    {{ partial "header.html" . }}
 
     <div class="page-content">
-      {{ partial "side_bar_ad.html" }}
+      <!-- { partial "side_bar_ad.html" -->
       <div class="wrapper">
-        {{ . }}
+        {{ .Content }}
       </div>
     </div>
 
-    {{ partial "footer.html" }}
+    {{ partial "footer.html" . }}
 
-    {{ partial "last_js.html" }}
+    {{ partial "last_js.html" . }}
   </body>
 
 </html>
