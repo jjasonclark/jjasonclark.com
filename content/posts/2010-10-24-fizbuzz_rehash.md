@@ -14,7 +14,7 @@ While moving my blog content from site to site my post on Fizz-buzz caught my ey
 
 This one uses the iterator pattern and the null coalescing operator for added complexity.
 
-{% highlight c# %}
+{{< highlight csharp >}}
 void Main()
 {
     Console.WriteLine(string.Join(", ", FizzBuzz().Take(100).ToArray()));

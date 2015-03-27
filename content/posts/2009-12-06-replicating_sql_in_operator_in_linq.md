@@ -12,7 +12,7 @@ url: /replicating_sql_in_operator_in_linq
 
 One of the common programming problems is sorting a complex object on a list of criteria. For example, given the following class.
 
-{{< highlight c# >}}
+{{< highlight csharp >}}
 public class Car
 {
     public int ModelNumber { get; set; }
@@ -21,14 +21,14 @@ public class Car
 
 Imagine you wanted to pick out all Cars in your data model that had Model Numbers between 2 and 4? In Linq you would normally do something like this.
 
-{{< highlight c# >}}
+{{< highlight csharp >}}
 var wantedModeles = new int[] { 2, 3, 4};
 var sortedCars = Cars.Where(car => wantedModeles.Contains(car.ModelNumber));
 {{< /highlight >}}
 
 This of course works but it doesn't look very elegant at all. In fact I much prefer the SQL syntax version of this kind of query; using the in operator. So I've been thinking about away to make this work a little better. Well I've finally come up with a solution that I like.  Take a look at this example.
 
-{{< highlight c# >}}
+{{< highlight csharp >}}
 var wantedModeles = new int[] { 2, 3, 4};
 
 var sortedCars2 =

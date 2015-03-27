@@ -38,7 +38,7 @@ GO
 
 A query for the names of HostGroups with hosts named 'JCLARK-DESK'.
 
-{{< highlight c# >}}
+{{< highlight csharp >}}
 HostGroup.Where(hg=>hg.Host.Any(h=>h.Name == "JCLARK-DESK")).Select(hg=>hg.Name)
 {{< /highlight >}}
 
@@ -59,7 +59,7 @@ WHERE EXISTS(
 
 The embedded query is much more efficient than the same code written using the Count() method instead.
 
-{{< /highlight >}}
+{{< highlight csharp >}}
 HostGroup.Where(hg=>hg.Host.Count(h=>h.Name == "JCLARK-DESK") != 0).Select(hg=>hg.Name)
 {{< /highlight >}}
 
