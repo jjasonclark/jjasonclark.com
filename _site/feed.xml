@@ -6,9 +6,83 @@
 </description>
     <link>http://jjasonclark.com/</link>
     <atom:link href="http://jjasonclark.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 04 Nov 2014 21:48:59 -0800</pubDate>
-    <lastBuildDate>Tue, 04 Nov 2014 21:48:59 -0800</lastBuildDate>
+    <pubDate>Sat, 27 Dec 2014 11:19:25 -0800</pubDate>
+    <lastBuildDate>Sat, 27 Dec 2014 11:19:25 -0800</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Waiting for Ctrl+C in Golang</title>
+        <description>&lt;p&gt;Waiting for Ctrl+C in Golang&lt;/p&gt;
+
+&lt;p&gt;Creating services can sometimes mean needing to wait on the command line for the user to end the process. This is normally done via signals by pressing Control+C. In Go this is fairly easy to accomplish. The following code should be enough to get you started putting it into your applications.&lt;/p&gt;
+
+&lt;p&gt;In Go’s implementation of signals the signals are delivered via a channel. Create an &lt;code&gt;os.Signal&lt;/code&gt; channel with at least 1 buffered space. The signals come in fast so you don’t want miss them. Let the system know you want &lt;code&gt;os.Interrupt&lt;/code&gt; signals to go to the channel you created. Then just wait for the signal to come it via a go function.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Signal&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Notify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Interrupt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now that you can respond to when the signal is triggered you need to add in the code to wait for this to happen. &lt;code&gt;sync.WaitGroup&lt;/code&gt; fits the bill. Create one, &lt;code&gt;Add&lt;/code&gt; a delta to it, and call &lt;code&gt;Wait&lt;/code&gt;. This will block the current execution path waiting for a &lt;code&gt;Done&lt;/code&gt; call on the created &lt;code&gt;WaitGroup&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Add this into the previous snippet to create the &lt;code&gt;WaitGroup&lt;/code&gt; before listening for the signal. And &lt;code&gt;Wait&lt;/code&gt; for the &lt;code&gt;WaitGroup&lt;/code&gt; at the end.  And use the retrieval of the signal to call &lt;code&gt;Done&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;WaitGroup&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Signal&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Notify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Interrupt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}()&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Putting it all together into a short package to show it off.  Here is the full code.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;os&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;os/signal&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;sync&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WaitForCtrlC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;WaitGroup&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Signal&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Notify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Interrupt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;signal_channel&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}()&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;end_waiter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Press Ctrl+C to end\n&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;WaitForCtrlC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sat, 13 Dec 2014 00:00:00 -0800</pubDate>
+        <link>http://jjasonclark.com/waiting_for_ctrl_c_in_golang</link>
+        <guid isPermaLink="true">http://jjasonclark.com/waiting_for_ctrl_c_in_golang</guid>
+        
+        
+        <category>golang,</category>
+        
+        <category>development,</category>
+        
+        <category>commandline</category>
+        
+      </item>
     
       <item>
         <title>Will work for Bitcoin</title>
@@ -719,38 +793,6 @@ function sublime()
         <category>git,</category>
         
         <category>tips</category>
-        
-      </item>
-    
-      <item>
-        <title>Rails partial views and locals variables</title>
-        <description>&lt;p&gt;Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I’ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.&lt;/p&gt;
-
-&lt;h2 id=&quot;personal-story&quot;&gt;Personal story&lt;/h2&gt;
-
-&lt;p&gt;This is where the bad part of coming to Rails from a different framework is. I just assumed that the local variables became instance variables in the partial view. In fact, I tried a partial with an instance variable and it worked as expected. Testing is believing in most cases, so I thought I had learned what I needed to know. Since then I’ve created dozens and dozens of partials, all using instance variables and everything has worked perfectly. That is, until I needed to create a partial view of the inside of a form with the form tag not inside the partial. I still needed the form’s ID inside the partial so I could submit the form via JavaScript. Based on what I had learned I just passed it in as a local variable. And of course, I could not access the new local variable.&lt;/p&gt;
-
-&lt;p&gt;I tried everything I could think of to access the form’s ID via the local variable. I even searched the instance variables (using #instance_variables) of all the classes I could think of. I even looked back at partials I had created in the past. As far as I could tell, I was trying to access the variable correctly.&lt;/p&gt;
-
-&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
-
-&lt;p&gt;It turns out the locals are accessed via instance accessor methods. This whole time I have been naming my controller’s instance variables the same as my partial’s local variables. This is why they always worked before. Only when I finally made a local variable that wasn’t also an instance variable did I discover the difference.&lt;/p&gt;
-
-&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn’t find the answer. Hopefully yours will find this article before you pull all of your hair out.&lt;/p&gt;
-
-&lt;p&gt;Special thanks to my co-worker &lt;a href=&quot;http://www.danielzajic.com/&quot;&gt;Daniel Zajic&lt;/a&gt; for pairing with me to solve the problem. He found the solution as soon as I told it to him. Clearly he had read the documentation I should have read earlier.&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 14 Nov 2012 00:00:00 -0800</pubDate>
-        <link>http://jjasonclark.com/rails_partial_view_locals</link>
-        <guid isPermaLink="true">http://jjasonclark.com/rails_partial_view_locals</guid>
-        
-        
-        <category>rails,</category>
-        
-        <category>ruby</category>
         
       </item>
     
