@@ -4,7 +4,7 @@ date: 2012-03-21
 comments: true
 description: How to setup Cloudstack 3.0.0 on Ubuntu 10.04 server
 categories: ubuntu, unix, howto, cloudstack, cloud, vm
-keywords: ubuntu, unix, howto, cloudstack, cloud, vm, acton, xen, xenserver, citrix
+tags: ubuntu, unix, howto, cloudstack, cloud, vm, acton, xen, xenserver, citrix
 summary: Cloudstack 3.0.0 was release on Febrary 28th 2012. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.
 title: Install Cloudstack 3.0.0 on Ubuntu 10.04 Server
 url: /install_cloudstack_3.0.0_on_ubuntu_10.04_server

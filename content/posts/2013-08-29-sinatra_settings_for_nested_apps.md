@@ -4,7 +4,7 @@ date: 2013-08-29
 comments: true
 description: Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware.
 categories: programming
-keywords: ruby, rack, middleware, settings
+tags: ruby, rack, middleware, settings
 summary: Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware. I show how I created a Sinatra app with several nested Sinatra apps. And how I solved the issue with using a shared settings value from outer apps to the inner apps.
 title: Sinatra Settings for Nested Apps
 url: /sinatra_settings_for_nested_apps

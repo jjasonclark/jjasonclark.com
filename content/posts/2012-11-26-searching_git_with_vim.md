@@ -4,7 +4,7 @@ date: 2012-11-26
 comments: true
 description: How to search Git using Vim to display more context for the output
 categories: vim, git, tips
-keywords: vim, git, plug-ins
+tags: vim, git, plug-ins
 summary: Searching Git repositories is very simple using the Fugitive and Unimpaired plug-ins. They allow you to jump to each file and line in the result set with default keybindings.
 title: Searching a Git repository using
 url: /searching_git_with_vim

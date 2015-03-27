@@ -4,7 +4,7 @@ date: 2010-07-17
 comments: true
 description: Using the ASP.Net membership provider in an application using SQLExpress database
 categories: asp.net, programming, sql
-keywords: programming, sql, asp.net
+tags: programming, sql, asp.net
 summary: Using the ASP.Net membership provider in an application using SQLExpress database
 title: SQLExpress and ASP.Net membership provider
 url: /sqlexpress_and_asp_net_membership_provider

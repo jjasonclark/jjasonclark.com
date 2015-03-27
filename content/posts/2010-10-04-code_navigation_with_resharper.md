@@ -4,7 +4,7 @@ date: 2010-10-04
 comments: true
 description: Video on using Resharper for code navigation
 categories: programming, Resharper, Tools
-keywords: tips, Resharper, editor
+tags: tips, Resharper, editor
 summary: Great screencast on using Resharper to navigate code efficiently in Visual Studio
 title: Code navigation with Resharper
 url: /code_navigation_with_resharper

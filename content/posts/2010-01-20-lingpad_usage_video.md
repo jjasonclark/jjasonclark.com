@@ -4,7 +4,7 @@ date: 2010-01-20
 comments: true
 description: Linqpad usage video
 categories: programming, video
-keywords: LinQ, linqpad
+tags: LinQ, linqpad
 summary: A video of Linqpad by the creator on how to use it best.
 title: Linqpad usage video
 url: /lingpad_usage_video

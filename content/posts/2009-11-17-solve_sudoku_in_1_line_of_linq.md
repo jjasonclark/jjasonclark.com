@@ -4,7 +4,7 @@ date: 2009-11-17
 comments: true
 description: Using linq to solve Sudoku
 categories: C#, LinQ, programming
-keywords: programming, linq, sudoku
+tags: programming, linq, sudoku
 summary: Using linq to solve Sudoku
 title: Solve Sudoku in 1 line of Linq
 url: /solve_sudoku_in_1_line_of_linq

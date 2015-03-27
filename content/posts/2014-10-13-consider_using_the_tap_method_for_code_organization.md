@@ -4,10 +4,10 @@ date: 2014-10-13
 comments: true
 description: Consider using the tap method for code organization
 categories: ruby, development
-keywords: ruby, development
+tags: ruby, development
 summary: The tap method intruduces a new indention block. Consider using the tap method for code organization.
 title: Consider using the tap method for code organization
-url: consider_using_the_tap_method_for_code_organization
+url: /consider_using_the_tap_method_for_code_organization
 ---
 
 I'm sure you have heard about the tap method. It has great uses for connecting to a chain of method calls; such as when using Enumerable. And the cool kids love to use it to avoid using a temp variable for return.

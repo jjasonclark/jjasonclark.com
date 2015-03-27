@@ -4,7 +4,7 @@ date: 2010-10-03
 comments: true
 description: Finished the Ruby Koans
 categories: Ruby
-keywords: ruby, testing, learning
+tags: ruby, testing, learning
 summary: I finished the Ruby Koans today. It is a set of test cases designed to help you learn Ruby by making all the tests pass.
 title: Finished the Ruby Koans
 url: /finished_the_ruby_koans
