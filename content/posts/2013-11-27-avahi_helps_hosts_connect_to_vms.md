@@ -16,7 +16,7 @@ I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep tr
 
 In the Safari preference panel select the advanced tab. Check the setting you want.
 
-![Safari preference panel](/assets/safari_preference.png)
+![Safari preference panel](/images/safari_preference.png)
 
 ## Linux Setup
 

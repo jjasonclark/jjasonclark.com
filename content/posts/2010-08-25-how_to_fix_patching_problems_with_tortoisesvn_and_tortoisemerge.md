@@ -14,7 +14,7 @@ Unfortunately a common occurrence when applying patches while using TortoiseSVN 
 
 I don't know the cause of this, but I do know a solution. The merging program used by default for TortoiseSVN is TortoiseMerge. It is installed with the main SVN package. You see it every time you do any merging from an update or doing a diff from a previous version of a file. The patching problem has something to do with the settings stored in the registry for TortoiseMerge. Deleting the whole hierarchy for this program will fix the issue. Of course you will need to restart the merge tool once you have deleted the registry keys in order for the changes to take effect.
 
-![Tortoise Registry Keys](/assets/tortoisemerger_20100906_1640_thumb5.png)
+![Tortoise Registry Keys](/images/tortoisemerger_20100906_1640_thumb5.png)
 
 To fix, follow these steps.
 
