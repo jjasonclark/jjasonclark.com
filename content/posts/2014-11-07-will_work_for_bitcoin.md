@@ -3,7 +3,7 @@ date: 2014-11-07
 comments: true
 categories: bitcoin, development
 tags: bitcoing, development
-description: I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Wish me luck finding a job in the Bitcoin world.
+summary: I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Wish me luck finding a job in the Bitcoin world.
 title: Will work for Bitcoin
 url: /will_work_for_bitcoin
 ---
