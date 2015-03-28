@@ -5,25 +5,33 @@
   <body>
 
     {{ partial "header.html" . }}
+
     <div class="page-content">
       {{ partial "side_bar_ad.html" . }}
       <div class="wrapper">
         <div class="post">
-          <header class="post-header">
-            <h1 class="post-title">{{ .Title }}</h1>
-            <p class="post-meta">{{ .Date.Format "Jan 01, 2006" }} • <a title="{{ .Site.Params.author }}" rel="author" href="{{ .Site.Params.gplus }}">{{ .Site.Params.author }}</a></p>
-          </header>
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    <p class="post-meta">{{ .Date.Format "Jan 1, 2006" }} • <a title="{{ .Site.Author.name }}" rel="author" href="{{ .Site.Author.gplus }}">{{ .Site.Author.name }}</a></p>
+  </header>
 
-          <article class="post-content">
-            {{ .Content }}
-          </article>
-        </div>
+  <article class="post-content">
+    {{ .Content }}
+
+  </article>
+
+</div>
+
+
       {{ if isset .Params "comments" }}
       {{ partial "disqus.html" . }}
-      {{ end }}
+{{ end }}
       </div>
     </div>
+
     {{ partial "footer.html" . }}
+
     {{ partial "last_js.html" . }}
   </body>
+
 </html>
