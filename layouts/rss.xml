@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>{{ .Site.Title }}</title>
     <description>{{ .Site.Params.description }}</description>
-    <link>{{ .Site.BaseUrl }}/</link>
-    <atom:link href="{{ .RSSLink }}" rel="self" type="application/rss+xml" />
-    <pubDate>{{ .Site.LastChange }}</pubDate>
-    <lastBuildDate>{{ .Site.LastChange.Format "Mon, 02 Jan 2006 15:04:05 MST" }}</lastBuildDate>
+    <link>{{ .Site.BaseUrl }}</link>
+    <atom:link href="{{ .Site.BaseUrl }}feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>{{ .Site.LastChange.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+    <lastBuildDate>{{ .Site.LastChange.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
     {{ range first 10 .Data.Pages }}
       <item>
         <title>{{ .Title }}</title>
         <description>{{ .Content | html }}</description>
-        <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 MST"}}</pubDate>
+        <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
         <link>{{ .Permalink }}</link>
         <guid isPermaLink="true">{{ .Permalink }}</guid>
-        <category>{{ .Params.tags }}</category>
+        {{ range .Params.categories }}<category>{{ . }}</category>
+        {{ end }}
+        {{ range .Params.tags }}<category>{{ . }}</category>
+{{ end }}
       </item>
     {{ end }}
   </channel>
