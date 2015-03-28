@@ -1,7 +1,7 @@
 baseurl = "http://jjasonclark.com/"
 languagecode = "en-us"
 title = "JJasonClark.com"
-publishdir = "_site"
+publishdir = "public"
 layoutdir = "layouts"
 timezone = "America/Vancouver"
 encoding = "utf-8"
