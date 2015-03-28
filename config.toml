@@ -10,7 +10,7 @@ DisqusShortname = "jjasonclark"
 
 [params]
 email = "jason@jjasonclark.com"
-description = "Stuff I have time to write about"
+description = "Stuff I have time to write about\n"
 twitter_username = "jjasonclark"
 github_username =  "jjasonclark"
 google_analytics_code = "UA-12083278-1"

@@ -7,7 +7,7 @@ categories: ubuntu, unix, howto, node, javascript
 tags: ubuntu, unix, howto, node, javascript
 summary: Most of the guides I find on how to install [Node.js][1] on Ubuntu are not about installing the currently released version, instead they focus on installing the latest development release. I think this is the case because they assume the reader is familiar with doing software installs on unix from source. I'm coming from a Windows word were installing from the source is almost never done. This guide is for someone relatively new to unix installation or to Ubuntu server setup.
 title: Installing Node.js on Ubuntu 10.04 server
-url: /installing-node-on-ubuntu-10.04
+url: /installing-node-on-ubuntu-10.04/
 ---
 
 Most of the guides I find on how to install [Node.js][1] on Ubuntu are not about installing the currently released version, instead they focus on installing the latest development release. I think this is the case because they assume the reader is familiar with doing software installs on unix from source. I'm coming from a Windows word were installing from the source is almost never done. This guide is for someone relatively new to unix installation or to Ubuntu server setup.

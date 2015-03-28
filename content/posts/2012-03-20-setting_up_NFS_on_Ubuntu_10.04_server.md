@@ -7,7 +7,7 @@ categories: ubuntu, unix, howto, nfs, iptables
 tags: ubuntu, unix, howto, nfs, iptables
 summary: I'm currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.
 title: Setting up NFS on Ubuntu 10.04 Server
-url: /setting_up_NFS_on_Ubuntu_10.04_server
+url: /setting_up_NFS_on_Ubuntu_10.04_server/
 ---
 
 I'm currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.
