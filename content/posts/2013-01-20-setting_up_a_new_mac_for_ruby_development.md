@@ -25,7 +25,7 @@ There are a few apps that are managed through the App store. Search for, and ins
 
 Once these have installed launch `ClamXav` in order to turn on virus definitions file downloads. Select a time that works for you.
 
-![ClamXav preferences](/images/clamxav_preferencest_2013_01_21.png)
+![ClamXav preferences](/assets/clamxav_preferencest_2013_01_21.png)
 
 ## Install from web
 
@@ -50,7 +50,7 @@ MySql is the defacto database for development mode. And it is a tad hard to inst
 ####Download the install files
 
 Download the `DMG` file for the 64-bit version. [MySql download page](http://dev.mysql.com/downloads/mysql)
-![MySql DMG file](/images/mysql_dmg.png)
+![MySql DMG file](/assets/mysql_dmg.png)
 
 ####Install main package file
 
@@ -59,7 +59,7 @@ This is a basic Mac package file. Just follow along the prompts.
 ####Install perference panel settings app
 
 Drag and drop the preference panel icon onto your system preference window. You should get a dialog like the one below. Install for everyone.
-![Prefence panel install dialog](/images/mysql_prefpane_install.png)
+![Prefence panel install dialog](/assets/mysql_prefpane_install.png)
 
 ####Install statup items app
 
@@ -68,7 +68,7 @@ Another basic Mac package file. Just follow along the prompts just like before.
 ####Start the server
 
 Launch the install MySql perference panel. Once open press the start button.
-![blah](/images/mysql_preferences.png)
+![blah](/assets/mysql_preferences.png)
 
 ####Complete setup
 
@@ -98,7 +98,7 @@ addPath "/usr/local/mysql/bin"
 
 Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use *XCode* to install these tools. First, launch *XCode* and open the preferences panel. Click on the "Downloads" tab and press the install button for the "Command Line Tools".
 
-![Download preferences](/images/xcode_commandline.png)
+![Download preferences](/assets/xcode_commandline.png)
 
 ## Homebrew package manager
 

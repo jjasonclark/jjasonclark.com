@@ -79,6 +79,6 @@ ssh remotepair@jjasonclark.com
 
 Thats it! Your all setup to pair via SSH and Tmux. Head over to [Ruby Pair][3] and try it out.
 
-[1]: /data/tmux.conf.txt
+[1]: /assets/tmux.conf.txt
 [2]: http://tmux.sourceforge.net/
 [3]: http://rubypair.com/

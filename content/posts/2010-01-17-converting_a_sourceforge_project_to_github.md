@@ -26,7 +26,7 @@ Autorealm is going through a rewrite from Pascal to Python. The original Pascal 
 hg clone http://autorealm.hg.sourceforge.net:8000/hgroot/autorealm/autorealm_delphi
 {{< /highlight >}}
 
-![Screenshot of SourceForge project download](/images/autorealm_2010_01_17.png)
+![Screenshot of SourceForge project download](/assets/autorealm_2010_01_17.png)
 
 This downloaded the two repositories to my local machine. In total it took about 10 minutes to get both. From here I cleaned up the directories to remove the old source control files. The directory structure is only a single level deep so it didn't take long to do it by hand. When I started the two repositories together were 441 MBs; after the conversion I had only 146 MBs.
 
@@ -40,7 +40,7 @@ git commit -m "Initial copy from Sourceforge"
 
 On Github I created the repositories where I would push to. Then pushed them to Github.
 
-![Screenshot of Github dashboard](/images/autorealm_repository_2010_01_175.png)
+![Screenshot of Github dashboard](/assets/autorealm_repository_2010_01_175.png)
 
 {{< highlight sh >}}
 git remote add github git@github.com:jjasonclark/Autorealm.git
