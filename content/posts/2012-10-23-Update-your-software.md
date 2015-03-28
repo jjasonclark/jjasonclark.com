@@ -3,8 +3,13 @@ layout: post
 date: 2012-10-23
 comments: true
 description: Your periodic reminder to update your software
-categories: macosx, unix
-tags: macosx, setup, unix
+categories:
+  - macosx
+  - unix
+tags:
+  - macosx
+  - setup
+  - unix
 summary: Don't forget to update your software every once in a while
 title: Update your software
 url: /Update-your-software

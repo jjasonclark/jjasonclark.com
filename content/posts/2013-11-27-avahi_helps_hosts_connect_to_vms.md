@@ -3,8 +3,13 @@ layout: post
 date: 2013-11-27
 comments: true
 description: Use Avahi-daemon on Linux to broadcast your web apps to your Mac. Works great with VMs too.
-categories: vm, linux, development
-tags: vm, linux
+categories:
+  - vm
+  - linux
+  - development
+tags:
+  - vm
+  - linux
 summary: How to setup Bonjour broadcast to connect your Linux servers to your Macs for easy access while developing. Safari automatically adds the web servers that are broadcasting on your local network. Linux servers will broadcast once the Avahi server is installed.
 title: Avahi helps hosts connect to VMs
 url: /avahi_helps_hosts_connect_to_vms

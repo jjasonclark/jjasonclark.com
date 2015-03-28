@@ -1,7 +1,9 @@
 ---
 layout: post
 date: 2011-09-15
-categories: vm, win7
+categories:
+  - vm
+  - win7
 summary: The Mac makes a great platform to run virtual machines especially with VMware Fusion.
 title: Virtualization on the Mac
 url: /virtualization-on-the-Mac

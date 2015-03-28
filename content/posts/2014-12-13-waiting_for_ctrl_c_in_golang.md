@@ -2,8 +2,13 @@
 layout: post
 date: 2014-12-13
 comments: true
-categories: golang, development, commandline
-tags: golang, development
+categories:
+  - golang
+  - development
+  - commandline
+tags:
+  - golang
+  - development
 summary: How to wait for the interrupt signal using Golang and command line programs
 title: Waiting for Ctrl+C in Golang
 url: /waiting_for_ctrl_c_in_golang

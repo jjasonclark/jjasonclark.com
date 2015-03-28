@@ -3,8 +3,20 @@ layout: post
 date: 2012-11-11
 comments: true
 description: Using scripts to update DNSimple for home IPs
-categories: Unix, DNS, tmux, ssh, bash
-tags: router, setup, Unix, ssh, API, bash, DNSimple
+categories:
+  - Unix
+  - DNS
+  - tmux
+  - ssh
+  - bash
+tags:
+  - router
+  - setup
+  - Unix
+  - ssh
+  - API
+  - bash
+  - DNSimple
 summary: The API at DNSimple allows easy updates. You can use them to add a subdomain to point to your home router. I make extensive use of this for remote pair programming.
 title: Update DNSimple to point to your home router
 url: /dnsimple_script_updates

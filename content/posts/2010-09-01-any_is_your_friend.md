@@ -3,8 +3,11 @@ layout: post
 date: 2010-09-01
 comments: true
 description: More efficient queries using the Any() method vs Count()
-categories: programming
-tags: .Net sql
+categories:
+  - programming
+tags:
+  - .Net
+  - sql
 summary: The Any() extension method helps make much more efficient SQL queries. Use it and love it!
 title: Any() is your friend
 url: /any_is_your_friend

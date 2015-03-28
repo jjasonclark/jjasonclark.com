@@ -3,8 +3,12 @@ layout: post
 date: 2014-10-13
 comments: true
 description: Consider using the tap method for code organization
-categories: ruby, development
-tags: ruby, development
+categories:
+  - ruby
+  - development
+tags:
+  - ruby
+  - development
 summary: The tap method intruduces a new indention block. Consider using the tap method for code organization.
 title: Consider using the tap method for code organization
 url: /consider_using_the_tap_method_for_code_organization

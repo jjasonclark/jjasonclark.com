@@ -3,8 +3,15 @@ layout: post
 date: 2012-04-30
 comments: true
 description: How to setup npm to work behind a web proxy
-categories: node, npm, howto
-tags: node.js, npm, proxy, setup
+categories:
+  - node
+  - npm
+  - howto
+tags:
+  - node.js
+  - npm
+  - proxy
+  - setup
 summary: For those who, like me, are behind a corporate web proxy, setting up Node.js and using `npm` can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the `HTTP_PROXY` and `HTTPS_PROXY` environment variables. Although I just cloned the Node repository from [Github](https://github.com/joyent/node) so they are already setup. What gives?
 title: How to setup Node.js and Npm behind a corporate web proxy
 url: /how-to-setup-node-behind-web-proxy

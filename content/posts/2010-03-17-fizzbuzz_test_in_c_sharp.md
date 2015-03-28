@@ -3,8 +3,11 @@ layout: post
 date: 2010-03-17
 comments: true
 description: An overly complex fizz-buzz implementation
-categories: C#, programming
-tags: fizzbuzz
+categories:
+  - C#
+  - programming
+tags:
+  - fizzbuzz
 summary: An overly complex fizz-buzz implementation
 title: FizzBuzz test in C#
 url: /fizzbuzz_test_in_c_sharp

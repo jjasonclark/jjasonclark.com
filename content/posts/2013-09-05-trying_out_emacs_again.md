@@ -3,8 +3,11 @@ layout: post
 date: 2013-09-05
 comments: true
 description: Installing and setting up a basic configuration for Emacs.
-categories: programming
-tags: emacs, setup
+categories:
+  - programming
+tags:
+  - emacs
+  - setup
 summary: I'm a Vim user, but i'm not 100% sold on it. I keep wanting to find an even better editor. I've tried just about everything but nothing sticks. I'm starting a new book on Lisp programming so it is time to try Emacs again. May this time it will stick.
 title: Trying out Emacs Again
 url: /trying_out_emacs_again

@@ -1,7 +1,11 @@
 ---
 layout: post
 date: 2011-08-31
-categories: mac, laptop, pc, switcher
+categories:
+  - mac
+  - laptop
+  - pc
+  - switcher
 title: Switched from PC to Mac
 url: /switched-from-pc-to-mac
 ---

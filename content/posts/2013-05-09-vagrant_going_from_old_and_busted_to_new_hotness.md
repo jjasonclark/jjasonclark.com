@@ -3,8 +3,17 @@ layout: post
 date: 2013-05-09
 comments: true
 description: Converting from Vagrant 1.0 to 1.2 requires a change in Vagrantfile too
-categories: programming, devops
-tags: Vagrant, VM, virtualmachine, upgrade, chef, provision, hypervisor
+categories:
+  - programming
+  - devops
+tags:
+  - Vagrant
+  - VM
+  - virtualmachine
+  - upgrade
+  - chef
+  - provision
+  - hypervisor
 summary: Vagrant is an amazing application for helping you manage your virtual machines. Renewed development effort by it's creators has brought us many new features. Unfortunately this forced a change in the semantics of the Vagrantfile. Here is how to do the most basic upgrades to remove the warning messages Vagrant creates from using the older file type.
 title: Vagrant Going from old and busted, to new hotness
 url: /vagrant_going_from_old_and_busted_to_new_hotness

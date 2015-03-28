@@ -3,8 +3,13 @@ layout: post
 date: 2008-12-19
 comments: true
 description: Gave Silverlight 2.0 a try for the first time
-categories: programming Silverlight
-tags: Silverlight programming C#
+categories:
+  - programming
+  - Silverlight
+tags:
+  - Silverlight
+  - programming
+  - C#
 summary: I started playing with Silverlight 2.0. I learned a lot about the data modeling classes and what is supported. Going to have to spend much more time with Silverlight if I'm going to make anything useful
 title: Started working with Silverlight
 url: /started_working_with_silverlight

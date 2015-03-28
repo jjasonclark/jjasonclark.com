@@ -3,8 +3,13 @@ layout: post
 date: 2009-12-06
 comments: true
 description: Simulating SQL's in operator in Linq
-categories: C#, Linq, programming
-tags: C#, Linq
+categories:
+  - C#
+  - Linq
+  - programming
+tags:
+  - C#
+  - Linq
 summary: SQL has a range variable search keyword called 'in' that is a not exposed by default in Linq.
 title: Replicating SQL's in operator in Linq
 url: /replicating_sql_in_operator_in_linq

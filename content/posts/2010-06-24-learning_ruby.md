@@ -3,8 +3,12 @@ layout: post
 date: 2010-06-24
 comments: true
 description: Learning Ruby via testing
-categories: programming, Ruby
-tags: ruby, learning
+categories:
+  - programming
+  - Ruby
+tags:
+  - ruby
+  - learning
 summary: Learning Ruby via testing. Trying to also learn the Rails server enivronment as well.
 title: Learning Ruby
 url: /learning_ruby

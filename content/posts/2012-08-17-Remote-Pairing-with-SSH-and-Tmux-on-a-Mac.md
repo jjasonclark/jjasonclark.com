@@ -3,8 +3,18 @@ layout: post
 date: 2012-08-17
 comments: true
 description: Setting up a Mac for remote pairing via Tmux
-categories: ruby, macosx, unix, pairing
-tags: macosx, setup, ruby, unix, tmux, pairing
+categories:
+  - ruby
+  - macosx
+  - unix
+  - pairing
+tags:
+  - macosx
+  - setup
+  - ruby
+  - unix
+  - tmux
+  - pairing
 summary: How to setup a Mac for remote pairing via Tmux. Including some scripts to help automate the process.
 title: Remote pairing with SSH and Tmux on a Mac
 url: /Remote-Pairing-with-SSH-and-Tmux-on-a-Mac

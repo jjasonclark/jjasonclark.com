@@ -3,8 +3,11 @@ layout: post
 date: 2010-03-01
 comments: true
 description: Report on Alt.Net Seattle's first conference
-categories: programming
-tags: conference, .Net
+categories:
+  - programming
+tags:
+  - conference
+  - .Net
 summary: I went to my first Alt.Net Seattle meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the MVP global summit. I have to say I really liked it.
 title: Alt.Net Seattle mini con report
 url: /alt_net_seattle_mini_con_report

@@ -3,8 +3,11 @@ layout: post
 date: 2010-10-24
 comments: true
 description: An overly complex fizz-buzz implementation
-categories: programming, interview
-tags: fizzbuzz
+categories:
+  - programming
+  - interview
+tags:
+  - fizzbuzz
 summary: An implementation of fizz-buzz that is overly complex. Something you want to avoid in an interview.
 title: Fizz-buzz rehash
 url: /fizbuzz_rehash

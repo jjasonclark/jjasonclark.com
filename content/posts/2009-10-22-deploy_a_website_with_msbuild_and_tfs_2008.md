@@ -3,8 +3,14 @@ layout: post
 date: 2009-10-22
 comments: true
 description: Using TFS to build and deploy a web project
-categories: asp.net msbuild programming
-tags: asp.net msbuild programming
+categories:
+  - asp.net
+  - msbuild
+  - programming
+tags:
+  - asp.net
+  - msbuild
+  - programming
 summary: how I used msbuild to get a web server running
 title: Deploying a website with MSBuild and TFS 2008
 url: /deploy_a_website_with_msbuild_and_tfs_2008

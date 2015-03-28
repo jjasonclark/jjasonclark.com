@@ -3,8 +3,11 @@ layout: post
 date: 2010-08-25
 comments: true
 description: How to fix patching issues with TortoiseMerge
-categories: programming
-tags: merge, TortoiseSVN
+categories:
+  - programming
+tags:
+  - merge
+  - TortoiseSVN
 summary: TortoiseMerge occasionally fails to work. I don't know the cause, but I did figure out how correct the issue so you can do another merge.
 title: How to fix patching problems with TortoiseSVN and TortoiseMerge
 url: /how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge
