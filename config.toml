@@ -27,7 +27,7 @@ gplus = "https://plus.google.com/117263003751658777941"
 email = "jason@jjasonclark.com"
 
 [blackfriday]
-angledQuotes = true
+angledQuotes = false
 fractions = false
 plainIdAnchors = true
 extensions = ["hardLineBreak"]
