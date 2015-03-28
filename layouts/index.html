@@ -9,35 +9,30 @@
 
     <div class="page-content">
       {{ partial "side_bar_ad.html" . }}
-
       <div class="wrapper">
         <div class="home">
 
-          <h1 class="page-heading">Posts</h1>
+  <h1 class="page-heading">Posts</h1>
 
-          <ul class="post-list">
-            {{ range .Data.Pages }}
-              <li>
-                <span class="post-meta">{{ .Date.Format "Jan 1, 2006" }}</span>
+  <ul class="post-list">
+    {{ range where .Data.Pages "Type" "posts" }}
+      <li>
+        <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
 
-                <h2>
-                  <a class="post-link" href="{{ .Url }}">{{ .Title }}</a>
-                </h2>
-                <p>
-                  {{ .Summary }}
-                </p>
-                {{ if .Truncated }}
-                  <div class="read-more-link">
-                    <a href="{{ .RelPermalink }}">Read More…</a>
-                  </div>
-                {{ end }}
-                </li>
-            {{ end }}
-          </ul>
+        <h2>
+          <a class="post-link" href="{{ .Url }}">{{ .Title }}</a>
+        </h2>
+        <p>
+          {{ .Params.summary }}
+        </p>
+      </li>
+    {{ end }}
+  </ul>
 
-          <p class="rss-subscribe">subscribe <a href="{{ .RSSLink }}">via RSS</a></p>
+  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
 
-        </div>
+</div>
+
       </div>
     </div>
 
