@@ -11,7 +11,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/Changing-xode-versions">
+    <link rel="canonical" href="http://jjasonclark.com/changing-xode-versions">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -54,7 +54,7 @@
 <a href="/feed.xml" title="Subscribe to JJasonClark.com" class='social_button'>
  <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24 />
 </a>
-<a href="https://twitter.com/share" class='twitter-share-button' data-url="/Changing-xode-versions" via="jjasonclark" lang="en">Tweet</a>
+<a href="https://twitter.com/share" class='twitter-share-button' data-url="/changing-xode-versions" via="jjasonclark" lang="en">Tweet</a>
 <div class='g-plusone'></div>
 </div>
       </div>
@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,7 +89,9 @@
   </header>
 
   <article class="post-content">
-    <p>I recently needed to switch from developing for Rails 3.2.5 on Ruby 1.9.3 to working with Rails 2.3.5 on Ruby 1.8.7. The Rails version change wasn’t that big of a deal, but the Ruby change was. Sometime between the release of 1.8.7 and 1.9.3 the supported GCC compiler changed. The newer compiler, the one I was on, had a breaking change making it not compatible with the older Ruby version. This meant that if I wanted to use Ruby 1.8.7 I was going to have to uninstall my current copy of Xcode and install an older version.</p>
+    
+
+<p>I recently needed to switch from developing for Rails 3.2.5 on Ruby 1.9.3 to working with Rails 2.3.5 on Ruby 1.8.7. The Rails version change wasn&rsquo;t that big of a deal, but the Ruby change was. Sometime between the release of 1.8.7 and 1.9.3 the supported GCC compiler changed. The newer compiler, the one I was on, had a breaking change making it not compatible with the older Ruby version. This meant that if I wanted to use Ruby 1.8.7 I was going to have to uninstall my current copy of Xcode and install an older version.</p>
 
 <h2 id="uninstall-xcode">Uninstall Xcode</h2>
 
@@ -98,11 +100,11 @@
 <pre><code>sudo /Developer/Library/uninstall-devtools --mode=all
 </code></pre>
 
-<p>If this failed to run then you may have only installed via the <a href="http://www.apple.com/osx/apps/app-store.html">Mac App Store</a>. In which case you need to do the normal manual steps for removing an application from the Application’s folder like any other Mac app.</p>
+<p>If this failed to run then you may have only installed via the <a href="http://www.apple.com/osx/apps/app-store.html">Mac App Store</a>. In which case you need to do the normal manual steps for removing an application from the Application&rsquo;s folder like any other Mac app.</p>
 
-<h2 id="installing-xcode-41">Installing Xcode 4.1</h2>
+<h2 id="installing-xcode-4-1">Installing Xcode 4.1</h2>
 
-<p>I am using some Ruby gems with native extensions. This allowed me to verify if I had the installation correct or not. Unfortunately I never could get the gems to build successfully under the normal download package for Xcode 4.1. Hoping to resolve the problem I created a question on Stack Overflow on <a href="http://stackoverflow.com/q/11006503/136584">“How to install Xcode 4.1 for Ruby developmnt”</a>. No one was able to help me, but I was pointed to another GCC installer that did work. The <a href="https://github.com/kennethreitz/osx-gcc-installer">osx-gcc-installer</a> is a customized version of Xcode for command line development. The author has made a <a href="https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg">package for Lion</a>. This worked perfectly for me. I haven’t run into any issues using it for Ruby 1.8.7 development.</p>
+<p>I am using some Ruby gems with native extensions. This allowed me to verify if I had the installation correct or not. Unfortunately I never could get the gems to build successfully under the normal download package for Xcode 4.1. Hoping to resolve the problem I created a question on Stack Overflow on <a href="http://stackoverflow.com/q/11006503/136584">&ldquo;How to install Xcode 4.1 for Ruby developmnt&rdquo;</a>. No one was able to help me, but I was pointed to another GCC installer that did work. The <a href="https://github.com/kennethreitz/osx-gcc-installer">osx-gcc-installer</a> is a customized version of Xcode for command line development. The author has made a <a href="https://github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg">package for Lion</a>. This worked perfectly for me. I haven&rsquo;t run into any issues using it for Ruby 1.8.7 development.</p>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
@@ -119,10 +121,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

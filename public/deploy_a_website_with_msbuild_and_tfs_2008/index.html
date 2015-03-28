@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -91,13 +91,13 @@
   <article class="post-content">
     <p>This past week I have been working on getting the product that I work on into TFS and building on a regular schedule. This is a basic web application built on the Microsoft stack. We have a web site, a database, and some DLLs for business logic.</p>
 
-<p>Before this change the product was built using a home grown build system built by another team in the company.  It has been a long time since this build process has been updated. Basically it was setup to build and deploy to 1 server and nothing has changed since. This isn’t really a problem for the group. All of the changes happen at the solution level or project level which doesn’t require any changes to the automated build process.</p>
+<p>Before this change the product was built using a home grown build system built by another team in the company.  It has been a long time since this build process has been updated. Basically it was setup to build and deploy to 1 server and nothing has changed since. This isn&rsquo;t really a problem for the group. All of the changes happen at the solution level or project level which doesn&rsquo;t require any changes to the automated build process.</p>
 
 <p>Now that we have shipped the latest version we have an opportunity to switch to TFS. The team is already using TFS to track bugs and work items so they are anticipating the switch for the build. Linking to source code changes and getting better code coverage results seem to be the most important parts.</p>
 
 <p>In order for this to work I had to translate all of our current batch files into MSBuild tasks. At the same time we are moving from IIS6 to IIS7, so some of the commands need to be updated.  I started by creating a basic TFS build definition. This is because all of the real work is done in the project file.</p>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;PropertyGroup&gt;</span>
+<p><div class="highlight"><pre><span class="nt">&lt;PropertyGroup&gt;</span>
     <span class="nt">&lt;SDLTrackWebSitePath&gt;</span>D:\SDLTrackWeb<span class="nt">&lt;/SDLTrackWebSitePath&gt;</span>
     <span class="nt">&lt;SDLTrackDatabasePath&gt;</span>D:\SDLTrackDBs<span class="nt">&lt;/SDLTrackDatabasePath&gt;</span>
     <span class="nt">&lt;SDLTrackUploadPath&gt;</span>D:\SDLTrackFiles<span class="nt">&lt;/SDLTrackUploadPath&gt;</span>
@@ -166,7 +166,9 @@
     <span class="nt">&lt;Exec</span> <span class="na">Command=</span><span class="s">&quot;echo ^&lt;add key=&quot;</span><span class="err">pluginPath&quot;</span> <span class="na">value=</span><span class="s">&quot;$(SDLTrackWebSitePath)\$(BuildNumber)\Bin&quot;</span> <span class="err">/^</span><span class="nt">&gt;</span> &gt;&gt; $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config&quot; /&gt;
     <span class="nt">&lt;Exec</span> <span class="na">Command=</span><span class="s">&quot;echo ^&lt;/appSettings^&gt; &gt;&gt; $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config&quot;</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;Exec</span> <span class="na">Command=</span><span class="s">&quot;echo ^&lt;/configuration^&gt; &gt;&gt; $(SDLTrackConsolePath)\$(BuildNumber)\SWITrackConsole.config&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/Target&gt;</span></code></pre></div>
+<span class="nt">&lt;/Target&gt;</span>
+</pre></div>
+</p>
 
 
   </article>
@@ -176,10 +178,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

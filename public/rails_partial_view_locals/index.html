@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,21 +89,23 @@
   </header>
 
   <article class="post-content">
-    <p>Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I’ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.</p>
+    
+
+<p>Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I&rsquo;ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.</p>
 
 <h2 id="personal-story">Personal story</h2>
 
-<p>This is where the bad part of coming to Rails from a different framework is. I just assumed that the local variables became instance variables in the partial view. In fact, I tried a partial with an instance variable and it worked as expected. Testing is believing in most cases, so I thought I had learned what I needed to know. Since then I’ve created dozens and dozens of partials, all using instance variables and everything has worked perfectly. That is, until I needed to create a partial view of the inside of a form with the form tag not inside the partial. I still needed the form’s ID inside the partial so I could submit the form via JavaScript. Based on what I had learned I just passed it in as a local variable. And of course, I could not access the new local variable.</p>
+<p>This is where the bad part of coming to Rails from a different framework is. I just assumed that the local variables became instance variables in the partial view. In fact, I tried a partial with an instance variable and it worked as expected. Testing is believing in most cases, so I thought I had learned what I needed to know. Since then I&rsquo;ve created dozens and dozens of partials, all using instance variables and everything has worked perfectly. That is, until I needed to create a partial view of the inside of a form with the form tag not inside the partial. I still needed the form&rsquo;s ID inside the partial so I could submit the form via JavaScript. Based on what I had learned I just passed it in as a local variable. And of course, I could not access the new local variable.</p>
 
-<p>I tried everything I could think of to access the form’s ID via the local variable. I even searched the instance variables (using #instance_variables) of all the classes I could think of. I even looked back at partials I had created in the past. As far as I could tell, I was trying to access the variable correctly.</p>
+<p>I tried everything I could think of to access the form&rsquo;s ID via the local variable. I even searched the instance variables (using #instance_variables) of all the classes I could think of. I even looked back at partials I had created in the past. As far as I could tell, I was trying to access the variable correctly.</p>
 
 <h2 id="solution">Solution</h2>
 
-<p>It turns out the locals are accessed via instance accessor methods. This whole time I have been naming my controller’s instance variables the same as my partial’s local variables. This is why they always worked before. Only when I finally made a local variable that wasn’t also an instance variable did I discover the difference.</p>
+<p>It turns out the locals are accessed via instance accessor methods. This whole time I have been naming my controller&rsquo;s instance variables the same as my partial&rsquo;s local variables. This is why they always worked before. Only when I finally made a local variable that wasn&rsquo;t also an instance variable did I discover the difference.</p>
 
 <h2 id="summary">Summary</h2>
 
-<p>Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn’t find the answer. Hopefully yours will find this article before you pull all of your hair out.</p>
+<p>Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn&rsquo;t find the answer. Hopefully yours will find this article before you pull all of your hair out.</p>
 
 <p>Special thanks to my co-worker <a href="http://www.danielzajic.com/">Daniel Zajic</a> for pairing with me to solve the problem. He found the solution as soon as I told it to him. Clearly he had read the documentation I should have read earlier.</p>
 
@@ -115,10 +117,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,11 +89,11 @@
   </header>
 
   <article class="post-content">
-    <p>I often see developers writing code that is checking for the existence of something using the Count() method. This should be avoided in favor of the <a href="http://msdn.microsoft.com/en-us/library/system.linq.enumerable.any.aspx">Any()</a> method and it’s overloads.</p>
+    <p>I often see developers writing code that is checking for the existence of something using the Count() method. This should be avoided in favor of the <a href="http://msdn.microsoft.com/en-us/library/system.linq.enumerable.any.aspx">Any()</a> method and it&rsquo;s overloads.</p>
 
 <p>Given this SQL layout</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="p">[</span><span class="n">Test</span><span class="p">]</span>
+<p><div class="highlight"><pre><span class="n">USE</span> <span class="p">[</span><span class="n">Test</span><span class="p">]</span>
 <span class="k">GO</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">HostGroup</span><span class="p">](</span>
     <span class="p">[</span><span class="n">HostGroupIndex</span><span class="p">]</span> <span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="k">IDENTITY</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -111,15 +111,19 @@
     <span class="k">CONSTRAINT</span> <span class="p">[</span><span class="n">uq_Host_Name</span><span class="p">]</span> <span class="k">UNIQUE</span> <span class="n">NONCLUSTERED</span> <span class="p">(</span> <span class="p">[</span><span class="n">Name</span><span class="p">]</span> <span class="k">ASC</span> <span class="p">)</span> <span class="k">ON</span> <span class="p">[</span><span class="k">PRIMARY</span><span class="p">],</span>
     <span class="k">CONSTRAINT</span> <span class="p">[</span><span class="n">fk_Host_HostGroup</span><span class="p">]</span> <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">([</span><span class="n">FKHostGroupIndex</span><span class="p">])</span> <span class="k">REFERENCES</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">HostGroup</span><span class="p">]</span> <span class="p">([</span><span class="n">HostGroupIndex</span><span class="p">])</span>
 <span class="p">)</span> <span class="k">ON</span> <span class="p">[</span><span class="k">PRIMARY</span><span class="p">]</span>
-<span class="k">GO</span></code></pre></div>
+<span class="k">GO</span>
+</pre></div>
+</p>
 
-<p>A query for the names of HostGroups with hosts named ‘JCLARK-DESK’.</p>
+<p>A query for the names of HostGroups with hosts named &lsquo;JCLARK-DESK&rsquo;.</p>
 
-<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">HostGroup</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">h</span><span class="p">=&gt;</span><span class="n">h</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;JCLARK-DESK&quot;</span><span class="p">)).</span><span class="n">Select</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span></code></pre></div>
+<p><div class="highlight"><pre><span class="n">HostGroup</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">h</span><span class="p">=&gt;</span><span class="n">h</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;JCLARK-DESK&quot;</span><span class="p">)).</span><span class="n">Select</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
+</pre></div>
+</p>
 
 <p>Translates to SQL as</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- Region Parameters</span>
+<p><div class="highlight"><pre><span class="c1">-- Region Parameters</span>
 <span class="k">DECLARE</span> <span class="o">@</span><span class="n">p0</span> <span class="n">NVarChar</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;JCLARK-DESK&#39;</span>
 <span class="c1">-- EndRegion</span>
 <span class="k">SELECT</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">Name</span><span class="p">]</span>
@@ -128,15 +132,19 @@
     <span class="k">SELECT</span> <span class="k">NULL</span> <span class="k">AS</span> <span class="p">[</span><span class="n">EMPTY</span><span class="p">]</span>
     <span class="k">FROM</span> <span class="p">[</span><span class="k">Host</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">t1</span><span class="p">]</span>
     <span class="k">WHERE</span> <span class="p">([</span><span class="n">t1</span><span class="p">].[</span><span class="n">Name</span><span class="p">]</span> <span class="o">=</span> <span class="o">@</span><span class="n">p0</span><span class="p">)</span> <span class="k">AND</span> <span class="p">([</span><span class="n">t1</span><span class="p">].[</span><span class="n">FKHostGroupIndex</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">HostGroupIndex</span><span class="p">])</span>
-<span class="p">)</span></code></pre></div>
+<span class="p">)</span>
+</pre></div>
+</p>
 
 <p>The embedded query is much more efficient than the same code written using the Count() method instead.</p>
 
-<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">HostGroup</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">Count</span><span class="p">(</span><span class="n">h</span><span class="p">=&gt;</span><span class="n">h</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;JCLARK-DESK&quot;</span><span class="p">)</span> <span class="p">!=</span> <span class="m">0</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span></code></pre></div>
+<p><div class="highlight"><pre><span class="n">HostGroup</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">Count</span><span class="p">(</span><span class="n">h</span><span class="p">=&gt;</span><span class="n">h</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;JCLARK-DESK&quot;</span><span class="p">)</span> <span class="p">!=</span> <span class="m">0</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">hg</span><span class="p">=&gt;</span><span class="n">hg</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
+</pre></div>
+</p>
 
 <p>Translates to SQL as</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="c1">-- Region Parameters</span>
+<p><div class="highlight"><pre><span class="c1">-- Region Parameters</span>
 <span class="k">DECLARE</span> <span class="o">@</span><span class="n">p0</span> <span class="n">NVarChar</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;JCLARK-DESK&#39;</span>
 <span class="k">DECLARE</span> <span class="o">@</span><span class="n">p1</span> <span class="nb">Int</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="c1">-- EndRegion</span>
@@ -146,7 +154,9 @@
     <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
     <span class="k">FROM</span> <span class="p">[</span><span class="k">Host</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">t1</span><span class="p">]</span>
     <span class="k">WHERE</span> <span class="p">([</span><span class="n">t1</span><span class="p">].[</span><span class="n">Name</span><span class="p">]</span> <span class="o">=</span> <span class="o">@</span><span class="n">p0</span><span class="p">)</span> <span class="k">AND</span> <span class="p">([</span><span class="n">t1</span><span class="p">].[</span><span class="n">FKHostGroupIndex</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">HostGroupIndex</span><span class="p">])</span>
-<span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">p1</span></code></pre></div>
+<span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">p1</span>
+</pre></div>
+</p>
 
 
   </article>
@@ -156,10 +166,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,15 +89,17 @@
   </header>
 
   <article class="post-content">
-    <p>At work we are using the <a href="http://rubygems.org/gems/attr_encrypted" title="attr_encyrpted on rubygems">attr_encrypted gem</a> to encrypt some <a href="http://en.wikipedia.org/wiki/Personally_identifiable_information" title="Wikipedia on PII">PII</a> on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A <a href="https://github.com/shuber/attr_encrypted/issues/32" title="Security issue with attr_encrypted">Github issue</a> was created to address leaking of data caused by using the same <a href="http://en.wikipedia.org/wiki/Initialization_vector" title="Wikipedia on IV">initialization vector (IV)</a> and <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)" title="Wikipedia on salt">salt</a> for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the <a href="http://en.wikipedia.org/wiki/CBC-MAC" title="Wikipedia on CBC-MAC">CBC-MAC</a> method. The <a href="http://rubygems.org/gems/attr_encryptor" title="attr_encryptor on rubygems">attr_encryptor</a> was created to fix these issues.</p>
+    
+
+<p>At work we are using the <a href="http://rubygems.org/gems/attr_encrypted" title="attr_encyrpted on rubygems">attr_encrypted gem</a> to encrypt some <a href="http://en.wikipedia.org/wiki/Personally_identifiable_information" title="Wikipedia on PII">PII</a> on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A <a href="https://github.com/shuber/attr_encrypted/issues/32" title="Security issue with attr_encrypted">Github issue</a> was created to address leaking of data caused by using the same <a href="http://en.wikipedia.org/wiki/Initialization_vector" title="Wikipedia on IV">initialization vector (IV)</a> and <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)" title="Wikipedia on salt">salt</a> for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the <a href="http://en.wikipedia.org/wiki/CBC-MAC" title="Wikipedia on CBC-MAC">CBC-MAC</a> method. The <a href="http://rubygems.org/gems/attr_encryptor" title="attr_encryptor on rubygems">attr_encryptor</a> was created to fix these issues.</p>
 
 <p>Besides changing gem names, to switch gems you will need to add the new <code>_iv</code> and <code>_salt</code> database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.</p>
 
 <h2 id="re-encrypting-old-values">Re-encrypting old values</h2>
 
-<p>At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem’s decryption code. From the <a href="https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190" title="decryption function in attr_encrypted">Github source</a></p>
+<p>At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem&rsquo;s decryption code. From the <a href="https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190" title="decryption function in attr_encrypted">Github source</a></p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Decrypts a value for the attribute specified</span>
+<p><div class="highlight"><pre><span class="c1"># Decrypts a value for the attribute specified</span>
 <span class="c1">#</span>
 <span class="c1"># Example</span>
 <span class="c1">#</span>
@@ -121,11 +123,13 @@
   <span class="k">else</span>
     <span class="n">encrypted_value</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span>
+</pre></div>
+</p>
 
 <p>Which calls to the <a href="http://rubygems.org/gems/encryptor" title="encryptor gem on rubygems">encryptor gem</a> to do the actually decryption. The <a href="https://github.com/shuber/encryptor/blob/master/lib/encryptor.rb#L49-63" title="encryptor decrypt method">decryption code</a></p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">crypt</span><span class="p">(</span><span class="n">cipher_method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1">#:nodoc:</span>
+<p><div class="highlight"><pre><span class="k">def</span> <span class="nf">crypt</span><span class="p">(</span><span class="n">cipher_method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1">#:nodoc:</span>
   <span class="n">options</span> <span class="o">=</span> <span class="n">default_options</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="no">Hash</span><span class="p">)</span> <span class="p">?</span> <span class="n">args</span><span class="o">.</span><span class="n">last</span> <span class="p">:</span> <span class="p">{})</span>
   <span class="k">raise</span> <span class="no">ArgumentError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;must specify a :key&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:key</span><span class="o">].</span><span class="n">to_s</span><span class="o">.</span><span class="n">empty?</span>
   <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">Cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:algorithm</span><span class="o">]</span><span class="p">)</span>
@@ -139,22 +143,27 @@
   <span class="k">yield</span> <span class="n">cipher</span><span class="p">,</span> <span class="n">options</span> <span class="k">if</span> <span class="nb">block_given?</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:value</span><span class="o">]</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span>
+</pre></div>
+</p>
 
 <p>Basically this boils down to the following.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<p><div class="highlight"><pre><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
   <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">Cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;aes-256-cbc&#39;</span><span class="p">)</span>
   <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span>
   <span class="n">cipher</span><span class="o">.</span><span class="n">pkcs5_keyivgen</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span>
+</pre></div>
+</p>
 
 <h2 id="finial-migration">Finial migration</h2>
+
 <p>Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">ReencryptAllValues</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+<p><div class="highlight"><pre><span class="k">class</span> <span class="nc">ReencryptAllValues</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
     <span class="k">class</span> <span class="nc">IterationCount</span>
         <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">display_every</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
             <span class="vi">@iteration_count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -277,7 +286,9 @@
             <span class="n">converted</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">end</span>
     <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span>
+</pre></div>
+</p>
 
 
   </article>
@@ -287,10 +298,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

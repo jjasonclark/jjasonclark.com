@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,28 +89,28 @@
   </header>
 
   <article class="post-content">
-    <p>I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: <a href="http://en.wikipedia.org/wiki/Bonjour_(software)">Bonjour</a>. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.</p>
+    
+
+<p>I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: <a href="http://en.wikipedia.org/wiki/Bonjour_(software)">Bonjour</a>. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.</p>
 
 <h2 id="mac-setup">Mac Setup</h2>
 
 <p>In the Safari preference panel select the advanced tab. Check the setting you want.</p>
 
-<p><img src="/assets/safari_preference.png" alt="Safari preference panel" /></p>
+<p><img src="/assets/safari_preference.png" alt="Safari preference panel" />
+</p>
 
 <h2 id="linux-setup">Linux Setup</h2>
 
-<p><a href="http://avahi.org/">Avahi</a> is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don’t have to reboot your server.</p>
+<p><a href="http://avahi.org/">Avahi</a> is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don&rsquo;t have to reboot your server.</p>
 
 <ol>
-  <li>
-    <p>Use your distros package manager to install it. For <code>yum</code> it is <code>sudo yum install -y avahi</code>.</p>
-  </li>
-  <li>
-    <p>Then create a file in the <code>/etc/avahi/services</code> directory with a <code>.service</code> extension.</p>
-  </li>
+<li><p>Use your distros package manager to install it. For <code>yum</code> it is <code>sudo yum install -y avahi</code>.</p></li>
+
+<li><p>Then create a file in the <code>/etc/avahi/services</code> directory with a <code>.service</code> extension.</p></li>
 </ol>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; standalone=&#39;no&#39;?&gt;</span>
+<p><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; standalone=&#39;no&#39;?&gt;</span>
 <span class="cp">&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span>
 <span class="nt">&lt;service-group&gt;</span>
   <span class="nt">&lt;name</span> <span class="na">replace-wildcards=</span><span class="s">&quot;yes&quot;</span><span class="nt">&gt;</span>%h<span class="nt">&lt;/name&gt;</span>
@@ -118,10 +118,12 @@
     <span class="nt">&lt;type&gt;</span>_http._tcp<span class="nt">&lt;/type&gt;</span>
     <span class="nt">&lt;port&gt;</span>3000<span class="nt">&lt;/port&gt;</span>
   <span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;/service-group&gt;</span></code></pre></div>
+<span class="nt">&lt;/service-group&gt;</span>
+</pre></div>
+</p>
 
 <ol>
-  <li>You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run <code>sudo /etc/init.d/avahi-daemon restart</code>.</li>
+<li>You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run <code>sudo /etc/init.d/avahi-daemon restart</code>.<br /></li>
 </ol>
 
 <h2 id="getting-fancy">Getting fancy</h2>
@@ -136,10 +138,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

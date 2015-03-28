@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Waiting for Ctrl+C in Golang</title>
+    <title>Waiting for Ctrl&#43;C in Golang</title>
     <meta name="description" content="Stuff I have time to write about
 ">
 
@@ -54,7 +54,7 @@
 <a href="/feed.xml" title="Subscribe to JJasonClark.com" class='social_button'>
  <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24 />
 </a>
-<a href="https://twitter.com/share" class='twitter-share-button' data-url="" via="jjasonclark" lang="en">Tweet</a>
+<a href="https://twitter.com/share" class='twitter-share-button' data-url="/waiting_for_ctrl_c_in_golang" via="jjasonclark" lang="en">Tweet</a>
 <div class='g-plusone'></div>
 </div>
       </div>
@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -84,7 +84,7 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Waiting for Ctrl+C in Golang</h1>
+    <h1 class="post-title">Waiting for Ctrl&#43;C in Golang</h1>
     <p class="post-meta">Dec 13, 2014 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
   </header>
 
@@ -95,18 +95,20 @@
 
 <p>In Go’s implementation of signals the signals are delivered via a channel. Create an <code>os.Signal</code> channel with at least 1 buffered space. The signals come in fast so you don’t want miss them. Let the system know you want <code>os.Interrupt</code> signals to go to the channel you created. Then just wait for the signal to come it via a go function.</p>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
+<p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
 <span class="nx">signal_channel</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nx">signal</span><span class="p">.</span><span class="nx">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
 <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
     <span class="o">&lt;-</span><span class="nx">signal_channel</span>
-<span class="p">}()</span></code></pre></div>
+<span class="p">}()</span>
+</pre></div>
+</p>
 
 <p>Now that you can respond to when the signal is triggered you need to add in the code to wait for this to happen. <code>sync.WaitGroup</code> fits the bill. Create one, <code>Add</code> a delta to it, and call <code>Wait</code>. This will block the current execution path waiting for a <code>Done</code> call on the created <code>WaitGroup</code>.</p>
 
 <p>Add this into the previous snippet to create the <code>WaitGroup</code> before listening for the signal. And <code>Wait</code> for the <code>WaitGroup</code> at the end.  And use the retrieval of the signal to call <code>Done</code>.</p>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">end_waiter</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+<p><div class="highlight"><pre><span class="kd">var</span> <span class="nx">end_waiter</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
 <span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
 <span class="nx">signal_channel</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -115,11 +117,13 @@
     <span class="o">&lt;-</span><span class="nx">signal_channel</span>
     <span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 <span class="p">}()</span>
-<span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span></code></pre></div>
+<span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+</pre></div>
+</p>
 
 <p>Putting it all together into a short package to show it off.  Here is the full code.</p>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<p><div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -145,7 +149,9 @@
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Press Ctrl+C to end\n&quot;</span><span class="p">)</span>
     <span class="nx">WaitForCtrlC</span><span class="p">()</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</pre></div>
+</p>
 
 
   </article>
@@ -155,10 +161,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

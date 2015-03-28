@@ -11,7 +11,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server">
+    <link rel="canonical" href="http://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -54,7 +54,7 @@
 <a href="/feed.xml" title="Subscribe to JJasonClark.com" class='social_button'>
  <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24 />
 </a>
-<a href="https://twitter.com/share" class='twitter-share-button' data-url="/install_cloudstack_3.0.0_on_ubuntu_10.04_server" via="jjasonclark" lang="en">Tweet</a>
+<a href="https://twitter.com/share" class='twitter-share-button' data-url="/install_cloudstack_3.0.0_on_ubuntu_10.04_server/" via="jjasonclark" lang="en">Tweet</a>
 <div class='g-plusone'></div>
 </div>
       </div>
@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,12 +89,15 @@
   </header>
 
   <article class="post-content">
-    <p><a href="https://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/">Cloudstack 3.0.0</a> was release on <a href="http://www.cloudstack.org/blog/117-cloudstack-acton-released.html">Febrary 28<sup>th</sup> 2012</a>. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</p>
+    
+
+<p><a href="https://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/">Cloudstack 3.0.0</a> was release on <a href="http://www.cloudstack.org/blog/117-cloudstack-acton-released.html">Febrary 28<sup>th</sup> 2012</a>. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</p>
 
 <h2 id="setup-procedures">Setup procedures</h2>
+
 <p>To get started download the <a href="http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/CloudStack-3.0.0-1-ubuntu10.04.tar.gz/download">cloud management software</a> and follow these steps. You will need the <a href="http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/CloudStack3.0QuickInstallGuide.pdf/download">quick install guide</a> to help you through the GUI part of the setup.</p>
 
-<p>This assumes that you have an Ubuntu 10.04 Server running with NFS setup. Additionally you need at least 1 host with XenServer 6 installed. Also, all commands must be run as the root user. For this install I’m going to use the following values. Change the values to what you would use.</p>
+<p>This assumes that you have an Ubuntu 10.04 Server running with NFS setup. Additionally you need at least 1 host with XenServer 6 installed. Also, all commands must be run as the root user. For this install I&rsquo;m going to use the following values. Change the values to what you would use.</p>
 
 <pre><code>Desktop: myhost
 Management Server: manhost
@@ -103,17 +106,20 @@ Management IPs: 192.168.0.20 - 192.168.0.29
 Guest IPs: 192.168.0.30 - 39
 </code></pre>
 
-<h3 id="step-1---install-ubuntu-1004-server-with-nfs">Step 1 - Install Ubuntu 10.04 Server with NFS</h3>
+<h3 id="step-1-install-ubuntu-10-04-server-with-nfs">Step 1 - Install Ubuntu 10.04 Server with NFS</h3>
+
 <p>Follow the guide I wrote on <a href="/setting_up_NFS_on_Ubuntu_10.04_server">setting up NFS on ubuntu 10.04 server</a></p>
 
-<h3 id="step-2---setup-selinux">Step 2 - Setup SELinux</h3>
+<h3 id="step-2-setup-selinux">Step 2 - Setup SELinux</h3>
+
 <p>Install the SElinux package and change to passive mode</p>
 
 <pre><code>apt-get install selinux-utils
 setenforce permissive
 </code></pre>
 
-<h3 id="step-3---create-cloudstack-nfs-shares">Step 3 - Create Cloudstack NFS shares</h3>
+<h3 id="step-3-create-cloudstack-nfs-shares">Step 3 - Create Cloudstack NFS shares</h3>
+
 <p>Create two directories for sharing via NFS. I named mine the same as the documentation: primary and secondary. Then share these via NFS.</p>
 
 <pre><code>mkdir -p /export/primary
@@ -128,7 +134,8 @@ mkdir -p /export/secondary
 
 <p>Then run the <code>exportfs -a</code> command to expose them.</p>
 
-<h3 id="step-4---setup-cloudstack-management-software">Step 4 - Setup Cloudstack management software</h3>
+<h3 id="step-4-setup-cloudstack-management-software">Step 4 - Setup Cloudstack management software</h3>
+
 <p>Copy the cloud management software to the Ubuntu box. I used <code>scp</code> to get this done.</p>
 
 <pre><code>scp myhost:CloudStack-3.0.0-1-ubuntu10.04.tar.gz manhost:
@@ -143,7 +150,8 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <p>The installer will first run <code>aptitude update</code> so make sure you have that setup correctly. This should have been done when you setup the Ubuntu box. After updating the components the install script will present you with a prompt to pick what component to install. At this prompt choose option <code>M</code> for the management server.</p>
 
-<h3 id="step-5---setup-cloudstack-database">Step 5 - Setup Cloudstack database</h3>
+<h3 id="step-5-setup-cloudstack-database">Step 5 - Setup Cloudstack database</h3>
+
 <p>This step is just as easy as the last step. The database server (MySql) will be installed via the same <code>install.sh</code> script used in the last step.</p>
 
 <pre><code>./install.sh
@@ -160,25 +168,29 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <p>This command will create two databases in MySQL and fill them will your systems data.</p>
 
-<h3 id="step-6---finish-cloudstack-management-software-setup">Step 6 - Finish Cloudstack management software setup</h3>
+<h3 id="step-6-finish-cloudstack-management-software-setup">Step 6 - Finish Cloudstack management software setup</h3>
+
 <p>Finish the setup by running the management setup command line tool a second time. The command does a few things with iptables but it should all be transparent to you.</p>
 
 <pre><code>cloud-setup-management
 </code></pre>
 
-<h3 id="step-7---add-system-vm-image">Step 7 - Add System VM image</h3>
+<h3 id="step-7-add-system-vm-image">Step 7 - Add System VM image</h3>
+
 <p>Add the system VM to the secondary storage and database.</p>
 
 <pre><code>/usr/lib64/cloud/agent/scripts/storage/secondary/cloud-install-sys-tmplt -m /export/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2 -h xenserver -F
 </code></pre>
 
-<p>This will copy the system VM to the secondary storage location and setup database entries pointing to it. One of the gotchas I ran into was that the system VM image file must be access via HTTP. I first tried doing it as a local file since it is such a large file. I didn’t want to download it from the Internet. Unfortanitly this does not work, so you must use a workaround. My desktop system is also a web server so I just put the system VM image there. You can also use the source URL instead of your local server. Make sure to use port 80 or it will not connect.</p>
+<p>This will copy the system VM to the secondary storage location and setup database entries pointing to it. One of the gotchas I ran into was that the system VM image file must be access via HTTP. I first tried doing it as a local file since it is such a large file. I didn&rsquo;t want to download it from the Internet. Unfortanitly this does not work, so you must use a workaround. My desktop system is also a web server so I just put the system VM image there. You can also use the source URL instead of your local server. Make sure to use port 80 or it will not connect.</p>
 
 <h2 id="gotchas">Gotchas</h2>
+
 <ul>
-  <li>need more management ips than hosts so that support VMs can also have IPs</li>
-  <li>Removing VMs does not clean up IP resources for a long time. Need to change the expunge settings.</li>
+<li>need more management ips than hosts so that support VMs can also have IPs<br /></li>
+<li>Removing VMs does not clean up IP resources for a long time. Need to change the expunge settings.<br /></li>
 </ul>
+
 
   </article>
 
@@ -187,10 +199,8 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

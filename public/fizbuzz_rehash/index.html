@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,11 +89,11 @@
   </header>
 
   <article class="post-content">
-    <p>While moving my blog content from site to site my post on Fizz-buzz caught my eye again. I thought I would post another implementation that was even more complex (read <em>don’t use in your interview</em>)</p>
+    <p>While moving my blog content from site to site my post on Fizz-buzz caught my eye again. I thought I would post another implementation that was even more complex (read <em>don&rsquo;t use in your interview</em>)</p>
 
 <p>This one uses the iterator pattern and the null coalescing operator for added complexity.</p>
 
-<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+<p><div class="highlight"><pre><span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Join</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">,</span> <span class="n">FizzBuzz</span><span class="p">().</span><span class="n">Take</span><span class="p">(</span><span class="m">100</span><span class="p">).</span><span class="n">ToArray</span><span class="p">()));</span>
 <span class="p">}</span>
@@ -110,7 +110,9 @@
     <span class="p">{</span>
         <span class="k">yield</span> <span class="k">return</span> <span class="n">fbLogic</span><span class="p">[</span><span class="n">i</span> <span class="p">%</span> <span class="m">3</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="m">0</span> <span class="p">:</span> <span class="m">1</span><span class="p">,</span> <span class="n">i</span> <span class="p">%</span> <span class="m">5</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="m">0</span> <span class="p">:</span> <span class="m">1</span><span class="p">]</span> <span class="p">??</span> <span class="n">i</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</pre></div>
+</p>
 
 
   </article>
@@ -120,10 +122,8 @@
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

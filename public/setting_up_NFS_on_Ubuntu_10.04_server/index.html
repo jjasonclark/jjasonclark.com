@@ -11,7 +11,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/setting_up_NFS_on_Ubuntu_10.04_server">
+    <link rel="canonical" href="http://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -54,7 +54,7 @@
 <a href="/feed.xml" title="Subscribe to JJasonClark.com" class='social_button'>
  <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24 />
 </a>
-<a href="https://twitter.com/share" class='twitter-share-button' data-url="/setting_up_NFS_on_Ubuntu_10.04_server" via="jjasonclark" lang="en">Tweet</a>
+<a href="https://twitter.com/share" class='twitter-share-button' data-url="/setting_up_nfs_on_ubuntu_10.04_server/" via="jjasonclark" lang="en">Tweet</a>
 <div class='g-plusone'></div>
 </div>
       </div>
@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,11 +89,14 @@
   </header>
 
   <article class="post-content">
-    <p>I’m currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.</p>
+    
+
+<p>I&rsquo;m currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.</p>
 
 <p>The following assumes you have already setup Ubuntu and can access the network. Do all the following as the root user.</p>
 
 <h2 id="install-the-nfs-server-package">Install the NFS server package</h2>
+
 <p>Run the following commands to install NFS server and rpcbind</p>
 
 <pre><code>apt-get install nfs-kernel-server
@@ -101,28 +104,26 @@ apt-get install rpcbind
 </code></pre>
 
 <h2 id="setup-iptables-to-restore-rules-at-startup-and-save-rules-at-shutdown">Setup IPTables to restore rules at startup and save rules at shutdown</h2>
+
 <p>Create the following two files</p>
 
 <ul>
-  <li>
-    <p>/etc/network/if-pre-up.d/iptablesload</p>
+<li><p>/etc/network/if-pre-up.d/iptablesload</p>
 
-    <pre><code>  #!/bin/sh
-  iptables-restore &lt; /etc/iptables.rules
-  exit 0
-</code></pre>
-  </li>
-  <li>
-    <p>/etc/network/if-post-down.d/iptablessave</p>
+<pre><code>#!/bin/sh
+iptables-restore &lt; /etc/iptables.rules
+exit 0
+</code></pre></li>
 
-    <pre><code>  #!/bin/sh
-  iptables-save -c &gt; /etc/iptables.rules
-  if [ -f /etc/iptables.downrules ]; then
-      iptables-restore &lt; /etc/iptables.downrules
-  fi
-  exit 0
-</code></pre>
-  </li>
+<li><p>/etc/network/if-post-down.d/iptablessave</p>
+
+<pre><code>#!/bin/sh
+iptables-save -c &gt; /etc/iptables.rules
+if [ -f /etc/iptables.downrules ]; then
+    iptables-restore &lt; /etc/iptables.downrules
+fi
+exit 0
+</code></pre></li>
 </ul>
 
 <p>Give both scripts execute permissions and run them</p>
@@ -134,6 +135,7 @@ chmod +x /etc/network/if-post-down.d/iptablessave
 </code></pre>
 
 <h2 id="add-iptable-rules-to-allow-nfs-and-rpcbind-traffic">Add IPTable rules to allow NFS and RPCBind traffic</h2>
+
 <p>Run the following commands</p>
 
 <pre><code>iptables -A INPUT -m state --state NEW -p udp --dport 111 -j ACCEPT
@@ -151,6 +153,7 @@ iptables -A INPUT -m state --state NEW -p udp --dport 662 -j ACCEPT
 </code></pre>
 
 <h2 id="setup-ports-for-nfs">Setup ports for NFS</h2>
+
 <p>Edit the file <code>/etc/default/nfs-kernel-server</code> and add or uncomment the following lines</p>
 
 <pre><code>LOCKD_TCPPORT=32803
@@ -162,9 +165,11 @@ STATD_OUTGOING_PORT=2020
 </code></pre>
 
 <h2 id="add-your-domain-for-idmap-service">Add your domain for IdMap service</h2>
+
 <p>Edit the file <code>/etc/idmapd.conf</code> and change the value for <code>Domain</code> to be your domain.</p>
 
 <h2 id="create-first-export">Create first export</h2>
+
 <p>Create your first exported directory</p>
 
 <pre><code>mkdir -p /export/first
@@ -178,6 +183,7 @@ STATD_OUTGOING_PORT=2020
 <p>Update NFS exported files by running <code>exportfs -a</code></p>
 
 <h2 id="restart-nfs-and-networking">Restart NFS and networking</h2>
+
 <p>Restart via the following commands</p>
 
 <pre><code>/etc/init.d/nfs-kernel-server restart
@@ -185,6 +191,7 @@ STATD_OUTGOING_PORT=2020
 </code></pre>
 
 <h2 id="verify-it-all-works">Verify it all works</h2>
+
 <p>Run <code>rpcinfo -p</code> and verify that the following services are listed</p>
 
 <pre><code>mountd
@@ -194,12 +201,14 @@ portmapper
 </code></pre>
 
 <h2 id="further-reading">Further reading</h2>
+
 <p>These are the help pages I read to figure most of this out. They are from the Ubuntu community documentation and are definitely worth reading.</p>
 
 <ul>
-  <li><a href="https://help.ubuntu.com/community/SettingUpNFSHowTo">Setting Up NFS How To</a></li>
-  <li><a href="https://help.ubuntu.com/community/IptablesHowTo">IPTables How To</a></li>
+<li><a href="https://help.ubuntu.com/community/SettingUpNFSHowTo">Setting Up NFS How To</a><br /></li>
+<li><a href="https://help.ubuntu.com/community/IptablesHowTo">IPTables How To</a><br /></li>
 </ul>
+
 
   </article>
 
@@ -208,10 +217,8 @@ portmapper
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

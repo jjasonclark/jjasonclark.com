@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -93,13 +93,16 @@
 
 <p>A little searching and I discover that <code>npm</code> uses a configuration file and it can be added to via the command line <code>npm config set ...</code>. The key to getting it right is the spelling of the settings. This has bit me so many times now! Getting <code>npm</code> to work behind a proxy requires setting the <code>proxy</code> and <code>https-proxy</code> settings. The key is noticing the <code>-</code> (dash) is not an <code>_</code> (underscore).</p>
 
-<p>So the full procedure is install <a href="http://nodejs.com">Node.js</a> via the installer or source.
+<p>So the full procedure is install <a href="http://nodejs.com">Node.js</a> via the installer or source.<br />
 Open an command prompt or terminal session and run the following commands to configure <code>npm</code> to work with your web proxy. The commands use <code>proxy.company.com</code> as the address and <code>8080</code> as the port.</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">npm config <span class="nb">set </span>proxy http://proxy.company.com:8080
-npm config <span class="nb">set </span>https-proxy http://proxy.company.com:8080</code></pre></div>
+<p><div class="highlight"><pre>npm config <span class="nb">set </span>proxy http://proxy.company.com:8080
+npm config <span class="nb">set </span>https-proxy http://proxy.company.com:8080
+</pre></div>
+</p>
 
 <p>Why the developers of <code>npm</code> choose to use a dash instead of an underscore like the rest of the unix work is beyond me. Maybe someone will add in an alias so setting <code>https_proxy</code> will have the same effect as <code>https-proxy</code>.</p>
+
 
   </article>
 
@@ -108,10 +111,8 @@ npm config <span class="nb">set </span>https-proxy http://proxy.company.com:8080
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

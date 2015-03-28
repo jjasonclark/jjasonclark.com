@@ -69,7 +69,7 @@
       <div class="left_bar">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Side banner -->
+
 <ins class="adsbygoogle"
      style="display:inline-block;width:300px;height:600px"
      data-ad-client="ca-pub-3509568712949908"
@@ -89,26 +89,33 @@
   </header>
 
   <article class="post-content">
-    <p>I use the DNS provider <a href="http://dnsimple.com">DNSimple</a> (<a href="https://dnsimple.com/r/65fab1b1ffee66" title="DNSimple referal link">referral link</a>). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I’m out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.</p>
+    
 
-<p>I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is <a href="http://icanhazip.com/">ICanHazIP.com</a>. I like this one because of the super simple response format. One of these days I’ll create my own service, I just need the time to do it. <small>(Unless you want to submit one in the comments. I would love you if you did.)<small></small></small></p>
+<p>I use the DNS provider <a href="http://dnsimple.com">DNSimple</a> (<a href="https://dnsimple.com/r/65fab1b1ffee66" title="DNSimple referal link">referral link</a>). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I&rsquo;m out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.</p>
+
+<p>I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is <a href="http://icanhazip.com/">ICanHazIP.com</a>. I like this one because of the super simple response format. One of these days I&rsquo;ll create my own service, I just need the time to do it. <small>(Unless you want to submit one in the comments. I would love you if you did.)<small></p>
 
 <h2 id="discovering-your-external-ip-address">Discovering your external IP address</h2>
+
 <p>Simple use curl to make a call to <a href="http://icanhazip.com/">http://ICanHazIP.com</a> and the output is the external IP address of your network. <code>curl http://icanhazip.com</code>. In the script I use the silent option to not show the progress bar.</p>
 
 <h2 id="updating-a-dns-a-record-for-your-home-router">Updating a DNS A record for your home router</h2>
-<p>Then I use <a href="http://developer.dnsimple.com/domains/records/" title="Record API reference">DNSimple’s record API</a> to update the subdomain’s A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.</p>
 
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+<p>Then I use <a href="http://developer.dnsimple.com/domains/records/" title="Record API reference">DNSimple&rsquo;s record API</a> to update the subdomain&rsquo;s A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.</p>
+
+<p><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;record&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;ip address&gt;&quot;</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</pre></div>
+</p>
 
 <h2 id="final-script">Final script</h2>
+
 <p>This all comes together in the following bash shell script. I call it <code>dnsimple.sh</code>.</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/bash</span>
+<p><div class="highlight"><pre><span class="c">#!/bin/bash</span>
 
 <span class="nv">LOGIN</span><span class="o">=</span><span class="s2">&quot;&lt;enter yours here&gt;&quot;</span>
 <span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">&quot;&lt;enter yours here&gt;&quot;</span>
@@ -117,24 +124,30 @@
 
 <span class="nb">echo</span> <span class="s2">&quot;Getting current external IP&quot;</span>
 <span class="nv">IP</span><span class="o">=</span><span class="s2">&quot;`curl -s http://icanhazip.com/`&quot;</span>
-<span class="nb">echo</span> <span class="s2">&quot;Current external IP is $IP&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;Current external IP is </span><span class="nv">$IP</span><span class="s2">&quot;</span>
 
-<span class="nb">echo</span> <span class="s2">&quot;Updating external record to $IP&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;Updating external record to </span><span class="nv">$IP</span><span class="s2">&quot;</span>
 curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\\</span>
-    --basic -u <span class="s2">&quot;$LOGIN:$PASSWORD&quot;</span> <span class="se">\\</span>
+    --basic -u <span class="s2">&quot;</span><span class="nv">$LOGIN</span><span class="s2">:</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span> <span class="se">\\</span>
     -H <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\\</span>
     -i -X PUT https://DNSimple.com/domains/<span class="nv">$DOMAIN_ID</span>/records/<span class="nv">$RECORD_ID</span>.json <span class="se">\\</span>
-    -d <span class="o">{</span><span class="se">\\</span><span class="s2">&quot;record\\&quot;</span>:<span class="o">{</span><span class="se">\\</span><span class="s2">&quot;content\\&quot;</span>:<span class="se">\\</span><span class="s2">&quot;$IP\\&quot;</span><span class="o">}}</span> -s &gt; /dev/null
+    -d <span class="o">{</span><span class="se">\\</span><span class="s2">&quot;record\\&quot;</span>:<span class="o">{</span><span class="se">\\</span><span class="s2">&quot;content\\&quot;</span>:<span class="se">\\</span><span class="s2">&quot;</span><span class="nv">$IP</span><span class="s2">\\&quot;</span><span class="o">}}</span> -s &gt; /dev/null
 
-<span class="nb">echo</span> <span class="s2">&quot;Set record&quot;</span></code></pre></div>
+<span class="nb">echo</span> <span class="s2">&quot;Set record&quot;</span>
+</pre></div>
+</p>
 
 <h2 id="update-hourly">Update hourly</h2>
-<p>I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it’s good to be ready for it when it does. I do this update by running the <code>dnsimple.sh</code> script every hour via a cron task. These are set in my <code>/etc/crontab</code> file.</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># m h  dom mon dow   command</span>
-@hourly /root/bin/setDNSimple.sh &gt; /dev/null 2&gt;<span class="p">&amp;</span>1</code></pre></div>
+<p>I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it&rsquo;s good to be ready for it when it does. I do this update by running the <code>dnsimple.sh</code> script every hour via a cron task. These are set in my <code>/etc/crontab</code> file.</p>
+
+<p><div class="highlight"><pre><span class="c"># m h  dom mon dow   command</span>
+@hourly /root/bin/setDNSimple.sh &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
+</pre></div>
+</p>
 
 <h2 id="finished">Finished</h2>
+
 <p>Thats it! Its all setup. Every hour my external IP will have a functioning DNS record for others to point to. SSHing into my server is as simple as <code>ssh subdomain.mydoamin.com</code>. For added security move your SSH port to a different number. Security by obscurity, but better than nothing.</p>
 
 
@@ -145,10 +158,8 @@ curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'jjasonclark'; // required: replace example with your forum shortname
+    var disqus_shortname = 'jjasonclark';
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
