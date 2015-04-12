@@ -3,7 +3,7 @@
     <title>{{ .Site.Title }}</title>
     <description>{{ .Site.Params.description }}</description>
     <link>{{ .Site.BaseUrl }}</link>
-    <atom:link href="{{ .Site.BaseUrl }}feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="{{ .Site.BaseUrl }}index.xml" rel="self" type="application/rss+xml" />
     <pubDate>{{ .Site.LastChange.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
     <lastBuildDate>{{ .Site.LastChange.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
     {{ range first 10 .Data.Pages }}
