@@ -5,7 +5,7 @@
     <description>Stuff I have time to write about
 </description>
     <link>http://jjasonclark.com/</link>
-    <atom:link href="http://jjasonclark.com/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://jjasonclark.com/index.xml" rel="self" type="application/rss+xml" />
     <pubDate>Sat, 13 Dec 2014 00:00:00 &#43;0000</pubDate>
     <lastBuildDate>Sat, 13 Dec 2014 00:00:00 &#43;0000</lastBuildDate>
     
