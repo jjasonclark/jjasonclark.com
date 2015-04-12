@@ -5,7 +5,7 @@ categories:
   - bitcoin
   - development
 tags:
-  - bitcoing
+  - bitcoin
   - development
 summary: I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Wish me luck finding a job in the Bitcoin world.
 title: Will work for Bitcoin
