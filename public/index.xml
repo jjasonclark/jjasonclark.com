@@ -6,8 +6,62 @@
 </description>
     <link>http://jjasonclark.com/</link>
     <atom:link href="http://jjasonclark.com/index.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 13 Dec 2014 00:00:00 &#43;0000</pubDate>
-    <lastBuildDate>Sat, 13 Dec 2014 00:00:00 &#43;0000</lastBuildDate>
+    <pubDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</pubDate>
+    <lastBuildDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</lastBuildDate>
+    
+      <item>
+        <title>Go Challenge 2 Review Resonse</title>
+        <description>&lt;p&gt;I have been learning the Go programming language recently. And in order to help that I joined in on the &lt;a href=&#34;http://golang-challenge.com/&#34;&gt;Go Challenge&lt;/a&gt;. At this point the 3rd challenge is available and 2nd is under review.&lt;/p&gt;
+
+&lt;p&gt;The challenge author has &lt;a href=&#34;http://blog.nella.org/golang-challenge-2-comments/&#34;&gt;release some overview thoughts&lt;/a&gt; about the submissions. In it he talks about the challenge in general and some specifics about the solution’s code. He also requests for permission to harshly critique someone’s code. I requested and got the &lt;a href=&#34;http://blog.nella.org/doing-it-the-hard-way/&#34;&gt;extra critique&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Summary of &lt;a href=&#34;http://blog.nella.org/golang-challenge-2-comments/&#34;&gt;general review&lt;/a&gt; comments:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Solve partial encrypted box size read requests&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Solve partial encrypted box size packets from the network&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Set network timeout to support timeouts&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Limit message sizes&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Overall I really think this is a difference between what the author thought he wrote for the challenge and what the participants read. Although, based on challenge #3 and what is being talked about in chat, I also think there is a bit of a confusion about the challenge overall. I think some participants in the challenge, me included, assume this is a teacher creating a lesson for us all to learn from. Trying their best to come up with a realistic looking problem for us. Instead I think the runners of the challenge think of this more like a real world work assignment. Of course for a work assignment you would always question every aspect of the assignment. It is part of the checks a business needs to make sure its doing the right thing at the right time. Although this is not the case for a teacher. What you are doing is fixed. The teacher isn’t changing their lesson plans. Although the “how” is up for interpretation. (And normally grading) The “how” had a lot of discussion on the chat server for most of the 2 week challenge.&lt;/p&gt;
+
+&lt;p&gt;I’ll go out on a limb here and bet that all of the participants in the teacher camp assumed we were sending only one message. I personally saw several conversations about only sending a single message. So I would guess there are also some in the work assignment camp that also thought we were only sending a single message.&lt;/p&gt;
+
+&lt;p&gt;With that in mind, a lot of his comments do not really apply any longer. If you are sending only one message over the unreliable network then getting an error in transmission is fatal. In almost every case there is no recovering from errors because the socket has already closed. Can’t write nonce to network; fail. Can’t read nonce; fail. Can’t encrypt message; fail. Can’t decrypt message; fail. Read partial message; fail. Wrote partial message; fail. Since the errors only happen on specific sides of the exchange the error messages also become clear. To make this more clear, perhaps the SecureReader and SecureWriter structs we created should have cached the last error.&lt;/p&gt;
+
+&lt;p&gt;In the case of a single message only his comments about sending the size are still valid. Sending the size would have allowed for one extra error condition; knowing when a partial, but decryptable message, is received. In the case of a partial message in the middle of a box the error would instead been failure to decrypt.&lt;/p&gt;
+
+&lt;p&gt;Summary of &lt;a href=&#34;http://blog.nella.org/doing-it-the-hard-way/&#34;&gt;personal review&lt;/a&gt; comments:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nonce used more than once&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Use of clever solution for sending nonce (&lt;code&gt;TeeReader&lt;/code&gt;)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Confusion over errors&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MultiWriter&lt;/code&gt; usage&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Use of &lt;code&gt;io.Copy&lt;/code&gt; for echoing&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I think most of his comments are from the miscommunications from the challenge for those in the teacher camp versus the work assignment camp. First he takes issue with saving the nonce, but it makes since in a stream based encryptor or decryptor. The full stream of the message might come from several Read or Write calls, and thus you need to save the nonce for encrypting or decrypting as you go. Even if the challenge was to make a multi-message system, each message would need to save it’s nonce while its still communicating that single message.&lt;/p&gt;
+
+&lt;p&gt;Second issue is with a clever solution for sending the nonce and the use of &lt;code&gt;MultiWriter&lt;/code&gt;. &lt;strong&gt;I definitely should have added more documentation for this part of the solution.&lt;/strong&gt; And should remember to do so when using the pattern elsewhere. I think this is because its using the side effects just as much as the main code path.  To two pieces of code at issue are reading the 24 byte nonce from random while also sending to the remote connection. And the reading of a server connection and echoing it back to the client while also echoing to the console. Both of these are handled in a way that is familiar to Unix command line or Perl script writers. In both cases I’m using &lt;code&gt;TeeReader&lt;/code&gt; and &lt;code&gt;MultiWriter&lt;/code&gt; to work like the &lt;code&gt;tee&lt;/code&gt; command. Just like in a long command line that is piping many commands in to the next, the &lt;code&gt;tee&lt;/code&gt; command is used to write a piece of it to a file without breaking up the chain. Same goes for how a nonce is used to encrypt a message. The long piped command is reading from the user’s input and encrypting it with a random nonce and writing it out to the network. Along the way the nonce is saved to a file. That file just happens to be the output writer for the network so the receiver can decrypt the message. The same principle is at work when server is echoing it’s input. The long chain of commands is to receive a message from the client, decrypt it, re-encrypt it, and send back to client. Along the way the decrypted text is printed to the console by teeing onto standard out.&lt;/p&gt;
+
+&lt;p&gt;He also says there could be an error with reading from random for the nonce and saving it. I already address saving the nonce. The failure to read from random in a single message scenario is fatal. It is displayed to the user as a failure to read the nonce only on the client side.&lt;/p&gt;
+
+&lt;p&gt;Lastly, he is questionable about the use of &lt;code&gt;io.Copy&lt;/code&gt;. For a single message over the network this method should be acceptable. The reason is because library will read until &lt;code&gt;EOF&lt;/code&gt;, or because this is a network connect, a timeout. Performing as many Reads or Writes as needed in a loop. And because we saved the nonce we support stream based called like this. Wrap the input in a SecureReader, the output in a SecureWriter and combine with a &lt;code&gt;MultiWriter&lt;/code&gt; sending to console and &lt;code&gt;io.Copy&lt;/code&gt; does the rest.&lt;/p&gt;
+
+&lt;p&gt;My full submission is at &lt;a href=&#34;https://github.com/golangchallenge/GCSolutions/tree/master/april15/normal/jason-clark&#34;&gt;https://github.com/golangchallenge/GCSolutions/tree/master/april15/normal/jason-clark&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</pubDate>
+        <link>http://jjasonclark.com/go_challenge_2_review_response</link>
+        <guid isPermaLink="true">http://jjasonclark.com/go_challenge_2_review_response</guid>
+        <category>golang</category>
+        <category>development</category>
+        
+        <category>golang</category>
+<category>development</category>
+
+      </item>
     
       <item>
         <title>Waiting for Ctrl&#43;C in Golang</title>
@@ -811,35 +865,6 @@ function sublime()
 <category>mac</category>
 <category>ruby</category>
 <category>development</category>
-
-      </item>
-    
-      <item>
-        <title>Searching a Git repository using</title>
-        <description>
-
-&lt;p&gt;I frequently need to search source code repositories. I normally cannot get through a workday without doing it at least once. Git makes this super simple with it&amp;rsquo;s &lt;code&gt;grep&lt;/code&gt; command. Only issue I have with it is the output. You get the filename and the line with the matched string. Good for searches with lots of results, but not so useful for things you want to see with lots of context.&lt;/p&gt;
-
-&lt;p&gt;A common trick is to search for something with very low number of results and then load the files into Vim to get context. Something like the ID of an HTML element or the name of a method. You can even modify the output of the search to only print the filenames with the &lt;code&gt;-i&lt;/code&gt; argument to make loading into Vim easier. Although there is an even easier way. Use 2 must have plug-ins for Vim; &lt;a href=&#34;https://github.com/tpope/vim-fugitive&#34;&gt;Fugitive&lt;/a&gt; and &lt;a href=&#34;https://github.com/tpope/vim-unimpaired&#34;&gt;Unimpaired&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;how-to-use-the-plug-ins&#34;&gt;How to use the plug-ins&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/tpope/vim-fugitive&#34;&gt;Fugitive&lt;/a&gt; provides the &lt;code&gt;:Ggrep&lt;/code&gt; command. It works just like the normal Git &lt;code&gt;grep&lt;/code&gt; command. The key difference is that it loads the results into the quickfix list. This is where the &lt;a href=&#34;https://github.com/tpope/vim-unimpaired&#34;&gt;Unimpaired&lt;/a&gt; plug-in comes into play. It provides keybindings for navigating the quickfix listings. &lt;code&gt;]q&lt;/code&gt; advances in the list and &lt;code&gt;[q&lt;/code&gt; goes back to the previous item.&lt;/p&gt;
-
-&lt;p&gt;If you need to jump around or see the whole output use the &lt;code&gt;:copen&lt;/code&gt; command. From this window you can use the &lt;code&gt;j&lt;/code&gt; and &lt;code&gt;k&lt;/code&gt; keys to move around the list and &lt;code&gt;Ctrl+w enter&lt;/code&gt; key sequence to open the file under the cursor.&lt;/p&gt;
-
-&lt;p&gt;You can use all the normal arguments that the git-grep command takes. The ones I use the most are fixed strings with &lt;code&gt;-F&lt;/code&gt; and extended regex with &lt;code&gt;-E&lt;/code&gt;.  These plug-ins have numerous other features. I highly encourage you to read the &lt;a href=&#34;https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt&#34;&gt;man page for Fugitive&lt;/a&gt; and the &lt;a href=&#34;https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt&#34;&gt;man page for Unimpaired&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 26 Nov 2012 00:00:00 &#43;0000</pubDate>
-        <link>http://jjasonclark.com/searching_git_with_vim</link>
-        <guid isPermaLink="true">http://jjasonclark.com/searching_git_with_vim</guid>
-        <category>vim</category>
-        <category>git</category>
-        <category>tips</category>
-        
-        <category>vim</category>
-<category>git</category>
-<category>plug-ins</category>
 
       </item>
     
