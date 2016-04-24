@@ -1,0 +1,35 @@
+baseurl = "http://jjasonclark.com/"
+languagecode = "en-us"
+title = "JJasonClark.com"
+publishdir = "public"
+layoutdir = "layouts"
+timezone = "America/Vancouver"
+encoding = "utf-8"
+pygmentsStyle = "monokai"
+pygmentsuseclasses = true
+DisqusShortname = "jjasonclark"
+
+[params]
+email = "jason@jjasonclark.com"
+description = "Stuff I have time to write about\n"
+twitter_username = "jjasonclark"
+github_username =  "jjasonclark"
+google_analytics_code = "UA-12083278-1"
+disqus_shortname = "jjasonclark"
+bitcoin = "14622f9QThq7ieB1jJ3rHy9Xx4jK8UN7DV"
+showAds = true
+
+[taxonomies]
+category = ""
+tag = ""
+
+[author]
+name = "Jason Clark"
+gplus = "https://plus.google.com/117263003751658777941"
+email = "jason@jjasonclark.com"
+
+[blackfriday]
+angledQuotes = false
+fractions = false
+plainIdAnchors = true
+extensions = ["hardLineBreak"]

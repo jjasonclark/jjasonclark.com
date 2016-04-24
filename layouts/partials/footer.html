@@ -1,0 +1,35 @@
+<footer class="site-footer">
+  <div class="wrapper">
+    <a class="footer-donate" href="http://jjasonclark.tip.me"><img alt="Tip Me With ChangeTip" src="https://cdn.changetip.com/img/logos/tipme_share.png?1"/></a>
+    <h2 class="footer-heading">{{ .Site.Title }}</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>{{ .Site.Title }}</li>
+          <li><a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          {{ if isset .Site.Params "github_username" }}
+          <li>
+            {{ partial "github.html" . }}
+          </li>
+          {{ end }}
+
+          {{ if isset .Site.Params "twitter_username" }}
+          <li>
+            {{ partial "twitter.html" . }}
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p>Please donate Bitcoin to {{ .Site.Params.bitcoin }}</p>
+      </div>
+    </div>
+  </div>
+</footer>
