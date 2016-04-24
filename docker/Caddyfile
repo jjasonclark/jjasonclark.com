@@ -1,4 +1,4 @@
-jjasonclark.com:80 {
+jjasonclark.com {
   tls jason@jjasonclark.com
   ext .html
   log stdout
