@@ -4,8 +4,8 @@
     <title>JJasonClark.com</title>
     <description>Stuff I have time to write about
 </description>
-    <link>http://jjasonclark.com/</link>
-    <atom:link href="http://jjasonclark.com/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://jjasonclark.com/</link>
+    <atom:link href="https://jjasonclark.com/index.xml" rel="self" type="application/rss+xml" />
     <pubDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</pubDate>
     <lastBuildDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</lastBuildDate>
     <item>
@@ -52,8 +52,8 @@
 &lt;p&gt;My full submission is at &lt;a href=&#34;https://github.com/golangchallenge/GCSolutions/tree/master/april15/normal/jason-clark&#34;&gt;https://github.com/golangchallenge/GCSolutions/tree/master/april15/normal/jason-clark&lt;/a&gt;&lt;/p&gt;
 </description>
       <pubDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/go_challenge_2_review_response</link>
-      <guid isPermaLink="true">http://jjasonclark.com/go_challenge_2_review_response</guid>
+      <link>https://jjasonclark.com/go_challenge_2_review_response</link>
+      <guid isPermaLink="true">https://jjasonclark.com/go_challenge_2_review_response</guid>
       <category>golang</category>
       <category>development</category>
       
@@ -128,8 +128,8 @@
 &lt;/p&gt;
 </description>
       <pubDate>Sat, 13 Dec 2014 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/waiting_for_ctrl_c_in_golang</link>
-      <guid isPermaLink="true">http://jjasonclark.com/waiting_for_ctrl_c_in_golang</guid>
+      <link>https://jjasonclark.com/waiting_for_ctrl_c_in_golang</link>
+      <guid isPermaLink="true">https://jjasonclark.com/waiting_for_ctrl_c_in_golang</guid>
       <category>golang</category>
       <category>development</category>
       <category>commandline</category>
@@ -147,8 +147,8 @@
 &lt;p&gt;Wish me luck finding a job in the Bitcoin world.&lt;/p&gt;
 </description>
       <pubDate>Fri, 07 Nov 2014 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/will_work_for_bitcoin</link>
-      <guid isPermaLink="true">http://jjasonclark.com/will_work_for_bitcoin</guid>
+      <link>https://jjasonclark.com/will_work_for_bitcoin</link>
+      <guid isPermaLink="true">https://jjasonclark.com/will_work_for_bitcoin</guid>
       <category>bitcoin</category>
       <category>development</category>
       
@@ -171,8 +171,8 @@
 &lt;p&gt;For me, when I&amp;rsquo;m scanning through code, these visual indention changes really help me understand the code.&lt;/p&gt;
 </description>
       <pubDate>Mon, 13 Oct 2014 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/consider_using_the_tap_method_for_code_organization</link>
-      <guid isPermaLink="true">http://jjasonclark.com/consider_using_the_tap_method_for_code_organization</guid>
+      <link>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization</link>
+      <guid isPermaLink="true">https://jjasonclark.com/consider_using_the_tap_method_for_code_organization</guid>
       <category>ruby</category>
       <category>development</category>
       
@@ -186,13 +186,13 @@
 
 &lt;p&gt;I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: &lt;a href=&#34;http://en.wikipedia.org/wiki/Bonjour_(software)&#34;&gt;Bonjour&lt;/a&gt;. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.&lt;/p&gt;
 
-&lt;h2 id=&#34;mac-setup:d6ae1515a714fafd4a04417d98523b8d&#34;&gt;Mac Setup&lt;/h2&gt;
+&lt;h2 id=&#34;mac-setup&#34;&gt;Mac Setup&lt;/h2&gt;
 
 &lt;p&gt;In the Safari preference panel select the advanced tab. Check the setting you want.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://jjasonclark.com/assets/safari_preference.png&#34; alt=&#34;Safari preference panel&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/safari_preference.png&#34; alt=&#34;Safari preference panel&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;linux-setup:d6ae1515a714fafd4a04417d98523b8d&#34;&gt;Linux Setup&lt;/h2&gt;
+&lt;h2 id=&#34;linux-setup&#34;&gt;Linux Setup&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://avahi.org/&#34;&gt;Avahi&lt;/a&gt; is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don&amp;rsquo;t have to reboot your server.&lt;/p&gt;
 
@@ -218,13 +218,13 @@
 &lt;li&gt;You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run &lt;code&gt;sudo /etc/init.d/avahi-daemon restart&lt;/code&gt;.&lt;br /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;getting-fancy:d6ae1515a714fafd4a04417d98523b8d&#34;&gt;Getting fancy&lt;/h2&gt;
+&lt;h2 id=&#34;getting-fancy&#34;&gt;Getting fancy&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://the.taoofmac.com/space/HOWTO/Vagrant&#34;&gt;Toa of Mac&lt;/a&gt; has some great tips on how to configure a setup with 2 NICs and only broadcast on the private network.&lt;/p&gt;
 </description>
       <pubDate>Wed, 27 Nov 2013 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/avahi_helps_hosts_connect_to_vms</link>
-      <guid isPermaLink="true">http://jjasonclark.com/avahi_helps_hosts_connect_to_vms</guid>
+      <link>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms</link>
+      <guid isPermaLink="true">https://jjasonclark.com/avahi_helps_hosts_connect_to_vms</guid>
       <category>vm</category>
       <category>linux</category>
       <category>development</category>
@@ -261,8 +261,8 @@
 &lt;p&gt;Next I needed a starter configuration. My childhood friend is also an Emacs user and posted &lt;a href=&#34;https://github.com/zev/emacs.d&#34;&gt;his config on Github&lt;/a&gt;. So naturally I forked it. This was a while ago when I tried Emacs once before, so all I had to do was update it. There was some specific settings for his computer, so I have removed them from my copy.  Check it out at &lt;a href=&#34;https://github.com/jjasonclark/emacs.d&#34;&gt;jjasonclark/emacs.d&lt;/a&gt;&lt;/p&gt;
 </description>
       <pubDate>Thu, 05 Sep 2013 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/trying_out_emacs_again</link>
-      <guid isPermaLink="true">http://jjasonclark.com/trying_out_emacs_again</guid>
+      <link>https://jjasonclark.com/trying_out_emacs_again</link>
+      <guid isPermaLink="true">https://jjasonclark.com/trying_out_emacs_again</guid>
       <category>programming</category>
       
       <category>emacs</category>
@@ -338,8 +338,8 @@
 &lt;/p&gt;
 </description>
       <pubDate>Thu, 29 Aug 2013 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/sinatra_settings_for_nested_apps</link>
-      <guid isPermaLink="true">http://jjasonclark.com/sinatra_settings_for_nested_apps</guid>
+      <link>https://jjasonclark.com/sinatra_settings_for_nested_apps</link>
+      <guid isPermaLink="true">https://jjasonclark.com/sinatra_settings_for_nested_apps</guid>
       <category>programming</category>
       
       <category>ruby</category>
@@ -358,11 +358,11 @@
 
 &lt;p&gt;Converting to this new format is a fairly easy process to do. For the most part it just requires some renamed attributes or nesting inside of a block. These changes will remove any warning messages Vagrant is producing from your old &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;upgrading-your-vagrant-binaries&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
+&lt;h2 id=&#34;upgrading-your-vagrant-binaries:17a13fcab3d08415f16fe7bc6c2b35d3&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
 
 &lt;p&gt;First things first, you will need to uninstall the old version of Vagrant. Most people installed Vagrant via the &lt;a href=&#34;http://rubygems.org/gems/vagrant&#34; title=&#34;Vagrant gem on RubyGems&#34;&gt;gem&lt;/a&gt;. As of this writing this will give you version 1.0.7. That version is before the new &lt;code&gt;Vagrantfile&lt;/code&gt; format was created. You will need to download the binary version of from their &lt;a href=&#34;http://downloads.vagrantup.com/&#34; title=&#34;Vagrant downloads&#34;&gt;website&lt;/a&gt;, currently at version 1.2.2. As a person who works with many different versions of Ruby I highly recommend you don&amp;rsquo;t go back to the gem version of Vagrant even if they update it to the latest version. The reason is that you will have to install the gem several times for each version of Ruby or remember to switch back to that version of Ruby in order to use the &lt;code&gt;vagrant&lt;/code&gt; command. The binary install makes this so much easier because you don&amp;rsquo;t have to do any of those workarounds.&lt;/p&gt;
 
-&lt;h2 id=&#34;upgrade-your-vagrantfiles&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
+&lt;h2 id=&#34;upgrade-your-vagrantfiles:17a13fcab3d08415f16fe7bc6c2b35d3&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
 
 &lt;p&gt;Once you have the latest version install open up your &lt;code&gt;Vagrantfile&lt;/code&gt; and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.&lt;/p&gt;
 
@@ -384,8 +384,8 @@
 &lt;p&gt;Don&amp;rsquo;t forget that there are a lot of new options. Check out the &lt;a href=&#34;http://docs.vagrantup.com/v2/&#34; title=&#34;Vagrant documentation&#34;&gt;Vagrant documentation&lt;/a&gt; for more details on the items listed here and all the new options.&lt;/p&gt;
 </description>
       <pubDate>Thu, 09 May 2013 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</link>
-      <guid isPermaLink="true">http://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</guid>
+      <link>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</link>
+      <guid isPermaLink="true">https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</guid>
       <category>programming</category>
       <category>devops</category>
       
@@ -406,7 +406,7 @@
 
 &lt;p&gt;Besides changing gem names, to switch gems you will need to add the new &lt;code&gt;_iv&lt;/code&gt; and &lt;code&gt;_salt&lt;/code&gt; database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.&lt;/p&gt;
 
-&lt;h2 id=&#34;re-encrypting-old-values:2b866ac6e5c2d418ecc1818bb238eda9&#34;&gt;Re-encrypting old values&lt;/h2&gt;
+&lt;h2 id=&#34;re-encrypting-old-values&#34;&gt;Re-encrypting old values&lt;/h2&gt;
 
 &lt;p&gt;At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem&amp;rsquo;s decryption code. From the &lt;a href=&#34;https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190&#34; title=&#34;decryption function in attr_encrypted&#34;&gt;Github source&lt;/a&gt;&lt;/p&gt;
 
@@ -470,7 +470,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 
-&lt;h2 id=&#34;finial-migration:2b866ac6e5c2d418ecc1818bb238eda9&#34;&gt;Finial migration&lt;/h2&gt;
+&lt;h2 id=&#34;finial-migration&#34;&gt;Finial migration&lt;/h2&gt;
 
 &lt;p&gt;Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.&lt;/p&gt;
 
@@ -602,8 +602,8 @@
 &lt;/p&gt;
 </description>
       <pubDate>Wed, 06 Feb 2013 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</link>
-      <guid isPermaLink="true">http://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</guid>
+      <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</link>
+      <guid isPermaLink="true">https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</guid>
       <category>ruby</category>
       <category>programming</category>
       
@@ -635,7 +635,7 @@
 
 &lt;p&gt;Once these have installed launch &lt;code&gt;ClamXav&lt;/code&gt; in order to turn on virus definitions file downloads. Select a time that works for you.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://jjasonclark.com/assets/clamxav_preferencest_2013_01_21.png&#34; alt=&#34;ClamXav preferences&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/clamxav_preferencest_2013_01_21.png&#34; alt=&#34;ClamXav preferences&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;install-from-web&#34;&gt;Install from web&lt;/h2&gt;
 
@@ -662,7 +662,7 @@
 &lt;p&gt;####Download the install files&lt;/p&gt;
 
 &lt;p&gt;Download the &lt;code&gt;DMG&lt;/code&gt; file for the 64-bit version. &lt;a href=&#34;http://dev.mysql.com/downloads/mysql&#34;&gt;MySql download page&lt;/a&gt;&lt;br /&gt;
-&lt;img src=&#34;http://jjasonclark.com/assets/mysql_dmg.png&#34; alt=&#34;MySql DMG file&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://jjasonclark.com/assets/mysql_dmg.png&#34; alt=&#34;MySql DMG file&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;####Install main package file&lt;/p&gt;
 
@@ -671,7 +671,7 @@
 &lt;p&gt;####Install perference panel settings app&lt;/p&gt;
 
 &lt;p&gt;Drag and drop the preference panel icon onto your system preference window. You should get a dialog like the one below. Install for everyone.&lt;br /&gt;
-&lt;img src=&#34;http://jjasonclark.com/assets/mysql_prefpane_install.png&#34; alt=&#34;Prefence panel install dialog&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://jjasonclark.com/assets/mysql_prefpane_install.png&#34; alt=&#34;Prefence panel install dialog&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;####Install statup items app&lt;/p&gt;
 
@@ -680,7 +680,7 @@
 &lt;p&gt;####Start the server&lt;/p&gt;
 
 &lt;p&gt;Launch the install MySql perference panel. Once open press the start button.&lt;br /&gt;
-&lt;img src=&#34;http://jjasonclark.com/assets/mysql_preferences.png&#34; alt=&#34;blah&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://jjasonclark.com/assets/mysql_preferences.png&#34; alt=&#34;blah&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;####Complete setup&lt;/p&gt;
 
@@ -711,7 +711,7 @@ sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
 
 &lt;p&gt;Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use &lt;em&gt;XCode&lt;/em&gt; to install these tools. First, launch &lt;em&gt;XCode&lt;/em&gt; and open the preferences panel. Click on the &amp;ldquo;Downloads&amp;rdquo; tab and press the install button for the &amp;ldquo;Command Line Tools&amp;rdquo;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://jjasonclark.com/assets/xcode_commandline.png&#34; alt=&#34;Download preferences&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/xcode_commandline.png&#34; alt=&#34;Download preferences&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;homebrew-package-manager&#34;&gt;Homebrew package manager&lt;/h2&gt;
 
@@ -839,8 +839,8 @@ function sublime()
 &lt;/ul&gt;
 </description>
       <pubDate>Sun, 20 Jan 2013 00:00:00 &#43;0000</pubDate>
-      <link>http://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</link>
-      <guid isPermaLink="true">http://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</guid>
+      <link>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</link>
+      <guid isPermaLink="true">https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</guid>
       <category>programming</category>
       <category>setup</category>
       

@@ -10,7 +10,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor">
+    <link rel="canonical" href="https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,7 +77,7 @@
 
 <p>Besides changing gem names, to switch gems you will need to add the new <code>_iv</code> and <code>_salt</code> database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.</p>
 
-<h2 id="re-encrypting-old-values:2b866ac6e5c2d418ecc1818bb238eda9">Re-encrypting old values</h2>
+<h2 id="re-encrypting-old-values">Re-encrypting old values</h2>
 
 <p>At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem&rsquo;s decryption code. From the <a href="https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190" title="decryption function in attr_encrypted">Github source</a></p>
 
@@ -141,7 +141,7 @@
 </code></pre></div>
 </p>
 
-<h2 id="finial-migration:2b866ac6e5c2d418ecc1818bb238eda9">Finial migration</h2>
+<h2 id="finial-migration">Finial migration</h2>
 
 <p>Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.</p>
 

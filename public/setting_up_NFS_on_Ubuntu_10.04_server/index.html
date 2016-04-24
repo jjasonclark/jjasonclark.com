@@ -10,7 +10,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/">
+    <link rel="canonical" href="https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,7 +77,7 @@
 
 <p>The following assumes you have already setup Ubuntu and can access the network. Do all the following as the root user.</p>
 
-<h2 id="install-the-nfs-server-package:65b8faab443207af7e89c773c524b30f">Install the NFS server package</h2>
+<h2 id="install-the-nfs-server-package">Install the NFS server package</h2>
 
 <p>Run the following commands to install NFS server and rpcbind</p>
 
@@ -85,7 +85,7 @@
 apt-get install rpcbind
 </code></pre>
 
-<h2 id="setup-iptables-to-restore-rules-at-startup-and-save-rules-at-shutdown:65b8faab443207af7e89c773c524b30f">Setup IPTables to restore rules at startup and save rules at shutdown</h2>
+<h2 id="setup-iptables-to-restore-rules-at-startup-and-save-rules-at-shutdown">Setup IPTables to restore rules at startup and save rules at shutdown</h2>
 
 <p>Create the following two files</p>
 
@@ -116,7 +116,7 @@ chmod +x /etc/network/if-post-down.d/iptablessave
 /etc/network/if-pre-up.d/iptablesload
 </code></pre>
 
-<h2 id="add-iptable-rules-to-allow-nfs-and-rpcbind-traffic:65b8faab443207af7e89c773c524b30f">Add IPTable rules to allow NFS and RPCBind traffic</h2>
+<h2 id="add-iptable-rules-to-allow-nfs-and-rpcbind-traffic">Add IPTable rules to allow NFS and RPCBind traffic</h2>
 
 <p>Run the following commands</p>
 
@@ -134,7 +134,7 @@ iptables -A INPUT -m state --state NEW -p udp --dport 662 -j ACCEPT
 /etc/network/if-post-down.d/iptablessave
 </code></pre>
 
-<h2 id="setup-ports-for-nfs:65b8faab443207af7e89c773c524b30f">Setup ports for NFS</h2>
+<h2 id="setup-ports-for-nfs">Setup ports for NFS</h2>
 
 <p>Edit the file <code>/etc/default/nfs-kernel-server</code> and add or uncomment the following lines</p>
 
@@ -146,11 +146,11 @@ STATD_PORT=662
 STATD_OUTGOING_PORT=2020
 </code></pre>
 
-<h2 id="add-your-domain-for-idmap-service:65b8faab443207af7e89c773c524b30f">Add your domain for IdMap service</h2>
+<h2 id="add-your-domain-for-idmap-service">Add your domain for IdMap service</h2>
 
 <p>Edit the file <code>/etc/idmapd.conf</code> and change the value for <code>Domain</code> to be your domain.</p>
 
-<h2 id="create-first-export:65b8faab443207af7e89c773c524b30f">Create first export</h2>
+<h2 id="create-first-export">Create first export</h2>
 
 <p>Create your first exported directory</p>
 
@@ -164,7 +164,7 @@ STATD_OUTGOING_PORT=2020
 
 <p>Update NFS exported files by running <code>exportfs -a</code></p>
 
-<h2 id="restart-nfs-and-networking:65b8faab443207af7e89c773c524b30f">Restart NFS and networking</h2>
+<h2 id="restart-nfs-and-networking">Restart NFS and networking</h2>
 
 <p>Restart via the following commands</p>
 
@@ -172,7 +172,7 @@ STATD_OUTGOING_PORT=2020
 /etc/init.d/networking restart
 </code></pre>
 
-<h2 id="verify-it-all-works:65b8faab443207af7e89c773c524b30f">Verify it all works</h2>
+<h2 id="verify-it-all-works">Verify it all works</h2>
 
 <p>Run <code>rpcinfo -p</code> and verify that the following services are listed</p>
 
@@ -182,7 +182,7 @@ nfs
 portmapper
 </code></pre>
 
-<h2 id="further-reading:65b8faab443207af7e89c773c524b30f">Further reading</h2>
+<h2 id="further-reading">Further reading</h2>
 
 <p>These are the help pages I read to figure most of this out. They are from the Ubuntu community documentation and are definitely worth reading.</p>
 

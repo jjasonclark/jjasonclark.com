@@ -1,4 +1,4 @@
-baseurl = "http://jjasonclark.com/"
+baseurl = "https://jjasonclark.com/"
 languagecode = "en-us"
 title = "JJasonClark.com"
 publishdir = "public"

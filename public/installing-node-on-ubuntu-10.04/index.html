@@ -10,7 +10,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://jjasonclark.com/installing-node-on-ubuntu-10.04/">
+    <link rel="canonical" href="https://jjasonclark.com/installing-node-on-ubuntu-10.04/">
 
     <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,14 +77,14 @@
 
 <p>Installing <a href="http://nodejs.org" title="Node.js">Node.js</a> from source is done in 3 basic steps. Step 1 is setting up your system to configure and build <a href="http://nodejs.org" title="Node.js">Node.js</a>. Step 2 is getting a copy of the <a href="http://nodejs.org" title="Node.js">Node.js</a> source. And the last step is building the correct version of <a href="http://nodejs.org" title="Node.js">Node.js</a>. Some of the commands need root permissions to execute. For those commands I use the <code>sudo</code> filter command to elevate the current user to root permissions.</p>
 
-<h2 id="step-1-setting-up-node-js-dependencies">Step 1: Setting up Node.js dependencies</h2>
+<h2 id="step-1-setting-up-node-js-dependencies:c075209182007033301ade4b47043b8f">Step 1: Setting up Node.js dependencies</h2>
 
 <p>Run the following command to install the dependencies. These dependencies are needed to build an configure <a href="http://nodejs.org" title="Node.js">Node.js</a> without any errors. On a fresh install of Ubuntu 10.04 you will need all of the components. If you happen to already have some of these items install this command will skip it without error.</p>
 
 <pre><code>sudo apt-get install -y g++ curl libssl-dev apache2-utils git-core pkg-config
 </code></pre>
 
-<h2 id="step-2-creating-a-local-copy-of-the-node-js-source">Step 2: Creating a local copy of the Node.js source</h2>
+<h2 id="step-2-creating-a-local-copy-of-the-node-js-source:c075209182007033301ade4b47043b8f">Step 2: Creating a local copy of the Node.js source</h2>
 
 <p>The <a href="http://nodejs.org" title="Node.js">Node.js</a> source is located on <a href="http://github.com" title="Github">Github</a>. Issue the following commands to create a local copy of the full version history. This will include the current production release, as well as, the current development release. If you have a bare system, you might not have created a &ldquo;source&rdquo; directory yet for all of your projects. If you have then you can skip the first 2 commands.</p>
 
@@ -94,7 +94,7 @@ git clone https://github.com/joyent/node.git
 cd node
 </code></pre>
 
-<h2 id="step-3-configuring-and-building-node-js">Step 3: Configuring and building Node.js</h2>
+<h2 id="step-3-configuring-and-building-node-js:c075209182007033301ade4b47043b8f">Step 3: Configuring and building Node.js</h2>
 
 <p>For this step you need to find out what the most resent production release version number is. At the time of writing <a href="http://nodejs.org" title="Node.js">Node.js</a> is on the <code>0.6.17</code> release. The copy of the source includes this version under the tag with a similar name. The following commands will select the production version and then build it. Remember to change the first command to have the version you want. (Don&rsquo;t forget the leading &lsquo;v&rsquo;) After the first command <code>git</code> will issue a message that looks like a warning or a failure. The message about the &ldquo;detached HEAD&rdquo; is ok to ignore. The message is explaining that you have the master pointer pointing to a commit in the middle of the history. This is acceptable because you are not building the latest development version.</p>
 
