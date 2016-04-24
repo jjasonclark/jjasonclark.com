@@ -77,11 +77,11 @@
 
 <p>I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is <a href="http://icanhazip.com/">ICanHazIP.com</a>. I like this one because of the super simple response format. One of these days I&rsquo;ll create my own service, I just need the time to do it. <small>(Unless you want to submit one in the comments. I would love you if you did.)<small></p>
 
-<h2 id="discovering-your-external-ip-address:0bcee03f29e48a5860b8049abda84c31">Discovering your external IP address</h2>
+<h2 id="discovering-your-external-ip-address">Discovering your external IP address</h2>
 
 <p>Simple use curl to make a call to <a href="http://icanhazip.com/">http://ICanHazIP.com</a> and the output is the external IP address of your network. <code>curl http://icanhazip.com</code>. In the script I use the silent option to not show the progress bar.</p>
 
-<h2 id="updating-a-dns-a-record-for-your-home-router:0bcee03f29e48a5860b8049abda84c31">Updating a DNS A record for your home router</h2>
+<h2 id="updating-a-dns-a-record-for-your-home-router">Updating a DNS A record for your home router</h2>
 
 <p>Then I use <a href="http://developer.dnsimple.com/domains/records/" title="Record API reference">DNSimple&rsquo;s record API</a> to update the subdomain&rsquo;s A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.</p>
 
@@ -93,7 +93,7 @@
 </code></pre></div>
 
 
-<h2 id="final-script:0bcee03f29e48a5860b8049abda84c31">Final script</h2>
+<h2 id="final-script">Final script</h2>
 
 <p>This all comes together in the following bash shell script. I call it <code>dnsimple.sh</code>.</p>
 
@@ -119,7 +119,7 @@ curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class
 </code></pre></div>
 
 
-<h2 id="update-hourly:0bcee03f29e48a5860b8049abda84c31">Update hourly</h2>
+<h2 id="update-hourly">Update hourly</h2>
 
 <p>I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it&rsquo;s good to be ready for it when it does. I do this update by running the <code>dnsimple.sh</code> script every hour via a cron task. These are set in my <code>/etc/crontab</code> file.</p>
 
@@ -128,7 +128,7 @@ curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class
 </code></pre></div>
 </p>
 
-<h2 id="finished:0bcee03f29e48a5860b8049abda84c31">Finished</h2>
+<h2 id="finished">Finished</h2>
 
 <p>Thats it! Its all setup. Every hour my external IP will have a functioning DNS record for others to point to. SSHing into my server is as simple as <code>ssh subdomain.mydoamin.com</code>. For added security move your SSH port to a different number. Security by obscurity, but better than nothing.</p>
 

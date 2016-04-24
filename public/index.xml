@@ -358,11 +358,11 @@
 
 &lt;p&gt;Converting to this new format is a fairly easy process to do. For the most part it just requires some renamed attributes or nesting inside of a block. These changes will remove any warning messages Vagrant is producing from your old &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;upgrading-your-vagrant-binaries:17a13fcab3d08415f16fe7bc6c2b35d3&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
+&lt;h2 id=&#34;upgrading-your-vagrant-binaries&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
 
 &lt;p&gt;First things first, you will need to uninstall the old version of Vagrant. Most people installed Vagrant via the &lt;a href=&#34;http://rubygems.org/gems/vagrant&#34; title=&#34;Vagrant gem on RubyGems&#34;&gt;gem&lt;/a&gt;. As of this writing this will give you version 1.0.7. That version is before the new &lt;code&gt;Vagrantfile&lt;/code&gt; format was created. You will need to download the binary version of from their &lt;a href=&#34;http://downloads.vagrantup.com/&#34; title=&#34;Vagrant downloads&#34;&gt;website&lt;/a&gt;, currently at version 1.2.2. As a person who works with many different versions of Ruby I highly recommend you don&amp;rsquo;t go back to the gem version of Vagrant even if they update it to the latest version. The reason is that you will have to install the gem several times for each version of Ruby or remember to switch back to that version of Ruby in order to use the &lt;code&gt;vagrant&lt;/code&gt; command. The binary install makes this so much easier because you don&amp;rsquo;t have to do any of those workarounds.&lt;/p&gt;
 
-&lt;h2 id=&#34;upgrade-your-vagrantfiles:17a13fcab3d08415f16fe7bc6c2b35d3&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
+&lt;h2 id=&#34;upgrade-your-vagrantfiles&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
 
 &lt;p&gt;Once you have the latest version install open up your &lt;code&gt;Vagrantfile&lt;/code&gt; and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.&lt;/p&gt;
 
@@ -620,7 +620,7 @@
 
 &lt;p&gt;I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&amp;rsquo;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.&lt;/p&gt;
 
-&lt;h2 id=&#34;install-from-app-store:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Install from App store&lt;/h2&gt;
+&lt;h2 id=&#34;install-from-app-store&#34;&gt;Install from App store&lt;/h2&gt;
 
 &lt;p&gt;There are a few apps that are managed through the App store. Search for, and install the following apps. Only Xcode is required, the others help in the development process.&lt;/p&gt;
 
@@ -637,7 +637,7 @@
 
 &lt;p&gt;&lt;img src=&#34;http://jjasonclark.com/assets/clamxav_preferencest_2013_01_21.png&#34; alt=&#34;ClamXav preferences&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;install-from-web:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Install from web&lt;/h2&gt;
+&lt;h2 id=&#34;install-from-web&#34;&gt;Install from web&lt;/h2&gt;
 
 &lt;p&gt;The following don&amp;rsquo;t have any handy install scripts. You will have to visit each one&amp;rsquo;s website and download the installer package. All are optional, so you can put these off until later if desired.&lt;/p&gt;
 
@@ -655,7 +655,7 @@
 &lt;li&gt;&lt;a href=&#34;http://www.bittorrent.com/&#34;&gt;Bittorent&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;setup-mysql:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Setup MySql&lt;/h2&gt;
+&lt;h2 id=&#34;setup-mysql&#34;&gt;Setup MySql&lt;/h2&gt;
 
 &lt;p&gt;MySql is the defacto database for development mode. And it is a tad hard to install.&lt;/p&gt;
 
@@ -707,13 +707,13 @@ sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
 
 &lt;p&gt;addPath &amp;ldquo;/usr/local/mysql/bin&amp;rdquo;&lt;/p&gt;
 
-&lt;h2 id=&#34;command-line-compiler-and-build-system:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Command line compiler and build system&lt;/h2&gt;
+&lt;h2 id=&#34;command-line-compiler-and-build-system&#34;&gt;Command line compiler and build system&lt;/h2&gt;
 
 &lt;p&gt;Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use &lt;em&gt;XCode&lt;/em&gt; to install these tools. First, launch &lt;em&gt;XCode&lt;/em&gt; and open the preferences panel. Click on the &amp;ldquo;Downloads&amp;rdquo; tab and press the install button for the &amp;ldquo;Command Line Tools&amp;rdquo;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://jjasonclark.com/assets/xcode_commandline.png&#34; alt=&#34;Download preferences&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;homebrew-package-manager:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Homebrew package manager&lt;/h2&gt;
+&lt;h2 id=&#34;homebrew-package-manager&#34;&gt;Homebrew package manager&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://mxcl.github.com/homebrew/&#34; title=&#34;Homebrew&#34;&gt;Homebrew&lt;/a&gt; is the package manager needed to install all the rest of the software. I find it indispensable. Copy and paste this command into a terminal window.&lt;/p&gt;
 
@@ -747,7 +747,7 @@ brew install wget
 &lt;pre&gt;&lt;code&gt;brew linkapps
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;rvm-for-ruby-version-management:a9b806446722d2c1bafb3abde63528ad&#34;&gt;RVM for Ruby version management&lt;/h2&gt;
+&lt;h2 id=&#34;rvm-for-ruby-version-management&#34;&gt;RVM for Ruby version management&lt;/h2&gt;
 
 &lt;p&gt;This is the first place to go to install ruby virtual machines. The following shell command will download the latest version of &lt;a href=&#34;https://rvm.io/&#34; title=&#34;Ruby Version Manager&#34;&gt;RVM&lt;/a&gt;. Copy and paste this command into a terminal window.&lt;/p&gt;
 
@@ -756,7 +756,7 @@ brew install wget
 
 &lt;p&gt;You will have to add the load call for the &lt;a href=&#34;https://rvm.io/&#34; title=&#34;Ruby Version Manager&#34;&gt;RVM&lt;/a&gt; functions to your shell. If you are going to copy the &lt;code&gt;.profile&lt;/code&gt; file from below then you will have it as the first line.&lt;/p&gt;
 
-&lt;h2 id=&#34;profile-setup:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Profile setup&lt;/h2&gt;
+&lt;h2 id=&#34;profile-setup&#34;&gt;Profile setup&lt;/h2&gt;
 
 &lt;p&gt;Create a &lt;code&gt;.profile&lt;/code&gt;. The following is a good starting point. I highly encourage customizing this file and saving it to move from computer to computer. The following will add the currently installed shell completion files. Along with a prompt to show the current ruby version and git branch.&lt;/p&gt;
 
@@ -825,7 +825,7 @@ function sublime()
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;post-install-steps:a9b806446722d2c1bafb3abde63528ad&#34;&gt;Post install steps&lt;/h2&gt;
+&lt;h2 id=&#34;post-install-steps&#34;&gt;Post install steps&lt;/h2&gt;
 
 &lt;p&gt;After it is all installed there are a few left over steps. Finish them if you like since they are optional.&lt;/p&gt;
 

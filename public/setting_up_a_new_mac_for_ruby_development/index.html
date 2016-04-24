@@ -75,7 +75,7 @@
 
 <p>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&rsquo;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</p>
 
-<h2 id="install-from-app-store:a9b806446722d2c1bafb3abde63528ad">Install from App store</h2>
+<h2 id="install-from-app-store">Install from App store</h2>
 
 <p>There are a few apps that are managed through the App store. Search for, and install the following apps. Only Xcode is required, the others help in the development process.</p>
 
@@ -92,7 +92,7 @@
 
 <p><img src="/assets/clamxav_preferencest_2013_01_21.png" alt="ClamXav preferences" /></p>
 
-<h2 id="install-from-web:a9b806446722d2c1bafb3abde63528ad">Install from web</h2>
+<h2 id="install-from-web">Install from web</h2>
 
 <p>The following don&rsquo;t have any handy install scripts. You will have to visit each one&rsquo;s website and download the installer package. All are optional, so you can put these off until later if desired.</p>
 
@@ -110,7 +110,7 @@
 <li><a href="http://www.bittorrent.com/">Bittorent</a><br /></li>
 </ul>
 
-<h2 id="setup-mysql:a9b806446722d2c1bafb3abde63528ad">Setup MySql</h2>
+<h2 id="setup-mysql">Setup MySql</h2>
 
 <p>MySql is the defacto database for development mode. And it is a tad hard to install.</p>
 
@@ -162,13 +162,13 @@ sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
 
 <p>addPath &ldquo;/usr/local/mysql/bin&rdquo;</p>
 
-<h2 id="command-line-compiler-and-build-system:a9b806446722d2c1bafb3abde63528ad">Command line compiler and build system</h2>
+<h2 id="command-line-compiler-and-build-system">Command line compiler and build system</h2>
 
 <p>Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use <em>XCode</em> to install these tools. First, launch <em>XCode</em> and open the preferences panel. Click on the &ldquo;Downloads&rdquo; tab and press the install button for the &ldquo;Command Line Tools&rdquo;.</p>
 
 <p><img src="/assets/xcode_commandline.png" alt="Download preferences" /></p>
 
-<h2 id="homebrew-package-manager:a9b806446722d2c1bafb3abde63528ad">Homebrew package manager</h2>
+<h2 id="homebrew-package-manager">Homebrew package manager</h2>
 
 <p><a href="http://mxcl.github.com/homebrew/" title="Homebrew">Homebrew</a> is the package manager needed to install all the rest of the software. I find it indispensable. Copy and paste this command into a terminal window.</p>
 
@@ -202,7 +202,7 @@ brew install wget
 <pre><code>brew linkapps
 </code></pre>
 
-<h2 id="rvm-for-ruby-version-management:a9b806446722d2c1bafb3abde63528ad">RVM for Ruby version management</h2>
+<h2 id="rvm-for-ruby-version-management">RVM for Ruby version management</h2>
 
 <p>This is the first place to go to install ruby virtual machines. The following shell command will download the latest version of <a href="https://rvm.io/" title="Ruby Version Manager">RVM</a>. Copy and paste this command into a terminal window.</p>
 
@@ -211,7 +211,7 @@ brew install wget
 
 <p>You will have to add the load call for the <a href="https://rvm.io/" title="Ruby Version Manager">RVM</a> functions to your shell. If you are going to copy the <code>.profile</code> file from below then you will have it as the first line.</p>
 
-<h2 id="profile-setup:a9b806446722d2c1bafb3abde63528ad">Profile setup</h2>
+<h2 id="profile-setup">Profile setup</h2>
 
 <p>Create a <code>.profile</code>. The following is a good starting point. I highly encourage customizing this file and saving it to move from computer to computer. The following will add the currently installed shell completion files. Along with a prompt to show the current ruby version and git branch.</p>
 
@@ -280,7 +280,7 @@ function sublime()
 }
 </code></pre>
 
-<h2 id="post-install-steps:a9b806446722d2c1bafb3abde63528ad">Post install steps</h2>
+<h2 id="post-install-steps">Post install steps</h2>
 
 <p>After it is all installed there are a few left over steps. Finish them if you like since they are optional.</p>
 
