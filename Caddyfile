@@ -1,0 +1,15 @@
+:3000
+log ./log/caddy.log
+ext .html
+errors {
+  404 404.html
+}
+
+root public
+
+rewrite {
+  r ^\/([^/]+)$
+  to /{1}/index.html
+}
+
+tls off
