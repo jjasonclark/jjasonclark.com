@@ -81,7 +81,8 @@
 <li>Solve partial encrypted box size read requests<br /></li>
 <li>Solve partial encrypted box size packets from the network<br /></li>
 <li>Set network timeout to support timeouts<br /></li>
-<li>Limit message sizes<br /></li>
+<li>Limit message sizes<br />
+<br /></li>
 </ul>
 
 <p>Overall I really think this is a difference between what the author thought he wrote for the challenge and what the participants read. Although, based on challenge #3 and what is being talked about in chat, I also think there is a bit of a confusion about the challenge overall. I think some participants in the challenge, me included, assume this is a teacher creating a lesson for us all to learn from. Trying their best to come up with a realistic looking problem for us. Instead I think the runners of the challenge think of this more like a real world work assignment. Of course for a work assignment you would always question every aspect of the assignment. It is part of the checks a business needs to make sure its doing the right thing at the right time. Although this is not the case for a teacher. What you are doing is fixed. The teacher isn&rsquo;t changing their lesson plans. Although the “how” is up for interpretation. (And normally grading) The “how” had a lot of discussion on the chat server for most of the 2 week challenge.</p>
@@ -99,7 +100,8 @@
 <li>Use of clever solution for sending nonce (<code>TeeReader</code>)<br /></li>
 <li>Confusion over errors<br /></li>
 <li><code>MultiWriter</code> usage<br /></li>
-<li>Use of <code>io.Copy</code> for echoing<br /></li>
+<li>Use of <code>io.Copy</code> for echoing<br />
+<br /></li>
 </ul>
 
 <p>I think most of his comments are from the miscommunications from the challenge for those in the teacher camp versus the work assignment camp. First he takes issue with saving the nonce, but it makes since in a stream based encryptor or decryptor. The full stream of the message might come from several Read or Write calls, and thus you need to save the nonce for encrypting or decrypting as you go. Even if the challenge was to make a multi-message system, each message would need to save it&rsquo;s nonce while its still communicating that single message.</p>

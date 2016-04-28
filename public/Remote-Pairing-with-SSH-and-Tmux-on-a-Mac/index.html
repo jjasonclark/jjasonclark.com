@@ -127,7 +127,7 @@ tmux -S /tmp/pair -2 attach -t workenv
 
 <p>Finally I have created a script to set the needed permissions on the shared socket. Additionally I enable and disable the login ability of the pair partner account.</p>
 
-<p><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="ch">#! /bin/sh</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="ch">#! /bin/sh</span>
 
 <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;enable&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     chmod <span class="m">777</span> /tmp/pair
@@ -137,15 +137,15 @@ tmux -S /tmp/pair -2 attach -t workenv
     sudo dscl . -create /Users/remotepair UserShell /usr/bin/false
 <span class="k">fi</span>
 </code></pre></div>
-</p>
+
 
 <h2 id="pair-for-the-win">Pair for the win</h2>
 
 <p>Tell your pair partner to connect to your computer using your pairing account name.</p>
 
-<p><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>ssh remotepair@jjasonclark.com
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>ssh remotepair@jjasonclark.com
 </code></pre></div>
-</p>
+
 
 <p>Thats it! Your all setup to pair via SSH and Tmux. Head over to <a href="http://rubypair.com/">Ruby Pair</a> and try it out.</p>
 
