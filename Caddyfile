@@ -7,9 +7,11 @@ errors {
 
 root public
 
+rewrite /resume /resume.pdf
+rewrite /feed.xml /index.xml
+rewrite /feed.rss /index.xml
 rewrite {
-  r ^\/([^/]+)$
-  to /{1}/
+  to {path} {path}/ {path}/index.html /404.html
 }
 
 tls off
