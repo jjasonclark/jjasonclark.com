@@ -9,7 +9,7 @@ root public
 
 rewrite {
   r ^\/([^/]+)$
-  to /{1}/index.html
+  to /{1}/
 }
 
 tls off

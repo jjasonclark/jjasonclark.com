@@ -2,13 +2,16 @@ jjasonclark.com {
   tls jason@jjasonclark.com
   ext .html
   log stdout
+
   errors {
     log stderr
     404 404.html
   }
+
   root /var/www/html
+
   rewrite {
     r ^\/([^/]+)$
-    to /{1}/index.html
+    to /{1}/
   }
 }
