@@ -123,10 +123,10 @@ curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class
 
 <p>I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it&rsquo;s good to be ready for it when it does. I do this update by running the <code>dnsimple.sh</code> script every hour via a cron task. These are set in my <code>/etc/crontab</code> file.</p>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="c1"># m h  dom mon dow   command</span>
+<p><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="c1"># m h  dom mon dow   command</span>
 @hourly /root/bin/setDNSimple.sh &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
 </code></pre></div>
-
+</p>
 
 <h2 id="finished">Finished</h2>
 

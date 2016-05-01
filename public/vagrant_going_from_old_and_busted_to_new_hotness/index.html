@@ -79,11 +79,11 @@
 
 <p>Converting to this new format is a fairly easy process to do. For the most part it just requires some renamed attributes or nesting inside of a block. These changes will remove any warning messages Vagrant is producing from your old <code>Vagrantfile</code>.</p>
 
-<h2 id="upgrading-your-vagrant-binaries">Upgrading your Vagrant binaries</h2>
+<h2 id="upgrading-your-vagrant-binaries:17a13fcab3d08415f16fe7bc6c2b35d3">Upgrading your Vagrant binaries</h2>
 
 <p>First things first, you will need to uninstall the old version of Vagrant. Most people installed Vagrant via the <a href="http://rubygems.org/gems/vagrant" title="Vagrant gem on RubyGems">gem</a>. As of this writing this will give you version 1.0.7. That version is before the new <code>Vagrantfile</code> format was created. You will need to download the binary version of from their <a href="http://downloads.vagrantup.com/" title="Vagrant downloads">website</a>, currently at version 1.2.2. As a person who works with many different versions of Ruby I highly recommend you don&rsquo;t go back to the gem version of Vagrant even if they update it to the latest version. The reason is that you will have to install the gem several times for each version of Ruby or remember to switch back to that version of Ruby in order to use the <code>vagrant</code> command. The binary install makes this so much easier because you don&rsquo;t have to do any of those workarounds.</p>
 
-<h2 id="upgrade-your-vagrantfiles">Upgrade your Vagrantfiles</h2>
+<h2 id="upgrade-your-vagrantfiles:17a13fcab3d08415f16fe7bc6c2b35d3">Upgrade your Vagrantfiles</h2>
 
 <p>Once you have the latest version install open up your <code>Vagrantfile</code> and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.</p>
 
@@ -99,8 +99,7 @@
 <li><code>sync_folder</code> is now <code>synced_folder</code> and it&rsquo;s first 2 parameters have swapped places<br /></li>
 <li><code>forward_port</code> is now an option off of <code>network</code> with named parameters. Go from <code>config.vm.forward_port 3000, 3000</code> to <code>config.vm.network :forwarded_port, :guest =&gt; 3000, :host =&gt; 3000</code><br /></li>
 <li><code>customize</code> is now nested under <code>provider</code>. Go from <code>config.vm.customize ['modifyvm', :id, '--cpus', 2]</code> to <code>config.vm.provider :virtualbox { |box| box.customize ['modifyvm', :id, '--cpus', 2] }</code><br /></li>
-<li><code>:hostonly</code> networking is now <code>:private_network</code><br />
-<br /></li>
+<li><code>:hostonly</code> networking is now <code>:private_network</code><br /></li>
 </ul>
 
 <p>Don&rsquo;t forget that there are a lot of new options. Check out the <a href="http://docs.vagrantup.com/v2/" title="Vagrant documentation">Vagrant documentation</a> for more details on the items listed here and all the new options.</p>

@@ -6,8 +6,82 @@
 </description>
     <link>https://jjasonclark.com/</link>
     <atom:link href="https://jjasonclark.com/index.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</pubDate>
-    <lastBuildDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</lastBuildDate>
+    <pubDate>Sun, 24 Apr 2016 00:00:00 &#43;0000</pubDate>
+    <lastBuildDate>Sun, 24 Apr 2016 00:00:00 &#43;0000</lastBuildDate>
+    <item>
+      <title>Secured blog using Let&#39;s Encrypt</title>
+      <description>
+
+&lt;p&gt;I finally did it! I joined the secure web. Thanks to Let&amp;rsquo;s Encrypt and Caddy, this blog is now served via HTTPS. Caddy makes using Let&amp;rsquo;s Encrypt a single line change in a config file. It could not get simpler than that. Here is how I converted from static hosting on Amazon&amp;rsquo;s S3 to a Digital Ocean instance running Caddy in a Docker container.&lt;/p&gt;
+
+&lt;h2 id=&#34;what-i-did:d571f8f06cfc4cc0ef4674ecb770da36&#34;&gt;What I did&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create Digital Ocean droplet&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Updated DNS entries to point to droplet&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Install Docker&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Create a Docker image for the server&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Ran the Docker image with ports 80 and 443 exposed with restart always&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;create-digital-ocean-droplet:d571f8f06cfc4cc0ef4674ecb770da36&#34;&gt;Create Digital Ocean droplet&lt;/h3&gt;
+
+&lt;p&gt;My journey to convert from my old hosting method to using Caddy was relatively painless. I did cheat a bit by using Docker to create my new server instead of trying to install everything myself. Going from static hosting via S3 to a Docker image is simple. I choose to host my blog on Digital Ocean because of pricing. I get very little traffic and their $5/month hosting was even cheaper than Amazon&amp;rsquo;s EC2. Ubuntu 16.04 LTS just came out too and DO already had it as a choice for pre-setup server images. I picked that as my image and was setup faster than I could return with a fresh cup of coffee.&lt;/p&gt;
+
+&lt;h3 id=&#34;updated-dns-entries:d571f8f06cfc4cc0ef4674ecb770da36&#34;&gt;Updated DNS entries&lt;/h3&gt;
+
+&lt;p&gt;My DNS timeout was already set to an hour timeout from an earlier change. So once I had the new droplet&amp;rsquo;s IP address I updated my DNS entry. This would need to be setup before Let&amp;rsquo;s Encrypt&amp;rsquo;s servers try to callback to my blog server verify the server. And since I already had entries pointing else where I would need to wait for the timeout period to expire before I was sure the correct server would be contacted.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-docker:d571f8f06cfc4cc0ef4674ecb770da36&#34;&gt;Install Docker&lt;/h3&gt;
+
+&lt;p&gt;Followed instructions at &lt;a href=&#34;https://docs.docker.com/engine/installation/linux/ubuntulinux/&#34;&gt;https://docs.docker.com/engine/installation/linux/ubuntulinux/&lt;/a&gt;. The simplified version is add Docker&amp;rsquo;s package repositry to the server&amp;rsquo;s list. Then install the &lt;code&gt;docker-engine&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span&gt;&lt;/span&gt;apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/apt/sources.list.d/docker.list
+apt-get update
+apt-get install docker-engine linux-image-extra-&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;uname -r&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id=&#34;create-docker-image-for-blog-server:d571f8f06cfc4cc0ef4674ecb770da36&#34;&gt;Create Docker image for blog server&lt;/h3&gt;
+
+&lt;p&gt;I created a Docker image for my blog using a image for the Caddy server as the base. I picked an Alpine based one at &lt;a href=&#34;https://hub.docker.com/r/zzrot/alpine-caddy/&#34;&gt;zzrot/alpine-caddy&lt;/a&gt;. All I needed to do was add my blog files and configure a Caddyfile.&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-docker&#34; data-lang=&#34;docker&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; zzrot/alpine-caddy&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;MAINTAINER&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; Jason Clark &amp;lt;jason@jjcconsultingllc.com&amp;gt;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;EXPOSE&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; 80 443&lt;/span&gt;
+COPY docker/Caddyfile /etc/Caddyfile
+COPY public/ /var/www/html/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;From:&lt;/strong&gt; &lt;a href=&#34;https://github.com/jjasonclark/jjasonclark.com/blob/master/Dockerfile&#34;&gt;https://github.com/jjasonclark/jjasonclark.com/blob/master/Dockerfile&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I tried to test this out locally using Docker for Mac since I&amp;rsquo;m using the beta native client. I could never get it to work. The logs would show the server starting and give it&amp;rsquo;s message about what port its listening to, but would not actually accept any connections. I just had to trust it would work when deployed.&lt;/p&gt;
+
+&lt;h3 id=&#34;set-server-to-always-run-blog-image:d571f8f06cfc4cc0ef4674ecb770da36&#34;&gt;Set server to always run blog image&lt;/h3&gt;
+
+&lt;p&gt;Getting a docker image to always restart when the server goes down is as simple as a command line flag. This is &lt;em&gt;sometimes&lt;/em&gt; preferable to actually creating a real system service setup for the image. As long as you don&amp;rsquo;t need all the extra commands that system service needs this method should be fine. I used the following command to get the image running.&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span&gt;&lt;/span&gt;docker run -d --name blog &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+  --restart always &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+  -p 80:80 -p 443:443 &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+  -v &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;/lets_encrypt:/root/.caddy &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+  jjasonclark/jjasonclark.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+</description>
+      <pubDate>Sun, 24 Apr 2016 00:00:00 &#43;0000</pubDate>
+      <link>https://jjasonclark.com/secured_blog_using_lets_encrypt</link>
+      <guid isPermaLink="true">https://jjasonclark.com/secured_blog_using_lets_encrypt</guid>
+      
+      <category>ssl</category>
+      <category>blog</category>
+      <category>caddy</category>
+      <category>lets encrypt</category>
+      
+    </item>
     <item>
       <title>Go Challenge 2 Review Response</title>
       <description>&lt;p&gt;I have been learning the Go programming language recently. And in order to help that I joined in on the &lt;a href=&#34;http://golang-challenge.com/&#34;&gt;Go Challenge&lt;/a&gt;. At this point the 3rd challenge is available and 2nd is under review.&lt;/p&gt;
@@ -20,8 +94,7 @@
 &lt;li&gt;Solve partial encrypted box size read requests&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;Solve partial encrypted box size packets from the network&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;Set network timeout to support timeouts&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Limit message sizes&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Limit message sizes&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Overall I really think this is a difference between what the author thought he wrote for the challenge and what the participants read. Although, based on challenge #3 and what is being talked about in chat, I also think there is a bit of a confusion about the challenge overall. I think some participants in the challenge, me included, assume this is a teacher creating a lesson for us all to learn from. Trying their best to come up with a realistic looking problem for us. Instead I think the runners of the challenge think of this more like a real world work assignment. Of course for a work assignment you would always question every aspect of the assignment. It is part of the checks a business needs to make sure its doing the right thing at the right time. Although this is not the case for a teacher. What you are doing is fixed. The teacher isn&amp;rsquo;t changing their lesson plans. Although the “how” is up for interpretation. (And normally grading) The “how” had a lot of discussion on the chat server for most of the 2 week challenge.&lt;/p&gt;
@@ -39,8 +112,7 @@
 &lt;li&gt;Use of clever solution for sending nonce (&lt;code&gt;TeeReader&lt;/code&gt;)&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;Confusion over errors&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;MultiWriter&lt;/code&gt; usage&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Use of &lt;code&gt;io.Copy&lt;/code&gt; for echoing&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Use of &lt;code&gt;io.Copy&lt;/code&gt; for echoing&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I think most of his comments are from the miscommunications from the challenge for those in the teacher camp versus the work assignment camp. First he takes issue with saving the nonce, but it makes since in a stream based encryptor or decryptor. The full stream of the message might come from several Read or Write calls, and thus you need to save the nonce for encrypting or decrypting as you go. Even if the challenge was to make a multi-message system, each message would need to save it&amp;rsquo;s nonce while its still communicating that single message.&lt;/p&gt;
@@ -188,13 +260,13 @@
 
 &lt;p&gt;I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: &lt;a href=&#34;http://en.wikipedia.org/wiki/Bonjour_(software)&#34;&gt;Bonjour&lt;/a&gt;. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.&lt;/p&gt;
 
-&lt;h2 id=&#34;mac-setup&#34;&gt;Mac Setup&lt;/h2&gt;
+&lt;h2 id=&#34;mac-setup:d6ae1515a714fafd4a04417d98523b8d&#34;&gt;Mac Setup&lt;/h2&gt;
 
 &lt;p&gt;In the Safari preference panel select the advanced tab. Check the setting you want.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/safari_preference.png&#34; alt=&#34;Safari preference panel&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;linux-setup&#34;&gt;Linux Setup&lt;/h2&gt;
+&lt;h2 id=&#34;linux-setup:d6ae1515a714fafd4a04417d98523b8d&#34;&gt;Linux Setup&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://avahi.org/&#34;&gt;Avahi&lt;/a&gt; is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don&amp;rsquo;t have to reboot your server.&lt;/p&gt;
 
@@ -217,11 +289,10 @@
 
 
 &lt;ol&gt;
-&lt;li&gt;You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run &lt;code&gt;sudo /etc/init.d/avahi-daemon restart&lt;/code&gt;.&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run &lt;code&gt;sudo /etc/init.d/avahi-daemon restart&lt;/code&gt;.&lt;br /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;getting-fancy&#34;&gt;Getting fancy&lt;/h2&gt;
+&lt;h2 id=&#34;getting-fancy:d6ae1515a714fafd4a04417d98523b8d&#34;&gt;Getting fancy&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://the.taoofmac.com/space/HOWTO/Vagrant&#34;&gt;Toa of Mac&lt;/a&gt; has some great tips on how to configure a setup with 2 NICs and only broadcast on the private network.&lt;/p&gt;
 </description>
@@ -300,17 +371,17 @@
 
 &lt;p&gt;The Cardspring_browse app uses it &lt;a href=&#34;https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/lib/cardspring_browse/application.rb#L15-L18&#34;&gt;here&lt;/a&gt;. This code uses the Rack middleware &lt;a href=&#34;https://github.com/rack/rack/blob/master/lib/rack/config.rb&#34;&gt;Rack::Config&lt;/a&gt; to achieve the result.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Rack&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Config&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Rack&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Config&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
   &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;my_app.my_property&amp;quot;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;custom value&amp;quot;&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/p&gt;
 
 &lt;p&gt;The full code for the outer application is the following. From the looks of the code I don&amp;rsquo;t yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Help wanted! It is &lt;a href=&#34;https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/LICENSE.txt&#34;&gt;open source&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Application&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Sinatra&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Base&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Application&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Sinatra&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Base&lt;/span&gt;
 
   &lt;span class=&#34;n&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:method_override&lt;/span&gt;
   &lt;span class=&#34;n&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:config_file&lt;/span&gt;
@@ -338,7 +409,7 @@
 
 &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/p&gt;
 </description>
       <pubDate>Thu, 29 Aug 2013 00:00:00 &#43;0000</pubDate>
       <link>https://jjasonclark.com/sinatra_settings_for_nested_apps</link>
@@ -361,11 +432,11 @@
 
 &lt;p&gt;Converting to this new format is a fairly easy process to do. For the most part it just requires some renamed attributes or nesting inside of a block. These changes will remove any warning messages Vagrant is producing from your old &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;upgrading-your-vagrant-binaries&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
+&lt;h2 id=&#34;upgrading-your-vagrant-binaries:17a13fcab3d08415f16fe7bc6c2b35d3&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
 
 &lt;p&gt;First things first, you will need to uninstall the old version of Vagrant. Most people installed Vagrant via the &lt;a href=&#34;http://rubygems.org/gems/vagrant&#34; title=&#34;Vagrant gem on RubyGems&#34;&gt;gem&lt;/a&gt;. As of this writing this will give you version 1.0.7. That version is before the new &lt;code&gt;Vagrantfile&lt;/code&gt; format was created. You will need to download the binary version of from their &lt;a href=&#34;http://downloads.vagrantup.com/&#34; title=&#34;Vagrant downloads&#34;&gt;website&lt;/a&gt;, currently at version 1.2.2. As a person who works with many different versions of Ruby I highly recommend you don&amp;rsquo;t go back to the gem version of Vagrant even if they update it to the latest version. The reason is that you will have to install the gem several times for each version of Ruby or remember to switch back to that version of Ruby in order to use the &lt;code&gt;vagrant&lt;/code&gt; command. The binary install makes this so much easier because you don&amp;rsquo;t have to do any of those workarounds.&lt;/p&gt;
 
-&lt;h2 id=&#34;upgrade-your-vagrantfiles&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
+&lt;h2 id=&#34;upgrade-your-vagrantfiles:17a13fcab3d08415f16fe7bc6c2b35d3&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
 
 &lt;p&gt;Once you have the latest version install open up your &lt;code&gt;Vagrantfile&lt;/code&gt; and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.&lt;/p&gt;
 
@@ -381,8 +452,7 @@
 &lt;li&gt;&lt;code&gt;sync_folder&lt;/code&gt; is now &lt;code&gt;synced_folder&lt;/code&gt; and it&amp;rsquo;s first 2 parameters have swapped places&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;forward_port&lt;/code&gt; is now an option off of &lt;code&gt;network&lt;/code&gt; with named parameters. Go from &lt;code&gt;config.vm.forward_port 3000, 3000&lt;/code&gt; to &lt;code&gt;config.vm.network :forwarded_port, :guest =&amp;gt; 3000, :host =&amp;gt; 3000&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;customize&lt;/code&gt; is now nested under &lt;code&gt;provider&lt;/code&gt;. Go from &lt;code&gt;config.vm.customize [&#39;modifyvm&#39;, :id, &#39;--cpus&#39;, 2]&lt;/code&gt; to &lt;code&gt;config.vm.provider :virtualbox { |box| box.customize [&#39;modifyvm&#39;, :id, &#39;--cpus&#39;, 2] }&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;:hostonly&lt;/code&gt; networking is now &lt;code&gt;:private_network&lt;/code&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:hostonly&lt;/code&gt; networking is now &lt;code&gt;:private_network&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Don&amp;rsquo;t forget that there are a lot of new options. Check out the &lt;a href=&#34;http://docs.vagrantup.com/v2/&#34; title=&#34;Vagrant documentation&#34;&gt;Vagrant documentation&lt;/a&gt; for more details on the items listed here and all the new options.&lt;/p&gt;
@@ -478,7 +548,7 @@
 
 &lt;p&gt;Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;ReencryptAllValues&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Migration&lt;/span&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;ReencryptAllValues&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Migration&lt;/span&gt;
     &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;IterationCount&lt;/span&gt;
         &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;display_every&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
             &lt;span class=&#34;vi&#34;&gt;@iteration_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
@@ -603,7 +673,7 @@
     &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/p&gt;
 </description>
       <pubDate>Wed, 06 Feb 2013 00:00:00 &#43;0000</pubDate>
       <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</link>
@@ -616,248 +686,6 @@
       <category>gem</category>
       <category>security</category>
       <category>encryption</category>
-      
-    </item>
-    <item>
-      <title>Setting up a new Mac for Ruby development</title>
-      <description>
-
-&lt;p&gt;I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&amp;rsquo;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.&lt;/p&gt;
-
-&lt;h2 id=&#34;install-from-app-store&#34;&gt;Install from App store&lt;/h2&gt;
-
-&lt;p&gt;There are a few apps that are managed through the App store. Search for, and install the following apps. Only Xcode is required, the others help in the development process.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Xcode&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;ClamXav&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Evernote&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Skitch&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;JollysFastVNC&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Twitter&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Once these have installed launch &lt;code&gt;ClamXav&lt;/code&gt; in order to turn on virus definitions file downloads. Select a time that works for you.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/clamxav_preferencest_2013_01_21.png&#34; alt=&#34;ClamXav preferences&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;install-from-web&#34;&gt;Install from web&lt;/h2&gt;
-
-&lt;p&gt;The following don&amp;rsquo;t have any handy install scripts. You will have to visit each one&amp;rsquo;s website and download the installer package. All are optional, so you can put these off until later if desired.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.google.com/intl/en/chrome/browser/&#34;&gt;Chrome&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://chrome.google.com/webstore/detail/evernote-web/lbfehkoinhhcknnbdgnnmjhiladcgbol&#34;&gt;Evernote web clipper chrome plugin&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://chrome.google.com/webstore/detail/one-last-pass-password-ma/hlcjfeemfanamjbekpmdhcefejlgpnke&#34;&gt;LastPass chrome plugin&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.iterm2.com&#34;&gt;Iterm2&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.sequelpro.com/&#34;&gt;SequalPro&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34;&gt;VirtualBox&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.truecrypt.org/&#34;&gt;Truecrypt&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.dropbox.com/&#34;&gt;Dropbox&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.skype.com&#34;&gt;Skype&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.sublimetext.com/2&#34;&gt;Sublime Text 2&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.bittorrent.com/&#34;&gt;Bittorent&lt;/a&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;setup-mysql&#34;&gt;Setup MySql&lt;/h2&gt;
-
-&lt;p&gt;MySql is the defacto database for development mode. And it is a tad hard to install.&lt;/p&gt;
-
-&lt;p&gt;####Download the install files&lt;/p&gt;
-
-&lt;p&gt;Download the &lt;code&gt;DMG&lt;/code&gt; file for the 64-bit version. &lt;a href=&#34;http://dev.mysql.com/downloads/mysql&#34;&gt;MySql download page&lt;/a&gt;&lt;br /&gt;
-&lt;img src=&#34;https://jjasonclark.com/assets/mysql_dmg.png&#34; alt=&#34;MySql DMG file&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;####Install main package file&lt;/p&gt;
-
-&lt;p&gt;This is a basic Mac package file. Just follow along the prompts.&lt;/p&gt;
-
-&lt;p&gt;####Install perference panel settings app&lt;/p&gt;
-
-&lt;p&gt;Drag and drop the preference panel icon onto your system preference window. You should get a dialog like the one below. Install for everyone.&lt;br /&gt;
-&lt;img src=&#34;https://jjasonclark.com/assets/mysql_prefpane_install.png&#34; alt=&#34;Prefence panel install dialog&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;####Install statup items app&lt;/p&gt;
-
-&lt;p&gt;Another basic Mac package file. Just follow along the prompts just like before.&lt;/p&gt;
-
-&lt;p&gt;####Start the server&lt;/p&gt;
-
-&lt;p&gt;Launch the install MySql perference panel. Once open press the start button.&lt;br /&gt;
-&lt;img src=&#34;https://jjasonclark.com/assets/mysql_preferences.png&#34; alt=&#34;blah&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;####Complete setup&lt;/p&gt;
-
-&lt;p&gt;Run the following commands in a terminal window. They will complete the setup of the MySql service, configure for medium sized profile, and fix a linking bug with mysql2 gem.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/usr/local/mysql/bin/mysql_secure_installation
-sudo cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
-ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
-sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;####Add &lt;code&gt;/usr/local/mysql/bin&lt;/code&gt; to &lt;code&gt;$PATH&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;I like to include the following in my &lt;code&gt;.profile&lt;/code&gt; file to add the MySql bin path to my &lt;code&gt;$PATH&lt;/code&gt; setting.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function addPath
-{
-    echo $PATH | /usr/bin/grep -q -s $1
-    if [ $? -eq 1 ] ; then
-        export PATH=$1:$PATH
-    fi
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;addPath &amp;ldquo;/usr/local/mysql/bin&amp;rdquo;&lt;/p&gt;
-
-&lt;h2 id=&#34;command-line-compiler-and-build-system&#34;&gt;Command line compiler and build system&lt;/h2&gt;
-
-&lt;p&gt;Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use &lt;em&gt;XCode&lt;/em&gt; to install these tools. First, launch &lt;em&gt;XCode&lt;/em&gt; and open the preferences panel. Click on the &amp;ldquo;Downloads&amp;rdquo; tab and press the install button for the &amp;ldquo;Command Line Tools&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/xcode_commandline.png&#34; alt=&#34;Download preferences&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;homebrew-package-manager&#34;&gt;Homebrew package manager&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://mxcl.github.com/homebrew/&#34; title=&#34;Homebrew&#34;&gt;Homebrew&lt;/a&gt; is the package manager needed to install all the rest of the software. I find it indispensable. Copy and paste this command into a terminal window.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ruby -e &amp;quot;$(curl -fsSkL raw.github.com/mxcl/homebrew/go)&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finish setup of &lt;a href=&#34;http://mxcl.github.com/homebrew/&#34; title=&#34;Homebrew&#34;&gt;Homebrew&lt;/a&gt; with the following commands.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo vim -c &#39;/^\/usr\/local\/bin$/m0&#39; -cwq /etc/paths
-mkdir ~/Applications
-brew doctor
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once you have completed the set install the following packages by entering each of the following commands.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install macvim --override-system-vim
-brew install git
-brew install ctags
-brew install par
-brew install tmux
-brew install reattach-to-user-namespace
-brew install gpg
-brew install ack
-brew install tree
-brew install ssh-copy-id
-brew install wget
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;After all installs run the following command to add symlinks to those apps that need it&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew linkapps
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;rvm-for-ruby-version-management&#34;&gt;RVM for Ruby version management&lt;/h2&gt;
-
-&lt;p&gt;This is the first place to go to install ruby virtual machines. The following shell command will download the latest version of &lt;a href=&#34;https://rvm.io/&#34; title=&#34;Ruby Version Manager&#34;&gt;RVM&lt;/a&gt;. Copy and paste this command into a terminal window.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;curl -L https://get.rvm.io | bash -s stable --ruby
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You will have to add the load call for the &lt;a href=&#34;https://rvm.io/&#34; title=&#34;Ruby Version Manager&#34;&gt;RVM&lt;/a&gt; functions to your shell. If you are going to copy the &lt;code&gt;.profile&lt;/code&gt; file from below then you will have it as the first line.&lt;/p&gt;
-
-&lt;h2 id=&#34;profile-setup&#34;&gt;Profile setup&lt;/h2&gt;
-
-&lt;p&gt;Create a &lt;code&gt;.profile&lt;/code&gt;. The following is a good starting point. I highly encourage customizing this file and saving it to move from computer to computer. The following will add the currently installed shell completion files. Along with a prompt to show the current ruby version and git branch.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Shell completion scripts
-function include
-{
-    [[ -s $1 ]] &amp;amp;&amp;amp; . $1
-}
-
-include &amp;quot;$HOME/.rvm/scripts/rvm&amp;quot;
-include `brew --prefix git`/etc/bash_completion.d/git-completion.bash
-include `brew --prefix git`/etc/bash_completion.d/git-prompt.sh
-include `brew --prefix tmux`/etc/bash_completion.d/tmux
-include &amp;quot;$HOME/.rvm/contrib/ps1_functions&amp;quot;
-include ~/.nesta-completion.sh
-
-export EDITOR=`which vim`
-
-function prompt
-{
-    local OFF=&amp;quot;\[\033[m\]&amp;quot;
-
-    # regular colors
-    local BLACK=&amp;quot;\[\033[0;30m\]&amp;quot;
-    local RED=&amp;quot;\[\033[0;31m\]&amp;quot;
-    local GREEN=&amp;quot;\[\033[0;32m\]&amp;quot;
-    local YELLOW=&amp;quot;\[\033[0;33m\]&amp;quot;
-    local BLUE=&amp;quot;\[\033[0;34m\]&amp;quot;
-    local MAGENTA=&amp;quot;\[\033[0;35m\]&amp;quot;
-    local CYAN=&amp;quot;\[\033[0;36m\]&amp;quot;
-    local WHITE=&amp;quot;\[\033[0;37m\]&amp;quot;
-
-    # empahsized (bolded) colors
-    local EBLACK=&amp;quot;\[\033[1;30m\]&amp;quot;
-    local ERED=&amp;quot;\[\033[1;31m\]&amp;quot;
-    local EGREEN=&amp;quot;\[\033[1;32m\]&amp;quot;
-    local EYELLOW=&amp;quot;\[\033[1;33m\]&amp;quot;
-    local EBLUE=&amp;quot;\[\033[1;34m\]&amp;quot;
-    local EMAGENTA=&amp;quot;\[\033[1;35m\]&amp;quot;
-    local ECYAN=&amp;quot;\[\033[1;36m\]&amp;quot;
-    local EWHITE=&amp;quot;\[\033[1;37m\]&amp;quot;
-
-    # background colors
-    local BGK=&amp;quot;\[\033[40m\]&amp;quot;
-    local BGR=&amp;quot;\[\033[41m\]&amp;quot;
-    local BGG=&amp;quot;\[\033[42m\]&amp;quot;
-    local BGY=&amp;quot;\[\033[43m\]&amp;quot;
-    local BGB=&amp;quot;\[\033[44m\]&amp;quot;
-    local BGM=&amp;quot;\[\033[45m\]&amp;quot;
-    local BGC=&amp;quot;\[\033[46m\]&amp;quot;
-    local BGW=&amp;quot;\[\033[47m\]&amp;quot;
-    export PS1=&amp;quot;${EGREEN}\u${WHITE}@${BLUE}\h ${MAGENTA}\w ${GREEN}&amp;quot;&#39;$(~/.rvm/bin/rvm-prompt &#39;&amp;quot;i v&amp;quot;&#39;)&#39;&amp;quot; ${RED}&amp;quot;&#39;$(__git_ps1 &amp;quot;(%s)&amp;quot;)&#39;&amp;quot;${OFF}&amp;gt; &amp;quot;
-}
-prompt
-
-# Shortcuts
-alias g=git
-function be()
-{
-    bundle exec $@
-}
-
-function sublime()
-{
-    open -a &#39;Sublime Text 2&#39; $@
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;post-install-steps&#34;&gt;Post install steps&lt;/h2&gt;
-
-&lt;p&gt;After it is all installed there are a few left over steps. Finish them if you like since they are optional.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Change default profile of &lt;em&gt;Iterm2&lt;/em&gt; to use &amp;ldquo;xterm-256color&amp;rdquo; terminal type&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Create new gpg secret key or copy old one (RSA type is fine)&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Create new ssh key&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Add ssh key to github.com&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Setup .gitconfig and .gitignore&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;Remote-Pairing-with-SSH-and-Tmux-on-a-Mac&#34;&gt;Setup for pair programing using SSH and Tmux&lt;/a&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Sun, 20 Jan 2013 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</link>
-      <guid isPermaLink="true">https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</guid>
-      <category>programming</category>
-      <category>setup</category>
-      
-      <category>setup</category>
-      <category>tips</category>
-      <category>mac</category>
-      <category>ruby</category>
-      <category>development</category>
       
     </item>
     

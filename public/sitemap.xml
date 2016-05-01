@@ -3,7 +3,13 @@
   
   <url>
     <loc>https://jjasonclark.com/</loc>
-    <lastmod>2015-04-24T00:00:00+00:00</lastmod>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/secured_blog_using_lets_encrypt</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
