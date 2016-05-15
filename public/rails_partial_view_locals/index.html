@@ -75,17 +75,17 @@
 
 <p>Partial views are super common in just about all web frameworks; Rails is no different. I came to Rails from another web framework so I already knew the power of partial views. Naturally I&rsquo;ve been using them everywhere I can to simplify and separate views. About the only thing I dislike about Rails partials is the double syntax for the locals variables. There is one syntax for a single model with the same name as the partial and another syntax for arbitrary named local variables. I tend to prefer consistency, so I mostly use the locals syntax.</p>
 
-<h2 id="personal-story:b65f9f4c40bbbc36a9069bb8c0cb4893">Personal story</h2>
+<h2 id="personal-story">Personal story</h2>
 
 <p>This is where the bad part of coming to Rails from a different framework is. I just assumed that the local variables became instance variables in the partial view. In fact, I tried a partial with an instance variable and it worked as expected. Testing is believing in most cases, so I thought I had learned what I needed to know. Since then I&rsquo;ve created dozens and dozens of partials, all using instance variables and everything has worked perfectly. That is, until I needed to create a partial view of the inside of a form with the form tag not inside the partial. I still needed the form&rsquo;s ID inside the partial so I could submit the form via JavaScript. Based on what I had learned I just passed it in as a local variable. And of course, I could not access the new local variable.</p>
 
 <p>I tried everything I could think of to access the form&rsquo;s ID via the local variable. I even searched the instance variables (using #instance_variables) of all the classes I could think of. I even looked back at partials I had created in the past. As far as I could tell, I was trying to access the variable correctly.</p>
 
-<h2 id="solution:b65f9f4c40bbbc36a9069bb8c0cb4893">Solution</h2>
+<h2 id="solution">Solution</h2>
 
 <p>It turns out the locals are accessed via instance accessor methods. This whole time I have been naming my controller&rsquo;s instance variables the same as my partial&rsquo;s local variables. This is why they always worked before. Only when I finally made a local variable that wasn&rsquo;t also an instance variable did I discover the difference.</p>
 
-<h2 id="summary:b65f9f4c40bbbc36a9069bb8c0cb4893">Summary</h2>
+<h2 id="summary">Summary</h2>
 
 <p>Drop the @ symbol in front of your variable while inside a partial view. Use them as instance methods and not as instance variables. I know my Google-fu couldn&rsquo;t find the answer. Hopefully yours will find this article before you pull all of your hair out.</p>
 

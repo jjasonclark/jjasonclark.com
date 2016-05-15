@@ -77,7 +77,7 @@
 
 <p>It is easy to setup your computer to support remote pairing.</p>
 
-<h2 id="install-tmux:585c231a291865f351d1bba49494eb9f">Install Tmux</h2>
+<h2 id="install-tmux">Install Tmux</h2>
 
 <p>Install Tmux using Homebrew.</p>
 
@@ -87,11 +87,11 @@
 
 <p>You might want to change the configuration. Take a look at my <a href="/assets/tmux.conf.txt">.tmux.conf</a>. It&rsquo;s a good starter configuration using <code>ctrl+/</code> as the Tmux key.</p>
 
-<h2 id="setup-user-account-for-pair-partner:585c231a291865f351d1bba49494eb9f">Setup user account for pair partner</h2>
+<h2 id="setup-user-account-for-pair-partner">Setup user account for pair partner</h2>
 
 <p>Next thing you need to do is setup a user account for others to SSH into your computer with. You can reuse the same account for all your pair programming instead of an account per partner. In my case I created a user named <code>remotepair</code>. This is setup like any other user on your Mac; you use the &ldquo;User &amp; Groups&rdquo; system preference.</p>
 
-<h2 id="allow-user-to-connect-via-ssh:585c231a291865f351d1bba49494eb9f">Allow user to connect via SSH</h2>
+<h2 id="allow-user-to-connect-via-ssh">Allow user to connect via SSH</h2>
 
 <p>Once the user is setup you need to allow the user to log in via SSH. In the &ldquo;Sharing&rdquo; system preference enable &ldquo;Remote Login&rdquo;. And then add the following to your <code>/etc/sshd_config</code> file.</p>
 
@@ -103,7 +103,7 @@
 
 <p>Change the first line to match the user account name you created. The last line connects the user to your Tmux session.</p>
 
-<h2 id="setting-up-the-shared-tmux-session:585c231a291865f351d1bba49494eb9f">Setting up the shared Tmux session</h2>
+<h2 id="setting-up-the-shared-tmux-session">Setting up the shared Tmux session</h2>
 
 <p>The secret to getting a shared session working with Tmux is to know where the socket is. You can use the <code>-S</code> argument to specify this location. I have created a script to setup my environment and include this option. The following is the script I use for my work project. It sets up 3 windows in a named session using the socket path of <code>/tmp/pair</code>. This is the same path from <code>/etc/sshd_config</code>&rsquo;s force command.</p>
 
@@ -123,11 +123,11 @@ tmux -S /tmp/pair -2 attach -t workenv
 </code></pre></div>
 
 
-<h2 id="enable-pair-partner-to-join-the-shared-session:585c231a291865f351d1bba49494eb9f">Enable pair partner to join the shared session</h2>
+<h2 id="enable-pair-partner-to-join-the-shared-session">Enable pair partner to join the shared session</h2>
 
 <p>Finally I have created a script to set the needed permissions on the shared socket. Additionally I enable and disable the login ability of the pair partner account.</p>
 
-<p><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="ch">#! /bin/sh</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="ch">#! /bin/sh</span>
 
 <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;enable&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     chmod <span class="m">777</span> /tmp/pair
@@ -137,15 +137,15 @@ tmux -S /tmp/pair -2 attach -t workenv
     sudo dscl . -create /Users/remotepair UserShell /usr/bin/false
 <span class="k">fi</span>
 </code></pre></div>
-</p>
 
-<h2 id="pair-for-the-win:585c231a291865f351d1bba49494eb9f">Pair for the win</h2>
+
+<h2 id="pair-for-the-win">Pair for the win</h2>
 
 <p>Tell your pair partner to connect to your computer using your pairing account name.</p>
 
-<p><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>ssh remotepair@jjasonclark.com
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>ssh remotepair@jjasonclark.com
 </code></pre></div>
-</p>
+
 
 <p>Thats it! Your all setup to pair via SSH and Tmux. Head over to <a href="http://rubypair.com/">Ruby Pair</a> and try it out.</p>
 

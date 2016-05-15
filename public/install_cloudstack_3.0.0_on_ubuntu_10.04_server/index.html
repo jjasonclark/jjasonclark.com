@@ -75,7 +75,7 @@
 
 <p><a href="https://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/">Cloudstack 3.0.0</a> was release on <a href="http://www.cloudstack.org/blog/117-cloudstack-acton-released.html">Febrary 28<sup>th</sup> 2012</a>. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</p>
 
-<h2 id="setup-procedures:5055675fec1af54c9dc59f6c4fe10cdc">Setup procedures</h2>
+<h2 id="setup-procedures">Setup procedures</h2>
 
 <p>To get started download the <a href="http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/CloudStack-3.0.0-1-ubuntu10.04.tar.gz/download">cloud management software</a> and follow these steps. You will need the <a href="http://sourceforge.net/projects/cloudstack/files/CloudStack%20Acton/3.0.0/CloudStack3.0QuickInstallGuide.pdf/download">quick install guide</a> to help you through the GUI part of the setup.</p>
 
@@ -88,11 +88,11 @@ Management IPs: 192.168.0.20 - 192.168.0.29
 Guest IPs: 192.168.0.30 - 39
 </code></pre>
 
-<h3 id="step-1-install-ubuntu-10-04-server-with-nfs:5055675fec1af54c9dc59f6c4fe10cdc">Step 1 - Install Ubuntu 10.04 Server with NFS</h3>
+<h3 id="step-1-install-ubuntu-10-04-server-with-nfs">Step 1 - Install Ubuntu 10.04 Server with NFS</h3>
 
 <p>Follow the guide I wrote on <a href="/setting_up_NFS_on_Ubuntu_10.04_server">setting up NFS on ubuntu 10.04 server</a></p>
 
-<h3 id="step-2-setup-selinux:5055675fec1af54c9dc59f6c4fe10cdc">Step 2 - Setup SELinux</h3>
+<h3 id="step-2-setup-selinux">Step 2 - Setup SELinux</h3>
 
 <p>Install the SElinux package and change to passive mode</p>
 
@@ -100,7 +100,7 @@ Guest IPs: 192.168.0.30 - 39
 setenforce permissive
 </code></pre>
 
-<h3 id="step-3-create-cloudstack-nfs-shares:5055675fec1af54c9dc59f6c4fe10cdc">Step 3 - Create Cloudstack NFS shares</h3>
+<h3 id="step-3-create-cloudstack-nfs-shares">Step 3 - Create Cloudstack NFS shares</h3>
 
 <p>Create two directories for sharing via NFS. I named mine the same as the documentation: primary and secondary. Then share these via NFS.</p>
 
@@ -116,7 +116,7 @@ mkdir -p /export/secondary
 
 <p>Then run the <code>exportfs -a</code> command to expose them.</p>
 
-<h3 id="step-4-setup-cloudstack-management-software:5055675fec1af54c9dc59f6c4fe10cdc">Step 4 - Setup Cloudstack management software</h3>
+<h3 id="step-4-setup-cloudstack-management-software">Step 4 - Setup Cloudstack management software</h3>
 
 <p>Copy the cloud management software to the Ubuntu box. I used <code>scp</code> to get this done.</p>
 
@@ -132,7 +132,7 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <p>The installer will first run <code>aptitude update</code> so make sure you have that setup correctly. This should have been done when you setup the Ubuntu box. After updating the components the install script will present you with a prompt to pick what component to install. At this prompt choose option <code>M</code> for the management server.</p>
 
-<h3 id="step-5-setup-cloudstack-database:5055675fec1af54c9dc59f6c4fe10cdc">Step 5 - Setup Cloudstack database</h3>
+<h3 id="step-5-setup-cloudstack-database">Step 5 - Setup Cloudstack database</h3>
 
 <p>This step is just as easy as the last step. The database server (MySql) will be installed via the same <code>install.sh</code> script used in the last step.</p>
 
@@ -150,14 +150,14 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <p>This command will create two databases in MySQL and fill them will your systems data.</p>
 
-<h3 id="step-6-finish-cloudstack-management-software-setup:5055675fec1af54c9dc59f6c4fe10cdc">Step 6 - Finish Cloudstack management software setup</h3>
+<h3 id="step-6-finish-cloudstack-management-software-setup">Step 6 - Finish Cloudstack management software setup</h3>
 
 <p>Finish the setup by running the management setup command line tool a second time. The command does a few things with iptables but it should all be transparent to you.</p>
 
 <pre><code>cloud-setup-management
 </code></pre>
 
-<h3 id="step-7-add-system-vm-image:5055675fec1af54c9dc59f6c4fe10cdc">Step 7 - Add System VM image</h3>
+<h3 id="step-7-add-system-vm-image">Step 7 - Add System VM image</h3>
 
 <p>Add the system VM to the secondary storage and database.</p>
 
@@ -166,7 +166,7 @@ cd CloudStack-3.0.0-1-ubuntu10.04
 
 <p>This will copy the system VM to the secondary storage location and setup database entries pointing to it. One of the gotchas I ran into was that the system VM image file must be access via HTTP. I first tried doing it as a local file since it is such a large file. I didn&rsquo;t want to download it from the Internet. Unfortanitly this does not work, so you must use a workaround. My desktop system is also a web server so I just put the system VM image there. You can also use the source URL instead of your local server. Make sure to use port 80 or it will not connect.</p>
 
-<h2 id="gotchas:5055675fec1af54c9dc59f6c4fe10cdc">Gotchas</h2>
+<h2 id="gotchas">Gotchas</h2>
 
 <ul>
 <li>need more management ips than hosts so that support VMs can also have IPs<br /></li>

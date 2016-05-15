@@ -97,17 +97,17 @@
 
 <p>The Cardspring_browse app uses it <a href="https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/lib/cardspring_browse/application.rb#L15-L18">here</a>. This code uses the Rack middleware <a href="https://github.com/rack/rack/blob/master/lib/rack/config.rb">Rack::Config</a> to achieve the result.</p>
 
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Config</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Config</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
   <span class="n">env</span><span class="o">[</span><span class="s2">&quot;my_app.my_property&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;custom value&quot;</span>
 <span class="k">end</span>
 </code></pre></div>
-</p>
+
 
 <p>The full code for the outer application is the following. From the looks of the code I don&rsquo;t yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.</p>
 
 <p><em>Help wanted! It is <a href="https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/LICENSE.txt">open source</a>.</em></p>
 
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
 
   <span class="n">enable</span> <span class="ss">:method_override</span>
   <span class="n">enable</span> <span class="ss">:config_file</span>
@@ -135,7 +135,7 @@
 
 <span class="k">end</span>
 </code></pre></div>
-</p>
+
 
           </article>
         </div>
