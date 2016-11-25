@@ -10,6 +10,14 @@ dockerhub: dockerbuild
 hugo:
 	hugo --cleanDestinationDir -d public
 
-.PHONY awsdeploy
+.PHONY: drafts
+drafts:
+	hugo --cleanDestinationDir -d public -D
+
+.PHONY: serve
+serve:
+	hugo serve --cleanDestinationDir -d public -D --watch
+
+.PHONY: awsdeploy
 awsdeploy:
 	aws s3 sync public/ s3://jjasonclark.com --delete --profile jjasonclark.com
