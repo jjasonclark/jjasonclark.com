@@ -20,8 +20,8 @@ bitcoin = "14622f9QThq7ieB1jJ3rHy9Xx4jK8UN7DV"
 showAds = true
 
 [taxonomies]
-category = ""
-tag = ""
+category = "n1"
+tag = "n2"
 
 [author]
 name = "Jason Clark"
