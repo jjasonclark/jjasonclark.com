@@ -7,4 +7,5 @@
 
 ## Build instructions
 
-1. `make`
+1. `make hugo`
+2. `make awsdeploy`

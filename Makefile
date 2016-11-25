@@ -9,3 +9,7 @@ dockerhub: dockerbuild
 .PHONY: hugo
 hugo:
 	hugo --cleanDestinationDir -d public
+
+.PHONY awsdeploy
+awsdeploy:
+	aws s3 sync public/ s3://jjasonclark.com --delete --profile jjasonclark.com
