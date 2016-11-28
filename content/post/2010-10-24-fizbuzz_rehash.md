@@ -9,7 +9,7 @@ tags:
   - fizzbuzz
 summary: An implementation of fizz-buzz that is overly complex. Something you want to avoid in an interview.
 title: Fizz-buzz rehash
-url: /fizbuzz_rehash
+url: /fizzbuzz_rehash
 ---
 
 While moving my blog content from site to site my post on Fizz-buzz caught my eye again. I thought I would post another implementation that was even more complex (read _don't use in your interview_)

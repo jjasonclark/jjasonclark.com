@@ -5,7 +5,7 @@ categories:
   - win7
 summary: The Mac makes a great platform to run virtual machines especially with VMware Fusion.
 title: Virtualization on the Mac
-url: /virtualization-on-the-Mac
+url: /virtualization-on-the-mac
 ---
 
 My day job is working in .Net, so I spend a lot of time in Visual Studio. To run it on my mac I need to either boot to windows or run it in a virtual machine. I decided to go with virtualization.

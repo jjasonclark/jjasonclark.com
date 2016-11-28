@@ -11,7 +11,7 @@ tags:
   - git
   - plug-ins
 summary: Searching Git repositories is very simple using the Fugitive and Unimpaired plug-ins. They allow you to jump to each file and line in the result set with default keybindings.
-title: Searching a Git repository using
+title: Searching a Git repository using VIM
 url: /searching_git_with_vim
 ---
 
