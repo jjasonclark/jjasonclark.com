@@ -1,6 +1,9 @@
-FROM zzrot/alpine-caddy
+FROM jojomi/hugo:latest
 MAINTAINER Jason Clark <jason@jjasonclark.com>
 
-EXPOSE 80 443
-COPY docker/Caddyfile /etc/Caddyfile
-COPY public/ /var/www/html/
+RUN apk add --update py-pygments && rm /var/cache/apk/*
+
+EXPOSE 1313
+
+WORKDIR /src
+CMD /usr/bin/hugo --cleanDestinationDir -d public

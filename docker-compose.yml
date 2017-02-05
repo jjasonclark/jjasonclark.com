@@ -1,11 +1,8 @@
 version: "2"
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  app:
+    build: ./
     ports:
-      - 80:80
-      - 443:443
+      - "1313:1313"
     volumes:
-      - ./lets_encrypt:/root/.caddy
+      - ./:/src/

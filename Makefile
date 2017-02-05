@@ -1,22 +1,14 @@
-.PHONY: dockerbuild
-dockerbuild:
-	docker build -t jjasonclark/jjasonclark.com:latest .
-
-.PHONY: dockerhub
-dockerhub: dockerbuild
-	docker push jjasonclark/jjasonclark.com:latest
-
 .PHONY: hugo
 hugo:
-	hugo --cleanDestinationDir -d public
+	docker-compose run --rm app /usr/bin/hugo --cleanDestinationDir -d public
 
 .PHONY: drafts
 drafts:
-	hugo --cleanDestinationDir -d public -D
+	docker-compose run --rm app /usr/bin/hugo --cleanDestinationDir -d public -D
 
 .PHONY: serve
 serve:
-	hugo serve --cleanDestinationDir -d public -D --watch
+	docker-compose run --rm --service-ports app /usr/bin/hugo serve --cleanDestinationDir -d public -D --watch --bind 0.0.0.0
 
 .PHONY: awsdeploy
 awsdeploy:
