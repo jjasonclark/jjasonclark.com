@@ -1,11 +1,12 @@
 # Blog at JJasonClark.com
 
+Website for [JJasonClark.com](https://JJasonClark.com)
+
 ## Developer Setup
 
-1. Install [Hugo](https://gohugo.io/) `go get -u github.com/spf13/hubo`
-1. Install [Pygments](http://pygments.org/) `pip install Pygments`
+Install Docker
 
-## Build instructions
+## Build and deploy instructions
 
 1. `make hugo`
 2. `make awsdeploy`
