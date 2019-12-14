@@ -19,10 +19,7 @@
       </div>
     </div>
 
-    {{ if $.Param "comments" }}
     {{ partial "disqus.html" . }}
-    {{ end }}
-
     {{ partial "footer.html" . }}
     {{ partial "last_js.html" . }}
   </body>
