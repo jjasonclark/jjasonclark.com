@@ -21,8 +21,8 @@ showAds = true
 showComments = true
 
 [taxonomies]
-category = "n1"
-tag = "n2"
+category = "categories"
+tag = "tags"
 
 [author]
 name = "Jason Clark"
