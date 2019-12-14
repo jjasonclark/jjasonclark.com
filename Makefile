@@ -1,14 +1,16 @@
+PWD=$(shell pwd)
+
 .PHONY: hugo
 hugo:
-	docker-compose run --rm app /usr/bin/hugo --cleanDestinationDir -d public
+	docker run --rm -v $(PWD):/src jjasonclark.com:latest
+
+.PHONY: docker
+docker:
+	docker build . -t jjasonclark.com:latest
 
 .PHONY: drafts
 drafts:
-	docker-compose run --rm app /usr/bin/hugo --cleanDestinationDir -d public -D
-
-.PHONY: serve
-serve:
-	docker-compose run --rm --service-ports app /usr/bin/hugo serve --cleanDestinationDir -d public -D --watch --bind 0.0.0.0
+	docker run --rm -v $(PWD):/src jjasonclark.com:latest /bin/hugo --cleanDestinationDir -d public -D
 
 .PHONY: awsdeploy
 awsdeploy:
