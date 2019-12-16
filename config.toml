@@ -5,8 +5,6 @@ publishdir = "public"
 layoutdir = "layouts"
 timezone = "America/Vancouver"
 encoding = "utf-8"
-pygmentsStyle = "monokai"
-pygmentsuseclasses = true
 DisqusShortname = "jjasonclark"
 
 [params]
@@ -28,8 +26,18 @@ tag = "tags"
 name = "Jason Clark"
 email = "jason@jjasonclark.com"
 
-[blackfriday]
-angledQuotes = false
-fractions = false
-plainIdAnchors = true
-extensions = ["hardLineBreak"]
+[markup]
+  [markup.highlight]
+    codeFences = true
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = false
+    noClasses = false
+    style = "monokai"
+    tabWidth = 2
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xHTML = false
