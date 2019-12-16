@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>howto on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/howto/</link>
+    <description>Recent content in howto on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 09 May 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/howto/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing Node.js on Ubuntu 10.04 server</title>
+      <link>https://jjasonclark.com/installing-node-on-ubuntu-10.04/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/installing-node-on-ubuntu-10.04/</guid>
+      <description>Most of the guides I find on how to install [Node.js][1] on Ubuntu are not about installing the currently released version, instead they focus on installing the latest development release. I think this is the case because they assume the reader is familiar with doing software installs on unix from source. I&#39;m coming from a Windows word were installing from the source is almost never done. This guide is for someone relatively new to unix installation or to Ubuntu server setup.</description>
+    </item>
+    
+    <item>
+      <title>Install Cloudstack 3.0.0 on Ubuntu 10.04 Server</title>
+      <link>https://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/</guid>
+      <description>Cloudstack 3.0.0 was release on Febrary 28th 2012. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</description>
+    </item>
+    
+    <item>
+      <title>Setting up NFS on Ubuntu 10.04 Server</title>
+      <link>https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/</link>
+      <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/</guid>
+      <description>I&#39;m currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.</description>
+    </item>
+    
+  </channel>
+</rss>

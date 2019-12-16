@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/programming/</link>
+    <description>Recent content in programming on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Thu, 05 Sep 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Trying out Emacs Again</title>
+      <link>https://jjasonclark.com/trying_out_emacs_again/</link>
+      <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/trying_out_emacs_again/</guid>
+      <description>I&#39;m a Vim user, but i&#39;m not 100% sold on it. I keep wanting to find an even better editor. I&#39;ve tried just about everything but nothing sticks. I&#39;m starting a new book on Lisp programming so it is time to try Emacs again. May this time it will stick.</description>
+    </item>
+    
+    <item>
+      <title>Sinatra Settings for Nested Apps</title>
+      <link>https://jjasonclark.com/sinatra_settings_for_nested_apps/</link>
+      <pubDate>Thu, 29 Aug 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/sinatra_settings_for_nested_apps/</guid>
+      <description>Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware. I show how I created a Sinatra app with several nested Sinatra apps. And how I solved the issue with using a shared settings value from outer apps to the inner apps.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant Going from old and busted, to new hotness</title>
+      <link>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</link>
+      <pubDate>Thu, 09 May 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</guid>
+      <description>Vagrant is an amazing application for helping you manage your virtual machines. Renewed development effort by it&#39;s creators has brought us many new features. Unfortunately this forced a change in the semantics of the Vagrantfile. Here is how to do the most basic upgrades to remove the warning messages Vagrant creates from using the older file type.</description>
+    </item>
+    
+    <item>
+      <title>Switching from attr_encrypted gem to attr_encryptor for better security</title>
+      <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</link>
+      <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</guid>
+      <description>At work we are using the attr_encrypted gem to encrypt some PII on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A Github issue was created to address leaking of data caused by using the same initialization vector (IV) and salt for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the CBC-MAC method. The attr_encryptor was created to fix these issues.</description>
+    </item>
+    
+    <item>
+      <title>Setting up a new Mac for Ruby development</title>
+      <link>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</guid>
+      <description>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&#39;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</description>
+    </item>
+    
+    <item>
+      <title>Fizz-buzz rehash</title>
+      <link>https://jjasonclark.com/fizzbuzz_rehash/</link>
+      <pubDate>Sun, 24 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/fizzbuzz_rehash/</guid>
+      <description>An implementation of fizz-buzz that is overly complex. Something you want to avoid in an interview.</description>
+    </item>
+    
+    <item>
+      <title>Code navigation with Resharper</title>
+      <link>https://jjasonclark.com/code_navigation_with_resharper/</link>
+      <pubDate>Mon, 04 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/code_navigation_with_resharper/</guid>
+      <description>Great screencast on using Resharper to navigate code efficiently in Visual Studio</description>
+    </item>
+    
+    <item>
+      <title>Any() is your friend</title>
+      <link>https://jjasonclark.com/any_is_your_friend/</link>
+      <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/any_is_your_friend/</guid>
+      <description>The Any() extension method helps make much more efficient SQL queries. Use it and love it!</description>
+    </item>
+    
+    <item>
+      <title>How to fix patching problems with TortoiseSVN and TortoiseMerge</title>
+      <link>https://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge/</link>
+      <pubDate>Wed, 25 Aug 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge/</guid>
+      <description>TortoiseMerge occasionally fails to work. I don&#39;t know the cause, but I did figure out how correct the issue so you can do another merge.</description>
+    </item>
+    
+    <item>
+      <title>SQLExpress and ASP.Net membership provider</title>
+      <link>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</link>
+      <pubDate>Sat, 17 Jul 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</guid>
+      <description>Using the ASP.Net membership provider in an application using SQLExpress database</description>
+    </item>
+    
+    <item>
+      <title>Learning Ruby</title>
+      <link>https://jjasonclark.com/learning_ruby/</link>
+      <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/learning_ruby/</guid>
+      <description>Learning Ruby via testing. Trying to also learn the Rails server enivronment as well.</description>
+    </item>
+    
+    <item>
+      <title>FizzBuzz test in C#</title>
+      <link>https://jjasonclark.com/fizzbuzz_test_in_c_sharp/</link>
+      <pubDate>Wed, 17 Mar 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/fizzbuzz_test_in_c_sharp/</guid>
+      <description>An overly complex fizz-buzz implementation</description>
+    </item>
+    
+    <item>
+      <title>Alt.Net Seattle mini con report</title>
+      <link>https://jjasonclark.com/alt_net_seattle_mini_con_report/</link>
+      <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/alt_net_seattle_mini_con_report/</guid>
+      <description>I went to my first Alt.Net Seattle meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the MVP global summit. I have to say I really liked it.</description>
+    </item>
+    
+    <item>
+      <title>Linqpad usage video</title>
+      <link>https://jjasonclark.com/linqpad_usage_video/</link>
+      <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/linqpad_usage_video/</guid>
+      <description>A video of Linqpad by the creator on how to use it best.</description>
+    </item>
+    
+    <item>
+      <title>Replicating SQL&#39;s in operator in Linq</title>
+      <link>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</link>
+      <pubDate>Sun, 06 Dec 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</guid>
+      <description>SQL has a range variable search keyword called &amp;lsquo;in&amp;rsquo; that is a not exposed by default in Linq.</description>
+    </item>
+    
+    <item>
+      <title>Solve Sudoku in 1 line of Linq</title>
+      <link>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</link>
+      <pubDate>Tue, 17 Nov 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</guid>
+      <description>Using linq to solve Sudoku</description>
+    </item>
+    
+    <item>
+      <title>Deploying a website with MSBuild and TFS 2008</title>
+      <link>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</link>
+      <pubDate>Thu, 22 Oct 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</guid>
+      <description>how I used msbuild to get a web server running</description>
+    </item>
+    
+    <item>
+      <title>Started working with Silverlight</title>
+      <link>https://jjasonclark.com/started_working_with_silverlight/</link>
+      <pubDate>Fri, 19 Dec 2008 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/started_working_with_silverlight/</guid>
+      <description>I started playing with Silverlight 2.0. I learned a lot about the data modeling classes and what is supported. Going to have to spend much more time with Silverlight if I&#39;m going to make anything useful</description>
+    </item>
+    
+  </channel>
+</rss>

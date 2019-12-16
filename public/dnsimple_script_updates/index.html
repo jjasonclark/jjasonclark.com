@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/dnsimple_script_updates">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/dnsimple_script_updates/">
+    <meta property="og:title" content="Update DNSimple to point to your home router" />
+<meta property="og:description" content="Using scripts to update DNSimple for home IPs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/dnsimple_script_updates/" />
+<meta property="article:published_time" content="2012-11-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2012-11-11T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Update DNSimple to point to your home router"/>
+<meta name="twitter:description" content="Using scripts to update DNSimple for home IPs"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/dnsimple_script_updates" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,68 +68,46 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Update DNSimple to point to your home router</h1>
-            <p class="post-meta">November 11, 2012 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">November 11, 2012 • Jason Clark</p>
           </header>
           <article class="post-content">
-            
-
-<p>I use the DNS provider <a href="http://dnsimple.com">DNSimple</a> (<a href="https://dnsimple.com/r/65fab1b1ffee66" title="DNSimple referal link">referral link</a>). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I&rsquo;m out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.</p>
-
-<p>I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is <a href="http://icanhazip.com/">ICanHazIP.com</a>. I like this one because of the super simple response format. One of these days I&rsquo;ll create my own service, I just need the time to do it. <small>(Unless you want to submit one in the comments. I would love you if you did.)<small></p>
-
+            <p>I use the DNS provider <a href="http://dnsimple.com">DNSimple</a> (<a href="https://dnsimple.com/r/65fab1b1ffee66" title="DNSimple referal link">referral link</a>). I am extremely happy with the service. They provide an JSON API to update their records dynamically. I use this API along with some Unix scripts to make sure I have an up to date subdomain that points to my home router. I use this almost every day to do remote pair programming. Additionally I use it to allow VPN access to my home network when I'm out and about at meetups and such. Honestly, I love it so much I should have blogged about it months ago. Because I had this setup I was able to get pair programming setup with virtually no effort.</p>
+<p>I combine a service to tell me my requesting IP address with a bash script to create a JSON packet for the DNSimple API. My IP address service of choice is <a href="http://icanhazip.com/">ICanHazIP.com</a>. I like this one because of the super simple response format. One of these days I'll create my own service, I just need the time to do it. <small>(Unless you want to submit one in the comments. I would love you if you did.)<small></p>
 <h2 id="discovering-your-external-ip-address">Discovering your external IP address</h2>
-
 <p>Simple use curl to make a call to <a href="http://icanhazip.com/">http://ICanHazIP.com</a> and the output is the external IP address of your network. <code>curl http://icanhazip.com</code>. In the script I use the silent option to not show the progress bar.</p>
-
 <h2 id="updating-a-dns-a-record-for-your-home-router">Updating a DNS A record for your home router</h2>
-
-<p>Then I use <a href="http://developer.dnsimple.com/domains/records/" title="Record API reference">DNSimple&rsquo;s record API</a> to update the subdomain&rsquo;s A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.</p>
-
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span></span><span class="p">{</span>
-    <span class="nt">&quot;record&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;ip address&gt;&quot;</span>
+<p>Then I use <a href="http://developer.dnsimple.com/domains/records/" title="Record API reference">DNSimple's record API</a> to update the subdomain's A record to point to this IP address. The API accepts the following JSON packet as a post HTTP action.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;record&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ip address&gt;&#34;</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
+<span class="p">}</span></code></pre></div>
 <h2 id="final-script">Final script</h2>
-
 <p>This all comes together in the following bash shell script. I call it <code>dnsimple.sh</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">LOGIN</span><span class="o">=</span><span class="s2">&#34;&lt;enter yours here&gt;&#34;</span>
+<span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">&#34;&lt;enter yours here&gt;&#34;</span>
+<span class="nv">DOMAIN_ID</span><span class="o">=</span><span class="s2">&#34;&lt;enter yours here&gt;&#34;</span>
+<span class="nv">RECORD_ID</span><span class="o">=</span><span class="s2">&#34;&lt;enter yours here&gt;&#34;</span>
 
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&#34;Getting current external IP&#34;</span>
+<span class="nv">IP</span><span class="o">=</span><span class="s2">&#34;`curl -s http://icanhazip.com/`&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">Current external IP is </span><span class="nv">$IP</span><span class="s2">&#34;</span>
 
-<span class="nv">LOGIN</span><span class="o">=</span><span class="s2">&quot;&lt;enter yours here&gt;&quot;</span>
-<span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">&quot;&lt;enter yours here&gt;&quot;</span>
-<span class="nv">DOMAIN_ID</span><span class="o">=</span><span class="s2">&quot;&lt;enter yours here&gt;&quot;</span>
-<span class="nv">RECORD_ID</span><span class="o">=</span><span class="s2">&quot;&lt;enter yours here&gt;&quot;</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Getting current external IP&quot;</span>
-<span class="nv">IP</span><span class="o">=</span><span class="s2">&quot;`curl -s http://icanhazip.com/`&quot;</span>
-<span class="nb">echo</span> <span class="s2">&quot;Current external IP is </span><span class="nv">$IP</span><span class="s2">&quot;</span>
-
-<span class="nb">echo</span> <span class="s2">&quot;Updating external record to </span><span class="nv">$IP</span><span class="s2">&quot;</span>
-curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\\</span>
-    --basic -u <span class="s2">&quot;</span><span class="nv">$LOGIN</span><span class="s2">:</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span> <span class="se">\\</span>
-    -H <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\\</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">Updating external record to </span><span class="nv">$IP</span><span class="s2">&#34;</span>
+curl -H <span class="s2">&#34;Accept: application/json&#34;</span> <span class="se">\\</span>
+    --basic -u <span class="s2">&#34;</span><span class="nv">$LOGIN</span><span class="s2">:</span><span class="nv">$PASSWORD</span><span class="s2">&#34;</span> <span class="se">\\</span>
+    -H <span class="s2">&#34;Content-Type: application/json&#34;</span> <span class="se">\\</span>
     -i -X PUT https://DNSimple.com/domains/<span class="nv">$DOMAIN_ID</span>/records/<span class="nv">$RECORD_ID</span>.json <span class="se">\\</span>
-    -d <span class="o">{</span><span class="se">\\</span><span class="s2">&quot;record\\&quot;</span>:<span class="o">{</span><span class="se">\\</span><span class="s2">&quot;content\\&quot;</span>:<span class="se">\\</span><span class="s2">&quot;</span><span class="nv">$IP</span><span class="s2">\\&quot;</span><span class="o">}}</span> -s &gt; /dev/null
+    -d <span class="o">{</span><span class="se">\\</span><span class="s2">&#34;record\\&#34;</span>:<span class="o">{</span><span class="se">\\</span><span class="s2">&#34;content\\&#34;</span>:<span class="se">\\</span><span class="s2">&#34;</span><span class="nv">$IP</span><span class="s2">\\</span><span class="s2">&#34;</span><span class="o">}</span><span class="o">}</span> -s &gt; /dev/null
 
-<span class="nb">echo</span> <span class="s2">&quot;Set record&quot;</span>
-</code></pre></div>
-
-
+<span class="nb">echo</span> <span class="s2">&#34;Set record&#34;</span></code></pre></div>
 <h2 id="update-hourly">Update hourly</h2>
-
-<p>I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it&rsquo;s good to be ready for it when it does. I do this update by running the <code>dnsimple.sh</code> script every hour via a cron task. These are set in my <code>/etc/crontab</code> file.</p>
-
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="c1"># m h  dom mon dow   command</span>
-@hourly /root/bin/setDNSimple.sh &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
-</code></pre></div>
-
-
+<p>I want this to run every so often to make sure the IP is correct just in case my internet provider changes my external IP address. So far this has never happened, but it's good to be ready for it when it does. I do this update by running the <code>dnsimple.sh</code> script every hour via a cron task. These are set in my <code>/etc/crontab</code> file.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># m h  dom mon dow   command</span>
+@hourly /root/bin/setDNSimple.sh &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span></code></pre></div>
 <h2 id="finished">Finished</h2>
-
 <p>Thats it! Its all setup. Every hour my external IP will have a functioning DNS record for others to point to. SSHing into my server is as simple as <code>ssh subdomain.mydoamin.com</code>. For added security move your SSH port to a different number. Security by obscurity, but better than nothing.</p>
 
           </article>
@@ -138,20 +116,27 @@ curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -207,17 +192,8 @@ curl -H <span class="s2">&quot;Accept: application/json&quot;</span> <span class
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

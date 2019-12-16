@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/started_working_with_silverlight">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/started_working_with_silverlight/">
+    <meta property="og:title" content="Started working with Silverlight" />
+<meta property="og:description" content="Gave Silverlight 2.0 a try for the first time" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/started_working_with_silverlight/" />
+<meta property="article:published_time" content="2008-12-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2008-12-19T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Started working with Silverlight"/>
+<meta name="twitter:description" content="Gave Silverlight 2.0 a try for the first time"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/started_working_with_silverlight" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,24 +68,17 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Started working with Silverlight</h1>
-            <p class="post-meta">December 19, 2008 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">December 19, 2008 • Jason Clark</p>
           </header>
           <article class="post-content">
-            <p>Thanks to the last few days being snow days I&rsquo;ve gotten some work done on the programming front.  I&rsquo;ve been playing with Silverlight 2.0.  I installed the <a href="http://go.microsoft.com/fwlink/?LinkId=129043" title="Microsoft® Silverlight™ Tools for Visual Studio 2008 SP1">SDK</a> and have started working on a Solitaire program.  I figured that a program with no external input would be nice to start with.  Although for my next project I would like to try connecting to a REST service.</p>
-
-<p>First thing I did was think about a data model that would work for the game.  As you can imagine it only took 1 table with a few other enum like tables.  I though that since Solitaire is so easy I would code the game logic first and then spend the rest of the time playing with the UI.  Really there are only a few moves that you can make.  And rules for checking if you have won or can&rsquo;t move any more are really easy.  I thought it would only take me about an hour to finish it all.</p>
-
-<p>Well it turns out that Silverlight 2.0 doesn&rsquo;t support ADO.Net.  No DataSets or DataTables.  As far as I can tell they (Microsoft) want you to use only the Entity framework.  Or baring that, your own custom objects.  Since I&rsquo;m not using a database that left me with custom objects.  I made a game board object with several ObserveableCollections for each of the card stacks.  Almost no coding at all.  No need to focus on what Silverlight doesn&rsquo;t have.  So I moved on to the UI.</p>
-
+            <p>Thanks to the last few days being snow days I've gotten some work done on the programming front.  I've been playing with Silverlight 2.0.  I installed the <a href="http://go.microsoft.com/fwlink/?LinkId=129043" title="Microsoft® Silverlight™ Tools for Visual Studio 2008 SP1">SDK</a> and have started working on a Solitaire program.  I figured that a program with no external input would be nice to start with.  Although for my next project I would like to try connecting to a REST service.</p>
+<p>First thing I did was think about a data model that would work for the game.  As you can imagine it only took 1 table with a few other enum like tables.  I though that since Solitaire is so easy I would code the game logic first and then spend the rest of the time playing with the UI.  Really there are only a few moves that you can make.  And rules for checking if you have won or can't move any more are really easy.  I thought it would only take me about an hour to finish it all.</p>
+<p>Well it turns out that Silverlight 2.0 doesn't support ADO.Net.  No DataSets or DataTables.  As far as I can tell they (Microsoft) want you to use only the Entity framework.  Or baring that, your own custom objects.  Since I'm not using a database that left me with custom objects.  I made a game board object with several ObserveableCollections for each of the card stacks.  Almost no coding at all.  No need to focus on what Silverlight doesn't have.  So I moved on to the UI.</p>
 <p>I wanted to start by playing with the data binding.  I knew that if I made my card objects with a ToString method that a ListBox would show them.  I created a Grid with 7 columns and 2 rows.  Each cell has a ListBox to show the cards in that stack.  Basically the standard layout.  I then tried 2 different ways to databind the ListBoxes to the collections in the game board object.</p>
-
-<p>First way was to make a DependencyProperty on the page class.  DependencyProperties have at least 1 major draw back in my opinion.  The bindings don&rsquo;t work by default.  You have to wait for a Loaded event to set the binding source (or context) otherwise the property isn&rsquo;t set by the time the XAML is parsed.  I played around with this for a while and that was the only down side.  And it isn&rsquo;t that big of a deal to deal with.  Subscribing to an event is very easy.</p>
-
-<p>This second way I think is much better.  I added the game board as a resource for the page and then set the binding source on the Grid to it.  This worked without having to subscribe to any events.  I also found out that accessing the object in resources is done by simply accessing the Resources property off of the page object.  this.Resources[“GameBoard”] as GameBoard.  I made a non-DependencyProperty who&rsquo;s get method returned the GameBoard.</p>
-
-<p>Using resources seems to feel better to me.  More akin to the MVC pattern.  The page only has a resource that is set by the XAML.  You never have to jump into code for it.  I haven&rsquo;t played with Blend yet, but I would guess that using a resource allows for some default data while editing in design mode.</p>
-
-<p>Anyhow, I need to work with my ISP to see if I can get the app hosted.  I&rsquo;ve got plenty more to work on before it&rsquo;s done.  Although it is just about playable now.  I don&rsquo;t have the cards being drawn though.  They are just displaying as single text lines in the ListBoxes.  Still it would be nice to see it out on the Internet.</p>
+<p>First way was to make a DependencyProperty on the page class.  DependencyProperties have at least 1 major draw back in my opinion.  The bindings don't work by default.  You have to wait for a Loaded event to set the binding source (or context) otherwise the property isn't set by the time the XAML is parsed.  I played around with this for a while and that was the only down side.  And it isn't that big of a deal to deal with.  Subscribing to an event is very easy.</p>
+<p>This second way I think is much better.  I added the game board as a resource for the page and then set the binding source on the Grid to it.  This worked without having to subscribe to any events.  I also found out that accessing the object in resources is done by simply accessing the Resources property off of the page object.  this.Resources[“GameBoard”] as GameBoard.  I made a non-DependencyProperty who's get method returned the GameBoard.</p>
+<p>Using resources seems to feel better to me.  More akin to the MVC pattern.  The page only has a resource that is set by the XAML.  You never have to jump into code for it.  I haven't played with Blend yet, but I would guess that using a resource allows for some default data while editing in design mode.</p>
+<p>Anyhow, I need to work with my ISP to see if I can get the app hosted.  I've got plenty more to work on before it's done.  Although it is just about playable now.  I don't have the cards being drawn though.  They are just displaying as single text lines in the ListBoxes.  Still it would be nice to see it out on the Internet.</p>
 
           </article>
         </div>
@@ -93,20 +86,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -162,17 +162,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

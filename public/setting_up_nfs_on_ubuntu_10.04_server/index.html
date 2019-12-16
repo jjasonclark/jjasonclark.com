@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/syntax.css">
     <link rel="canonical" href="https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/">
+    <meta property="og:title" content="Setting up NFS on Ubuntu 10.04 Server" />
+<meta property="og:description" content="How to get a base install Ubuntu 10.04 server to run NFS. Includes setting up IPTables rules." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/" />
+<meta property="article:published_time" content="2012-03-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2012-03-20T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting up NFS on Ubuntu 10.04 Server"/>
+<meta name="twitter:description" content="How to get a base install Ubuntu 10.04 server to run NFS. Includes setting up IPTables rules."/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/setting_up_nfs_on_ubuntu_10.04_server/" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,58 +68,45 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Setting up NFS on Ubuntu 10.04 Server</h1>
-            <p class="post-meta">March 20, 2012 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">March 20, 2012 • Jason Clark</p>
           </header>
           <article class="post-content">
-            
-
-<p>I&rsquo;m currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.</p>
-
+            <p>I'm currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.</p>
 <p>The following assumes you have already setup Ubuntu and can access the network. Do all the following as the root user.</p>
-
 <h2 id="install-the-nfs-server-package">Install the NFS server package</h2>
-
 <p>Run the following commands to install NFS server and rpcbind</p>
-
 <pre><code>apt-get install nfs-kernel-server
 apt-get install rpcbind
 </code></pre>
-
 <h2 id="setup-iptables-to-restore-rules-at-startup-and-save-rules-at-shutdown">Setup IPTables to restore rules at startup and save rules at shutdown</h2>
-
 <p>Create the following two files</p>
-
 <ul>
-<li><p>/etc/network/if-pre-up.d/iptablesload</p>
-
-<pre><code>#!/bin/sh
-iptables-restore &lt; /etc/iptables.rules
-exit 0
-</code></pre></li>
-
-<li><p>/etc/network/if-post-down.d/iptablessave</p>
-
-<pre><code>#!/bin/sh
-iptables-save -c &gt; /etc/iptables.rules
-if [ -f /etc/iptables.downrules ]; then
-    iptables-restore &lt; /etc/iptables.downrules
-fi
-exit 0
-</code></pre></li>
+<li>
+<p>/etc/network/if-pre-up.d/iptablesload</p>
+<pre><code>  #!/bin/sh
+  iptables-restore &lt; /etc/iptables.rules
+  exit 0
+</code></pre>
+</li>
+<li>
+<p>/etc/network/if-post-down.d/iptablessave</p>
+<pre><code>  #!/bin/sh
+  iptables-save -c &gt; /etc/iptables.rules
+  if [ -f /etc/iptables.downrules ]; then
+      iptables-restore &lt; /etc/iptables.downrules
+  fi
+  exit 0
+</code></pre>
+</li>
 </ul>
-
 <p>Give both scripts execute permissions and run them</p>
-
 <pre><code>chmod +x /etc/network/if-pre-up.d/iptablesload
 chmod +x /etc/network/if-post-down.d/iptablessave
 /etc/network/if-post-down.d/iptablessave
 /etc/network/if-pre-up.d/iptablesload
 </code></pre>
-
 <h2 id="add-iptable-rules-to-allow-nfs-and-rpcbind-traffic">Add IPTable rules to allow NFS and RPCBind traffic</h2>
-
 <p>Run the following commands</p>
-
 <pre><code>iptables -A INPUT -m state --state NEW -p udp --dport 111 -j ACCEPT
 iptables -A INPUT -m state --state NEW -p tcp --dport 111 -j ACCEPT
 iptables -A INPUT -m state --state NEW -p tcp --dport 2049 -j ACCEPT
@@ -133,11 +120,8 @@ iptables -A INPUT -m state --state NEW -p tcp --dport 662 -j ACCEPT
 iptables -A INPUT -m state --state NEW -p udp --dport 662 -j ACCEPT
 /etc/network/if-post-down.d/iptablessave
 </code></pre>
-
 <h2 id="setup-ports-for-nfs">Setup ports for NFS</h2>
-
 <p>Edit the file <code>/etc/default/nfs-kernel-server</code> and add or uncomment the following lines</p>
-
 <pre><code>LOCKD_TCPPORT=32803
 LOCKD_UDPPORT=32769
 MOUNTD_PORT=892
@@ -145,50 +129,33 @@ RQUOTAD_PORT=875
 STATD_PORT=662
 STATD_OUTGOING_PORT=2020
 </code></pre>
-
 <h2 id="add-your-domain-for-idmap-service">Add your domain for IdMap service</h2>
-
 <p>Edit the file <code>/etc/idmapd.conf</code> and change the value for <code>Domain</code> to be your domain.</p>
-
 <h2 id="create-first-export">Create first export</h2>
-
 <p>Create your first exported directory</p>
-
 <pre><code>mkdir -p /export/first
 </code></pre>
-
 <p>Setup NFS to export the directory by editing the file <code>/etc/exports</code>. Add the following line</p>
-
 <pre><code>/export/first *(rw,async,no_subtree_check,no_root_squash)
 </code></pre>
-
 <p>Update NFS exported files by running <code>exportfs -a</code></p>
-
 <h2 id="restart-nfs-and-networking">Restart NFS and networking</h2>
-
 <p>Restart via the following commands</p>
-
 <pre><code>/etc/init.d/nfs-kernel-server restart
 /etc/init.d/networking restart
 </code></pre>
-
 <h2 id="verify-it-all-works">Verify it all works</h2>
-
 <p>Run <code>rpcinfo -p</code> and verify that the following services are listed</p>
-
 <pre><code>mountd
 nlockmgr
 nfs
 portmapper
 </code></pre>
-
 <h2 id="further-reading">Further reading</h2>
-
 <p>These are the help pages I read to figure most of this out. They are from the Ubuntu community documentation and are definitely worth reading.</p>
-
 <ul>
-<li><a href="https://help.ubuntu.com/community/SettingUpNFSHowTo">Setting Up NFS How To</a><br /></li>
-<li><a href="https://help.ubuntu.com/community/IptablesHowTo">IPTables How To</a><br /></li>
+<li><a href="https://help.ubuntu.com/community/SettingUpNFSHowTo">Setting Up NFS How To</a></li>
+<li><a href="https://help.ubuntu.com/community/IptablesHowTo">IPTables How To</a></li>
 </ul>
 
           </article>
@@ -197,20 +164,27 @@ portmapper
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -266,17 +240,8 @@ portmapper
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/">
+    <meta property="og:title" content="Switching from attr_encrypted gem to attr_encryptor for better security" />
+<meta property="og:description" content="How to switch from attr_encrypted to attr_encryptor gem for better security" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/" />
+<meta property="article:published_time" content="2013-02-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2013-02-06T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Switching from attr_encrypted gem to attr_encryptor for better security"/>
+<meta name="twitter:description" content="How to switch from attr_encrypted to attr_encryptor gem for better security"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/switching_from_attr_encrypted_to_attr_encryptor" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,20 +68,14 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Switching from attr_encrypted gem to attr_encryptor for better security</h1>
-            <p class="post-meta">February 6, 2013 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">February 6, 2013 • Jason Clark</p>
           </header>
           <article class="post-content">
-            
-
-<p>At work we are using the <a href="http://rubygems.org/gems/attr_encrypted" title="attr_encyrpted on rubygems">attr_encrypted gem</a> to encrypt some <a href="http://en.wikipedia.org/wiki/Personally_identifiable_information" title="Wikipedia on PII">PII</a> on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A <a href="https://github.com/shuber/attr_encrypted/issues/32" title="Security issue with attr_encrypted">Github issue</a> was created to address leaking of data caused by using the same <a href="http://en.wikipedia.org/wiki/Initialization_vector" title="Wikipedia on IV">initialization vector (IV)</a> and <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)" title="Wikipedia on salt">salt</a> for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the <a href="http://en.wikipedia.org/wiki/CBC-MAC" title="Wikipedia on CBC-MAC">CBC-MAC</a> method. The <a href="http://rubygems.org/gems/attr_encryptor" title="attr_encryptor on rubygems">attr_encryptor</a> was created to fix these issues.</p>
-
+            <p>At work we are using the <a href="http://rubygems.org/gems/attr_encrypted" title="attr_encyrpted on rubygems">attr_encrypted gem</a> to encrypt some <a href="http://en.wikipedia.org/wiki/Personally_identifiable_information" title="Wikipedia on PII">PII</a> on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A <a href="https://github.com/shuber/attr_encrypted/issues/32" title="Security issue with attr_encrypted">Github issue</a> was created to address leaking of data caused by using the same <a href="http://en.wikipedia.org/wiki/Initialization_vector" title="Wikipedia on IV">initialization vector (IV)</a> and <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)" title="Wikipedia on salt">salt</a> for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the <a href="http://en.wikipedia.org/wiki/CBC-MAC" title="Wikipedia on CBC-MAC">CBC-MAC</a> method. The <a href="http://rubygems.org/gems/attr_encryptor" title="attr_encryptor on rubygems">attr_encryptor</a> was created to fix these issues.</p>
 <p>Besides changing gem names, to switch gems you will need to add the new <code>_iv</code> and <code>_salt</code> database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.</p>
-
 <h2 id="re-encrypting-old-values">Re-encrypting old values</h2>
-
-<p>At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem&rsquo;s decryption code. From the <a href="https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190" title="decryption function in attr_encrypted">Github source</a></p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="c1"># Decrypts a value for the attribute specified</span>
+<p>At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem's decryption code. From the <a href="https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190" title="decryption function in attr_encrypted">Github source</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="c1"># Decrypts a value for the attribute specified</span>
 <span class="c1">#</span>
 <span class="c1"># Example</span>
 <span class="c1">#</span>
@@ -90,13 +84,13 @@
 <span class="c1">#   end</span>
 <span class="c1">#</span>
 <span class="c1">#   email = User.decrypt(:email, &#39;SOME_ENCRYPTED_EMAIL_STRING&#39;)</span>
-<span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">encrypted_value</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
-  <span class="n">options</span> <span class="o">=</span> <span class="n">encrypted_attributes</span><span class="o">[</span><span class="n">attribute</span><span class="o">.</span><span class="n">to_sym</span><span class="o">].</span><span class="n">merge</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">decrypt</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">encrypted_value</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="n">encrypted_attributes</span><span class="o">[</span><span class="n">attribute</span><span class="o">.</span><span class="n">to_sym</span><span class="o">]</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:if</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">options</span><span class="o">[</span><span class="ss">:unless</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">encrypted_value</span><span class="o">.</span><span class="n">nil?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span><span class="n">encrypted_value</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">encrypted_value</span><span class="o">.</span><span class="n">empty?</span><span class="p">)</span>
     <span class="n">encrypted_value</span> <span class="o">=</span> <span class="n">encrypted_value</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:encode</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">first</span> <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:encode</span><span class="o">]</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">options</span><span class="o">[</span><span class="ss">:encryptor</span><span class="o">].</span><span class="n">send</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:decrypt_method</span><span class="o">]</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">merge!</span><span class="p">(</span><span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">encrypted_value</span><span class="p">))</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">options</span><span class="o">[</span><span class="ss">:encryptor</span><span class="o">]</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:decrypt_method</span><span class="o">]</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">merge!</span><span class="p">(</span><span class="ss">:value</span> <span class="o">=</span><span class="o">&gt;</span> <span class="n">encrypted_value</span><span class="p">)</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:marshal</span><span class="o">]</span>
-      <span class="n">value</span> <span class="o">=</span> <span class="n">options</span><span class="o">[</span><span class="ss">:marshaler</span><span class="o">].</span><span class="n">send</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:load_method</span><span class="o">]</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="n">options</span><span class="o">[</span><span class="ss">:marshaler</span><span class="o">]</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:load_method</span><span class="o">]</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">elsif</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Encoding</span><span class="p">)</span>
       <span class="n">encoding</span> <span class="o">=</span> <span class="no">Encoding</span><span class="o">.</span><span class="n">default_internal</span> <span class="o">||</span> <span class="no">Encoding</span><span class="o">.</span><span class="n">default_external</span>
       <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="n">encoding</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -105,15 +99,11 @@
   <span class="k">else</span>
     <span class="n">encrypted_value</span>
   <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-
-
+<span class="k">end</span></code></pre></div>
 <p>Which calls to the <a href="http://rubygems.org/gems/encryptor" title="encryptor gem on rubygems">encryptor gem</a> to do the actually decryption. The <a href="https://github.com/shuber/encryptor/blob/master/lib/encryptor.rb#L49-63" title="encryptor decrypt method">decryption code</a></p>
-
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">def</span> <span class="nf">crypt</span><span class="p">(</span><span class="n">cipher_method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1">#:nodoc:</span>
-  <span class="n">options</span> <span class="o">=</span> <span class="n">default_options</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="no">Hash</span><span class="p">)</span> <span class="p">?</span> <span class="n">args</span><span class="o">.</span><span class="n">last</span> <span class="p">:</span> <span class="p">{})</span>
-  <span class="k">raise</span> <span class="no">ArgumentError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;must specify a :key&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:key</span><span class="o">].</span><span class="n">to_s</span><span class="o">.</span><span class="n">empty?</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">crypt</span><span class="p">(</span><span class="n">cipher_method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1">#:nodoc:</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="n">default_options</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="ss">:value</span> <span class="o">=</span><span class="o">&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="no">Hash</span><span class="p">)</span> <span class="p">?</span> <span class="n">args</span><span class="o">.</span><span class="n">last</span> <span class="p">:</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span>
+  <span class="k">raise</span> <span class="no">ArgumentError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;must specify a :key&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:key</span><span class="o">]</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">empty?</span>
   <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">Cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:algorithm</span><span class="o">]</span><span class="p">)</span>
   <span class="n">cipher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">cipher_method</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:iv</span><span class="o">]</span>
@@ -125,64 +115,55 @@
   <span class="k">yield</span> <span class="n">cipher</span><span class="p">,</span> <span class="n">options</span> <span class="k">if</span> <span class="nb">block_given?</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">options</span><span class="o">[</span><span class="ss">:value</span><span class="o">]</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
-<span class="k">end</span>
-</code></pre></div>
-</p>
-
+<span class="k">end</span></code></pre></div>
 <p>Basically this boils down to the following.</p>
-
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">decrypt</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
   <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">Cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;aes-256-cbc&#39;</span><span class="p">)</span>
   <span class="n">cipher</span><span class="o">.</span><span class="n">decrypt</span>
   <span class="n">cipher</span><span class="o">.</span><span class="n">pkcs5_keyivgen</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
   <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
-<span class="k">end</span>
-</code></pre></div>
-</p>
-
+<span class="k">end</span></code></pre></div>
 <h2 id="finial-migration">Finial migration</h2>
-
 <p>Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">ReencryptAllValues</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">ReencryptAllValues</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
     <span class="k">class</span> <span class="nc">IterationCount</span>
-        <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">display_every</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">initialize</span><span class="p">(</span><span class="n">display_every</span><span class="o">=</span><span class="mi">100</span><span class="o"></span><span class="p">)</span>
             <span class="vi">@iteration_count</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="vi">@display_every</span> <span class="o">=</span> <span class="n">display_every</span>
+            <span class="o"></span><span class="vi">@display_every</span> <span class="o">=</span> <span class="n">display_every</span>
         <span class="k">end</span>
 
-        <span class="k">def</span> <span class="nf">inc_and_display</span><span class="p">(</span><span class="n">extra_text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">inc_and_display</span><span class="p">(</span><span class="n">extra_text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
             <span class="vi">@iteration_count</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="nb">puts</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@iteration_count</span><span class="si">}</span><span class="s2"> rows processed. </span><span class="si">#{</span><span class="n">extra_text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">==</span> <span class="vi">@iteration_count</span> <span class="o">%</span> <span class="vi">@display_every</span>
+            <span class="o"></span><span class="nb">puts</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">#{</span><span class="vi">@iteration_count</span><span class="si">}</span><span class="s2"> rows processed. </span><span class="si">#{</span><span class="n">extra_text</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">if</span> <span class="mi">0</span> <span class="o"></span><span class="o">==</span> <span class="vi">@iteration_count</span> <span class="o">%</span> <span class="vi">@display_every</span>
         <span class="k">end</span>
     <span class="k">end</span>
 
     <span class="k">class</span> <span class="nc">FieldAccessor</span>
-        <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">initialize</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
             <span class="vi">@value_sym</span> <span class="o">=</span> <span class="n">value</span>
             <span class="vi">@target</span> <span class="o">=</span> <span class="n">target</span>
         <span class="k">end</span>
 
-        <span class="k">def</span> <span class="nf">value</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">value</span>
             <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="vi">@value_sym</span><span class="p">)</span>
         <span class="k">end</span>
 
-        <span class="k">def</span> <span class="nf">value</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">=&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">value</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">=</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">end</span>
 
-        <span class="k">def</span> <span class="nf">encrypted_value</span>
-            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">encrypted_value</span>
+            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
         <span class="k">end</span>
 
-        <span class="k">def</span> <span class="nf">encrypted_value</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">=&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">encrypted_value</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">=</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">end</span>
 
-        <span class="k">def</span> <span class="nf">clear_iv_and_salt</span>
-            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">_iv=&quot;</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
-            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">_salt=&quot;</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">clear_iv_and_salt</span>
+            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">_iv=</span><span class="s2">&#34;</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
+            <span class="vi">@target</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">encrypted_</span><span class="si">#{</span><span class="vi">@value_sym</span><span class="si">}</span><span class="s2">_salt=</span><span class="s2">&#34;</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
         <span class="k">end</span>
     <span class="k">end</span>
 
@@ -193,7 +174,7 @@
 
         <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">encrypt_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
             <span class="n">encrypted_value</span> <span class="o">=</span> <span class="n">crypt</span><span class="p">(</span><span class="ss">:encrypt</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="o">[</span><span class="n">encrypted_value</span><span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+            <span class="o">[</span><span class="n">encrypted_value</span><span class="o">]</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
         <span class="k">end</span>
 
         <span class="kp">private</span>
@@ -230,11 +211,11 @@
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">have_encrypted_values</span><span class="p">(</span><span class="n">advertiser</span><span class="p">)</span>
-        <span class="no">EncryptedFields</span><span class="o">.</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">advertiser</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;encrypted_</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">present?</span> <span class="p">}</span>
+        <span class="no">EncryptedFields</span><span class="o">.</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">advertiser</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">encrypted_</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">present?</span> <span class="p">}</span>
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">already_encrypted_values</span><span class="p">(</span><span class="n">advertiser</span><span class="p">)</span>
-        <span class="no">EncryptedFields</span><span class="o">.</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">advertiser</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;encrypted_</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">_iv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">present?</span> <span class="p">}</span>
+        <span class="no">EncryptedFields</span><span class="o">.</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">advertiser</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">encrypted_</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">_iv</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">present?</span> <span class="p">}</span>
     <span class="k">end</span>
 
     <span class="no">EncryptedFields</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:bank_account_number</span><span class="p">,</span> <span class="ss">:bank_routing_number</span><span class="p">,</span> <span class="ss">:federal_tax_id</span><span class="o">]</span>
@@ -242,35 +223,33 @@
     <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">up</span>
         <span class="k">return</span> <span class="k">unless</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span>
         <span class="n">counter</span> <span class="o">=</span> <span class="no">IterationCount</span><span class="o">.</span><span class="n">new</span> <span class="mi">1000</span>
-        <span class="n">converted</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="no">Advertiser</span><span class="o">.</span><span class="n">find_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">advertiser</span><span class="o">|</span>
-            <span class="n">counter</span><span class="o">.</span><span class="n">inc_and_display</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">converted</span><span class="si">}</span><span class="s2"> converted&quot;</span>
+        <span class="o"></span><span class="n">converted</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="o"></span><span class="no">Advertiser</span><span class="o">.</span><span class="n">find_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">advertiser</span><span class="o">|</span>
+            <span class="n">counter</span><span class="o">.</span><span class="n">inc_and_display</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">converted</span><span class="si">}</span><span class="s2"> converted</span><span class="s2">&#34;</span>
             <span class="k">next</span> <span class="k">unless</span> <span class="n">have_encrypted_values</span><span class="p">(</span><span class="n">advertiser</span><span class="p">)</span>
             <span class="k">next</span> <span class="k">if</span> <span class="n">already_encrypted_values</span><span class="p">(</span><span class="n">advertiser</span><span class="p">)</span>
 
             <span class="no">Reencrypter</span><span class="o">.</span><span class="n">convert_to_new_method</span><span class="p">(</span><span class="n">advertiser</span><span class="p">,</span> <span class="o">*</span><span class="no">EncryptedFields</span><span class="p">)</span>
             <span class="n">advertiser</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
             <span class="n">converted</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">end</span>
+        <span class="o"></span><span class="k">end</span>
     <span class="k">end</span>
 
     <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">down</span>
         <span class="k">return</span> <span class="k">unless</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span>
         <span class="n">counter</span> <span class="o">=</span> <span class="no">IterationCount</span><span class="o">.</span><span class="n">new</span> <span class="mi">1000</span>
-        <span class="n">converted</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="no">Advertiser</span><span class="o">.</span><span class="n">find_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">advertiser</span><span class="o">|</span>
-            <span class="n">counter</span><span class="o">.</span><span class="n">inc_and_display</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">converted</span><span class="si">}</span><span class="s2"> converted&quot;</span>
+        <span class="o"></span><span class="n">converted</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="o"></span><span class="no">Advertiser</span><span class="o">.</span><span class="n">find_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">advertiser</span><span class="o">|</span>
+            <span class="n">counter</span><span class="o">.</span><span class="n">inc_and_display</span> <span class="s2">&#34;</span><span class="si">#{</span><span class="n">converted</span><span class="si">}</span><span class="s2"> converted</span><span class="s2">&#34;</span>
             <span class="k">next</span> <span class="k">unless</span> <span class="n">have_encrypted_values</span><span class="p">(</span><span class="n">advertiser</span><span class="p">)</span>
             <span class="k">next</span> <span class="k">unless</span> <span class="n">already_encrypted_values</span><span class="p">(</span><span class="n">advertiser</span><span class="p">)</span>
 
             <span class="no">Reencrypter</span><span class="o">.</span><span class="n">convert_to_old_method</span><span class="p">(</span><span class="n">advertiser</span><span class="p">,</span> <span class="o">*</span><span class="no">EncryptedFields</span><span class="p">)</span>
             <span class="n">advertiser</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="kp">false</span><span class="p">)</span>
             <span class="n">converted</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">end</span>
+        <span class="o"></span><span class="k">end</span>
     <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-
+<span class="k">end</span></code></pre></div>
 
           </article>
         </div>
@@ -278,20 +257,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -347,17 +333,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

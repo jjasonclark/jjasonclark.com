@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/update-your-software">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/update-your-software/">
+    <meta property="og:title" content="Update your software" />
+<meta property="og:description" content="Your periodic reminder to update your software" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/update-your-software/" />
+<meta property="article:published_time" content="2012-10-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2012-10-23T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Update your software"/>
+<meta name="twitter:description" content="Your periodic reminder to update your software"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/update-your-software" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,25 +68,18 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Update your software</h1>
-            <p class="post-meta">October 23, 2012 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">October 23, 2012 • Jason Clark</p>
           </header>
           <article class="post-content">
-            <p>Don&rsquo;t forget to update your software every once in a while. If your like me, then I&rsquo;m sure your system if filled with out of date software.</p>
-
+            <p>Don't forget to update your software every once in a while. If your like me, then I'm sure your system if filled with out of date software.</p>
 <p>Today while trying to get Github to update my code (constant network errors) I thought I would try updating <a href="http://mxcl.github.com/homebrew/">Homebrew</a>. Opps! Looks like I have been neglecting it for far to long.</p>
-
 <p>Do this to make sure <a href="http://mxcl.github.com/homebrew/">Homebrew</a> package definitions is current.</p>
-
 <pre><code>brew update
 </code></pre>
-
 <p>Once you have gotten the latest definitions do the following to get your software upgraded.</p>
-
 <pre><code>brew upgrade &lt;package name&gt;
 </code></pre>
-
 <p>Major ones for me are</p>
-
 <pre><code>brew upgrade git
 brew upgrade bash
 brew upgrade tmux
@@ -102,20 +95,27 @@ brew upgrade openssh
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -171,17 +171,8 @@ brew upgrade openssh
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

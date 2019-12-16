@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/trying_out_emacs_again">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/trying_out_emacs_again/">
+    <meta property="og:title" content="Trying out Emacs Again" />
+<meta property="og:description" content="Installing and setting up a basic configuration for Emacs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/trying_out_emacs_again/" />
+<meta property="article:published_time" content="2013-09-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2013-09-05T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Trying out Emacs Again"/>
+<meta name="twitter:description" content="Installing and setting up a basic configuration for Emacs."/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/trying_out_emacs_again" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,32 +68,20 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Trying out Emacs Again</h1>
-            <p class="post-meta">September 5, 2013 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">September 5, 2013 • Jason Clark</p>
           </header>
           <article class="post-content">
-            
-
-<p>I&rsquo;m a Vim user, but I&rsquo;m not 100% sold on it. I keep wanting to find an even better editor. I&rsquo;ve tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.</p>
-
+            <p>I'm a Vim user, but I'm not 100% sold on it. I keep wanting to find an even better editor. I've tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.</p>
 <h2 id="land-of-lisp">Land of Lisp</h2>
-
-<p>I&rsquo;ve got 3 kids, so I don&rsquo;t get a lot of reading time. I&rsquo;m finally getting a chance to read a book I picked up a while back, &ldquo;<a href="http://landoflisp.com/">Land of Lisp</a>&rdquo;. And this is prompting me to give Emacs another try. The last few times I&rsquo;ve tried it I got tired of all the key combos I had to press to get <em>anything</em> done. I&rsquo;m hoping this time I can learn some of the Lisp for easier configuration.</p>
-
+<p>I've got 3 kids, so I don't get a lot of reading time. I'm finally getting a chance to read a book I picked up a while back, &ldquo;<a href="http://landoflisp.com/">Land of Lisp</a>&quot;. And this is prompting me to give Emacs another try. The last few times I've tried it I got tired of all the key combos I had to press to get <em>anything</em> done. I'm hoping this time I can learn some of the Lisp for easier configuration.</p>
 <h2 id="setup">Setup</h2>
-
 <p>Not knowing the best way to get the latest version of Emacs I did what most do an searched Google. I found out that there are at least 2 easy ways to install Emacs. Either you download from the <a href="http://emacsformacosx.com/">EmacsForMacOSX</a> site or you install via <a href="http://brew.sh">Homebrew</a>.</p>
-
 <p>I did find an article that says I should <a href="http://struct.tumblr.com/post/46754394733/emacs-24-use-homebrew-instead-of-emacsformacosx">use homebrew instead of EmacsForMacOSX</a>.</p>
-
 <p>I love the Homebrew system so I went that route.</p>
-
 <pre><code>brew install emacs --cocoa --srgb
 </code></pre>
-
 <p>This installed version 24.3.1 of Emacs.</p>
-
 <h2 id="configuration">Configuration</h2>
-
 <p>Next I needed a starter configuration. My childhood friend is also an Emacs user and posted <a href="https://github.com/zev/emacs.d">his config on Github</a>. So naturally I forked it. This was a while ago when I tried Emacs once before, so all I had to do was update it. There was some specific settings for his computer, so I have removed them from my copy.  Check it out at <a href="https://github.com/jjasonclark/emacs.d">jjasonclark/emacs.d</a></p>
 
           </article>
@@ -102,20 +90,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -171,17 +166,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

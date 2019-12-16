@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>setup on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/setup/</link>
+    <description>Recent content in setup on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Thu, 05 Sep 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/setup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Trying out Emacs Again</title>
+      <link>https://jjasonclark.com/trying_out_emacs_again/</link>
+      <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/trying_out_emacs_again/</guid>
+      <description>I&#39;m a Vim user, but i&#39;m not 100% sold on it. I keep wanting to find an even better editor. I&#39;ve tried just about everything but nothing sticks. I&#39;m starting a new book on Lisp programming so it is time to try Emacs again. May this time it will stick.</description>
+    </item>
+    
+    <item>
+      <title>Setting up a new Mac for Ruby development</title>
+      <link>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</guid>
+      <description>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&#39;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</description>
+    </item>
+    
+    <item>
+      <title>Update DNSimple to point to your home router</title>
+      <link>https://jjasonclark.com/dnsimple_script_updates/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/dnsimple_script_updates/</guid>
+      <description>The API at DNSimple allows easy updates. You can use them to add a subdomain to point to your home router. I make extensive use of this for remote pair programming.</description>
+    </item>
+    
+    <item>
+      <title>Update your software</title>
+      <link>https://jjasonclark.com/update-your-software/</link>
+      <pubDate>Tue, 23 Oct 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/update-your-software/</guid>
+      <description>Don&#39;t forget to update your software every once in a while</description>
+    </item>
+    
+    <item>
+      <title>Remote pairing with SSH and Tmux on a Mac</title>
+      <link>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</link>
+      <pubDate>Fri, 17 Aug 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</guid>
+      <description>How to setup a Mac for remote pairing via Tmux. Including some scripts to help automate the process.</description>
+    </item>
+    
+    <item>
+      <title>Changing Xcode versions</title>
+      <link>https://jjasonclark.com/changing-xcode-versions/</link>
+      <pubDate>Mon, 18 Jun 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/changing-xcode-versions/</guid>
+      <description>I recently needed to switch from developing for Rails 3.2.5 on Ruby 1.9.3 to working with Rails 2.3.5 on Ruby 1.8.7. The Rails version change wasn&#39;t that big of a deal, but the Ruby change was. Sometime between the release of 1.8.7 and 1.9.3 the supported GCC compiler changed. The newer compiler, the one I was on, had a breaking change making it not compatible with the older Ruby version. This meant that if I wanted to use Ruby 1.8.7 I was going to have to uninstall my current copy of Xcode and install an older version.</description>
+    </item>
+    
+    <item>
+      <title>How to setup Node.js and Npm behind a corporate web proxy</title>
+      <link>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</link>
+      <pubDate>Mon, 30 Apr 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</guid>
+      <description>For those who, like me, are behind a corporate web proxy, setting up Node.js and using &lt;code&gt;npm&lt;/code&gt; can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the &lt;code&gt;HTTP_PROXY&lt;/code&gt; and &lt;code&gt;HTTPS_PROXY&lt;/code&gt; environment variables. Although I just cloned the Node repository from &lt;a href=&#34;https://github.com/joyent/node&#34;&gt;Github&lt;/a&gt; so they are already setup. What gives?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/waiting_for_ctrl_c_in_golang">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/waiting_for_ctrl_c_in_golang/">
+    <meta property="og:title" content="Waiting for Ctrl&#43;C in Golang" />
+<meta property="og:description" content="How to wait for the interrupt signal using Golang and command line programs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/waiting_for_ctrl_c_in_golang/" />
+<meta property="article:published_time" content="2014-12-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-12-13T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Waiting for Ctrl&#43;C in Golang"/>
+<meta name="twitter:description" content="How to wait for the interrupt signal using Golang and command line programs"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/waiting_for_ctrl_c_in_golang" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,72 +68,58 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Waiting for Ctrl&#43;C in Golang</h1>
-            <p class="post-meta">December 13, 2014 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">December 13, 2014 • Jason Clark</p>
           </header>
           <article class="post-content">
             <p>Waiting for Ctrl+C in Golang</p>
-
 <p>Creating services can sometimes mean needing to wait on the command line for the user to end the process. This is normally done via signals by pressing Control+C. In Go this is fairly easy to accomplish. The following code should be enough to get you started putting it into your applications.</p>
-
 <p>In Go’s implementation of signals the signals are delivered via a channel. Create an <code>os.Signal</code> channel with at least 1 buffered space. The signals come in fast so you don’t want miss them. Let the system know you want <code>os.Interrupt</code> signals to go to the channel you created. Then just wait for the signal to come it via a go function.</p>
-
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
 <span class="nx">signal_channel</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nx">signal</span><span class="p">.</span><span class="nx">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">signal</span><span class="p">.</span><span class="nf">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="o">&lt;-</span><span class="nx">signal_channel</span>
-<span class="p">}()</span>
-</code></pre></div>
-
-
+<span class="p">}</span><span class="p">(</span><span class="p">)</span></code></pre></div>
 <p>Now that you can respond to when the signal is triggered you need to add in the code to wait for this to happen. <code>sync.WaitGroup</code> fits the bill. Create one, <code>Add</code> a delta to it, and call <code>Wait</code>. This will block the current execution path waiting for a <code>Done</code> call on the created <code>WaitGroup</code>.</p>
-
 <p>Add this into the previous snippet to create the <code>WaitGroup</code> before listening for the signal. And <code>Wait</code> for the <code>WaitGroup</code> at the end.  And use the retrieval of the signal to call <code>Done</code>.</p>
-
-<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">var</span> <span class="nx">end_waiter</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
-<span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">end_waiter</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+<span class="nx">end_waiter</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
 <span class="nx">signal_channel</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nx">signal</span><span class="p">.</span><span class="nx">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">signal</span><span class="p">.</span><span class="nf">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="o">&lt;-</span><span class="nx">signal_channel</span>
-    <span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
-<span class="p">}()</span>
-<span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
-</code></pre></div>
-</p>
-
+    <span class="nx">end_waiter</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}</span><span class="p">(</span><span class="p">)</span>
+<span class="nx">end_waiter</span><span class="p">.</span><span class="nf">Wait</span><span class="p">(</span><span class="p">)</span></code></pre></div>
 <p>Putting it all together into a short package to show it off.  Here is the full code.</p>
-
-<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;fmt&quot;</span>
-    <span class="s">&quot;os&quot;</span>
-    <span class="s">&quot;os/signal&quot;</span>
-    <span class="s">&quot;sync&quot;</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;os&#34;</span>
+    <span class="s">&#34;os/signal&#34;</span>
+    <span class="s">&#34;sync&#34;</span>
 <span class="p">)</span>
 
-<span class="kd">func</span> <span class="nx">WaitForCtrlC</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">WaitForCtrlC</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">end_waiter</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
-    <span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">end_waiter</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="kd">var</span> <span class="nx">signal_channel</span> <span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span>
     <span class="nx">signal_channel</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="nx">signal</span><span class="p">.</span><span class="nx">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
-    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">signal</span><span class="p">.</span><span class="nf">Notify</span><span class="p">(</span><span class="nx">signal_channel</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Interrupt</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
         <span class="o">&lt;-</span><span class="nx">signal_channel</span>
-        <span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
-    <span class="p">}()</span>
-    <span class="nx">end_waiter</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+        <span class="nx">end_waiter</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">(</span><span class="p">)</span>
+    <span class="nx">end_waiter</span><span class="p">.</span><span class="nf">Wait</span><span class="p">(</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Press Ctrl+C to end\n&quot;</span><span class="p">)</span>
-    <span class="nx">WaitForCtrlC</span><span class="p">()</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-</p>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Press Ctrl+C to end\n&#34;</span><span class="p">)</span>
+    <span class="nf">WaitForCtrlC</span><span class="p">(</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
 
           </article>
         </div>
@@ -141,20 +127,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -210,17 +203,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

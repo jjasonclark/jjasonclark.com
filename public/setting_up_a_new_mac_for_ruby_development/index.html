@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/">
+    <meta property="og:title" content="Setting up a new Mac for Ruby development" />
+<meta property="og:description" content="Setting up a new Mac for Ruby development" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/" />
+<meta property="article:published_time" content="2013-01-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2013-01-20T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting up a new Mac for Ruby development"/>
+<meta name="twitter:description" content="Setting up a new Mac for Ruby development"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/setting_up_a_new_mac_for_ruby_development" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,91 +68,61 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Setting up a new Mac for Ruby development</h1>
-            <p class="post-meta">January 20, 2013 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">January 20, 2013 • Jason Clark</p>
           </header>
           <article class="post-content">
-            
-
-<p>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&rsquo;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</p>
-
+            <p>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I've done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</p>
 <h2 id="install-from-app-store">Install from App store</h2>
-
 <p>There are a few apps that are managed through the App store. Search for, and install the following apps. Only Xcode is required, the others help in the development process.</p>
-
 <ul>
-<li>Xcode<br /></li>
-<li>ClamXav<br /></li>
-<li>Evernote<br /></li>
-<li>Skitch<br /></li>
-<li>JollysFastVNC<br /></li>
-<li>Twitter<br />
-<br /></li>
+<li>Xcode</li>
+<li>ClamXav</li>
+<li>Evernote</li>
+<li>Skitch</li>
+<li>JollysFastVNC</li>
+<li>Twitter</li>
 </ul>
-
 <p>Once these have installed launch <code>ClamXav</code> in order to turn on virus definitions file downloads. Select a time that works for you.</p>
-
-<p><img src="/assets/clamxav_preferencest_2013_01_21.png" alt="ClamXav preferences" /></p>
-
+<p><img src="/assets/clamxav_preferencest_2013_01_21.png" alt="ClamXav preferences"></p>
 <h2 id="install-from-web">Install from web</h2>
-
-<p>The following don&rsquo;t have any handy install scripts. You will have to visit each one&rsquo;s website and download the installer package. All are optional, so you can put these off until later if desired.</p>
-
+<p>The following don't have any handy install scripts. You will have to visit each one's website and download the installer package. All are optional, so you can put these off until later if desired.</p>
 <ul>
-<li><a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a><br /></li>
-<li><a href="https://chrome.google.com/webstore/detail/evernote-web/lbfehkoinhhcknnbdgnnmjhiladcgbol">Evernote web clipper chrome plugin</a><br /></li>
-<li><a href="https://chrome.google.com/webstore/detail/one-last-pass-password-ma/hlcjfeemfanamjbekpmdhcefejlgpnke">LastPass chrome plugin</a><br /></li>
-<li><a href="http://www.iterm2.com">Iterm2</a><br /></li>
-<li><a href="http://www.sequelpro.com/">SequalPro</a><br /></li>
-<li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a><br /></li>
-<li><a href="http://www.truecrypt.org/">Truecrypt</a><br /></li>
-<li><a href="http://www.dropbox.com/">Dropbox</a><br /></li>
-<li><a href="http://www.skype.com">Skype</a><br /></li>
-<li><a href="http://www.sublimetext.com/2">Sublime Text 2</a><br /></li>
-<li><a href="http://www.bittorrent.com/">Bittorent</a><br />
-<br /></li>
+<li><a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/evernote-web/lbfehkoinhhcknnbdgnnmjhiladcgbol">Evernote web clipper chrome plugin</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/one-last-pass-password-ma/hlcjfeemfanamjbekpmdhcefejlgpnke">LastPass chrome plugin</a></li>
+<li><a href="http://www.iterm2.com">Iterm2</a></li>
+<li><a href="http://www.sequelpro.com/">SequalPro</a></li>
+<li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></li>
+<li><a href="http://www.truecrypt.org/">Truecrypt</a></li>
+<li><a href="http://www.dropbox.com/">Dropbox</a></li>
+<li><a href="http://www.skype.com">Skype</a></li>
+<li><a href="http://www.sublimetext.com/2">Sublime Text 2</a></li>
+<li><a href="http://www.bittorrent.com/">Bittorent</a></li>
 </ul>
-
 <h2 id="setup-mysql">Setup MySql</h2>
-
 <p>MySql is the defacto database for development mode. And it is a tad hard to install.</p>
-
 <p>####Download the install files</p>
-
-<p>Download the <code>DMG</code> file for the 64-bit version. <a href="http://dev.mysql.com/downloads/mysql">MySql download page</a><br />
-<img src="/assets/mysql_dmg.png" alt="MySql DMG file" /></p>
-
+<p>Download the <code>DMG</code> file for the 64-bit version. <a href="http://dev.mysql.com/downloads/mysql">MySql download page</a>
+<img src="/assets/mysql_dmg.png" alt="MySql DMG file"></p>
 <p>####Install main package file</p>
-
 <p>This is a basic Mac package file. Just follow along the prompts.</p>
-
 <p>####Install perference panel settings app</p>
-
-<p>Drag and drop the preference panel icon onto your system preference window. You should get a dialog like the one below. Install for everyone.<br />
-<img src="/assets/mysql_prefpane_install.png" alt="Prefence panel install dialog" /></p>
-
+<p>Drag and drop the preference panel icon onto your system preference window. You should get a dialog like the one below. Install for everyone.
+<img src="/assets/mysql_prefpane_install.png" alt="Prefence panel install dialog"></p>
 <p>####Install statup items app</p>
-
 <p>Another basic Mac package file. Just follow along the prompts just like before.</p>
-
 <p>####Start the server</p>
-
-<p>Launch the install MySql perference panel. Once open press the start button.<br />
-<img src="/assets/mysql_preferences.png" alt="blah" /></p>
-
+<p>Launch the install MySql perference panel. Once open press the start button.
+<img src="/assets/mysql_preferences.png" alt="blah"></p>
 <p>####Complete setup</p>
-
 <p>Run the following commands in a terminal window. They will complete the setup of the MySql service, configure for medium sized profile, and fix a linking bug with mysql2 gem.</p>
-
 <pre><code>/usr/local/mysql/bin/mysql_secure_installation
 sudo cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
 ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
 sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
 </code></pre>
-
 <p>####Add <code>/usr/local/mysql/bin</code> to <code>$PATH</code></p>
-
 <p>I like to include the following in my <code>.profile</code> file to add the MySql bin path to my <code>$PATH</code> setting.</p>
-
 <pre><code>function addPath
 {
     echo $PATH | /usr/bin/grep -q -s $1
@@ -161,31 +131,20 @@ sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart
     fi
 }
 </code></pre>
-
 <p>addPath &ldquo;/usr/local/mysql/bin&rdquo;</p>
-
 <h2 id="command-line-compiler-and-build-system">Command line compiler and build system</h2>
-
 <p>Most applications install as source that you will need to build yourself. Ruby also needs the compiler for C extensions. You use <em>XCode</em> to install these tools. First, launch <em>XCode</em> and open the preferences panel. Click on the &ldquo;Downloads&rdquo; tab and press the install button for the &ldquo;Command Line Tools&rdquo;.</p>
-
-<p><img src="/assets/xcode_commandline.png" alt="Download preferences" /></p>
-
+<p><img src="/assets/xcode_commandline.png" alt="Download preferences"></p>
 <h2 id="homebrew-package-manager">Homebrew package manager</h2>
-
 <p><a href="http://mxcl.github.com/homebrew/" title="Homebrew">Homebrew</a> is the package manager needed to install all the rest of the software. I find it indispensable. Copy and paste this command into a terminal window.</p>
-
 <pre><code>ruby -e &quot;$(curl -fsSkL raw.github.com/mxcl/homebrew/go)&quot;
 </code></pre>
-
 <p>Finish setup of <a href="http://mxcl.github.com/homebrew/" title="Homebrew">Homebrew</a> with the following commands.</p>
-
 <pre><code>sudo vim -c '/^\/usr\/local\/bin$/m0' -cwq /etc/paths
 mkdir ~/Applications
 brew doctor
 </code></pre>
-
 <p>Once you have completed the set install the following packages by entering each of the following commands.</p>
-
 <pre><code>brew install macvim --override-system-vim
 brew install git
 brew install ctags
@@ -198,25 +157,16 @@ brew install tree
 brew install ssh-copy-id
 brew install wget
 </code></pre>
-
 <p>After all installs run the following command to add symlinks to those apps that need it</p>
-
 <pre><code>brew linkapps
 </code></pre>
-
 <h2 id="rvm-for-ruby-version-management">RVM for Ruby version management</h2>
-
 <p>This is the first place to go to install ruby virtual machines. The following shell command will download the latest version of <a href="https://rvm.io/" title="Ruby Version Manager">RVM</a>. Copy and paste this command into a terminal window.</p>
-
 <pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
 </code></pre>
-
 <p>You will have to add the load call for the <a href="https://rvm.io/" title="Ruby Version Manager">RVM</a> functions to your shell. If you are going to copy the <code>.profile</code> file from below then you will have it as the first line.</p>
-
 <h2 id="profile-setup">Profile setup</h2>
-
 <p>Create a <code>.profile</code>. The following is a good starting point. I highly encourage customizing this file and saving it to move from computer to computer. The following will add the currently installed shell completion files. Along with a prompt to show the current ruby version and git branch.</p>
-
 <pre><code>#Shell completion scripts
 function include
 {
@@ -281,21 +231,15 @@ function sublime()
     open -a 'Sublime Text 2' $@
 }
 </code></pre>
-
 <h2 id="post-install-steps">Post install steps</h2>
-
 <p>After it is all installed there are a few left over steps. Finish them if you like since they are optional.</p>
-
 <ul>
-<li>Change default profile of <em>Iterm2</em> to use &ldquo;xterm-256color&rdquo; terminal type<br /></li>
-<li>Create new gpg secret key or copy old one (RSA type is fine)<br /></li>
-<li>Create new ssh key<br /></li>
-<li>Add ssh key to github.com<br /></li>
-<li>Setup .gitconfig and .gitignore<br /></li>
-<li><a href="Remote-Pairing-with-SSH-and-Tmux-on-a-Mac">Setup for pair programing using SSH and Tmux</a><br />
-<br />
-<br />
-<br /></li>
+<li>Change default profile of <em>Iterm2</em> to use &ldquo;xterm-256color&rdquo; terminal type</li>
+<li>Create new gpg secret key or copy old one (RSA type is fine)</li>
+<li>Create new ssh key</li>
+<li>Add ssh key to github.com</li>
+<li>Setup .gitconfig and .gitignore</li>
+<li><a href="Remote-Pairing-with-SSH-and-Tmux-on-a-Mac">Setup for pair programing using SSH and Tmux</a></li>
 </ul>
 
           </article>
@@ -304,20 +248,27 @@ function sublime()
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -373,17 +324,8 @@ function sublime()
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>development on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/development/</link>
+    <description>Recent content in development on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Fri, 24 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/development/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go Challenge 2 Review Response</title>
+      <link>https://jjasonclark.com/go_challenge_2_review_response/</link>
+      <pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/go_challenge_2_review_response/</guid>
+      <description>My entry to the Go Challenge 2 was reviewed and commented on by the challenge runner. I provide some feedback on his comments.</description>
+    </item>
+    
+    <item>
+      <title>Waiting for Ctrl&#43;C in Golang</title>
+      <link>https://jjasonclark.com/waiting_for_ctrl_c_in_golang/</link>
+      <pubDate>Sat, 13 Dec 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/waiting_for_ctrl_c_in_golang/</guid>
+      <description>How to wait for the interrupt signal using Golang and command line programs</description>
+    </item>
+    
+    <item>
+      <title>Will work for Bitcoin</title>
+      <link>https://jjasonclark.com/will_work_for_bitcoin/</link>
+      <pubDate>Fri, 07 Nov 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/will_work_for_bitcoin/</guid>
+      <description>I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Wish me luck finding a job in the Bitcoin world.</description>
+    </item>
+    
+    <item>
+      <title>Consider using the tap method for code organization</title>
+      <link>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</link>
+      <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</guid>
+      <description>The tap method intruduces a new indention block. Consider using the tap method for code organization.</description>
+    </item>
+    
+    <item>
+      <title>Setting up a new Mac for Ruby development</title>
+      <link>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</guid>
+      <description>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&#39;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</description>
+    </item>
+    
+  </channel>
+</rss>

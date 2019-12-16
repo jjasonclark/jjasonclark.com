@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/avahi_helps_hosts_connect_to_vms">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/">
+    <meta property="og:title" content="Avahi helps hosts connect to VMs" />
+<meta property="og:description" content="Use Avahi-daemon on Linux to broadcast your web apps to your Mac. Works great with VMs too." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/" />
+<meta property="article:published_time" content="2013-11-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2013-11-27T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Avahi helps hosts connect to VMs"/>
+<meta name="twitter:description" content="Use Avahi-daemon on Linux to broadcast your web apps to your Mac. Works great with VMs too."/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/avahi_helps_hosts_connect_to_vms" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,48 +68,36 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Avahi helps hosts connect to VMs</h1>
-            <p class="post-meta">November 27, 2013 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">November 27, 2013 • Jason Clark</p>
           </header>
           <article class="post-content">
-            
-
-<p>I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: <a href="http://en.wikipedia.org/wiki/Bonjour_(software)">Bonjour</a>. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.</p>
-
+            <p>I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: <a href="http://en.wikipedia.org/wiki/Bonjour_(software)">Bonjour</a>. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.</p>
 <h2 id="mac-setup">Mac Setup</h2>
-
 <p>In the Safari preference panel select the advanced tab. Check the setting you want.</p>
-
-<p><img src="/assets/safari_preference.png" alt="Safari preference panel" /></p>
-
+<p><img src="/assets/safari_preference.png" alt="Safari preference panel"></p>
 <h2 id="linux-setup">Linux Setup</h2>
-
-<p><a href="http://avahi.org/">Avahi</a> is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don&rsquo;t have to reboot your server.</p>
-
+<p><a href="http://avahi.org/">Avahi</a> is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don't have to reboot your server.</p>
 <ol>
-<li><p>Use your distros package manager to install it. For <code>yum</code> it is <code>sudo yum install -y avahi</code>.</p></li>
-
-<li><p>Then create a file in the <code>/etc/avahi/services</code> directory with a <code>.service</code> extension.</p></li>
+<li>
+<p>Use your distros package manager to install it. For <code>yum</code> it is <code>sudo yum install -y avahi</code>.</p>
+</li>
+<li>
+<p>Then create a file in the <code>/etc/avahi/services</code> directory with a <code>.service</code> extension.</p>
+</li>
 </ol>
-
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; standalone=&#39;no&#39;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span>
-<span class="nt">&lt;service-group&gt;</span>
-  <span class="nt">&lt;name</span> <span class="na">replace-wildcards=</span><span class="s">&quot;yes&quot;</span><span class="nt">&gt;</span>%h<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;service&gt;</span>
-    <span class="nt">&lt;type&gt;</span>_http._tcp<span class="nt">&lt;/type&gt;</span>
-    <span class="nt">&lt;port&gt;</span>3000<span class="nt">&lt;/port&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; standalone=&#39;no&#39;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE service-group SYSTEM &#34;avahi-service.dtd&#34;&gt;</span>
+<span class="nt">&lt;service-group</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name</span> <span class="na">replace-wildcards=</span><span class="s">&#34;yes&#34;</span><span class="nt">&gt;</span>%h<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;service</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;type</span><span class="nt">&gt;</span>_http._tcp<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;port</span><span class="nt">&gt;</span>3000<span class="nt">&lt;/port&gt;</span>
   <span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;/service-group&gt;</span>
-</code></pre></div>
-
-
+<span class="nt">&lt;/service-group&gt;</span></code></pre></div>
 <ol>
-<li>You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run <code>sudo /etc/init.d/avahi-daemon restart</code>.<br />
-<br /></li>
+<li>You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run <code>sudo /etc/init.d/avahi-daemon restart</code>.</li>
 </ol>
-
 <h2 id="getting-fancy">Getting fancy</h2>
-
 <p><a href="http://the.taoofmac.com/space/HOWTO/Vagrant">Toa of Mac</a> has some great tips on how to configure a setup with 2 NICs and only broadcast on the private network.</p>
 
           </article>
@@ -118,20 +106,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -187,17 +182,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

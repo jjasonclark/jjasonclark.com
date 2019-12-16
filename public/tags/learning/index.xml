@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>learning on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/learning/</link>
+    <description>Recent content in learning on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Sun, 03 Oct 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Finished the Ruby Koans</title>
+      <link>https://jjasonclark.com/finished_the_ruby_koans/</link>
+      <pubDate>Sun, 03 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/finished_the_ruby_koans/</guid>
+      <description>I finished the Ruby Koans today. It is a set of test cases designed to help you learn Ruby by making all the tests pass.</description>
+    </item>
+    
+    <item>
+      <title>Learning Ruby</title>
+      <link>https://jjasonclark.com/learning_ruby/</link>
+      <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/learning_ruby/</guid>
+      <description>Learning Ruby via testing. Trying to also learn the Rails server enivronment as well.</description>
+    </item>
+    
+  </channel>
+</rss>

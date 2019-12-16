@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/blog/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/caddy/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>https://jjasonclark.com/</loc>
@@ -7,88 +18,423 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/secured_blog_using_lets_encrypt</loc>
+    <loc>https://jjasonclark.com/tags/lets-encrypt/</loc>
     <lastmod>2016-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/go_challenge_2_review_response</loc>
+    <loc>https://jjasonclark.com/post/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/secured_blog_using_lets_encrypt/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/ssl/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/</loc>
     <lastmod>2015-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/waiting_for_ctrl_c_in_golang</loc>
+    <loc>https://jjasonclark.com/tags/development/</loc>
+    <lastmod>2015-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/development/</loc>
+    <lastmod>2015-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/go_challenge_2_review_response/</loc>
+    <lastmod>2015-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/golang/</loc>
+    <lastmod>2015-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/golang/</loc>
+    <lastmod>2015-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/commandline/</loc>
     <lastmod>2014-12-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/will_work_for_bitcoin</loc>
+    <loc>https://jjasonclark.com/waiting_for_ctrl_c_in_golang/</loc>
+    <lastmod>2014-12-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/bitcoin/</loc>
     <lastmod>2014-11-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization</loc>
+    <loc>https://jjasonclark.com/tags/bitcoin/</loc>
+    <lastmod>2014-11-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/will_work_for_bitcoin/</loc>
+    <lastmod>2014-11-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</loc>
     <lastmod>2014-10-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms</loc>
+    <loc>https://jjasonclark.com/categories/ruby/</loc>
+    <lastmod>2014-10-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/ruby/</loc>
+    <lastmod>2014-10-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/</loc>
     <lastmod>2013-11-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/trying_out_emacs_again</loc>
+    <loc>https://jjasonclark.com/tags/linux/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/linux/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/vm/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/vm/</loc>
+    <lastmod>2013-11-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/emacs/</loc>
     <lastmod>2013-09-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/sinatra_settings_for_nested_apps</loc>
+    <loc>https://jjasonclark.com/categories/programming/</loc>
+    <lastmod>2013-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/setup/</loc>
+    <lastmod>2013-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/trying_out_emacs_again/</loc>
+    <lastmod>2013-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/middleware/</loc>
     <lastmod>2013-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</loc>
+    <loc>https://jjasonclark.com/tags/rack/</loc>
+    <lastmod>2013-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/settings/</loc>
+    <lastmod>2013-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/sinatra_settings_for_nested_apps/</loc>
+    <lastmod>2013-08-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/chef/</loc>
     <lastmod>2013-05-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</loc>
+    <loc>https://jjasonclark.com/categories/devops/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/hypervisor/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/provision/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/upgrade/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/vagrant/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/virtualmachine/</loc>
+    <lastmod>2013-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/encryption/</loc>
     <lastmod>2013-02-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development</loc>
+    <loc>https://jjasonclark.com/tags/gem/</loc>
+    <lastmod>2013-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/programming/</loc>
+    <lastmod>2013-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/security/</loc>
+    <lastmod>2013-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</loc>
+    <lastmod>2013-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/mac/</loc>
     <lastmod>2013-01-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/searching_git_with_vim</loc>
+    <loc>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</loc>
+    <lastmod>2013-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/setup/</loc>
+    <lastmod>2013-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/tips/</loc>
+    <lastmod>2013-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/git/</loc>
     <lastmod>2012-11-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/rails_partial_view_locals</loc>
+    <loc>https://jjasonclark.com/categories/git/</loc>
+    <lastmod>2012-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/plug-ins/</loc>
+    <lastmod>2012-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/searching_git_with_vim/</loc>
+    <lastmod>2012-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/tips/</loc>
+    <lastmod>2012-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/vim/</loc>
+    <lastmod>2012-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/vim/</loc>
+    <lastmod>2012-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/partial/</loc>
     <lastmod>2012-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/dnsimple_script_updates</loc>
+    <loc>https://jjasonclark.com/categories/rails/</loc>
+    <lastmod>2012-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/rails/</loc>
+    <lastmod>2012-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/rails_partial_view_locals/</loc>
+    <lastmod>2012-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/view/</loc>
+    <lastmod>2012-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/api/</loc>
     <lastmod>2012-11-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/update-your-software</loc>
+    <loc>https://jjasonclark.com/tags/bash/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/bash/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/dns/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/dnsimple/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/router/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/ssh/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/ssh/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/tmux/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/unix/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/unix/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/dnsimple_script_updates/</loc>
+    <lastmod>2012-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/macosx/</loc>
     <lastmod>2012-10-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac</loc>
+    <loc>https://jjasonclark.com/tags/macosx/</loc>
+    <lastmod>2012-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/update-your-software/</loc>
+    <lastmod>2012-10-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/pairing/</loc>
     <lastmod>2012-08-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/changing-xcode-versions</loc>
+    <loc>https://jjasonclark.com/categories/pairing/</loc>
+    <lastmod>2012-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</loc>
+    <lastmod>2012-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/tmux/</loc>
+    <lastmod>2012-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/changing-xcode-versions/</loc>
     <lastmod>2012-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/xcode/</loc>
+    <lastmod>2012-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/howto/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/howto/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -97,8 +443,88 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/how-to-setup-node-behind-web-proxy</loc>
+    <loc>https://jjasonclark.com/tags/javascript/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/javascript/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/node/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/node/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/ubuntu/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/ubuntu/</loc>
+    <lastmod>2012-05-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</loc>
     <lastmod>2012-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/node.js/</loc>
+    <lastmod>2012-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/npm/</loc>
+    <lastmod>2012-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/npm/</loc>
+    <lastmod>2012-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/proxy/</loc>
+    <lastmod>2012-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/acton/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/citrix/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/cloud/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/cloud/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/cloudstack/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/cloudstack/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -107,97 +533,306 @@
   </url>
   
   <url>
+    <loc>https://jjasonclark.com/tags/xen/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/xenserver/</loc>
+    <lastmod>2012-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/iptables/</loc>
+    <lastmod>2012-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/iptables/</loc>
+    <lastmod>2012-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/nfs/</loc>
+    <lastmod>2012-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/nfs/</loc>
+    <lastmod>2012-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/</loc>
     <lastmod>2012-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/virtualization-on-the-mac</loc>
+    <loc>https://jjasonclark.com/virtualization-on-the-mac/</loc>
     <lastmod>2011-09-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/switched-from-pc-to-mac</loc>
+    <loc>https://jjasonclark.com/categories/win7/</loc>
+    <lastmod>2011-09-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/laptop/</loc>
     <lastmod>2011-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/fizzbuzz_rehash</loc>
+    <loc>https://jjasonclark.com/categories/mac/</loc>
+    <lastmod>2011-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/pc/</loc>
+    <lastmod>2011-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/switched-from-pc-to-mac/</loc>
+    <lastmod>2011-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/switcher/</loc>
+    <lastmod>2011-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/fizzbuzz_rehash/</loc>
     <lastmod>2010-10-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/code_navigation_with_resharper</loc>
+    <loc>https://jjasonclark.com/tags/fizzbuzz/</loc>
+    <lastmod>2010-10-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/interview/</loc>
+    <lastmod>2010-10-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/code_navigation_with_resharper/</loc>
     <lastmod>2010-10-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/finished_the_ruby_koans</loc>
+    <loc>https://jjasonclark.com/tags/editor/</loc>
+    <lastmod>2010-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/resharper/</loc>
+    <lastmod>2010-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/resharper/</loc>
+    <lastmod>2010-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/tools/</loc>
+    <lastmod>2010-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/finished_the_ruby_koans/</loc>
     <lastmod>2010-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/any_is_your_friend</loc>
+    <loc>https://jjasonclark.com/tags/learning/</loc>
+    <lastmod>2010-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/testing/</loc>
+    <lastmod>2010-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/.net/</loc>
     <lastmod>2010-09-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge</loc>
+    <loc>https://jjasonclark.com/any_is_your_friend/</loc>
+    <lastmod>2010-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/sql/</loc>
+    <lastmod>2010-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge/</loc>
     <lastmod>2010-08-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider</loc>
+    <loc>https://jjasonclark.com/tags/merge/</loc>
+    <lastmod>2010-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/tortoisesvn/</loc>
+    <lastmod>2010-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/asp.net/</loc>
     <lastmod>2010-07-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/learning_ruby</loc>
+    <loc>https://jjasonclark.com/categories/asp.net/</loc>
+    <lastmod>2010-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/sql/</loc>
+    <lastmod>2010-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</loc>
+    <lastmod>2010-07-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/learning_ruby/</loc>
     <lastmod>2010-06-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/fizzbuzz_test_in_c_sharp</loc>
+    <loc>https://jjasonclark.com/categories/c#/</loc>
     <lastmod>2010-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/alt_net_seattle_mini_con_report</loc>
+    <loc>https://jjasonclark.com/fizzbuzz_test_in_c_sharp/</loc>
+    <lastmod>2010-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/alt_net_seattle_mini_con_report/</loc>
     <lastmod>2010-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/linqpad_usage_video</loc>
+    <loc>https://jjasonclark.com/tags/conference/</loc>
+    <lastmod>2010-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/linq/</loc>
     <lastmod>2010-01-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/converting_a_sourceforge_project_to_github</loc>
+    <loc>https://jjasonclark.com/tags/linqpad/</loc>
+    <lastmod>2010-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/linqpad_usage_video/</loc>
+    <lastmod>2010-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/video/</loc>
+    <lastmod>2010-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/autorealm/</loc>
     <lastmod>2010-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/replicating_sql_in_operator_in_linq</loc>
+    <loc>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</loc>
+    <lastmod>2010-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/github/</loc>
+    <lastmod>2010-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/sourceforge/</loc>
+    <lastmod>2010-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/c#/</loc>
     <lastmod>2009-12-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq</loc>
+    <loc>https://jjasonclark.com/categories/linq/</loc>
+    <lastmod>2009-12-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</loc>
+    <lastmod>2009-12-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</loc>
     <lastmod>2009-11-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008</loc>
+    <loc>https://jjasonclark.com/tags/sudoku/</loc>
+    <lastmod>2009-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</loc>
     <lastmod>2009-10-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/started_working_with_silverlight</loc>
+    <loc>https://jjasonclark.com/tags/msbuild/</loc>
+    <lastmod>2009-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/msbuild/</loc>
+    <lastmod>2009-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/tags/silverlight/</loc>
     <lastmod>2008-12-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/contact</loc>
+    <loc>https://jjasonclark.com/categories/silverlight/</loc>
+    <lastmod>2008-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/started_working_with_silverlight/</loc>
+    <lastmod>2008-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/series/</loc>
   </url>
   
 </urlset>

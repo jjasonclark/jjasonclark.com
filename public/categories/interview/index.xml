@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interview on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/interview/</link>
+    <description>Recent content in interview on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Sun, 24 Oct 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/interview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fizz-buzz rehash</title>
+      <link>https://jjasonclark.com/fizzbuzz_rehash/</link>
+      <pubDate>Sun, 24 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/fizzbuzz_rehash/</guid>
+      <description>An implementation of fizz-buzz that is overly complex. Something you want to avoid in an interview.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linq on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/linq/</link>
+    <description>Recent content in linq on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 20 Jan 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/linq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linqpad usage video</title>
+      <link>https://jjasonclark.com/linqpad_usage_video/</link>
+      <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/linqpad_usage_video/</guid>
+      <description>A video of Linqpad by the creator on how to use it best.</description>
+    </item>
+    
+    <item>
+      <title>Replicating SQL&#39;s in operator in Linq</title>
+      <link>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</link>
+      <pubDate>Sun, 06 Dec 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</guid>
+      <description>SQL has a range variable search keyword called &amp;lsquo;in&amp;rsquo; that is a not exposed by default in Linq.</description>
+    </item>
+    
+    <item>
+      <title>Solve Sudoku in 1 line of Linq</title>
+      <link>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</link>
+      <pubDate>Tue, 17 Nov 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</guid>
+      <description>Using linq to solve Sudoku</description>
+    </item>
+    
+  </channel>
+</rss>

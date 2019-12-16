@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/javascript/</link>
+    <description>Recent content in javascript on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 09 May 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing Node.js on Ubuntu 10.04 server</title>
+      <link>https://jjasonclark.com/installing-node-on-ubuntu-10.04/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/installing-node-on-ubuntu-10.04/</guid>
+      <description>Most of the guides I find on how to install [Node.js][1] on Ubuntu are not about installing the currently released version, instead they focus on installing the latest development release. I think this is the case because they assume the reader is familiar with doing software installs on unix from source. I&#39;m coming from a Windows word were installing from the source is almost never done. This guide is for someone relatively new to unix installation or to Ubuntu server setup.</description>
+    </item>
+    
+  </channel>
+</rss>

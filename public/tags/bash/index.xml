@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bash on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/bash/</link>
+    <description>Recent content in bash on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Sun, 11 Nov 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Update DNSimple to point to your home router</title>
+      <link>https://jjasonclark.com/dnsimple_script_updates/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/dnsimple_script_updates/</guid>
+      <description>The API at DNSimple allows easy updates. You can use them to add a subdomain to point to your home router. I make extensive use of this for remote pair programming.</description>
+    </item>
+    
+  </channel>
+</rss>

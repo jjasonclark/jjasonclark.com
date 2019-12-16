@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emacs on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/emacs/</link>
+    <description>Recent content in emacs on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Thu, 05 Sep 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Trying out Emacs Again</title>
+      <link>https://jjasonclark.com/trying_out_emacs_again/</link>
+      <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/trying_out_emacs_again/</guid>
+      <description>I&#39;m a Vim user, but i&#39;m not 100% sold on it. I keep wanting to find an even better editor. I&#39;ve tried just about everything but nothing sticks. I&#39;m starting a new book on Lisp programming so it is time to try Emacs again. May this time it will stick.</description>
+    </item>
+    
+  </channel>
+</rss>

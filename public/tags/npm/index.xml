@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>npm on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/npm/</link>
+    <description>Recent content in npm on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Mon, 30 Apr 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to setup Node.js and Npm behind a corporate web proxy</title>
+      <link>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</link>
+      <pubDate>Mon, 30 Apr 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</guid>
+      <description>For those who, like me, are behind a corporate web proxy, setting up Node.js and using &lt;code&gt;npm&lt;/code&gt; can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the &lt;code&gt;HTTP_PROXY&lt;/code&gt; and &lt;code&gt;HTTPS_PROXY&lt;/code&gt; environment variables. Although I just cloned the Node repository from &lt;a href=&#34;https://github.com/joyent/node&#34;&gt;Github&lt;/a&gt; so they are already setup. What gives?</description>
+    </item>
+    
+  </channel>
+</rss>

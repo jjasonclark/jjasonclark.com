@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/</link>
+    <description>Recent content in Categories on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Fri, 24 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>development</title>
+      <link>https://jjasonclark.com/categories/development/</link>
+      <pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://jjasonclark.com/categories/golang/</link>
+      <pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>commandline</title>
+      <link>https://jjasonclark.com/categories/commandline/</link>
+      <pubDate>Sat, 13 Dec 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/commandline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bitcoin</title>
+      <link>https://jjasonclark.com/categories/bitcoin/</link>
+      <pubDate>Fri, 07 Nov 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/bitcoin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ruby</title>
+      <link>https://jjasonclark.com/categories/ruby/</link>
+      <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/ruby/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://jjasonclark.com/categories/linux/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vm</title>
+      <link>https://jjasonclark.com/categories/vm/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/vm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://jjasonclark.com/categories/programming/</link>
+      <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://jjasonclark.com/categories/devops/</link>
+      <pubDate>Thu, 09 May 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>setup</title>
+      <link>https://jjasonclark.com/categories/setup/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/setup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://jjasonclark.com/categories/git/</link>
+      <pubDate>Mon, 26 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tips</title>
+      <link>https://jjasonclark.com/categories/tips/</link>
+      <pubDate>Mon, 26 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>https://jjasonclark.com/categories/vim/</link>
+      <pubDate>Mon, 26 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rails</title>
+      <link>https://jjasonclark.com/categories/rails/</link>
+      <pubDate>Wed, 14 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>https://jjasonclark.com/categories/bash/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DNS</title>
+      <link>https://jjasonclark.com/categories/dns/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>https://jjasonclark.com/categories/ssh/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmux</title>
+      <link>https://jjasonclark.com/categories/tmux/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/tmux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unix</title>
+      <link>https://jjasonclark.com/categories/unix/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/unix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macosx</title>
+      <link>https://jjasonclark.com/categories/macosx/</link>
+      <pubDate>Tue, 23 Oct 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/macosx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pairing</title>
+      <link>https://jjasonclark.com/categories/pairing/</link>
+      <pubDate>Fri, 17 Aug 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/pairing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>howto</title>
+      <link>https://jjasonclark.com/categories/howto/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/howto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://jjasonclark.com/categories/javascript/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>node</title>
+      <link>https://jjasonclark.com/categories/node/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://jjasonclark.com/categories/ubuntu/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>npm</title>
+      <link>https://jjasonclark.com/categories/npm/</link>
+      <pubDate>Mon, 30 Apr 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud</title>
+      <link>https://jjasonclark.com/categories/cloud/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloudstack</title>
+      <link>https://jjasonclark.com/categories/cloudstack/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/cloudstack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iptables</title>
+      <link>https://jjasonclark.com/categories/iptables/</link>
+      <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/iptables/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nfs</title>
+      <link>https://jjasonclark.com/categories/nfs/</link>
+      <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/nfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>win7</title>
+      <link>https://jjasonclark.com/categories/win7/</link>
+      <pubDate>Thu, 15 Sep 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/win7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>laptop</title>
+      <link>https://jjasonclark.com/categories/laptop/</link>
+      <pubDate>Wed, 31 Aug 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/laptop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mac</title>
+      <link>https://jjasonclark.com/categories/mac/</link>
+      <pubDate>Wed, 31 Aug 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/mac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pc</title>
+      <link>https://jjasonclark.com/categories/pc/</link>
+      <pubDate>Wed, 31 Aug 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/pc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>switcher</title>
+      <link>https://jjasonclark.com/categories/switcher/</link>
+      <pubDate>Wed, 31 Aug 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/switcher/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>interview</title>
+      <link>https://jjasonclark.com/categories/interview/</link>
+      <pubDate>Sun, 24 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/interview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Resharper</title>
+      <link>https://jjasonclark.com/categories/resharper/</link>
+      <pubDate>Mon, 04 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/resharper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://jjasonclark.com/categories/tools/</link>
+      <pubDate>Mon, 04 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>asp.net</title>
+      <link>https://jjasonclark.com/categories/asp.net/</link>
+      <pubDate>Sat, 17 Jul 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/asp.net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>https://jjasonclark.com/categories/sql/</link>
+      <pubDate>Sat, 17 Jul 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C#</title>
+      <link>https://jjasonclark.com/categories/c#/</link>
+      <pubDate>Wed, 17 Mar 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/c#/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>video</title>
+      <link>https://jjasonclark.com/categories/video/</link>
+      <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/video/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LinQ</title>
+      <link>https://jjasonclark.com/categories/linq/</link>
+      <pubDate>Sun, 06 Dec 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/linq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>msbuild</title>
+      <link>https://jjasonclark.com/categories/msbuild/</link>
+      <pubDate>Thu, 22 Oct 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/msbuild/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Silverlight</title>
+      <link>https://jjasonclark.com/categories/silverlight/</link>
+      <pubDate>Fri, 19 Dec 2008 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/categories/silverlight/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

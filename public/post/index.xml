@@ -1,697 +1,358 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JJasonClark.com</title>
-    <description>Stuff I have time to write about
-</description>
-    <link>https://jjasonclark.com/</link>
-    <atom:link href="https://jjasonclark.com/index.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Apr 2016 00:00:00 &#43;0000</pubDate>
-    <lastBuildDate>Sun, 24 Apr 2016 00:00:00 &#43;0000</lastBuildDate>
+    <title>Posts on JJasonClark.com</title>
+    <link>https://jjasonclark.com/post/</link>
+    <description>Recent content in Posts on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Sun, 24 Apr 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Secured blog using Let&#39;s Encrypt</title>
-      <description>
-
-&lt;p&gt;I finally did it! I joined the secure web. Thanks to Let&amp;rsquo;s Encrypt and Caddy, this blog is now served via HTTPS. Caddy makes using Let&amp;rsquo;s Encrypt a single line change in a config file. It could not get simpler than that. Here is how I converted from static hosting on Amazon&amp;rsquo;s S3 to a Digital Ocean instance running Caddy in a Docker container.&lt;/p&gt;
-
-&lt;h2 id=&#34;what-i-did&#34;&gt;What I did&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create Digital Ocean droplet&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Updated DNS entries to point to droplet&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Install Docker&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Create a Docker image for the server&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Ran the Docker image with ports 80 and 443 exposed with restart always&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;create-digital-ocean-droplet&#34;&gt;Create Digital Ocean droplet&lt;/h3&gt;
-
-&lt;p&gt;My journey to convert from my old hosting method to using Caddy was relatively painless. I did cheat a bit by using Docker to create my new server instead of trying to install everything myself. Going from static hosting via S3 to a Docker image is simple. I choose to host my blog on Digital Ocean because of pricing. I get very little traffic and their $5/month hosting was even cheaper than Amazon&amp;rsquo;s EC2. Ubuntu 16.04 LTS just came out too and DO already had it as a choice for pre-setup server images. I picked that as my image and was setup faster than I could return with a fresh cup of coffee.&lt;/p&gt;
-
-&lt;h3 id=&#34;updated-dns-entries&#34;&gt;Updated DNS entries&lt;/h3&gt;
-
-&lt;p&gt;My DNS timeout was already set to an hour timeout from an earlier change. So once I had the new droplet&amp;rsquo;s IP address I updated my DNS entry. This would need to be setup before Let&amp;rsquo;s Encrypt&amp;rsquo;s servers try to callback to my blog server verify the server. And since I already had entries pointing else where I would need to wait for the timeout period to expire before I was sure the correct server would be contacted.&lt;/p&gt;
-
-&lt;h3 id=&#34;install-docker&#34;&gt;Install Docker&lt;/h3&gt;
-
-&lt;p&gt;Followed instructions at &lt;a href=&#34;https://docs.docker.com/engine/installation/linux/ubuntulinux/&#34;&gt;https://docs.docker.com/engine/installation/linux/ubuntulinux/&lt;/a&gt;. The simplified version is add Docker&amp;rsquo;s package repositry to the server&amp;rsquo;s list. Then install the &lt;code&gt;docker-engine&lt;/code&gt; package.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span&gt;&lt;/span&gt;apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;deb https://apt.dockerproject.org/repo ubuntu-xenial main&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /etc/apt/sources.list.d/docker.list
-apt-get update
-apt-get install docker-engine linux-image-extra-&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;uname -r&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id=&#34;create-docker-image-for-blog-server&#34;&gt;Create Docker image for blog server&lt;/h3&gt;
-
-&lt;p&gt;I created a Docker image for my blog using a image for the Caddy server as the base. I picked an Alpine based one at &lt;a href=&#34;https://hub.docker.com/r/zzrot/alpine-caddy/&#34;&gt;zzrot/alpine-caddy&lt;/a&gt;. All I needed to do was add my blog files and configure a Caddyfile.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-docker&#34; data-lang=&#34;docker&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; zzrot/alpine-caddy&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;MAINTAINER&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; Jason Clark &amp;lt;jason@jjcconsultingllc.com&amp;gt;&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;EXPOSE&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; 80 443&lt;/span&gt;
-COPY docker/Caddyfile /etc/Caddyfile
-COPY public/ /var/www/html/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;&lt;strong&gt;From:&lt;/strong&gt; &lt;a href=&#34;https://github.com/jjasonclark/jjasonclark.com/blob/master/Dockerfile&#34;&gt;https://github.com/jjasonclark/jjasonclark.com/blob/master/Dockerfile&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I tried to test this out locally using Docker for Mac since I&amp;rsquo;m using the beta native client. I could never get it to work. The logs would show the server starting and give it&amp;rsquo;s message about what port its listening to, but would not actually accept any connections. I just had to trust it would work when deployed.&lt;/p&gt;
-
-&lt;h3 id=&#34;set-server-to-always-run-blog-image&#34;&gt;Set server to always run blog image&lt;/h3&gt;
-
-&lt;p&gt;Getting a docker image to always restart when the server goes down is as simple as a command line flag. This is &lt;em&gt;sometimes&lt;/em&gt; preferable to actually creating a real system service setup for the image. As long as you don&amp;rsquo;t need all the extra commands that system service needs this method should be fine. I used the following command to get the image running.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span&gt;&lt;/span&gt;docker run -d --name blog &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-  --restart always &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-  -p 80:80 -p 443:443 &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-  -v &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;/lets_encrypt:/root/.caddy &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-  jjasonclark/jjasonclark.com
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-</description>
-      <pubDate>Sun, 24 Apr 2016 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/secured_blog_using_lets_encrypt</link>
-      <guid isPermaLink="true">https://jjasonclark.com/secured_blog_using_lets_encrypt</guid>
-      
-      <category>ssl</category>
-      <category>blog</category>
-      <category>caddy</category>
-      <category>lets encrypt</category>
-      
+      <link>https://jjasonclark.com/secured_blog_using_lets_encrypt/</link>
+      <pubDate>Sun, 24 Apr 2016 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/secured_blog_using_lets_encrypt/</guid>
+      <description>I finally did it! I joined the secure web. Thanks to Let’s Encrypt and Caddy, this blog is now served via HTTPS. Caddy makes using Let’s Encrypt a single line change in a config file. It could not get simpler than that. Here is how I converted from static hosting on Amazon’s S3 to a Digital Ocean instance running Caddy in a Docker container.</description>
     </item>
+    
     <item>
       <title>Go Challenge 2 Review Response</title>
-      <description>&lt;p&gt;I have been learning the Go programming language recently. And in order to help that I joined in on the &lt;a href=&#34;http://golang-challenge.com/&#34;&gt;Go Challenge&lt;/a&gt;. At this point the 3rd challenge is available and 2nd is under review.&lt;/p&gt;
-
-&lt;p&gt;The challenge author has &lt;a href=&#34;http://blog.nella.org/golang-challenge-2-comments/&#34;&gt;release some overview thoughts&lt;/a&gt; about the submissions. In it he talks about the challenge in general and some specifics about the solution&amp;rsquo;s code. He also requests for permission to harshly critique someone&amp;rsquo;s code. I requested and got the &lt;a href=&#34;http://blog.nella.org/doing-it-the-hard-way/&#34;&gt;extra critique&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Summary of &lt;a href=&#34;http://blog.nella.org/golang-challenge-2-comments/&#34;&gt;general review&lt;/a&gt; comments:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Solve partial encrypted box size read requests&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Solve partial encrypted box size packets from the network&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Set network timeout to support timeouts&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Limit message sizes&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Overall I really think this is a difference between what the author thought he wrote for the challenge and what the participants read. Although, based on challenge #3 and what is being talked about in chat, I also think there is a bit of a confusion about the challenge overall. I think some participants in the challenge, me included, assume this is a teacher creating a lesson for us all to learn from. Trying their best to come up with a realistic looking problem for us. Instead I think the runners of the challenge think of this more like a real world work assignment. Of course for a work assignment you would always question every aspect of the assignment. It is part of the checks a business needs to make sure its doing the right thing at the right time. Although this is not the case for a teacher. What you are doing is fixed. The teacher isn&amp;rsquo;t changing their lesson plans. Although the “how” is up for interpretation. (And normally grading) The “how” had a lot of discussion on the chat server for most of the 2 week challenge.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ll go out on a limb here and bet that all of the participants in the teacher camp assumed we were sending only one message. I personally saw several conversations about only sending a single message. So I would guess there are also some in the work assignment camp that also thought we were only sending a single message.&lt;/p&gt;
-
-&lt;p&gt;With that in mind, a lot of his comments do not really apply any longer. If you are sending only one message over the unreliable network then getting an error in transmission is fatal. In almost every case there is no recovering from errors because the socket has already closed. Can&amp;rsquo;t write nonce to network; fail. Can&amp;rsquo;t read nonce; fail. Can&amp;rsquo;t encrypt message; fail. Can&amp;rsquo;t decrypt message; fail. Read partial message; fail. Wrote partial message; fail. Since the errors only happen on specific sides of the exchange the error messages also become clear. To make this more clear, perhaps the SecureReader and SecureWriter structs we created should have cached the last error.&lt;/p&gt;
-
-&lt;p&gt;In the case of a single message only his comments about sending the size are still valid. Sending the size would have allowed for one extra error condition; knowing when a partial, but decryptable message, is received. In the case of a partial message in the middle of a box the error would instead been failure to decrypt.&lt;/p&gt;
-
-&lt;p&gt;Summary of &lt;a href=&#34;http://blog.nella.org/doing-it-the-hard-way/&#34;&gt;personal review&lt;/a&gt; comments:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Nonce used more than once&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Use of clever solution for sending nonce (&lt;code&gt;TeeReader&lt;/code&gt;)&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Confusion over errors&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MultiWriter&lt;/code&gt; usage&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Use of &lt;code&gt;io.Copy&lt;/code&gt; for echoing&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I think most of his comments are from the miscommunications from the challenge for those in the teacher camp versus the work assignment camp. First he takes issue with saving the nonce, but it makes since in a stream based encryptor or decryptor. The full stream of the message might come from several Read or Write calls, and thus you need to save the nonce for encrypting or decrypting as you go. Even if the challenge was to make a multi-message system, each message would need to save it&amp;rsquo;s nonce while its still communicating that single message.&lt;/p&gt;
-
-&lt;p&gt;Second issue is with a clever solution for sending the nonce and the use of &lt;code&gt;MultiWriter&lt;/code&gt;. &lt;strong&gt;I definitely should have added more documentation for this part of the solution.&lt;/strong&gt; And should remember to do so when using the pattern elsewhere. I think this is because its using the side effects just as much as the main code path.  To two pieces of code at issue are reading the 24 byte nonce from random while also sending to the remote connection. And the reading of a server connection and echoing it back to the client while also echoing to the console. Both of these are handled in a way that is familiar to Unix command line or Perl script writers. In both cases I&amp;rsquo;m using &lt;code&gt;TeeReader&lt;/code&gt; and &lt;code&gt;MultiWriter&lt;/code&gt; to work like the &lt;code&gt;tee&lt;/code&gt; command. Just like in a long command line that is piping many commands in to the next, the &lt;code&gt;tee&lt;/code&gt; command is used to write a piece of it to a file without breaking up the chain. Same goes for how a nonce is used to encrypt a message. The long piped command is reading from the user&amp;rsquo;s input and encrypting it with a random nonce and writing it out to the network. Along the way the nonce is saved to a file. That file just happens to be the output writer for the network so the receiver can decrypt the message. The same principle is at work when server is echoing it&amp;rsquo;s input. The long chain of commands is to receive a message from the client, decrypt it, re-encrypt it, and send back to client. Along the way the decrypted text is printed to the console by teeing onto standard out.&lt;/p&gt;
-
-&lt;p&gt;He also says there could be an error with reading from random for the nonce and saving it. I already address saving the nonce. The failure to read from random in a single message scenario is fatal. It is displayed to the user as a failure to read the nonce only on the client side.&lt;/p&gt;
-
-&lt;p&gt;Lastly, he is questionable about the use of &lt;code&gt;io.Copy&lt;/code&gt;. For a single message over the network this method should be acceptable. The reason is because library will read until &lt;code&gt;EOF&lt;/code&gt;, or because this is a network connect, a timeout. Performing as many Reads or Writes as needed in a loop. And because we saved the nonce we support stream based called like this. Wrap the input in a SecureReader, the output in a SecureWriter and combine with a &lt;code&gt;MultiWriter&lt;/code&gt; sending to console and &lt;code&gt;io.Copy&lt;/code&gt; does the rest.&lt;/p&gt;
-
-&lt;p&gt;My full submission is at &lt;a href=&#34;https://github.com/golangchallenge/GCSolutions/tree/master/april15/normal/jason-clark&#34;&gt;https://github.com/golangchallenge/GCSolutions/tree/master/april15/normal/jason-clark&lt;/a&gt;&lt;/p&gt;
-</description>
-      <pubDate>Fri, 24 Apr 2015 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/go_challenge_2_review_response</link>
-      <guid isPermaLink="true">https://jjasonclark.com/go_challenge_2_review_response</guid>
-      <category>golang</category>
-      <category>development</category>
-      
-      <category>golang</category>
-      <category>development</category>
-      
+      <link>https://jjasonclark.com/go_challenge_2_review_response/</link>
+      <pubDate>Fri, 24 Apr 2015 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/go_challenge_2_review_response/</guid>
+      <description>My entry to the Go Challenge 2 was reviewed and commented on by the challenge runner. I provide some feedback on his comments.</description>
     </item>
+    
     <item>
       <title>Waiting for Ctrl&#43;C in Golang</title>
-      <description>&lt;p&gt;Waiting for Ctrl+C in Golang&lt;/p&gt;
-
-&lt;p&gt;Creating services can sometimes mean needing to wait on the command line for the user to end the process. This is normally done via signals by pressing Control+C. In Go this is fairly easy to accomplish. The following code should be enough to get you started putting it into your applications.&lt;/p&gt;
-
-&lt;p&gt;In Go’s implementation of signals the signals are delivered via a channel. Create an &lt;code&gt;os.Signal&lt;/code&gt; channel with at least 1 buffered space. The signals come in fast so you don’t want miss them. Let the system know you want &lt;code&gt;os.Interrupt&lt;/code&gt; signals to go to the channel you created. Then just wait for the signal to come it via a go function.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Signal&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Notify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Interrupt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now that you can respond to when the signal is triggered you need to add in the code to wait for this to happen. &lt;code&gt;sync.WaitGroup&lt;/code&gt; fits the bill. Create one, &lt;code&gt;Add&lt;/code&gt; a delta to it, and call &lt;code&gt;Wait&lt;/code&gt;. This will block the current execution path waiting for a &lt;code&gt;Done&lt;/code&gt; call on the created &lt;code&gt;WaitGroup&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Add this into the previous snippet to create the &lt;code&gt;WaitGroup&lt;/code&gt; before listening for the signal. And &lt;code&gt;Wait&lt;/code&gt; for the &lt;code&gt;WaitGroup&lt;/code&gt; at the end.  And use the retrieval of the signal to call &lt;code&gt;Done&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sync&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;WaitGroup&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Signal&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Notify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Interrupt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Done&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Putting it all together into a short package to show it off.  Here is the full code.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;
-
-&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
-    &lt;span class=&#34;s&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
-    &lt;span class=&#34;s&#34;&gt;&amp;quot;os&amp;quot;&lt;/span&gt;
-    &lt;span class=&#34;s&#34;&gt;&amp;quot;os/signal&amp;quot;&lt;/span&gt;
-    &lt;span class=&#34;s&#34;&gt;&amp;quot;sync&amp;quot;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;WaitForCtrlC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sync&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;WaitGroup&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Signal&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;signal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Notify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Interrupt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;signal_channel&lt;/span&gt;
-        &lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Done&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;end_waiter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;Press Ctrl+C to end\n&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;WaitForCtrlC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-</description>
-      <pubDate>Sat, 13 Dec 2014 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/waiting_for_ctrl_c_in_golang</link>
-      <guid isPermaLink="true">https://jjasonclark.com/waiting_for_ctrl_c_in_golang</guid>
-      <category>golang</category>
-      <category>development</category>
-      <category>commandline</category>
-      
-      <category>golang</category>
-      <category>development</category>
-      
+      <link>https://jjasonclark.com/waiting_for_ctrl_c_in_golang/</link>
+      <pubDate>Sat, 13 Dec 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/waiting_for_ctrl_c_in_golang/</guid>
+      <description>How to wait for the interrupt signal using Golang and command line programs</description>
     </item>
+    
     <item>
       <title>Will work for Bitcoin</title>
-      <description>&lt;p&gt;I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Personally I would love to see voting revolutionized by the Blockchain. In the mean time I would happy to just support the new economy by working in it or getting paid in it.&lt;/p&gt;
-
-&lt;p&gt;The price of Bitcoin has been dropping a lot recently, but I think I will keep it in mind for my next consulting job anyway. I’m not a crypto expert. Although there are plenty of software to be written that doesn’t need a Phd to write. Heck, I might find someone working on a voting system.&lt;/p&gt;
-
-&lt;p&gt;Wish me luck finding a job in the Bitcoin world.&lt;/p&gt;
-</description>
-      <pubDate>Fri, 07 Nov 2014 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/will_work_for_bitcoin</link>
-      <guid isPermaLink="true">https://jjasonclark.com/will_work_for_bitcoin</guid>
-      <category>bitcoin</category>
-      <category>development</category>
-      
-      <category>bitcoin</category>
-      <category>development</category>
-      
+      <link>https://jjasonclark.com/will_work_for_bitcoin/</link>
+      <pubDate>Fri, 07 Nov 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/will_work_for_bitcoin/</guid>
+      <description>I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Wish me luck finding a job in the Bitcoin world.</description>
     </item>
+    
     <item>
       <title>Consider using the tap method for code organization</title>
-      <description>&lt;p&gt;I&amp;rsquo;m sure you have heard about the tap method. It has great uses for connecting to a chain of method calls; such as when using Enumerable. And the cool kids love to use it to avoid using a temp variable for return.&lt;/p&gt;
-
-&lt;p&gt;Another use is for code organization. The tap method addes a level of indention via it&amp;rsquo;s block parameter. This block gives a visual section of code that can be useful when trying to understand what is being written.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Something&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tap&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;something&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;# your code here&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;For me, when I&amp;rsquo;m scanning through code, these visual indention changes really help me understand the code.&lt;/p&gt;
-</description>
-      <pubDate>Mon, 13 Oct 2014 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization</link>
-      <guid isPermaLink="true">https://jjasonclark.com/consider_using_the_tap_method_for_code_organization</guid>
-      <category>ruby</category>
-      <category>development</category>
-      
-      <category>ruby</category>
-      <category>development</category>
-      
+      <link>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</link>
+      <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</guid>
+      <description>The tap method intruduces a new indention block. Consider using the tap method for code organization.</description>
     </item>
+    
     <item>
       <title>Avahi helps hosts connect to VMs</title>
-      <description>
-
-&lt;p&gt;I create a lot of linux based VMs on my Mac. Sometimes its a bit hard to keep track of which machines have port forwarding or what their IPs are. I found a great solution to the problem: &lt;a href=&#34;http://en.wikipedia.org/wiki/Bonjour_(software)&#34;&gt;Bonjour&lt;/a&gt;. This is the Zeroconf implementation for Macs. It allows a machine to broadcast what services it has. For web development you can use it to broadcast the web server that your working on. Safari on the Mac automatically includes the current services in the bookmarks menu for easy access.&lt;/p&gt;
-
-&lt;h2 id=&#34;mac-setup&#34;&gt;Mac Setup&lt;/h2&gt;
-
-&lt;p&gt;In the Safari preference panel select the advanced tab. Check the setting you want.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://jjasonclark.com/assets/safari_preference.png&#34; alt=&#34;Safari preference panel&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;linux-setup&#34;&gt;Linux Setup&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://avahi.org/&#34;&gt;Avahi&lt;/a&gt; is a Linux daemon for Zeroconf. It is incredibly easy to setup and you don&amp;rsquo;t have to reboot your server.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Use your distros package manager to install it. For &lt;code&gt;yum&lt;/code&gt; it is &lt;code&gt;sudo yum install -y avahi&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Then create a file in the &lt;code&gt;/etc/avahi/services&lt;/code&gt; directory with a &lt;code&gt;.service&lt;/code&gt; extension.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; standalone=&amp;#39;no&amp;#39;?&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;&amp;lt;!DOCTYPE service-group SYSTEM &amp;quot;avahi-service.dtd&amp;quot;&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;service-group&amp;gt;&lt;/span&gt;
-  &lt;span class=&#34;nt&#34;&gt;&amp;lt;name&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;replace-wildcards=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;yes&amp;quot;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;%h&lt;span class=&#34;nt&#34;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
-  &lt;span class=&#34;nt&#34;&gt;&amp;lt;service&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;_http._tcp&lt;span class=&#34;nt&#34;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;port&amp;gt;&lt;/span&gt;3000&lt;span class=&#34;nt&#34;&gt;&amp;lt;/port&amp;gt;&lt;/span&gt;
-  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/service&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/service-group&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;ol&gt;
-&lt;li&gt;You might need to restart Avahi. It normally picks up the changes as soon as you write the file. To restart it manually run &lt;code&gt;sudo /etc/init.d/avahi-daemon restart&lt;/code&gt;.&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;getting-fancy&#34;&gt;Getting fancy&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://the.taoofmac.com/space/HOWTO/Vagrant&#34;&gt;Toa of Mac&lt;/a&gt; has some great tips on how to configure a setup with 2 NICs and only broadcast on the private network.&lt;/p&gt;
-</description>
-      <pubDate>Wed, 27 Nov 2013 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms</link>
-      <guid isPermaLink="true">https://jjasonclark.com/avahi_helps_hosts_connect_to_vms</guid>
-      <category>vm</category>
-      <category>linux</category>
-      <category>development</category>
-      
-      <category>vm</category>
-      <category>linux</category>
-      
+      <link>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/</guid>
+      <description>How to setup Bonjour broadcast to connect your Linux servers to your Macs for easy access while developing. Safari automatically adds the web servers that are broadcasting on your local network. Linux servers will broadcast once the Avahi server is installed.</description>
     </item>
+    
     <item>
       <title>Trying out Emacs Again</title>
-      <description>
-
-&lt;p&gt;I&amp;rsquo;m a Vim user, but I&amp;rsquo;m not 100% sold on it. I keep wanting to find an even better editor. I&amp;rsquo;ve tried just about everything, twice. Notepad++, Vim, Textmate, Coda, Visual Studio, Sublime Text, Notepad2, Scintilla, Cloud9, RubyMine, Eclipse, and many more.&lt;/p&gt;
-
-&lt;h2 id=&#34;land-of-lisp&#34;&gt;Land of Lisp&lt;/h2&gt;
-
-&lt;p&gt;I&amp;rsquo;ve got 3 kids, so I don&amp;rsquo;t get a lot of reading time. I&amp;rsquo;m finally getting a chance to read a book I picked up a while back, &amp;ldquo;&lt;a href=&#34;http://landoflisp.com/&#34;&gt;Land of Lisp&lt;/a&gt;&amp;rdquo;. And this is prompting me to give Emacs another try. The last few times I&amp;rsquo;ve tried it I got tired of all the key combos I had to press to get &lt;em&gt;anything&lt;/em&gt; done. I&amp;rsquo;m hoping this time I can learn some of the Lisp for easier configuration.&lt;/p&gt;
-
-&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
-
-&lt;p&gt;Not knowing the best way to get the latest version of Emacs I did what most do an searched Google. I found out that there are at least 2 easy ways to install Emacs. Either you download from the &lt;a href=&#34;http://emacsformacosx.com/&#34;&gt;EmacsForMacOSX&lt;/a&gt; site or you install via &lt;a href=&#34;http://brew.sh&#34;&gt;Homebrew&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I did find an article that says I should &lt;a href=&#34;http://struct.tumblr.com/post/46754394733/emacs-24-use-homebrew-instead-of-emacsformacosx&#34;&gt;use homebrew instead of EmacsForMacOSX&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I love the Homebrew system so I went that route.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install emacs --cocoa --srgb
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This installed version 24.3.1 of Emacs.&lt;/p&gt;
-
-&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
-
-&lt;p&gt;Next I needed a starter configuration. My childhood friend is also an Emacs user and posted &lt;a href=&#34;https://github.com/zev/emacs.d&#34;&gt;his config on Github&lt;/a&gt;. So naturally I forked it. This was a while ago when I tried Emacs once before, so all I had to do was update it. There was some specific settings for his computer, so I have removed them from my copy.  Check it out at &lt;a href=&#34;https://github.com/jjasonclark/emacs.d&#34;&gt;jjasonclark/emacs.d&lt;/a&gt;&lt;/p&gt;
-</description>
-      <pubDate>Thu, 05 Sep 2013 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/trying_out_emacs_again</link>
-      <guid isPermaLink="true">https://jjasonclark.com/trying_out_emacs_again</guid>
-      <category>programming</category>
-      
-      <category>emacs</category>
-      <category>setup</category>
-      
+      <link>https://jjasonclark.com/trying_out_emacs_again/</link>
+      <pubDate>Thu, 05 Sep 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/trying_out_emacs_again/</guid>
+      <description>I&#39;m a Vim user, but i&#39;m not 100% sold on it. I keep wanting to find an even better editor. I&#39;ve tried just about everything but nothing sticks. I&#39;m starting a new book on Lisp programming so it is time to try Emacs again. May this time it will stick.</description>
     </item>
+    
     <item>
       <title>Sinatra Settings for Nested Apps</title>
-      <description>&lt;p&gt;I finally got a chance to do some work with &lt;a href=&#34;http://sinatrarb.com&#34;&gt;Sinatra&lt;/a&gt;. Something more than the typical &lt;code&gt;Hello, World!&lt;/code&gt; app. I needed a UI on top of a restful web API. The docs are written using &lt;code&gt;curl&lt;/code&gt; calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created &lt;a href=&#34;https://github.com/jjasonclark/cardspring_browse&#34;&gt;Cardspring_browse&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The app is little more than HTML over a JSON API. Which isn&amp;rsquo;t to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Inner&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Sinatra&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Base&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;/inner&amp;quot;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Outer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Sinatra&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Base&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Inner&lt;/span&gt;
-
-  &lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Easy enough until it came time to share some configuration settings.  Each split up file seemed to get it&amp;rsquo;s own copy of the &lt;code&gt;settings&lt;/code&gt;. This meant that the outer app&amp;rsquo;s settings didn&amp;rsquo;t apply. I tried all kinds of things, but nothing worked. I resorted to asking a &lt;a href=&#34;http://stackoverflow.com/questions/18320823/sharing-yaml-config-files-between-sinatra-and-rails&#34;&gt;question on Stack Overflow&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The answer there was acceptable, but not the ideal. I thought if I read the source code I might be able to figure something better out. It turns out the source for &lt;a href=&#34;http:github.com/sinatra/sinatra&#34;&gt;Sinatra&lt;/a&gt; and &lt;a href=&#34;http://github.com/rack/rack&#34;&gt;Rack&lt;/a&gt; are very readable. Both are very tiny too. After reading the answer was clear. The pattern used throughout many Rack apps is to set values in the &lt;code&gt;env&lt;/code&gt; parameter hash that is passed to the &lt;code&gt;call&lt;/code&gt; method. Typically you use a string with the name of your app and the name of the value separated by a &lt;code&gt;.&lt;/code&gt; (period).&lt;/p&gt;
-
-&lt;p&gt;The Cardspring_browse app uses it &lt;a href=&#34;https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/lib/cardspring_browse/application.rb#L15-L18&#34;&gt;here&lt;/a&gt;. This code uses the Rack middleware &lt;a href=&#34;https://github.com/rack/rack/blob/master/lib/rack/config.rb&#34;&gt;Rack::Config&lt;/a&gt; to achieve the result.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Rack&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Config&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;my_app.my_property&amp;quot;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;custom value&amp;quot;&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;The full code for the outer application is the following. From the looks of the code I don&amp;rsquo;t yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Help wanted! It is &lt;a href=&#34;https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/LICENSE.txt&#34;&gt;open source&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Application&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Sinatra&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Base&lt;/span&gt;
-
-  &lt;span class=&#34;n&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:method_override&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:config_file&lt;/span&gt;
-
-  &lt;span class=&#34;no&#34;&gt;PROPERTY_NAME&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;cardspring_browse.config_file&amp;#39;&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Rack&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Config&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;PROPERTY_NAME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;settings&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config_file&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Publisher&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Users&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Events&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Businesses&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Apps&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;use&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;CardspringBrowse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Transactions&lt;/span&gt;
-
-  &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;config_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;__FILE__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;settings&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;config_file&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-  &lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;redirect&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;/v1&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-</description>
-      <pubDate>Thu, 29 Aug 2013 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/sinatra_settings_for_nested_apps</link>
-      <guid isPermaLink="true">https://jjasonclark.com/sinatra_settings_for_nested_apps</guid>
-      <category>programming</category>
-      
-      <category>ruby</category>
-      <category>rack</category>
-      <category>middleware</category>
-      <category>settings</category>
-      
+      <link>https://jjasonclark.com/sinatra_settings_for_nested_apps/</link>
+      <pubDate>Thu, 29 Aug 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/sinatra_settings_for_nested_apps/</guid>
+      <description>Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware. I show how I created a Sinatra app with several nested Sinatra apps. And how I solved the issue with using a shared settings value from outer apps to the inner apps.</description>
     </item>
+    
     <item>
       <title>Vagrant Going from old and busted, to new hotness</title>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://www.vagrantup.com/&#34; title=&#34;Vagrant&#34;&gt;Vagrant&lt;/a&gt; is an amazing application for helping you manage virtual machines. I feel like you are missing out if you haven&amp;rsquo;t started using Vagrant yet. I highly recommend it. Vagrant helps out by keeping track of several things that you would normally do manually to maintain a VM. It does this via the &lt;code&gt;Vagrantfile&lt;/code&gt; you place in your project&amp;rsquo;s directory and check into source control. The file contains two basic parts; all of the meta data that the VM needs boot, and the steps used to provision the VM.&lt;/p&gt;
-
-&lt;p&gt;Vagrant has been out for a while now, so it has gone through several versions already. Lately there has been a renewed effort by the creators of Vagrant to add more features. In order to support these new features the semantics of the &lt;code&gt;Vagrantfile&lt;/code&gt; had to change. In addition to the must change parts the Vagrant team has also done some changes to the existing parts that make it easier to interact with.&lt;/p&gt;
-
-&lt;p&gt;Converting to this new format is a fairly easy process to do. For the most part it just requires some renamed attributes or nesting inside of a block. These changes will remove any warning messages Vagrant is producing from your old &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;upgrading-your-vagrant-binaries&#34;&gt;Upgrading your Vagrant binaries&lt;/h2&gt;
-
-&lt;p&gt;First things first, you will need to uninstall the old version of Vagrant. Most people installed Vagrant via the &lt;a href=&#34;http://rubygems.org/gems/vagrant&#34; title=&#34;Vagrant gem on RubyGems&#34;&gt;gem&lt;/a&gt;. As of this writing this will give you version 1.0.7. That version is before the new &lt;code&gt;Vagrantfile&lt;/code&gt; format was created. You will need to download the binary version of from their &lt;a href=&#34;http://downloads.vagrantup.com/&#34; title=&#34;Vagrant downloads&#34;&gt;website&lt;/a&gt;, currently at version 1.2.2. As a person who works with many different versions of Ruby I highly recommend you don&amp;rsquo;t go back to the gem version of Vagrant even if they update it to the latest version. The reason is that you will have to install the gem several times for each version of Ruby or remember to switch back to that version of Ruby in order to use the &lt;code&gt;vagrant&lt;/code&gt; command. The binary install makes this so much easier because you don&amp;rsquo;t have to do any of those workarounds.&lt;/p&gt;
-
-&lt;h2 id=&#34;upgrade-your-vagrantfiles&#34;&gt;Upgrade your Vagrantfiles&lt;/h2&gt;
-
-&lt;p&gt;Once you have the latest version install open up your &lt;code&gt;Vagrantfile&lt;/code&gt; and change a few values. Replace your main setup block to the following. This will give you access to all of the new attribute names and features.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Vagrant&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;configure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;From here you will need to change a few standard meta data settings.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;host_name&lt;/code&gt; is now &lt;code&gt;hostname&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sync_folder&lt;/code&gt; is now &lt;code&gt;synced_folder&lt;/code&gt; and it&amp;rsquo;s first 2 parameters have swapped places&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;forward_port&lt;/code&gt; is now an option off of &lt;code&gt;network&lt;/code&gt; with named parameters. Go from &lt;code&gt;config.vm.forward_port 3000, 3000&lt;/code&gt; to &lt;code&gt;config.vm.network :forwarded_port, :guest =&amp;gt; 3000, :host =&amp;gt; 3000&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;customize&lt;/code&gt; is now nested under &lt;code&gt;provider&lt;/code&gt;. Go from &lt;code&gt;config.vm.customize [&#39;modifyvm&#39;, :id, &#39;--cpus&#39;, 2]&lt;/code&gt; to &lt;code&gt;config.vm.provider :virtualbox { |box| box.customize [&#39;modifyvm&#39;, :id, &#39;--cpus&#39;, 2] }&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;:hostonly&lt;/code&gt; networking is now &lt;code&gt;:private_network&lt;/code&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Don&amp;rsquo;t forget that there are a lot of new options. Check out the &lt;a href=&#34;http://docs.vagrantup.com/v2/&#34; title=&#34;Vagrant documentation&#34;&gt;Vagrant documentation&lt;/a&gt; for more details on the items listed here and all the new options.&lt;/p&gt;
-</description>
-      <pubDate>Thu, 09 May 2013 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</link>
-      <guid isPermaLink="true">https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness</guid>
-      <category>programming</category>
-      <category>devops</category>
-      
-      <category>Vagrant</category>
-      <category>VM</category>
-      <category>virtualmachine</category>
-      <category>upgrade</category>
-      <category>chef</category>
-      <category>provision</category>
-      <category>hypervisor</category>
-      
+      <link>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</link>
+      <pubDate>Thu, 09 May 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</guid>
+      <description>Vagrant is an amazing application for helping you manage your virtual machines. Renewed development effort by it&#39;s creators has brought us many new features. Unfortunately this forced a change in the semantics of the Vagrantfile. Here is how to do the most basic upgrades to remove the warning messages Vagrant creates from using the older file type.</description>
     </item>
+    
     <item>
       <title>Switching from attr_encrypted gem to attr_encryptor for better security</title>
-      <description>
-
-&lt;p&gt;At work we are using the &lt;a href=&#34;http://rubygems.org/gems/attr_encrypted&#34; title=&#34;attr_encyrpted on rubygems&#34;&gt;attr_encrypted gem&lt;/a&gt; to encrypt some &lt;a href=&#34;http://en.wikipedia.org/wiki/Personally_identifiable_information&#34; title=&#34;Wikipedia on PII&#34;&gt;PII&lt;/a&gt; on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A &lt;a href=&#34;https://github.com/shuber/attr_encrypted/issues/32&#34; title=&#34;Security issue with attr_encrypted&#34;&gt;Github issue&lt;/a&gt; was created to address leaking of data caused by using the same &lt;a href=&#34;http://en.wikipedia.org/wiki/Initialization_vector&#34; title=&#34;Wikipedia on IV&#34;&gt;initialization vector (IV)&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Salt_(cryptography)&#34; title=&#34;Wikipedia on salt&#34;&gt;salt&lt;/a&gt; for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the &lt;a href=&#34;http://en.wikipedia.org/wiki/CBC-MAC&#34; title=&#34;Wikipedia on CBC-MAC&#34;&gt;CBC-MAC&lt;/a&gt; method. The &lt;a href=&#34;http://rubygems.org/gems/attr_encryptor&#34; title=&#34;attr_encryptor on rubygems&#34;&gt;attr_encryptor&lt;/a&gt; was created to fix these issues.&lt;/p&gt;
-
-&lt;p&gt;Besides changing gem names, to switch gems you will need to add the new &lt;code&gt;_iv&lt;/code&gt; and &lt;code&gt;_salt&lt;/code&gt; database columns for each of the encrypted values. And then re-encrypt all old values into the new system. Adding the new columns is trivial enough, but the re-encryption can be very tricky.&lt;/p&gt;
-
-&lt;h2 id=&#34;re-encrypting-old-values&#34;&gt;Re-encrypting old values&lt;/h2&gt;
-
-&lt;p&gt;At first I was hoping the attr_encryptor gem could be used to decrypt the old values. I tried several things but nothing worked. Next best thing is a copy and paste of the original gem&amp;rsquo;s decryption code. From the &lt;a href=&#34;https://github.com/shuber/attr_encrypted/blob/master/lib/attr_encrypted.rb#L166-190&#34; title=&#34;decryption function in attr_encrypted&#34;&gt;Github source&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# Decrypts a value for the attribute specified&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# Example&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#   class User&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#     attr_encrypted :email&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#   end&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;#   email = User.decrypt(:email, &amp;#39;SOME_ENCRYPTED_EMAIL_STRING&amp;#39;)&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;decrypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attribute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{})&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;encrypted_attributes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attribute&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_sym&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;merge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:unless&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nil?&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;is_a?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;empty?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unpack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:encode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;first&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:encode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:encryptor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:decrypt_method&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;merge!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:marshal&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-      &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:marshaler&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:load_method&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;elsif&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;defined?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Encoding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-      &lt;span class=&#34;n&#34;&gt;encoding&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Encoding&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_internal&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Encoding&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_external&lt;/span&gt;
-      &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;force_encoding&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encoding&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Which calls to the &lt;a href=&#34;http://rubygems.org/gems/encryptor&#34; title=&#34;encryptor gem on rubygems&#34;&gt;encryptor gem&lt;/a&gt; to do the actually decryption. The &lt;a href=&#34;https://github.com/shuber/encryptor/blob/master/lib/encryptor.rb#L49-63&#34; title=&#34;encryptor decrypt method&#34;&gt;decryption code&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;crypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cipher_method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#:nodoc:&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;default_options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;merge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;first&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;merge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;last&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;is_a?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Hash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;last&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{})&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;raise&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;ArgumentError&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;must specify a :key&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;to_s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;empty?&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;OpenSSL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:algorithm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cipher_method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:iv&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iv&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:iv&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkcs5_keyivgen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;options&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;block_given?&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;final&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Basically this boils down to the following.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;decrypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;OpenSSL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;aes-256-cbc&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;decrypt&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkcs5_keyivgen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;final&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&#34;finial-migration&#34;&gt;Finial migration&lt;/h2&gt;
-
-&lt;p&gt;Putting this all together and you get the following migration. Easy enough task even with half a day wasted trying to get the gem to decrypt for me.&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;ReencryptAllValues&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Migration&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;IterationCount&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;display_every&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@iteration_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@display_every&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;display_every&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inc_and_display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;extra_text&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@iteration_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
-            &lt;span class=&#34;nb&#34;&gt;puts&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@iteration_count&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; rows processed. &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;extra_text&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;vi&#34;&gt;@iteration_count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;vi&#34;&gt;@display_every&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;FieldAccessor&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;initialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;value&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;=&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;encrypted_value&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;=&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;clear_iv_and_salt&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;_iv=&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kp&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;vi&#34;&gt;@target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;vi&#34;&gt;@value_sym&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;_salt=&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kp&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;OldEncryptor&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;decrypt_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;crypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:decrypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unpack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;first&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;encrypt_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;crypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:encrypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pack&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;kp&#34;&gt;private&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;crypt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;OpenSSL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;Cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;aes-256-cbc&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkcs5_keyivgen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;AppConfig&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attr_encrypted_secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cipher&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;final&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Reencrypter&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;convert_to_new_method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value_syms&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;value_syms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;each&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value_sym&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-                &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;FieldAccessor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value_sym&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;present?&lt;/span&gt;
-                    &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clear_iv_and_salt&lt;/span&gt;
-                    &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;OldEncryptor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;decrypt_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-        &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;convert_to_old_method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value_syms&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;value_syms&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;each&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value_sym&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-                &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;FieldAccessor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value_sym&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;present?&lt;/span&gt;
-                    &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypted_value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;OldEncryptor&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encrypt_value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-                    &lt;span class=&#34;n&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clear_iv_and_salt&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;have_encrypted_values&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;no&#34;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;any?&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;present?&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;already_encrypted_values&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;no&#34;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;any?&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;encrypted_&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;_iv&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;present?&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;no&#34;&gt;EncryptedFields&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;ss&#34;&gt;:bank_account_number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:bank_routing_number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;:federal_tax_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;up&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;unless&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Rails&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;production?&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;counter&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;IterationCount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;converted&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
-        &lt;span class=&#34;no&#34;&gt;Advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;find_each&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;counter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inc_and_display&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;converted&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; converted&amp;quot;&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;next&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;unless&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;have_encrypted_values&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;next&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;already_encrypted_values&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-            &lt;span class=&#34;no&#34;&gt;Reencrypter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;convert_to_new_method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;converted&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;down&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;unless&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;Rails&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;production?&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;counter&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;IterationCount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;converted&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
-        &lt;span class=&#34;no&#34;&gt;Advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;find_each&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;counter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inc_and_display&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;#{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;converted&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; converted&amp;quot;&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;next&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;unless&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;have_encrypted_values&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;next&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;unless&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;already_encrypted_values&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-            &lt;span class=&#34;no&#34;&gt;Reencrypter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;convert_to_old_method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;EncryptedFields&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;advertiser&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;converted&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-</description>
-      <pubDate>Wed, 06 Feb 2013 00:00:00 &#43;0000</pubDate>
-      <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</link>
-      <guid isPermaLink="true">https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor</guid>
-      <category>ruby</category>
-      <category>programming</category>
-      
-      <category>ruby</category>
-      <category>programming</category>
-      <category>gem</category>
-      <category>security</category>
-      <category>encryption</category>
-      
+      <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</link>
+      <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</guid>
+      <description>At work we are using the attr_encrypted gem to encrypt some PII on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A Github issue was created to address leaking of data caused by using the same initialization vector (IV) and salt for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the CBC-MAC method. The attr_encryptor was created to fix these issues.</description>
+    </item>
+    
+    <item>
+      <title>Setting up a new Mac for Ruby development</title>
+      <link>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/setting_up_a_new_mac_for_ruby_development/</guid>
+      <description>I recently switched how I was using one of my laptops. I wanted to make a clean break from what it was doing before, so I erased the hard drive and started from scratch. I&#39;ve done this a few times already and I always seem to forget a step. So this time I wrote down the steps so I could repeat them later. These are the steps I take to setup a Mac for Ruby development using Vim as the editor and MySql as the database. Of course there are a few other programs that I use while developing. The whole group, in my opinion, make for the most basic setup.</description>
+    </item>
+    
+    <item>
+      <title>Searching a Git repository using VIM</title>
+      <link>https://jjasonclark.com/searching_git_with_vim/</link>
+      <pubDate>Mon, 26 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/searching_git_with_vim/</guid>
+      <description>Searching Git repositories is very simple using the Fugitive and Unimpaired plug-ins. They allow you to jump to each file and line in the result set with default keybindings.</description>
+    </item>
+    
+    <item>
+      <title>Rails partial views and locals variables</title>
+      <link>https://jjasonclark.com/rails_partial_view_locals/</link>
+      <pubDate>Wed, 14 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/rails_partial_view_locals/</guid>
+      <description>Partial views get used in most web frameworks. In Rails and most other frameworks you can pass local variables to your partials. This is how I learned that in Rails these locals are instance methods and not instance variables.</description>
+    </item>
+    
+    <item>
+      <title>Update DNSimple to point to your home router</title>
+      <link>https://jjasonclark.com/dnsimple_script_updates/</link>
+      <pubDate>Sun, 11 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/dnsimple_script_updates/</guid>
+      <description>The API at DNSimple allows easy updates. You can use them to add a subdomain to point to your home router. I make extensive use of this for remote pair programming.</description>
+    </item>
+    
+    <item>
+      <title>Update your software</title>
+      <link>https://jjasonclark.com/update-your-software/</link>
+      <pubDate>Tue, 23 Oct 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/update-your-software/</guid>
+      <description>Don&#39;t forget to update your software every once in a while</description>
+    </item>
+    
+    <item>
+      <title>Remote pairing with SSH and Tmux on a Mac</title>
+      <link>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</link>
+      <pubDate>Fri, 17 Aug 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</guid>
+      <description>How to setup a Mac for remote pairing via Tmux. Including some scripts to help automate the process.</description>
+    </item>
+    
+    <item>
+      <title>Changing Xcode versions</title>
+      <link>https://jjasonclark.com/changing-xcode-versions/</link>
+      <pubDate>Mon, 18 Jun 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/changing-xcode-versions/</guid>
+      <description>I recently needed to switch from developing for Rails 3.2.5 on Ruby 1.9.3 to working with Rails 2.3.5 on Ruby 1.8.7. The Rails version change wasn&#39;t that big of a deal, but the Ruby change was. Sometime between the release of 1.8.7 and 1.9.3 the supported GCC compiler changed. The newer compiler, the one I was on, had a breaking change making it not compatible with the older Ruby version. This meant that if I wanted to use Ruby 1.8.7 I was going to have to uninstall my current copy of Xcode and install an older version.</description>
+    </item>
+    
+    <item>
+      <title>Installing Node.js on Ubuntu 10.04 server</title>
+      <link>https://jjasonclark.com/installing-node-on-ubuntu-10.04/</link>
+      <pubDate>Wed, 09 May 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/installing-node-on-ubuntu-10.04/</guid>
+      <description>Most of the guides I find on how to install [Node.js][1] on Ubuntu are not about installing the currently released version, instead they focus on installing the latest development release. I think this is the case because they assume the reader is familiar with doing software installs on unix from source. I&#39;m coming from a Windows word were installing from the source is almost never done. This guide is for someone relatively new to unix installation or to Ubuntu server setup.</description>
+    </item>
+    
+    <item>
+      <title>How to setup Node.js and Npm behind a corporate web proxy</title>
+      <link>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</link>
+      <pubDate>Mon, 30 Apr 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/how-to-setup-node-behind-web-proxy/</guid>
+      <description>For those who, like me, are behind a corporate web proxy, setting up Node.js and using &lt;code&gt;npm&lt;/code&gt; can be a real pain. I thought that the web proxy settings would be like the rest of the unix world and require me to set the &lt;code&gt;HTTP_PROXY&lt;/code&gt; and &lt;code&gt;HTTPS_PROXY&lt;/code&gt; environment variables. Although I just cloned the Node repository from &lt;a href=&#34;https://github.com/joyent/node&#34;&gt;Github&lt;/a&gt; so they are already setup. What gives?</description>
+    </item>
+    
+    <item>
+      <title>Install Cloudstack 3.0.0 on Ubuntu 10.04 Server</title>
+      <link>https://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/</guid>
+      <description>Cloudstack 3.0.0 was release on Febrary 28th 2012. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</description>
+    </item>
+    
+    <item>
+      <title>Setting up NFS on Ubuntu 10.04 Server</title>
+      <link>https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/</link>
+      <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/setting_up_nfs_on_ubuntu_10.04_server/</guid>
+      <description>I&#39;m currently working on improving my knowledge of UNIX networking. One of the common tasks for a server is acting as an NFS server. These are the steps I take on an Ubuntu 10.04 server to setup NFS.</description>
+    </item>
+    
+    <item>
+      <title>Virtualization on the Mac</title>
+      <link>https://jjasonclark.com/virtualization-on-the-mac/</link>
+      <pubDate>Thu, 15 Sep 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/virtualization-on-the-mac/</guid>
+      <description>The Mac makes a great platform to run virtual machines especially with VMware Fusion.</description>
+    </item>
+    
+    <item>
+      <title>Switched from PC to Mac</title>
+      <link>https://jjasonclark.com/switched-from-pc-to-mac/</link>
+      <pubDate>Wed, 31 Aug 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/switched-from-pc-to-mac/</guid>
+      <description>I&#39;m a switcher! I switched from PC to Mac. It started when I wanted to replace the computer I use to run my TV. I picked the Mac Mini because of it&#39;s size. I had done the research and all of the Internet services I used on the PC also worked for the Mac. So I waited until the Mac OS X Lion update came out to buy the newest version of the mini.</description>
+    </item>
+    
+    <item>
+      <title>Fizz-buzz rehash</title>
+      <link>https://jjasonclark.com/fizzbuzz_rehash/</link>
+      <pubDate>Sun, 24 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/fizzbuzz_rehash/</guid>
+      <description>An implementation of fizz-buzz that is overly complex. Something you want to avoid in an interview.</description>
+    </item>
+    
+    <item>
+      <title>Code navigation with Resharper</title>
+      <link>https://jjasonclark.com/code_navigation_with_resharper/</link>
+      <pubDate>Mon, 04 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/code_navigation_with_resharper/</guid>
+      <description>Great screencast on using Resharper to navigate code efficiently in Visual Studio</description>
+    </item>
+    
+    <item>
+      <title>Finished the Ruby Koans</title>
+      <link>https://jjasonclark.com/finished_the_ruby_koans/</link>
+      <pubDate>Sun, 03 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/finished_the_ruby_koans/</guid>
+      <description>I finished the Ruby Koans today. It is a set of test cases designed to help you learn Ruby by making all the tests pass.</description>
+    </item>
+    
+    <item>
+      <title>Any() is your friend</title>
+      <link>https://jjasonclark.com/any_is_your_friend/</link>
+      <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/any_is_your_friend/</guid>
+      <description>The Any() extension method helps make much more efficient SQL queries. Use it and love it!</description>
+    </item>
+    
+    <item>
+      <title>How to fix patching problems with TortoiseSVN and TortoiseMerge</title>
+      <link>https://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge/</link>
+      <pubDate>Wed, 25 Aug 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/how_to_fix_patching_problems_with_tortoisesvn_and_tortoisemerge/</guid>
+      <description>TortoiseMerge occasionally fails to work. I don&#39;t know the cause, but I did figure out how correct the issue so you can do another merge.</description>
+    </item>
+    
+    <item>
+      <title>SQLExpress and ASP.Net membership provider</title>
+      <link>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</link>
+      <pubDate>Sat, 17 Jul 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</guid>
+      <description>Using the ASP.Net membership provider in an application using SQLExpress database</description>
+    </item>
+    
+    <item>
+      <title>Learning Ruby</title>
+      <link>https://jjasonclark.com/learning_ruby/</link>
+      <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/learning_ruby/</guid>
+      <description>Learning Ruby via testing. Trying to also learn the Rails server enivronment as well.</description>
+    </item>
+    
+    <item>
+      <title>FizzBuzz test in C#</title>
+      <link>https://jjasonclark.com/fizzbuzz_test_in_c_sharp/</link>
+      <pubDate>Wed, 17 Mar 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/fizzbuzz_test_in_c_sharp/</guid>
+      <description>An overly complex fizz-buzz implementation</description>
+    </item>
+    
+    <item>
+      <title>Alt.Net Seattle mini con report</title>
+      <link>https://jjasonclark.com/alt_net_seattle_mini_con_report/</link>
+      <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/alt_net_seattle_mini_con_report/</guid>
+      <description>I went to my first Alt.Net Seattle meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the MVP global summit. I have to say I really liked it.</description>
+    </item>
+    
+    <item>
+      <title>Linqpad usage video</title>
+      <link>https://jjasonclark.com/linqpad_usage_video/</link>
+      <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/linqpad_usage_video/</guid>
+      <description>A video of Linqpad by the creator on how to use it best.</description>
+    </item>
+    
+    <item>
+      <title>Converting a Sourceforge project to Github</title>
+      <link>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</link>
+      <pubDate>Sun, 17 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</guid>
+      <description>I was looking for a reason to play with Git more so I thought a good exercise would be to convert an open source project not already using Git. At the same time I put it on Github for easy access.</description>
+    </item>
+    
+    <item>
+      <title>Replicating SQL&#39;s in operator in Linq</title>
+      <link>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</link>
+      <pubDate>Sun, 06 Dec 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</guid>
+      <description>SQL has a range variable search keyword called &amp;lsquo;in&amp;rsquo; that is a not exposed by default in Linq.</description>
+    </item>
+    
+    <item>
+      <title>Solve Sudoku in 1 line of Linq</title>
+      <link>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</link>
+      <pubDate>Tue, 17 Nov 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</guid>
+      <description>Using linq to solve Sudoku</description>
+    </item>
+    
+    <item>
+      <title>Deploying a website with MSBuild and TFS 2008</title>
+      <link>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</link>
+      <pubDate>Thu, 22 Oct 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</guid>
+      <description>how I used msbuild to get a web server running</description>
+    </item>
+    
+    <item>
+      <title>Started working with Silverlight</title>
+      <link>https://jjasonclark.com/started_working_with_silverlight/</link>
+      <pubDate>Fri, 19 Dec 2008 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/started_working_with_silverlight/</guid>
+      <description>I started playing with Silverlight 2.0. I learned a lot about the data modeling classes and what is supported. Going to have to spend much more time with Silverlight if I&#39;m going to make anything useful</description>
     </item>
     
   </channel>

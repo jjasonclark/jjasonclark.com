@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C# on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/c#/</link>
+    <description>Recent content in C# on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Sun, 06 Dec 2009 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Replicating SQL&#39;s in operator in Linq</title>
+      <link>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</link>
+      <pubDate>Sun, 06 Dec 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/replicating_sql_in_operator_in_linq/</guid>
+      <description>SQL has a range variable search keyword called &amp;lsquo;in&amp;rsquo; that is a not exposed by default in Linq.</description>
+    </item>
+    
+    <item>
+      <title>Started working with Silverlight</title>
+      <link>https://jjasonclark.com/started_working_with_silverlight/</link>
+      <pubDate>Fri, 19 Dec 2008 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/started_working_with_silverlight/</guid>
+      <description>I started playing with Silverlight 2.0. I learned a lot about the data modeling classes and what is supported. Going to have to spend much more time with Silverlight if I&#39;m going to make anything useful</description>
+    </item>
+    
+  </channel>
+</rss>

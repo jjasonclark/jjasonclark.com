@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/ruby/</link>
+    <description>Recent content in Ruby on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Mon, 13 Oct 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Consider using the tap method for code organization</title>
+      <link>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</link>
+      <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/consider_using_the_tap_method_for_code_organization/</guid>
+      <description>The tap method intruduces a new indention block. Consider using the tap method for code organization.</description>
+    </item>
+    
+    <item>
+      <title>Switching from attr_encrypted gem to attr_encryptor for better security</title>
+      <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</link>
+      <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</guid>
+      <description>At work we are using the attr_encrypted gem to encrypt some PII on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A Github issue was created to address leaking of data caused by using the same initialization vector (IV) and salt for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the CBC-MAC method. The attr_encryptor was created to fix these issues.</description>
+    </item>
+    
+    <item>
+      <title>Rails partial views and locals variables</title>
+      <link>https://jjasonclark.com/rails_partial_view_locals/</link>
+      <pubDate>Wed, 14 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/rails_partial_view_locals/</guid>
+      <description>Partial views get used in most web frameworks. In Rails and most other frameworks you can pass local variables to your partials. This is how I learned that in Rails these locals are instance methods and not instance variables.</description>
+    </item>
+    
+    <item>
+      <title>Remote pairing with SSH and Tmux on a Mac</title>
+      <link>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</link>
+      <pubDate>Fri, 17 Aug 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</guid>
+      <description>How to setup a Mac for remote pairing via Tmux. Including some scripts to help automate the process.</description>
+    </item>
+    
+    <item>
+      <title>Changing Xcode versions</title>
+      <link>https://jjasonclark.com/changing-xcode-versions/</link>
+      <pubDate>Mon, 18 Jun 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/changing-xcode-versions/</guid>
+      <description>I recently needed to switch from developing for Rails 3.2.5 on Ruby 1.9.3 to working with Rails 2.3.5 on Ruby 1.8.7. The Rails version change wasn&#39;t that big of a deal, but the Ruby change was. Sometime between the release of 1.8.7 and 1.9.3 the supported GCC compiler changed. The newer compiler, the one I was on, had a breaking change making it not compatible with the older Ruby version. This meant that if I wanted to use Ruby 1.8.7 I was going to have to uninstall my current copy of Xcode and install an older version.</description>
+    </item>
+    
+    <item>
+      <title>Finished the Ruby Koans</title>
+      <link>https://jjasonclark.com/finished_the_ruby_koans/</link>
+      <pubDate>Sun, 03 Oct 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/finished_the_ruby_koans/</guid>
+      <description>I finished the Ruby Koans today. It is a set of test cases designed to help you learn Ruby by making all the tests pass.</description>
+    </item>
+    
+    <item>
+      <title>Learning Ruby</title>
+      <link>https://jjasonclark.com/learning_ruby/</link>
+      <pubDate>Thu, 24 Jun 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/learning_ruby/</guid>
+      <description>Learning Ruby via testing. Trying to also learn the Rails server enivronment as well.</description>
+    </item>
+    
+  </channel>
+</rss>

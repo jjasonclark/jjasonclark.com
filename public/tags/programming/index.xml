@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/programming/</link>
+    <description>Recent content in programming on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 06 Feb 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Switching from attr_encrypted gem to attr_encryptor for better security</title>
+      <link>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</link>
+      <pubDate>Wed, 06 Feb 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/switching_from_attr_encrypted_to_attr_encryptor/</guid>
+      <description>At work we are using the attr_encrypted gem to encrypt some PII on our data before it hits the database. The gem supports using a strong key but this turns out to not be enough. A Github issue was created to address leaking of data caused by using the same initialization vector (IV) and salt for every value. The method used by the attr_encrypted gem to create the IV and salt values is vulnerable. Additionally the IV should also be processed with the CBC-MAC method. The attr_encryptor was created to fix these issues.</description>
+    </item>
+    
+    <item>
+      <title>SQLExpress and ASP.Net membership provider</title>
+      <link>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</link>
+      <pubDate>Sat, 17 Jul 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</guid>
+      <description>Using the ASP.Net membership provider in an application using SQLExpress database</description>
+    </item>
+    
+    <item>
+      <title>Converting a Sourceforge project to Github</title>
+      <link>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</link>
+      <pubDate>Sun, 17 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</guid>
+      <description>I was looking for a reason to play with Git more so I thought a good exercise would be to convert an open source project not already using Git. At the same time I put it on Github for easy access.</description>
+    </item>
+    
+    <item>
+      <title>Solve Sudoku in 1 line of Linq</title>
+      <link>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</link>
+      <pubDate>Tue, 17 Nov 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/solve_sudoku_in_1_line_of_linq/</guid>
+      <description>Using linq to solve Sudoku</description>
+    </item>
+    
+    <item>
+      <title>Deploying a website with MSBuild and TFS 2008</title>
+      <link>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</link>
+      <pubDate>Thu, 22 Oct 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</guid>
+      <description>how I used msbuild to get a web server running</description>
+    </item>
+    
+    <item>
+      <title>Started working with Silverlight</title>
+      <link>https://jjasonclark.com/started_working_with_silverlight/</link>
+      <pubDate>Fri, 19 Dec 2008 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/started_working_with_silverlight/</guid>
+      <description>I started playing with Silverlight 2.0. I learned a lot about the data modeling classes and what is supported. Going to have to spend much more time with Silverlight if I&#39;m going to make anything useful</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>devops on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/devops/</link>
+    <description>Recent content in devops on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Thu, 09 May 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vagrant Going from old and busted, to new hotness</title>
+      <link>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</link>
+      <pubDate>Thu, 09 May 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</guid>
+      <description>Vagrant is an amazing application for helping you manage your virtual machines. Renewed development effort by it&#39;s creators has brought us many new features. Unfortunately this forced a change in the semantics of the Vagrantfile. Here is how to do the most basic upgrades to remove the warning messages Vagrant creates from using the older file type.</description>
+    </item>
+    
+  </channel>
+</rss>

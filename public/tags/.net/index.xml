@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>.Net on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/.net/</link>
+    <description>Recent content in .Net on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 01 Sep 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Any() is your friend</title>
+      <link>https://jjasonclark.com/any_is_your_friend/</link>
+      <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/any_is_your_friend/</guid>
+      <description>The Any() extension method helps make much more efficient SQL queries. Use it and love it!</description>
+    </item>
+    
+    <item>
+      <title>Alt.Net Seattle mini con report</title>
+      <link>https://jjasonclark.com/alt_net_seattle_mini_con_report/</link>
+      <pubDate>Mon, 01 Mar 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/alt_net_seattle_mini_con_report/</guid>
+      <description>I went to my first Alt.Net Seattle meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the MVP global summit. I have to say I really liked it.</description>
+    </item>
+    
+  </channel>
+</rss>

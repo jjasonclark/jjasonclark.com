@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vm on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/vm/</link>
+    <description>Recent content in vm on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 27 Nov 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/vm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Avahi helps hosts connect to VMs</title>
+      <link>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/</link>
+      <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/avahi_helps_hosts_connect_to_vms/</guid>
+      <description>How to setup Bonjour broadcast to connect your Linux servers to your Macs for easy access while developing. Safari automatically adds the web servers that are broadcasting on your local network. Linux servers will broadcast once the Avahi server is installed.</description>
+    </item>
+    
+    <item>
+      <title>Vagrant Going from old and busted, to new hotness</title>
+      <link>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</link>
+      <pubDate>Thu, 09 May 2013 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/vagrant_going_from_old_and_busted_to_new_hotness/</guid>
+      <description>Vagrant is an amazing application for helping you manage your virtual machines. Renewed development effort by it&#39;s creators has brought us many new features. Unfortunately this forced a change in the semantics of the Vagrantfile. Here is how to do the most basic upgrades to remove the warning messages Vagrant creates from using the older file type.</description>
+    </item>
+    
+    <item>
+      <title>Install Cloudstack 3.0.0 on Ubuntu 10.04 Server</title>
+      <link>https://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/install_cloudstack_3.0.0_on_ubuntu_10.04_server/</guid>
+      <description>Cloudstack 3.0.0 was release on Febrary 28th 2012. At the time I was trying to install version 2.2 on a VM. I was having a lot of trouble so seeing a new version was wonderful. The following is what I had to do in order to get the system setup. Hopfully this post will help you get Cloudstack running in your environment.</description>
+    </item>
+    
+  </channel>
+</rss>

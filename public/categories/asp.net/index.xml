@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>asp.net on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/asp.net/</link>
+    <description>Recent content in asp.net on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Sat, 17 Jul 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/asp.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQLExpress and ASP.Net membership provider</title>
+      <link>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</link>
+      <pubDate>Sat, 17 Jul 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/sqlexpress_and_asp_net_membership_provider/</guid>
+      <description>Using the ASP.Net membership provider in an application using SQLExpress database</description>
+    </item>
+    
+    <item>
+      <title>Deploying a website with MSBuild and TFS 2008</title>
+      <link>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</link>
+      <pubDate>Thu, 22 Oct 2009 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/deploy_a_website_with_msbuild_and_tfs_2008/</guid>
+      <description>how I used msbuild to get a web server running</description>
+    </item>
+    
+  </channel>
+</rss>

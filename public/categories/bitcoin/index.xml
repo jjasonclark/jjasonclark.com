@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bitcoin on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/bitcoin/</link>
+    <description>Recent content in bitcoin on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Fri, 07 Nov 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/bitcoin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Will work for Bitcoin</title>
+      <link>https://jjasonclark.com/will_work_for_bitcoin/</link>
+      <pubDate>Fri, 07 Nov 2014 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/will_work_for_bitcoin/</guid>
+      <description>I’m a big fan of Bitcoin and its backing Blockchain protocol. I really do think it has the potential to allow for much broader uses of distributed control. Wish me luck finding a job in the Bitcoin world.</description>
+    </item>
+    
+  </channel>
+</rss>

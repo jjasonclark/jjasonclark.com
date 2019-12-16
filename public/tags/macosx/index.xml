@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macosx on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/macosx/</link>
+    <description>Recent content in macosx on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Tue, 23 Oct 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/macosx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Update your software</title>
+      <link>https://jjasonclark.com/update-your-software/</link>
+      <pubDate>Tue, 23 Oct 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/update-your-software/</guid>
+      <description>Don&#39;t forget to update your software every once in a while</description>
+    </item>
+    
+    <item>
+      <title>Remote pairing with SSH and Tmux on a Mac</title>
+      <link>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</link>
+      <pubDate>Fri, 17 Aug 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/remote-pairing-with-ssh-and-tmux-on-a-mac/</guid>
+      <description>How to setup a Mac for remote pairing via Tmux. Including some scripts to help automate the process.</description>
+    </item>
+    
+    <item>
+      <title>Changing Xcode versions</title>
+      <link>https://jjasonclark.com/changing-xcode-versions/</link>
+      <pubDate>Mon, 18 Jun 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/changing-xcode-versions/</guid>
+      <description>I recently needed to switch from developing for Rails 3.2.5 on Ruby 1.9.3 to working with Rails 2.3.5 on Ruby 1.8.7. The Rails version change wasn&#39;t that big of a deal, but the Ruby change was. Sometime between the release of 1.8.7 and 1.9.3 the supported GCC compiler changed. The newer compiler, the one I was on, had a breaking change making it not compatible with the older Ruby version. This meant that if I wanted to use Ruby 1.8.7 I was going to have to uninstall my current copy of Xcode and install an older version.</description>
+    </item>
+    
+  </channel>
+</rss>

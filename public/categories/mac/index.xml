@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mac on JJasonClark.com</title>
+    <link>https://jjasonclark.com/categories/mac/</link>
+    <description>Recent content in mac on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Wed, 31 Aug 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Switched from PC to Mac</title>
+      <link>https://jjasonclark.com/switched-from-pc-to-mac/</link>
+      <pubDate>Wed, 31 Aug 2011 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/switched-from-pc-to-mac/</guid>
+      <description>I&#39;m a switcher! I switched from PC to Mac. It started when I wanted to replace the computer I use to run my TV. I picked the Mac Mini because of it&#39;s size. I had done the research and all of the Internet services I used on the PC also worked for the Mac. So I waited until the Mac OS X Lion update came out to buy the newest version of the mini.</description>
+    </item>
+    
+  </channel>
+</rss>

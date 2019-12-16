@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/sinatra_settings_for_nested_apps">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/sinatra_settings_for_nested_apps/">
+    <meta property="og:title" content="Sinatra Settings for Nested Apps" />
+<meta property="og:description" content="Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/sinatra_settings_for_nested_apps/" />
+<meta property="article:published_time" content="2013-08-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2013-08-29T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sinatra Settings for Nested Apps"/>
+<meta name="twitter:description" content="Getting settings to work in a Sinatra app that includes other Sinatra apps can be done a lot easier than you think using the Rack::Config middleware."/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/sinatra_settings_for_nested_apps" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,15 +68,13 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Sinatra Settings for Nested Apps</h1>
-            <p class="post-meta">August 29, 2013 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">August 29, 2013 • Jason Clark</p>
           </header>
           <article class="post-content">
             <p>I finally got a chance to do some work with <a href="http://sinatrarb.com">Sinatra</a>. Something more than the typical <code>Hello, World!</code> app. I needed a UI on top of a restful web API. The docs are written using <code>curl</code> calls into their service, with JSON response payloads. Easy enough to deal with, but I wanted something a bit more robust. Thus I created <a href="https://github.com/jjasonclark/cardspring_browse">Cardspring_browse</a>.</p>
-
-<p>The app is little more than HTML over a JSON API. Which isn&rsquo;t to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">Inner</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">get</span> <span class="s2">&quot;/inner&quot;</span> <span class="k">do</span>
+<p>The app is little more than HTML over a JSON API. Which isn't to bad since most apps are just HTML over SQL. I needed to handle to many URLs to have it all in a single file so I split it up into several apps. I then used an outer app to include all the inner apps.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Inner</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">get</span> <span class="s2">&#34;</span><span class="s2">/inner</span><span class="s2">&#34;</span> <span class="k">do</span>
     <span class="c1"># ...</span>
   <span class="k">end</span>
 <span class="k">end</span>
@@ -84,30 +82,19 @@
 <span class="k">class</span> <span class="nc">Outer</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">use</span> <span class="no">Inner</span>
 
-  <span class="n">get</span> <span class="s2">&quot;/&quot;</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span> <span class="k">do</span>
     <span class="c1"># ...</span>
   <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-
-
-<p>Easy enough until it came time to share some configuration settings.  Each split up file seemed to get it&rsquo;s own copy of the <code>settings</code>. This meant that the outer app&rsquo;s settings didn&rsquo;t apply. I tried all kinds of things, but nothing worked. I resorted to asking a <a href="http://stackoverflow.com/questions/18320823/sharing-yaml-config-files-between-sinatra-and-rails">question on Stack Overflow</a>.</p>
-
+<span class="k">end</span></code></pre></div>
+<p>Easy enough until it came time to share some configuration settings.  Each split up file seemed to get it's own copy of the <code>settings</code>. This meant that the outer app's settings didn't apply. I tried all kinds of things, but nothing worked. I resorted to asking a <a href="http://stackoverflow.com/questions/18320823/sharing-yaml-config-files-between-sinatra-and-rails">question on Stack Overflow</a>.</p>
 <p>The answer there was acceptable, but not the ideal. I thought if I read the source code I might be able to figure something better out. It turns out the source for <a href="http:github.com/sinatra/sinatra">Sinatra</a> and <a href="http://github.com/rack/rack">Rack</a> are very readable. Both are very tiny too. After reading the answer was clear. The pattern used throughout many Rack apps is to set values in the <code>env</code> parameter hash that is passed to the <code>call</code> method. Typically you use a string with the name of your app and the name of the value separated by a <code>.</code> (period).</p>
-
 <p>The Cardspring_browse app uses it <a href="https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/lib/cardspring_browse/application.rb#L15-L18">here</a>. This code uses the Rack middleware <a href="https://github.com/rack/rack/blob/master/lib/rack/config.rb">Rack::Config</a> to achieve the result.</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Config</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
-  <span class="n">env</span><span class="o">[</span><span class="s2">&quot;my_app.my_property&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;custom value&quot;</span>
-<span class="k">end</span>
-</code></pre></div>
-
-
-<p>The full code for the outer application is the following. From the looks of the code I don&rsquo;t yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Config</span> <span class="k">do</span> <span class="o">|</span><span class="n">env</span><span class="o">|</span>
+  <span class="n">env</span><span class="o">[</span><span class="s2">&#34;</span><span class="s2">my_app.my_property</span><span class="s2">&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="s2">custom value</span><span class="s2">&#34;</span>
+<span class="k">end</span></code></pre></div>
+<p>The full code for the outer application is the following. From the looks of the code I don't yet know the best practice for creating larger Sinatra apps. I still need to figure out the best way to split up the URLs into different files and still create a maintainable codebase. I think this style might be abusing the builder style.</p>
 <p><em>Help wanted! It is <a href="https://github.com/jjasonclark/cardspring_browse/blob/intro_blog_post/LICENSE.txt">open source</a>.</em></p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
 
   <span class="n">enable</span> <span class="ss">:method_override</span>
   <span class="n">enable</span> <span class="ss">:config_file</span>
@@ -124,18 +111,16 @@
   <span class="n">use</span> <span class="no">CardspringBrowse</span><span class="o">::</span><span class="no">App</span><span class="o">::</span><span class="no">Apps</span>
   <span class="n">use</span> <span class="no">CardspringBrowse</span><span class="o">::</span><span class="no">App</span><span class="o">::</span><span class="no">Transactions</span>
 
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">config_file</span> <span class="o">=</span> <span class="bp">__FILE__</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">initialize</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">config_file</span> <span class="o">=</span> <span class="bp">__FILE__</span><span class="p">)</span>
     <span class="k">super</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">config_file</span> <span class="o">=</span> <span class="n">config_file</span>
   <span class="k">end</span>
 
-  <span class="n">get</span> <span class="s2">&quot;/&quot;</span> <span class="k">do</span>
-    <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s2">&quot;/v1&quot;</span><span class="p">)</span>
+  <span class="n">get</span> <span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span> <span class="k">do</span>
+    <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">/v1</span><span class="s2">&#34;</span><span class="p">)</span>
   <span class="k">end</span>
 
-<span class="k">end</span>
-</code></pre></div>
-
+<span class="k">end</span></code></pre></div>
 
           </article>
         </div>
@@ -143,20 +128,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -212,17 +204,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>

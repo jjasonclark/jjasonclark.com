@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on JJasonClark.com</title>
+    <link>https://jjasonclark.com/tags/git/</link>
+    <description>Recent content in git on JJasonClark.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jason@jjasonclark.com (Jason Clark)</managingEditor>
+    <webMaster>jason@jjasonclark.com (Jason Clark)</webMaster>
+    <lastBuildDate>Mon, 26 Nov 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jjasonclark.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Searching a Git repository using VIM</title>
+      <link>https://jjasonclark.com/searching_git_with_vim/</link>
+      <pubDate>Mon, 26 Nov 2012 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/searching_git_with_vim/</guid>
+      <description>Searching Git repositories is very simple using the Fugitive and Unimpaired plug-ins. They allow you to jump to each file and line in the result set with default keybindings.</description>
+    </item>
+    
+    <item>
+      <title>Converting a Sourceforge project to Github</title>
+      <link>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</link>
+      <pubDate>Sun, 17 Jan 2010 00:00:00 +0000</pubDate>
+      <author>jason@jjasonclark.com (Jason Clark)</author>
+      <guid>https://jjasonclark.com/converting_a_sourceforge_project_to_github/</guid>
+      <description>I was looking for a reason to play with Git more so I thought a good exercise would be to convert an open source project not already using Git. At the same time I put it on Github for easy access.</description>
+    </item>
+    
+  </channel>
+</rss>

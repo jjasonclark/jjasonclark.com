@@ -10,18 +10,19 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="https://jjasonclark.com/alt_net_seattle_mini_con_report">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="canonical" href="https://jjasonclark.com/alt_net_seattle_mini_con_report/">
+    <meta property="og:title" content="Alt.Net Seattle mini con report" />
+<meta property="og:description" content="Report on Alt.Net Seattle&#39;s first conference" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jjasonclark.com/alt_net_seattle_mini_con_report/" />
+<meta property="article:published_time" content="2010-03-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-03-01T00:00:00+00:00" /><meta property="og:site_name" content="JJasonClark.com" />
 
-    <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12083278-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Alt.Net Seattle mini con report"/>
+<meta name="twitter:description" content="Report on Alt.Net Seattle&#39;s first conference"/>
+
 </head>
 
   <body>
@@ -39,7 +40,6 @@
             <img src="/assets/feed.png" alt="Subscribe to JJasonClark.com" width=24 height=24>
           </a>
           <a href="https://twitter.com/share" class='twitter-share-button' data-url="/alt_net_seattle_mini_con_report" via="jjasonclark" lang="en">Tweet</a>
-          <div class='g-plusone'></div>
         </div>
       </div>
     </nav>
@@ -68,22 +68,16 @@
         <div class="post">
           <header class="post-header">
             <h1 class="post-title">Alt.Net Seattle mini con report</h1>
-            <p class="post-meta">March 1, 2010 • <a title="Jason Clark" rel="author" href="https://plus.google.com/117263003751658777941">Jason Clark</a></p>
+            <p class="post-meta">March 1, 2010 • Jason Clark</p>
           </header>
           <article class="post-content">
             <p>I went to my first <a href="http://www.altnetseattle.org">Alt.Net Seattle</a> meeting on Saturday. It was a mini conference created so the Microsoft MVPs could meet while they were already in Seattle for the <a href="http://www.mvpsummit2010.com">MVP global summit</a>. I have to say I really liked it.</p>
-
-<p>It started at 10 AM, but I wasn&rsquo;t able to get there until a bit before noon. I was out doing the Saturday morning breakfast thing with the grandparents so they could spend some time with Zachary. Well worth the time, although I missed the best sessions of the day. At 10 AM they started with a session on MVC and another on CodeRush. Completely bummed I didn&rsquo;t get to go to either one of those. Although there was a good selection of topics left to go to after the noon lunch break.</p>
-
-<p>The conference was done in an open session style. In total there were 5 rooms used for 1 hour sessions. A schedule of events was on the main room&rsquo;s white board. In total I believe there were 15 sessions to choose from. I picked sessions on writing maintainable code, test theories, working on open source projects, and an introduction to the Cucumber test style.</p>
-
-<p>The maintainable code session was a group discussion on coding standards for formatting. Some of the items were useful but over all the group agreed that it didn&rsquo;t really matter much as long as you were consistent across multiple files.</p>
-
-<p>Testing theories was a talk by <a href="http://www.charliepoole.org">Charlie Poole</a> of NUnit fame. The topic was focused on how theories could be used in NUnit. Currently he has some preliminary support for the idea with more coming soon based on how the talk went. He wanted to explain this new concept and get feedback on how it would be useful. To me, the idea looked a lot like directed fuzz testing. The idea is that random input can be used to test for conditions you have not already thought of. Although in this case instead of making an output format via the fuzz tool&rsquo;s modeling language you use unit tests with attributes. Also there are input limiter predicate functions inside of the test to skip the random input that the method cannot use.  Hard concept to think about now since it is so new. Although I can see that this could go somewhere. If nothing else you can use it to create a pre-generated group of test objects that are fed to all of the test cases based on their predicate functions. I&rsquo;m interested in seeing where he takes this testing technique.</p>
-
+<p>It started at 10 AM, but I wasn't able to get there until a bit before noon. I was out doing the Saturday morning breakfast thing with the grandparents so they could spend some time with Zachary. Well worth the time, although I missed the best sessions of the day. At 10 AM they started with a session on MVC and another on CodeRush. Completely bummed I didn't get to go to either one of those. Although there was a good selection of topics left to go to after the noon lunch break.</p>
+<p>The conference was done in an open session style. In total there were 5 rooms used for 1 hour sessions. A schedule of events was on the main room's white board. In total I believe there were 15 sessions to choose from. I picked sessions on writing maintainable code, test theories, working on open source projects, and an introduction to the Cucumber test style.</p>
+<p>The maintainable code session was a group discussion on coding standards for formatting. Some of the items were useful but over all the group agreed that it didn't really matter much as long as you were consistent across multiple files.</p>
+<p>Testing theories was a talk by <a href="http://www.charliepoole.org">Charlie Poole</a> of NUnit fame. The topic was focused on how theories could be used in NUnit. Currently he has some preliminary support for the idea with more coming soon based on how the talk went. He wanted to explain this new concept and get feedback on how it would be useful. To me, the idea looked a lot like directed fuzz testing. The idea is that random input can be used to test for conditions you have not already thought of. Although in this case instead of making an output format via the fuzz tool's modeling language you use unit tests with attributes. Also there are input limiter predicate functions inside of the test to skip the random input that the method cannot use.  Hard concept to think about now since it is so new. Although I can see that this could go somewhere. If nothing else you can use it to create a pre-generated group of test objects that are fed to all of the test cases based on their predicate functions. I'm interested in seeing where he takes this testing technique.</p>
 <p>The testing sessions was followed by an open source discussion lead by <a href="http://whereslou.com">Louis DeJardin</a>. The topic was how to get more people to participate. The most basic take away was that any contribution is a great start for anyone to get involved and their effort should be rewarded. Additionally there was some good ideas about how to get that first involvement from a new developer. My favorite was to leave easy bugs to fix, or empty unit test stubs to be filled in. Both of these are very low hanging fruit for any developer to use as a starting point.</p>
-
-<p>Lastly the conference, for me, ended with a session on Cucumber style tests. <a href="http://blogs.msdn.com/gblock">Glenn Block</a> showed off how tests can be written in plain English. The tests seemed OK, but the way to support these tests seemed extremely fragile. Regular expressions are used to mark what methods are called based on the English text. His main reason for supporting this style of testing is that there doesn&rsquo;t have to be a translation from the paper version of requirements created with the customer. Although I would argue that creating the Regex style methods is a translation step.</p>
+<p>Lastly the conference, for me, ended with a session on Cucumber style tests. <a href="http://blogs.msdn.com/gblock">Glenn Block</a> showed off how tests can be written in plain English. The tests seemed OK, but the way to support these tests seemed extremely fragile. Regular expressions are used to mark what methods are called based on the English text. His main reason for supporting this style of testing is that there doesn't have to be a translation from the paper version of requirements created with the customer. Although I would argue that creating the Regex style methods is a translation step.</p>
 
           </article>
         </div>
@@ -91,20 +85,27 @@
     </div>
 
     
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'jjasonclark';
-
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jjasonclark" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     <footer class="site-footer">
   <div class="wrapper">
@@ -160,17 +161,8 @@
     </div>
   </div>
 </footer>
-
     <script type="text/javascript">
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-</script>
-
-<script type="text/javascript">
-(function() {
-  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-  po.src = 'https://apis.google.com/js/plusone.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
 </script>
 
   </body>
