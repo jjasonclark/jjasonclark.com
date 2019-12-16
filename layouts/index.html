@@ -11,7 +11,7 @@
         <div class="home">
           <h1 class="page-heading">Posts</h1>
           <ul class="post-list">
-            {{ range where .Data.Pages "Type" "post" }}
+            {{ range where site.RegularPages.ByDate.Reverse "Type" "in" site.Params.mainSections }}
             <li>
               <span class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</span>
 
