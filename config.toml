@@ -9,12 +9,13 @@ DisqusShortname = "jjasonclark"
 
 [params]
 email = "jason@jjasonclark.com"
+title = "JJasonClark.com"
 description = "Stuff I have time to write about\n"
 mainSections = ["post"]
 twitter_username = "jjasonclark"
 github_username =  "jjasonclark"
-google_analytics_code = "UA-12083278-1"
-disqus_shortname = "jjasonclark"
+googleAnalytics  = "UA-12083278-1"
+disqusShortname  = "jjasonclark"
 bitcoin = "14622f9QThq7ieB1jJ3rHy9Xx4jK8UN7DV"
 showAds = true
 showComments = true
@@ -22,6 +23,7 @@ showComments = true
 [taxonomies]
 category = "categories"
 tag = "tags"
+series = "series"
 
 [author]
 name = "Jason Clark"
