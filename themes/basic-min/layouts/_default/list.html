@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  {{- partial "head.html" . -}}
+  <body>
+    {{- partial "header.html" . -}}
+    <div class="page-content">
+      {{- partial "side_bar_ad.html" . -}}
+      <div class="wrapper">
+        <ul class="post-list">
+          {{- range .Paginator.Pages -}}
+          <li>
+            <span class="post-meta">{{- .Date.Format "Jan 2, 2006" -}}</span>
+
+            <h2>
+              <a class="post-link" href="{{- .RelPermalink -}}">{{- .Title -}}</a>
+            </h2>
+            <p>
+              {{- .Params.summary -}}
+            </p>
+          </li>
+          {{- end -}}
+        </ul>
+        {{- template "_internal/pagination.html" . -}}
+        <p class="rss-subscribe">subscribe <a href="/index.xml">via RSS</a></p>
+      </div>
+    </div>
+    {{- partial "footer.html" . -}}
+    {{- partial "last_js.html" . -}}
+  </body>
+</html>

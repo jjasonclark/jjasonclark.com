@@ -1,0 +1,3 @@
+{{- if and ($.Param "showComments") ($.Param "comments") -}}
+{{- template "_internal/disqus.html" . -}}
+{{- end -}}

@@ -6,6 +6,7 @@ layoutdir = "layouts"
 timezone = "America/Vancouver"
 encoding = "utf-8"
 DisqusShortname = "jjasonclark"
+theme = ["basic-min"]
 
 [params]
 email = "jason@jjasonclark.com"
