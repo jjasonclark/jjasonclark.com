@@ -83,12 +83,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/bitcoin/</loc>
+    <loc>https://jjasonclark.com/tags/bitcoin/</loc>
     <lastmod>2014-11-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/bitcoin/</loc>
+    <loc>https://jjasonclark.com/categories/bitcoin/</loc>
     <lastmod>2014-11-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -263,12 +263,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/git/</loc>
+    <loc>https://jjasonclark.com/tags/git/</loc>
     <lastmod>2012-11-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/git/</loc>
+    <loc>https://jjasonclark.com/categories/git/</loc>
     <lastmod>2012-11-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -288,12 +288,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/vim/</loc>
+    <loc>https://jjasonclark.com/tags/vim/</loc>
     <lastmod>2012-11-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/vim/</loc>
+    <loc>https://jjasonclark.com/categories/vim/</loc>
     <lastmod>2012-11-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -328,12 +328,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/bash/</loc>
+    <loc>https://jjasonclark.com/categories/bash/</loc>
     <lastmod>2012-11-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/bash/</loc>
+    <loc>https://jjasonclark.com/tags/bash/</loc>
     <lastmod>2012-11-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -428,12 +428,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/howto/</loc>
+    <loc>https://jjasonclark.com/tags/howto/</loc>
     <lastmod>2012-05-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/howto/</loc>
+    <loc>https://jjasonclark.com/categories/howto/</loc>
     <lastmod>2012-05-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -443,12 +443,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/javascript/</loc>
+    <loc>https://jjasonclark.com/categories/javascript/</loc>
     <lastmod>2012-05-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/javascript/</loc>
+    <loc>https://jjasonclark.com/tags/javascript/</loc>
     <lastmod>2012-05-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -483,12 +483,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/npm/</loc>
+    <loc>https://jjasonclark.com/categories/npm/</loc>
     <lastmod>2012-04-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/npm/</loc>
+    <loc>https://jjasonclark.com/tags/npm/</loc>
     <lastmod>2012-04-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -518,12 +518,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/cloudstack/</loc>
+    <loc>https://jjasonclark.com/tags/cloudstack/</loc>
     <lastmod>2012-03-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/cloudstack/</loc>
+    <loc>https://jjasonclark.com/categories/cloudstack/</loc>
     <lastmod>2012-03-21T00:00:00+00:00</lastmod>
   </url>
   
@@ -543,12 +543,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/iptables/</loc>
+    <loc>https://jjasonclark.com/tags/iptables/</loc>
     <lastmod>2012-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/iptables/</loc>
+    <loc>https://jjasonclark.com/categories/iptables/</loc>
     <lastmod>2012-03-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -628,12 +628,12 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/resharper/</loc>
+    <loc>https://jjasonclark.com/tags/resharper/</loc>
     <lastmod>2010-10-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/resharper/</loc>
+    <loc>https://jjasonclark.com/categories/resharper/</loc>
     <lastmod>2010-10-04T00:00:00+00:00</lastmod>
   </url>
   
@@ -803,22 +803,22 @@
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/tags/msbuild/</loc>
-    <lastmod>2009-10-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jjasonclark.com/categories/msbuild/</loc>
     <lastmod>2009-10-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jjasonclark.com/categories/silverlight/</loc>
-    <lastmod>2008-12-19T00:00:00+00:00</lastmod>
+    <loc>https://jjasonclark.com/tags/msbuild/</loc>
+    <lastmod>2009-10-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://jjasonclark.com/tags/silverlight/</loc>
+    <lastmod>2008-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jjasonclark.com/categories/silverlight/</loc>
     <lastmod>2008-12-19T00:00:00+00:00</lastmod>
   </url>
   

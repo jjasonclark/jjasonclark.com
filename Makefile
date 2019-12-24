@@ -2,10 +2,15 @@ PWD=$(shell pwd)
 NAME=jason-blog
 DOMAIN=jjasonclark.com
 OUT_PATH=$(abspath $(PWD)/public)
+CACHE=public, max-age=3600
 
 .PHONY: hugo
 hugo:
 	docker run --rm -v $(PWD):/src $(DOMAIN):latest
+
+.PHONY: hugonative
+hugonative:
+	hugo --cleanDestinationDir -d $(OUT_PATH)
 
 .PHONY: docker
 docker:
@@ -17,7 +22,7 @@ drafts:
 
 .PHONY: awsdeploy
 awsdeploy:
-	aws s3 sync $(OUT_PATH)/ s3://$(DOMAIN) --delete
+	aws s3 sync $(OUT_PATH)/ s3://$(DOMAIN) --delete --cache-control "$(CACHE)"
 
 .PHONY: awsinit
 awsinit:
