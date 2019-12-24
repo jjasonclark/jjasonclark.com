@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  AppPrefix:
+    Description: Prefix name for all created resources
+    Type: String
+
+Resources:
+  TerraformStateBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: Private
+      BucketName: { "Fn::Join": ["-", [!Ref AppPrefix, "terraform"]] }
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: app
+          Value: !Ref AppPrefix
+
+  TerraformLockTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: LockID
+          AttributeType: S
+      KeySchema:
+        - AttributeName: LockID
+          KeyType: HASH
+      TableName: { "Fn::Join": ["-", [!Ref AppPrefix, "terraform"]] }
+      BillingMode: PAY_PER_REQUEST
+      Tags:
+        - Key: app
+          Value: !Ref AppPrefix
