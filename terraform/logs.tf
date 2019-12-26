@@ -1,7 +1,6 @@
 resource "aws_s3_bucket" "logs" {
-  provider = aws.us-east-1
-  bucket   = "${var.domain_name}-logs"
-  acl      = "log-delivery-write"
+  bucket = "${var.domain_name}-logs"
+  acl    = "log-delivery-write"
   tags = {
     app = var.app_name
   }
@@ -14,6 +13,16 @@ resource "aws_s3_bucket" "logs" {
   lifecycle_rule {
     id      = "cdn-logs"
     prefix  = "cloudfront"
+    enabled = true
+
+    expiration {
+      days = 30
+    }
+  }
+
+  lifecycle_rule {
+    id      = "s3-logs"
+    prefix  = "s3"
     enabled = true
 
     expiration {

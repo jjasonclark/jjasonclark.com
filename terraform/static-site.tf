@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "website" {
   bucket = var.domain_name
-  acl    = ""
+  acl    = "private"
   tags = {
     app = var.app_name
   }
@@ -8,6 +8,11 @@ resource "aws_s3_bucket" "website" {
   versioning {
     enabled    = false
     mfa_delete = false
+  }
+
+  logging {
+    target_bucket = aws_s3_bucket.logs.id
+    target_prefix = "s3/"
   }
 
   website {
@@ -29,24 +34,8 @@ resource "aws_s3_bucket" "website" {
 }
 
 data "aws_iam_policy_document" "website" {
-  policy_id = "Policy1428871194772"
-  # Everyone can view the website
+  # website-updater can list files
   statement {
-    sid = "Stmt1428871192093"
-    actions = [
-      "s3:GetObject",
-    ]
-    effect = "Allow"
-    principals {
-      type        = "*"
-      identifiers = ["*"]
-    }
-    resources = ["${aws_s3_bucket.website.arn}/*"]
-  }
-
-  # website-updater can change files
-  statement {
-    sid     = "Stmt1491071843579"
     effect  = "Allow"
     actions = ["s3:ListBucket"]
     principals {
@@ -55,9 +44,8 @@ data "aws_iam_policy_document" "website" {
     }
     resources = [aws_s3_bucket.website.arn]
   }
-
+  # website-updater can change files
   statement {
-    sid    = "Stmt1491071843578"
     effect = "Allow"
     actions = [
       "s3:DeleteObject",
@@ -69,6 +57,27 @@ data "aws_iam_policy_document" "website" {
       identifiers = [aws_iam_user.website-updater.arn]
     }
     resources = ["${aws_s3_bucket.website.arn}/*"]
+  }
+
+  # Cloudfront access list items
+  statement {
+    actions   = ["s3:ListBucket"]
+    effect    = "Allow"
+    resources = [aws_s3_bucket.website.arn]
+    principals {
+      type        = "CanonicalUser"
+      identifiers = [aws_cloudfront_origin_access_identity.website.s3_canonical_user_id]
+    }
+  }
+  # Cloudfront access get files
+  statement {
+    actions   = ["s3:GetObject"]
+    effect    = "Allow"
+    resources = ["${aws_s3_bucket.website.arn}/*"]
+    principals {
+      type        = "CanonicalUser"
+      identifiers = [aws_cloudfront_origin_access_identity.website.s3_canonical_user_id]
+    }
   }
 }
 
