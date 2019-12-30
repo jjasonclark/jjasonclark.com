@@ -18,4 +18,3 @@ terraform {
     encrypt        = false
   }
 }
-
