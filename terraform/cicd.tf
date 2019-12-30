@@ -118,3 +118,20 @@ resource "aws_codebuild_project" "codebuild" {
     app = var.app_name
   }
 }
+
+resource "aws_codebuild_webhook" "website" {
+  project_name = var.app_name
+
+  filter_group {
+    filter {
+      exclude_matched_pattern = false
+      pattern                 = "PUSH"
+      type                    = "EVENT"
+    }
+    filter {
+      exclude_matched_pattern = false
+      pattern                 = "^refs/heads/master$"
+      type                    = "HEAD_REF"
+    }
+  }
+}
