@@ -1,5 +1,5 @@
 domain_name = "jjasonclark.com"
 
-upload_user = "jjasonclark"
-
 app_name = "jason-blog"
+
+github_source_url = "https://github.com/jjasonclark/jjasonclark.com.git"

@@ -34,31 +34,6 @@ resource "aws_s3_bucket" "website" {
 }
 
 data "aws_iam_policy_document" "website" {
-  # website-updater can list files
-  statement {
-    effect  = "Allow"
-    actions = ["s3:ListBucket"]
-    principals {
-      type        = "AWS"
-      identifiers = [aws_iam_user.website-updater.arn]
-    }
-    resources = [aws_s3_bucket.website.arn]
-  }
-  # website-updater can change files
-  statement {
-    effect = "Allow"
-    actions = [
-      "s3:DeleteObject",
-      "s3:GetObject",
-      "s3:PutObject",
-    ]
-    principals {
-      type        = "AWS"
-      identifiers = [aws_iam_user.website-updater.arn]
-    }
-    resources = ["${aws_s3_bucket.website.arn}/*"]
-  }
-
   # Cloudfront access list items
   statement {
     actions   = ["s3:ListBucket"]

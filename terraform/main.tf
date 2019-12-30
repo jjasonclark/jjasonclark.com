@@ -9,3 +9,7 @@ output "cdn-url" {
 output "url" {
   value = "https://${aws_route53_record.website-cdn.fqdn}"
 }
+
+output "build-badge" {
+  value = aws_codebuild_project.codebuild.badge_url
+}

@@ -2,10 +2,10 @@ variable "domain_name" {
   type = string
 }
 
-variable "upload_user" {
+variable "app_name" {
   type = string
 }
 
-variable "app_name" {
+variable "github_source_url" {
   type = string
 }
