@@ -2,6 +2,10 @@ output "nameservers" {
   value = aws_route53_zone.website.name_servers
 }
 
+output "s3-url" {
+  value = "http://${aws_s3_bucket.website.website_endpoint}"
+}
+
 output "cdn-url" {
   value = "https://${aws_cloudfront_distribution.website.domain_name}"
 }

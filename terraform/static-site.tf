@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "website" {
   bucket = var.domain_name
-  acl    = "private"
+  acl    = "public-read"
   tags = {
     app = var.app_name
   }
@@ -34,25 +34,14 @@ resource "aws_s3_bucket" "website" {
 }
 
 data "aws_iam_policy_document" "website" {
-  # Cloudfront access list items
+  # Public read access
   statement {
-    actions   = ["s3:ListBucket"]
-    effect    = "Allow"
-    resources = [aws_s3_bucket.website.arn]
+    actions = ["s3:GetObject"]
     principals {
-      type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.website.iam_arn]
+      type        = "*"
+      identifiers = ["*"]
     }
-  }
-  # Cloudfront access get files
-  statement {
-    actions   = ["s3:GetObject"]
-    effect    = "Allow"
     resources = ["${aws_s3_bucket.website.arn}/*"]
-    principals {
-      type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.website.iam_arn]
-    }
   }
 }
 

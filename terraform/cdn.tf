@@ -1,7 +1,3 @@
-resource "aws_cloudfront_origin_access_identity" "website" {
-  comment = "Jason's blog"
-}
-
 resource "aws_cloudfront_distribution" "website" {
   aliases             = [var.domain_name]
   default_root_object = "index.html"
@@ -29,7 +25,7 @@ resource "aws_cloudfront_distribution" "website" {
     default_ttl            = 3600
     max_ttl                = 86400
     min_ttl                = 0
-    target_origin_id       = aws_s3_bucket.website.id
+    target_origin_id       = "S3-Website- ${aws_s3_bucket.website.website_endpoint}"
     viewer_protocol_policy = "redirect-to-https"
 
     forwarded_values {
@@ -42,13 +38,18 @@ resource "aws_cloudfront_distribution" "website" {
     }
   }
 
-  # S3 via cloudfront origin
+  # S3 via website origin
   origin {
-    domain_name = aws_s3_bucket.website.bucket_domain_name
-    origin_id   = aws_s3_bucket.website.id
+    domain_name = aws_s3_bucket.website.website_endpoint
+    origin_id   = "S3-Website- ${aws_s3_bucket.website.website_endpoint}"
 
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.website.cloudfront_access_identity_path
+    custom_origin_config {
+      http_port                = 80
+      https_port               = 443
+      origin_keepalive_timeout = 5
+      origin_protocol_policy   = "http-only"
+      origin_read_timeout      = 30
+      origin_ssl_protocols     = ["TLSv1", "TLSv1.1", "TLSv1.2"]
     }
   }
 
